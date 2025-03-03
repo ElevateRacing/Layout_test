@@ -13,6 +13,7 @@ body {
     color: #000000;
     line-height: 1.6;
     font-family: 'Roboto', Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -23,9 +24,9 @@ header {
 
 .top-box {
     position: fixed;
-    top: 20px; /* Exactly 20px from top */
-    left: 10px; /* Left margin */
-    right: 10px; /* Right margin */
+    top: 20px;
+    left: 10px;
+    right: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,17 +34,16 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 10px;
     height: 70px;
-    border-radius: 8px; /* Rounded corners */
-    min-width: 300px; /* Prevent collapse */
-}
-
-.logo1 img, .logo2 img {
-    height: 40px; /* Adjust size as needed */
+    border-radius: 8px;
+    min-width: 300px;
 }
 
 .logo1 {
     margin-left: 10px;
-    transition: opacity 0.3s ease; /* Smooth disappearance */
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    transition: opacity 0.3s ease;
 }
 
 .logo2 {
@@ -51,9 +51,10 @@ header {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: left 0.5s ease, transform 0.5s ease; /* Smooth animation to left */
-    margin-left: 10px;
-    transition: opacity 0.3s ease; /* Smooth disappearance */
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    transition: left 0.5s ease, transform 0.5s ease, opacity 0.3s ease;
 }
 
 nav {
@@ -66,56 +67,83 @@ nav {
     display: inline-block;
     padding: 10px 20px;
     text-decoration: none;
-    color: #000000; /* Text only by default */
+    color: #000000;
     background-color: transparent;
     border-radius: 8px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 700;
     font-size: 16px;
     transition: background-color 0.3s;
-    white-space: nowrap; /* Prevent button text wrapping */
+    white-space: nowrap;
 }
 
 .btn:hover {
-    background-color: #D3D3D3; /* Light grey on hover */
+    background-color: #D3D3D3;
 }
 
-.btn.active {
-    background-color: #D3D3D3; /* Light grey for active page */
-}
-
-/* Main Content */
-main {
-    margin-top: 110px; /* 70px height + 20px top offset + 20px buffer */
+/* Hero Section with Background */
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    background: url('landing1.png') no-repeat center center/cover;
     display: flex;
-    min-height: calc(100vh - 150px);
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    scroll-snap-align: start;
+}
+
+.hero-content {
+    text-align: center;
+    color: #FFFFFF;
     padding: 20px;
+    max-width: 800px;
+    z-index: 1;
 }
 
-.landing {
-    flex-wrap: wrap;
-}
-
-.subpage {
-    justify-content: space-between;
-}
-
-.left, .right, .center {
-    padding: 20px;
-}
-
-.left { width: 30%; }
-.center { width: 40%; }
-.right { width: 30%; }
-
-h1 {
+.hero-content h1 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-h2 {
+.hero-content h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.hero-content p {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: none;
+}
+
+/* Content Section */
+.content-section {
+    min-height: 100vh;
+    padding: 100px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    scroll-snap-align: start;
+}
+
+.content-section h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.content-section h3 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: 24px;
     font-style: italic;
@@ -124,80 +152,11 @@ h2 {
     margin-bottom: 20px;
 }
 
-p {
+.content-section p {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    max-width: 350px;
-}
-
-.render {
-    width: 100%;
-    max-width: 350px;
-    margin: 20px 0;
-}
-
-.caption {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: #666666;
-    text-align: center;
-}
-
-#canvas-container {
-    width: 100%;
-    height: 500px;
-}
-
-.instructions {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: #666666;
-    text-align: center;
-    margin-top: 10px;
-}
-
-form {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-}
-
-form input, form select, form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #E0E0E0;
-    border-radius: 4px;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-form button {
-    width: 150px;
-    margin: 20px auto 0;
-    display: block;
-    background-color: #D3D3D3; /* Match hover state */
-    color: #000000;
-}
-
-form .note {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: #666666;
-    text-align: center;
-    margin-top: 10px;
-}
-
-form textarea {
-    height: 100px;
-    resize: vertical;
+    max-width: 600px;
 }
 
 /* Footer */
@@ -222,37 +181,54 @@ footer {
     text-decoration: underline;
 }
 
-/* Responsive Design */
+/* Responsive Design and Background Focus */
 @media (max-width: 1000px) {
-    .logo1 { opacity: 0; } /* Disappear logo1 when space is tight */
+    .logo1 { opacity: 0; }
     .logo2 {
-        left: 20px; /* Move to left side */
-        transform: translateY(-50%); /* Keep vertically centered */
+        left: 20px;
+        transform: translateY(-50%);
     }
-    nav { margin-right: 10px; } /* Ensure buttons stay right */
+    nav { margin-right: 10px; }
+    
+    .hero-section {
+        background-position: 60% 40%; /* Adjust these coordinates based on your specific rectangular area */
+    }
 }
 
 @media (max-width: 768px) {
     .top-box {
-        flex-direction: row; /* Keep horizontal for mobile */
+        flex-direction: row;
         justify-content: flex-start;
         height: 70px;
         padding: 10px;
-        border-radius: 0; /* Remove rounded corners on mobile */
-        left: 0; /* Full width on mobile */
+        border-radius: 0;
+        left: 0;
         right: 0;
     }
-    .logo1 { display: none; } /* Hide logo1 on mobile */
-    .logo2 { 
+    .logo1 { display: none; }
+    .logo2 {
         position: static;
         transform: none;
         margin-left: 10px;
     }
-    nav { display: none; } /* Hide buttons on mobile */
-    main { 
-        margin-top: 110px; /* Match desktop height for consistency */
-        min-height: calc(100vh - 150px); 
+    nav { display: none; }
+    
+    .hero-section {
+        background-position: 60% 40%; /* Same coordinates as above for consistency */
+        height: 80vh;
     }
-    .left, .right, .center { width: 100%; }
-    form { max-width: 100%; }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content h2 {
+        font-size: 20px;
+    }
+}
+
+/* Modern Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
