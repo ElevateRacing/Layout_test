@@ -40,14 +40,14 @@ header {
 }
 
 .logo2 img {
-    max-height: 50px; /* Fits within 70px height with padding */
+    max-height: 45px; /* Fits within 70px height with padding */
     width: auto;
     margin-left: 10px;
     order: 1;
 }
 
 .logo1 img {
-    max-height: 50px; /* Fits within 70px height with padding */
+    max-height: 45px; /* Fits within 70px height with padding */
     width: auto;
     position: absolute;
     left: 50%;
@@ -189,7 +189,7 @@ footer {
 }
 
 /* Responsive Design and Background Focus */
-@media (max-width: 1000px) { /* Adjusted breakpoint for earlier logo1 hiding */
+@media (max-width: 1300px) { /* Adjusted breakpoint for earlier logo1 hiding */
     .logo1 {
         display: none; /* Hide logo1 before buttons go underneath */
     }
