@@ -189,7 +189,7 @@ footer {
 }
 
 /* Responsive Design and Background Focus */
-@media (max-width: 1300px) { /* Adjusted breakpoint for earlier logo1 hiding */
+@media (max-width: 1600px) { /* Adjusted breakpoint for earlier logo1 hiding */
     .logo1 {
         display: none; /* Hide logo1 before buttons go underneath */
     }
