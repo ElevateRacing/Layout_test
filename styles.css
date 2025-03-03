@@ -75,3 +75,192 @@ nav {
     font-weight: 700;
     font-size: 16px;
     transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: #D3D3D3;
+}
+
+/* Hero Section with Background */
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    background: url('landing1.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    scroll-snap-align: start;
+    padding-top: 90px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.hero-content {
+    text-align: center;
+    color: #FFFFFF;
+    padding: 20px;
+    max-width: 800px;
+    z-index: 1100;
+}
+
+.hero-content h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.hero-content p {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: none;
+}
+
+/* Content Section */
+.content-section {
+    min-height: 100vh;
+    padding: 110px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    scroll-snap-align: start;
+    z-index: 900;
+}
+
+.content-section h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.content-section h3 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    color: #666666;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 600px;
+}
+
+/* Footer */
+footer {
+    background-color: #333333;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    position: relative;
+    z-index: 800;
+}
+
+.footer-links a {
+    color: #FFFFFF;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design and Background Focus */
+@media (max-width: 800px) { /* Adjusted breakpoint for earlier logo1 hiding */
+    .logo1 {
+        display: none; /* Hide logo1 before buttons go underneath */
+    }
+    .logo2 img {
+        margin-left: 10px;
+    }
+    nav {
+        margin-right: 10px;
+    }
+    .hero-section {
+        background-position: 60% 40%; /* Adjust these coordinates based on your specific rectangular area */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile-specific rules */
+    .top-box {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        height: 70px;
+        padding: 10px;
+        border-radius: 0;
+        margin: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .logo2 {
+        flex-shrink: 1; /* Allow shrinking to fit */
+    }
+    .logo2 img {
+        max-height: 60px;
+        max-width: 45%; /* Limit to roughly half the screen width */
+        width: auto;
+        margin-left: 10px;
+    }
+    .logo1 {
+        display: block; /* Show logo1 on mobile */
+        margin-left: 10px;
+        flex-shrink: 1; /* Allow shrinking to fit */
+    }
+    .logo1 img {
+        max-height: 60px;
+        max-width: 45%; /* Limit to roughly half the screen width */
+        width: auto;
+        position: static;
+        transform: none;
+    }
+    nav {
+        display: none; /* Remove buttons on mobile */
+    }
+    .hero-section {
+        background-position: 60% 40%;
+        height: 80vh;
+        padding-top: 70px;
+    }
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .hero-content h2 {
+        font-size: 20px;
+    }
+    .content-section {
+        padding-top: 90px;
+    }
+}
+
+/* Modern Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
