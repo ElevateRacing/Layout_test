@@ -40,13 +40,15 @@ header {
 }
 
 .logo2 img {
-    height: 40px; /* Adjust as needed */
+    max-height: 50px; /* Fits within 70px height with padding */
+    width: auto;
     margin-left: 10px;
     order: 1;
 }
 
 .logo1 img {
-    height: 40px; /* Adjust as needed */
+    max-height: 50px; /* Fits within 70px height with padding */
+    width: auto;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -188,7 +190,7 @@ footer {
 /* Responsive Design and Background Focus */
 @media (max-width: 1000px) {
     .top-box {
-        justify-content: flex-start; /* Align items to the left */
+        justify-content: flex-start;
     }
     .logo1 img {
         /* Keep centered until space is too tight */
@@ -204,7 +206,7 @@ footer {
     }
 }
 
-@media (max-width: 600px) { /* Adjusted breakpoint for when logos and buttons conflict */
+@media (max-width: 600px) {
     .logo1 {
         display: none; /* Hide logo1 when space is tight, leaving only logo2 */
     }
@@ -220,38 +222,43 @@ footer {
     .top-box {
         flex-direction: row;
         justify-content: flex-start;
+        align-items: center;
         height: 70px;
         padding: 10px;
         border-radius: 0;
-        margin: 0; /* Full width on mobile */
-        position: fixed; /* Ensure it stays on top on mobile */
+        margin: 0;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         width: 100%;
     }
-    .logo1 {
-        display: block; /* Show logo1 again on mobile */
-        position: static;
-        transform: none;
-        margin-left: 20px; /* Space between logos */
-    }
-    .logo1 img {
-        height: 40px;
-        position: static;
-        transform: none;
+    .logo2 {
+        flex-shrink: 0; /* Prevent shrinking */
     }
     .logo2 img {
+        max-height: 50px; /* Fits within 70px height */
+        width: auto;
         margin-left: 10px;
-        height: 40px;
+    }
+    .logo1 {
+        display: block; /* Show logo1 on mobile */
+        margin-left: 10px; /* Space between logos */
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    .logo1 img {
+        max-height: 50px; /* Fits within 70px height */
+        width: auto;
+        position: static; /* No absolute positioning on mobile */
+        transform: none;
     }
     nav {
         display: none; /* Remove buttons on mobile */
     }
     .hero-section {
-        background-position: 60% 40%; /* Same coordinates as above for consistency */
+        background-position: 60% 40%;
         height: 80vh;
-        padding-top: 70px; /* Adjusted for mobile header height */
+        padding-top: 70px;
     }
     .hero-content h1 {
         font-size: 36px;
@@ -260,7 +267,7 @@ footer {
         font-size: 20px;
     }
     .content-section {
-        padding-top: 90px; /* Adjusted for mobile */
+        padding-top: 90px;
     }
 }
 
