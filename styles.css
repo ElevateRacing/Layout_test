@@ -23,6 +23,10 @@ header {
     z-index: 1000;
 }
 
+.top-box-wrapper {
+    padding: 0 10px; /* Small margin on left and right */
+}
+
 .top-box {
     display: flex;
     justify-content: space-between;
@@ -31,6 +35,7 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 10px;
     height: 70px;
+    border-radius: 8px; /* Rounded corners */
 }
 
 .logo1 {
@@ -215,10 +220,12 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .top-box-wrapper { padding: 0; } /* Remove margin on mobile for full width */
     .top-box {
         flex-direction: column;
         height: auto;
         padding: 10px;
+        border-radius: 0; /* Remove rounded corners on mobile */
     }
     .logo1 { margin: 0; }
     .logo2 { display: none; } /* Hide Logo2 on mobile */
