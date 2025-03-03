@@ -42,16 +42,16 @@ header {
 }
 
 .logo1 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: left 0.5s ease, transform 0.5s ease; /* Smooth animation to left */
     margin-left: 10px;
     transition: opacity 0.3s ease; /* Smooth disappearance */
 }
 
 .logo2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease, transform 0.5s ease; /* Smooth animation to left */
     margin-left: 10px;
     transition: opacity 0.3s ease; /* Smooth disappearance */
 }
