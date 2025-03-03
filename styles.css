@@ -1,15 +1,18 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
 /* Reset and General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
     background-color: #F5F5F5;
     color: #000000;
     line-height: 1.6;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 /* Header */
@@ -31,11 +34,13 @@ header {
 }
 
 .logo {
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .tagline {
+    font-family: 'Montserrat', Arial, sans-serif;
     font-style: italic;
     color: #666666;
     font-size: 16px;
@@ -60,7 +65,9 @@ nav {
     text-decoration: none;
     color: #FFFFFF;
     border-radius: 8px;
-    font-weight: bold;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
     transition: background-color 0.3s;
 }
 
@@ -96,20 +103,25 @@ main {
 .right { width: 30%; }
 
 h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: 48px;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
 h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: 24px;
     font-style: italic;
     color: #666666;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
 p {
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 16px;
+    font-weight: 400;
     max-width: 350px;
 }
 
@@ -120,7 +132,9 @@ p {
 }
 
 .caption {
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 12px;
+    font-weight: 300;
     color: #666666;
     text-align: center;
 }
@@ -131,16 +145,12 @@ p {
 }
 
 .instructions {
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 12px;
+    font-weight: 300;
     color: #666666;
     text-align: center;
     margin-top: 10px;
-}
-
-.cta-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
 form {
@@ -157,6 +167,9 @@ form input, form select, form textarea {
     margin-bottom: 10px;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 form button {
@@ -166,7 +179,9 @@ form button {
 }
 
 form .note {
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 12px;
+    font-weight: 300;
     color: #666666;
     text-align: center;
     margin-top: 10px;
@@ -184,7 +199,9 @@ footer {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
+    font-family: 'Roboto', Arial, sans-serif;
     font-size: 12px;
+    font-weight: 300;
 }
 
 .footer-links a {
