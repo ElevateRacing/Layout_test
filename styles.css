@@ -23,7 +23,7 @@ header {
 }
 
 .top-box-wrapper {
-    padding: 10px 10px 0 10px; /* Small margin on left, right, and top */
+    padding: 20px 10px 0 10px; /* Increased top padding to 20px for lower position */
 }
 
 .top-box {
@@ -37,17 +37,15 @@ header {
     border-radius: 8px; /* Rounded corners */
 }
 
+.logo1 img, .logo2 img {
+    height: 40px; /* Adjust size as needed */
+}
+
 .logo1 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 700;
     margin-left: 10px;
 }
 
 .logo2 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 24px;
-    font-weight: 700;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -81,9 +79,9 @@ nav {
 
 /* Main Content */
 main {
-    margin-top: 90px; /* Increased to account for top box shift */
+    margin-top: 100px; /* Increased to account for top box shift (70px height + 20px top padding + buffer) */
     display: flex;
-    min-height: calc(100vh - 130px);
+    min-height: calc(100vh - 140px);
     padding: 20px;
 }
 
@@ -219,7 +217,7 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .top-box-wrapper { padding: 10px 0 0 0; } /* Adjust padding on mobile */
+    .top-box-wrapper { padding: 20px 0 0 0; } /* Adjust padding on mobile */
     .top-box {
         flex-direction: column;
         height: auto;
