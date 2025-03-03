@@ -95,6 +95,7 @@ nav {
     padding-top: 90px;
     box-sizing: border-box;
     z-index: 1000;
+    background-position: 70% 5%; /* Adjust these coordinates based on your specific rectangular area */
 }
 
 .hero-content {
@@ -189,7 +190,7 @@ footer {
 }
 
 /* Responsive Design and Background Focus */
-@media (max-width: 1400px) { /* Adjusted breakpoint for earlier logo1 hiding */
+@media (max-width: 1450px) { /* Adjusted breakpoint for earlier logo1 hiding */
     .logo1 {
         display: none; /* Hide logo1 before buttons go underneath */
     }
@@ -200,7 +201,7 @@ footer {
         margin-right: 10px;
     }
     .hero-section {
-        background-position: 70% 10%; /* Adjust these coordinates based on your specific rectangular area */
+        background-position: 70% 5%; /* Adjust these coordinates based on your specific rectangular area */
     }
 }
 
@@ -244,7 +245,7 @@ footer {
         display: none; /* Remove buttons on mobile */
     }
     .hero-section {
-        background-position: 70% 10%;
+        background-position: 70% 5%;
         height: 80vh;
         padding-top: 70px;
     }
