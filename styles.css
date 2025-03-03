@@ -19,7 +19,9 @@ body {
 /* Header */
 header {
     width: 100%;
-    position: relative; /* Changed from fixed to ensure it stays in flow */
+    position: fixed; /* Fixed to stay at the top */
+    top: 0;
+    left: 0;
     z-index: 2000;
 }
 
@@ -32,10 +34,8 @@ header {
     padding: 10px;
     height: 70px;
     border-radius: 8px;
-    margin: 20px 10px; /* Added margin to match original spacing */
+    margin: 20px 10px; /* Margin for spacing from edges */
     min-width: 300px;
-    position: sticky; /* Changed to sticky for visibility */
-    top: 0;
     z-index: 2000;
 }
 
@@ -85,7 +85,7 @@ nav {
 
 /* Hero Section with Background */
 .hero-section {
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
     width: 100%;
     background: url('landing1.png') no-repeat center center/cover;
     display: flex;
@@ -93,6 +93,8 @@ nav {
     justify-content: center;
     position: relative;
     scroll-snap-align: start;
+    padding-top: 90px; /* Offset for the fixed header (70px height + 20px margin) */
+    box-sizing: border-box;
     z-index: 1000;
 }
 
@@ -130,7 +132,7 @@ nav {
 /* Content Section */
 .content-section {
     min-height: 100vh;
-    padding: 100px 20px 20px;
+    padding: 110px 20px 20px; /* Increased top padding to account for fixed header */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -190,7 +192,7 @@ footer {
 /* Responsive Design and Background Focus */
 @media (max-width: 1000px) {
     .logo1 {
-        /* Keep centered, no opacity change */
+        /* Keep centered */
     }
     .logo2 {
         margin-left: 10px;
@@ -209,7 +211,7 @@ footer {
         height: 70px;
         padding: 10px;
         border-radius: 0;
-        margin: 0; /* Remove margin on mobile for full width */
+        margin: 0; /* Full width on mobile */
     }
     .logo1 {
         position: static;
@@ -224,6 +226,7 @@ footer {
     .hero-section {
         background-position: 60% 40%; /* Same coordinates as above for consistency */
         height: 80vh;
+        padding-top: 70px; /* Adjusted for mobile header height */
     }
     
     .hero-content h1 {
@@ -232,6 +235,10 @@ footer {
     
     .hero-content h2 {
         font-size: 20px;
+    }
+    
+    .content-section {
+        padding-top: 90px; /* Adjusted for mobile */
     }
 }
 
