@@ -19,7 +19,7 @@ body {
 /* Header */
 header {
     width: 100%;
-    position: fixed; /* Fixed to stay at the top */
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 2000;
@@ -34,23 +34,19 @@ header {
     padding: 10px;
     height: 70px;
     border-radius: 8px;
-    margin: 20px 10px; /* Margin for spacing from edges */
+    margin: 20px 10px;
     min-width: 300px;
     z-index: 2000;
 }
 
-.logo2 { /* Left side */
+.logo2 img {
+    height: 40px; /* Adjust as needed */
     margin-left: 10px;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 20px;
     order: 1;
 }
 
-.logo1 { /* Centered */
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 700;
-    font-size: 24px;
+.logo1 img {
+    height: 40px; /* Adjust as needed */
     position: absolute;
     left: 50%;
     top: 50%;
@@ -85,7 +81,7 @@ nav {
 
 /* Hero Section with Background */
 .hero-section {
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     width: 100%;
     background: url('landing1.png') no-repeat center center/cover;
     display: flex;
@@ -93,7 +89,7 @@ nav {
     justify-content: center;
     position: relative;
     scroll-snap-align: start;
-    padding-top: 90px; /* Offset for the fixed header (70px height + 20px margin) */
+    padding-top: 90px;
     box-sizing: border-box;
     z-index: 1000;
 }
@@ -132,7 +128,7 @@ nav {
 /* Content Section */
 .content-section {
     min-height: 100vh;
-    padding: 110px 20px 20px; /* Increased top padding to account for fixed header */
+    padding: 110px 20px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,20 +187,36 @@ footer {
 
 /* Responsive Design and Background Focus */
 @media (max-width: 1000px) {
-    .logo1 {
-        /* Keep centered */
+    .top-box {
+        justify-content: flex-start; /* Align items to the left */
     }
-    .logo2 {
+    .logo1 img {
+        /* Keep centered until space is too tight */
+    }
+    .logo2 img {
         margin-left: 10px;
     }
-    nav { margin-right: 10px; }
-    
+    nav {
+        margin-right: 10px;
+    }
     .hero-section {
         background-position: 60% 40%; /* Adjust these coordinates based on your specific rectangular area */
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) { /* Adjusted breakpoint for when logos and buttons conflict */
+    .logo1 {
+        display: none; /* Hide logo1 when space is tight, leaving only logo2 */
+    }
+    .logo2 img {
+        margin-left: 10px;
+    }
+    nav {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile-specific rules */
     .top-box {
         flex-direction: row;
         justify-content: flex-start;
@@ -212,31 +224,41 @@ footer {
         padding: 10px;
         border-radius: 0;
         margin: 0; /* Full width on mobile */
+        position: fixed; /* Ensure it stays on top on mobile */
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
     .logo1 {
+        display: block; /* Show logo1 again on mobile */
         position: static;
         transform: none;
-        margin-left: 10px;
+        margin-left: 20px; /* Space between logos */
     }
-    .logo2 {
-        margin-left: 10px;
+    .logo1 img {
+        height: 40px;
+        position: static;
+        transform: none;
     }
-    nav { display: none; }
-    
+    .logo2 img {
+        margin-left: 10px;
+        height: 40px;
+    }
+    nav {
+        display: none; /* Remove buttons on mobile */
+    }
     .hero-section {
         background-position: 60% 40%; /* Same coordinates as above for consistency */
         height: 80vh;
         padding-top: 70px; /* Adjusted for mobile header height */
     }
-    
     .hero-content h1 {
         font-size: 36px;
     }
-    
     .hero-content h2 {
         font-size: 20px;
     }
-    
     .content-section {
         padding-top: 90px; /* Adjusted for mobile */
     }
