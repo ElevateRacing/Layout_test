@@ -61,6 +61,7 @@ nav {
     display: flex;
     gap: 5px;
     order: 3;
+    flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 
 .btn {
@@ -188,12 +189,9 @@ footer {
 }
 
 /* Responsive Design and Background Focus */
-@media (max-width: 1000px) {
-    .top-box {
-        justify-content: flex-start;
-    }
-    .logo1 img {
-        /* Keep centered until space is too tight */
+@media (max-width: 800px) { /* Adjusted breakpoint for when buttons might overlap */
+    .logo1 {
+        display: none; /* Hide logo1 before buttons go underneath */
     }
     .logo2 img {
         margin-left: 10px;
@@ -203,18 +201,6 @@ footer {
     }
     .hero-section {
         background-position: 60% 40%; /* Adjust these coordinates based on your specific rectangular area */
-    }
-}
-
-@media (max-width: 600px) {
-    .logo1 {
-        display: none; /* Hide logo1 when space is tight, leaving only logo2 */
-    }
-    .logo2 img {
-        margin-left: 10px;
-    }
-    nav {
-        margin-right: 10px;
     }
 }
 
@@ -234,22 +220,24 @@ footer {
         width: 100%;
     }
     .logo2 {
-        flex-shrink: 0; /* Prevent shrinking */
+        flex-shrink: 1; /* Allow shrinking to fit */
     }
     .logo2 img {
-        max-height: 50px; /* Fits within 70px height */
+        max-height: 50px;
+        max-width: 45%; /* Limit to roughly half the screen width */
         width: auto;
         margin-left: 10px;
     }
     .logo1 {
         display: block; /* Show logo1 on mobile */
-        margin-left: 10px; /* Space between logos */
-        flex-shrink: 0; /* Prevent shrinking */
+        margin-left: 10px;
+        flex-shrink: 1; /* Allow shrinking to fit */
     }
     .logo1 img {
-        max-height: 50px; /* Fits within 70px height */
+        max-height: 50px;
+        max-width: 45%; /* Limit to roughly half the screen width */
         width: auto;
-        position: static; /* No absolute positioning on mobile */
+        position: static;
         transform: none;
     }
     nav {
