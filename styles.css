@@ -17,17 +17,15 @@ body {
 
 /* Header */
 header {
-    position: fixed;
     width: 100%;
     z-index: 1000;
 }
 
-.top-box-wrapper {
-    top: 20px; /* Moved lower by 20px */
-    padding: 0 10px; /* Left and right margins */
-}
-
 .top-box {
+    position: fixed;
+    top: 20px; /* Explicitly 20px from top */
+    left: 10px; /* Left margin */
+    right: 10px; /* Right margin */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +78,7 @@ nav {
 
 /* Main Content */
 main {
-    margin-top: 110px; /* Adjusted for 70px height + 20px top offset + buffer */
+    margin-top: 110px; /* 70px height + 20px top offset + 20px buffer */
     display: flex;
     min-height: calc(100vh - 150px);
     padding: 20px;
@@ -218,13 +216,13 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .top-box-wrapper { padding: 0; } /* Remove side padding on mobile */
     .top-box {
         flex-direction: column;
         height: auto;
         padding: 10px;
         border-radius: 0; /* Remove rounded corners on mobile */
-        top: 20px; /* Keep top offset */
+        left: 0; /* Full width on mobile */
+        right: 0;
     }
     .logo1 { margin: 0; }
     .logo2 { display: none; } /* Hide Logo2 on mobile */
