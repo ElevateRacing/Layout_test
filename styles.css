@@ -19,16 +19,11 @@ body {
 /* Header */
 header {
     width: 100%;
-    z-index: 2000; /* Increased z-index to ensure it stays above everything */
-    position: fixed; /* Ensure header stays fixed */
-    top: 0;
+    position: relative; /* Changed from fixed to ensure it stays in flow */
+    z-index: 2000;
 }
 
 .top-box {
-    position: fixed;
-    top: 20px;
-    left: 10px;
-    right: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,33 +32,37 @@ header {
     padding: 10px;
     height: 70px;
     border-radius: 8px;
+    margin: 20px 10px; /* Added margin to match original spacing */
     min-width: 300px;
-    z-index: 2000; /* Match header z-index */
+    position: sticky; /* Changed to sticky for visibility */
+    top: 0;
+    z-index: 2000;
 }
 
-.logo1 {
+.logo2 { /* Left side */
     margin-left: 10px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    order: 1;
+}
+
+.logo1 { /* Centered */
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 700;
     font-size: 24px;
-    transition: opacity 0.3s ease;
-}
-
-.logo2 {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    transition: left 0.5s ease, transform 0.5s ease, opacity 0.3s ease;
+    order: 2;
 }
 
 nav {
     margin-right: 10px;
     display: flex;
     gap: 5px;
+    order: 3;
 }
 
 .btn {
@@ -86,7 +85,7 @@ nav {
 
 /* Hero Section with Background */
 .hero-section {
-    height: calc(100vh - 90px); /* Adjusted for header height (70px + 20px top margin) */
+    height: 100vh;
     width: 100%;
     background: url('landing1.png') no-repeat center center/cover;
     display: flex;
@@ -94,8 +93,7 @@ nav {
     justify-content: center;
     position: relative;
     scroll-snap-align: start;
-    margin-top: 90px; /* Offset to prevent overlap with fixed header */
-    z-index: 1000; /* Lower than header but above content */
+    z-index: 1000;
 }
 
 .hero-content {
@@ -103,7 +101,7 @@ nav {
     color: #FFFFFF;
     padding: 20px;
     max-width: 800px;
-    z-index: 1100; /* Above hero-section background but below header */
+    z-index: 1100;
 }
 
 .hero-content h1 {
@@ -139,7 +137,7 @@ nav {
     justify-content: center;
     text-align: center;
     scroll-snap-align: start;
-    z-index: 900; /* Below hero-section */
+    z-index: 900;
 }
 
 .content-section h2 {
@@ -176,7 +174,7 @@ footer {
     font-size: 12px;
     font-weight: 300;
     position: relative;
-    z-index: 800; /* Below everything else */
+    z-index: 800;
 }
 
 .footer-links a {
@@ -191,10 +189,11 @@ footer {
 
 /* Responsive Design and Background Focus */
 @media (max-width: 1000px) {
-    .logo1 { opacity: 0; }
+    .logo1 {
+        /* Keep centered, no opacity change */
+    }
     .logo2 {
-        left: 20px;
-        transform: translateY(-50%);
+        margin-left: 10px;
     }
     nav { margin-right: 10px; }
     
@@ -210,13 +209,34 @@ footer {
         height: 70px;
         padding: 10px;
         border-radius: 0;
-        left: 0;
-        right: 0;
+        margin: 0; /* Remove margin on mobile for full width */
     }
-    .logo1 { display: none; }
-    .logo2 {
+    .logo1 {
         position: static;
         transform: none;
         margin-left: 10px;
     }
-    na
+    .logo2 {
+        margin-left: 10px;
+    }
+    nav { display: none; }
+    
+    .hero-section {
+        background-position: 60% 40%; /* Same coordinates as above for consistency */
+        height: 80vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-content h2 {
+        font-size: 20px;
+    }
+}
+
+/* Modern Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
