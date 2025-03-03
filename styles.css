@@ -189,7 +189,7 @@ footer {
 }
 
 /* Responsive Design and Background Focus */
-@media (max-width: 1600px) { /* Adjusted breakpoint for earlier logo1 hiding */
+@media (max-width: 1400px) { /* Adjusted breakpoint for earlier logo1 hiding */
     .logo1 {
         display: none; /* Hide logo1 before buttons go underneath */
     }
@@ -200,7 +200,7 @@ footer {
         margin-right: 10px;
     }
     .hero-section {
-        background-position: 800px 200px; /* Adjust these coordinates based on your specific rectangular area */
+        background-position: 70% 10%; /* Adjust these coordinates based on your specific rectangular area */
     }
 }
 
@@ -244,7 +244,7 @@ footer {
         display: none; /* Remove buttons on mobile */
     }
     .hero-section {
-        background-position: 800px 200px;
+        background-position: 70% 10%;
         height: 80vh;
         padding-top: 70px;
     }
