@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevate Racing - AirKart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">Elevate Racing</div>
+            <div class="tagline">AeroKarting Revolution</div>
+            <div class="social">
+                <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <nav>
+            <a href="reserve.html" class="btn btn-red">Reserve your AirKart</a>
+            <a href="book.html" class="btn btn-blue">Book a Flight</a>
+            <a href="investors.html" class="btn btn-grey">Investors</a>
+        </nav>
+    </header>
+
+    <main class="landing">
+        <section class="left">
+            <h1>Experience the Thrill of AirKarting</h1>
+            <h2>Own your AirKart for $199,000 or fly it at our AeroKarting Track</h2>
+            <p>Elevate Racing brings you AirKart, the ultimate eVTOL for personal flight and racing excitement. Engineered for agility and speed, it’s your ticket to the skies.</p>
+        </section>
+        <section class="center">
+            <div id="canvas-container"></div>
+            <p class="instructions">Rotate with mouse or touch</p>
+        </section>
+        <section class="right">
+            <div class="cta-buttons">
+                <a href="reserve.html" class="btn btn-red">Reserve your AirKart</a>
+                <a href="book.html" class="btn btn-blue">Book a Flight</a>
+                <a href="investors.html" class="btn btn-grey">Investors</a>
+            </div>
+            <img src="images/airkart1.jpg" alt="AirKart in Flight" class="render">
+            <p class="caption">AirKart in Flight</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Elevate Racing</p>
+        <p>info@elevateracing.com</p>
+        <div class="footer-links">
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Three.js for 3D model -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/controls/TrackballControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/RGBELoader.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setClearColor(0xffffff, 0);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 0.9;
+
+        const container = document.getElementById('canvas-container');
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
+        scene.add(ambientLight);
+
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
+        directionalLight1.position.set(5, 10, 5);
+        scene.add(directionalLight1);
+
+        let environmentTexture = null;
+        const rgbeLoader = new THREE.RGBELoader();
+        rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_1k.hdr', function (texture) {
+            texture.mapping = THREE.EquirectangularReflectionMapping;
+            scene.environment = texture;
+            environmentTexture = texture;
+            loadModel();
+        });
+
+        const Paint_Red = new THREE.MeshStandardMaterial({
+            color: 0xFF0000,
+            metalness: 0.3,
+            roughness: 0.1,
+            envMap: environmentTexture,
+            envMapIntensity: 1.0
+        });
+
+        const CFRP_Matt = new THREE.MeshStandardMaterial({
+            color: 0x1C2526,
+            metalness: 0.1,
+            roughness: 0.6,
+            envMap: environmentTexture,
+            envMapIntensity: 0.5
+        });
+
+        async function loadModel() {
+            const mtlLoader = new THREE.MTLLoader();
+            const materials = await new Promise((resolve) => {
+                mtlLoader.load('models/Mono_optimized.mtl', resolve);
+            });
+            materials.preload();
+            materials.materials['CFRP'] = CFRP_Matt;
+            materials.materials['Powder_Coat_(Red)'] = Paint_Red;
+
+            const objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            const object = await new Promise((resolve) => {
+                objLoader.load('models/Mono_optimized.obj', resolve);
+            });
+
+            object.scale.set(0.0005, 0.0005, 0.0005);
+            scene.add(object);
+
+            const objectBoundingBox = new THREE.Box3().setFromObject(object);
+            const objectCenter = objectBoundingBox.getCenter(new THREE.Vector3());
+            camera.position.set(0, -1.5, 1.5);
+            camera.lookAt(objectCenter);
+        }
+
+        const controls = new THREE.TrackballControls(camera, renderer.domElement);
+        controls.rotateSpeed = 2.5;
+        controls.zoomSpeed = 5;
+        controls.panSpeed = 2;
+        controls.staticMoving = true;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        function resizeRenderer() {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resizeRenderer);
+    </script>
+</body>
+</html>
