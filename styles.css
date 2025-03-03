@@ -34,6 +34,7 @@ header {
     padding: 10px;
     height: 70px;
     border-radius: 8px; /* Rounded corners */
+    min-width: 300px; /* Prevent collapse */
 }
 
 .logo1 img, .logo2 img {
@@ -42,23 +43,26 @@ header {
 
 .logo1 {
     margin-left: 10px;
+    transition: opacity 0.3s ease; /* Smooth disappearance */
 }
 
 .logo2 {
     position: absolute;
     left: 50%;
-    top: 50%; /* Center vertically within top box */
+    top: 50%;
     transform: translate(-50%, -50%);
+    transition: left 0.5s ease, transform 0.5s ease; /* Smooth animation to left */
 }
 
 nav {
     margin-right: 10px;
+    display: flex;
+    gap: 5px;
 }
 
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    margin: 0 5px;
     text-decoration: none;
     color: #000000; /* Text only by default */
     background-color: transparent;
@@ -67,6 +71,7 @@ nav {
     font-weight: 700;
     font-size: 16px;
     transition: background-color 0.3s;
+    white-space: nowrap; /* Prevent button text wrapping */
 }
 
 .btn:hover {
@@ -216,26 +221,35 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1000px) {
+    .logo1 { opacity: 0; } /* Disappear logo1 when space is tight */
+    .logo2 {
+        left: 20px; /* Move to left side */
+        transform: translateY(-50%); /* Keep vertically centered */
+    }
+    nav { margin-right: 10px; } /* Ensure buttons stay right */
+}
+
 @media (max-width: 768px) {
     .top-box {
-        flex-direction: column;
-        height: auto;
+        flex-direction: row; /* Keep horizontal for mobile */
+        justify-content: flex-start;
+        height: 70px;
         padding: 10px;
         border-radius: 0; /* Remove rounded corners on mobile */
         left: 0; /* Full width on mobile */
         right: 0;
     }
-    .logo1 { margin: 0; }
-    .logo2 { display: none; } /* Hide Logo2 on mobile */
-    nav { 
-        flex-direction: column; 
-        gap: 10px; 
-        margin: 10px 0 0 0; 
+    .logo1 { display: none; } /* Hide logo1 on mobile */
+    .logo2 { 
+        position: static;
+        transform: none;
+        margin-left: 10px;
     }
+    nav { display: none; } /* Hide buttons on mobile */
     main { 
-        flex-direction: column; 
-        margin-top: 130px; /* Adjusted for mobile header height */
-        min-height: calc(100vh - 170px); 
+        margin-top: 110px; /* Match desktop height for consistency */
+        min-height: calc(100vh - 150px); 
     }
     .left, .right, .center { width: 100%; }
     form { max-width: 100%; }
