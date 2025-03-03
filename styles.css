@@ -23,7 +23,8 @@ header {
 }
 
 .top-box-wrapper {
-    padding: 20px 10px 0 10px; /* Increased top padding to 20px for lower position */
+    top: 20px; /* Moved lower by 20px */
+    padding: 0 10px; /* Left and right margins */
 }
 
 .top-box {
@@ -79,9 +80,9 @@ nav {
 
 /* Main Content */
 main {
-    margin-top: 100px; /* Increased to account for top box shift (70px height + 20px top padding + buffer) */
+    margin-top: 110px; /* Adjusted for 70px height + 20px top offset + buffer */
     display: flex;
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 150px);
     padding: 20px;
 }
 
@@ -217,12 +218,13 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .top-box-wrapper { padding: 20px 0 0 0; } /* Adjust padding on mobile */
+    .top-box-wrapper { padding: 0; } /* Remove side padding on mobile */
     .top-box {
         flex-direction: column;
         height: auto;
         padding: 10px;
         border-radius: 0; /* Remove rounded corners on mobile */
+        top: 20px; /* Keep top offset */
     }
     .logo1 { margin: 0; }
     .logo2 { display: none; } /* Hide Logo2 on mobile */
@@ -231,7 +233,11 @@ footer {
         gap: 10px; 
         margin: 10px 0 0 0; 
     }
-    main { flex-direction: column; }
+    main { 
+        flex-direction: column; 
+        margin-top: 130px; /* Adjusted for mobile header height */
+        min-height: calc(100vh - 170px); 
+    }
     .left, .right, .center { width: 100%; }
     form { max-width: 100%; }
 }
