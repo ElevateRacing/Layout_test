@@ -19,12 +19,11 @@ body {
 header {
     position: fixed;
     width: 100%;
-    top: 0;
     z-index: 1000;
 }
 
 .top-box-wrapper {
-    padding: 0 10px; /* Small margin on left and right */
+    padding: 10px 10px 0 10px; /* Small margin on left, right, and top */
 }
 
 .top-box {
@@ -82,9 +81,9 @@ nav {
 
 /* Main Content */
 main {
-    margin-top: 70px; /* Space for fixed header */
+    margin-top: 90px; /* Increased to account for top box shift */
     display: flex;
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 130px);
     padding: 20px;
 }
 
@@ -220,7 +219,7 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .top-box-wrapper { padding: 0; } /* Remove margin on mobile for full width */
+    .top-box-wrapper { padding: 10px 0 0 0; } /* Adjust padding on mobile */
     .top-box {
         flex-direction: column;
         height: auto;
