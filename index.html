@@ -34,5 +34,46 @@
             <p class="hero-text hero-text-2">Engineered for agility and speed, it’s your ticket to the skies.</p>
         </section>
     </main>
+    
+    <!-- Embedded JavaScript -->
+    <script>
+        // Get elements
+        const topBox = document.querySelector('.top-box');
+        const logo1 = document.querySelector('.logo1');
+        const logo2 = document.querySelector('.logo2');
+        const nav = document.querySelector('nav');
+
+        // Function to adjust logo1
+        function adjustLogo1() {
+            // Get widths
+            const boxWidth = topBox.offsetWidth;
+            const logo2Width = logo2.offsetWidth;
+            const logo1Width = logo1.offsetWidth;
+            const navWidth = nav.offsetWidth;
+
+            // Calculate total space needed
+            const totalWidth = logo2Width + logo1Width + navWidth + 20; // 20px for padding
+
+            if (boxWidth < totalWidth) {
+                // Not enough space, hide logo1
+                logo1.style.display = 'none';
+            } else {
+                // Enough space, show and position logo1
+                logo1.style.display = 'block';
+                
+                // Center between logo2 and nav
+                const leftSpace = logo2Width + 10; // After logo2 + padding
+                const rightSpace = boxWidth - navWidth - 10; // Before nav
+                const center = (leftSpace + rightSpace) / 2; // Midpoint
+                
+                logo1.style.left = center + 'px';
+                logo1.style.transform = 'translateX(-50%)';
+            }
+        }
+
+        // Run on load and resize
+        window.addEventListener('load', adjustLogo1);
+        window.addEventListener('resize', adjustLogo1);
+    </script>
 </body>
 </html>
