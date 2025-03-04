@@ -265,22 +265,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Responsive Design and Background Focus */
-@media (max-width: 1450px) { /* Adjusted breakpoint for earlier logo1 hiding */
-    .logo1 {
-        display: none; /* Hide logo1 before buttons go underneath */
-    }
-    .logo2 img {
-        margin-left: 10px;
-    }
-    nav {
-        margin-right: 10px;
-    }
-    .hero-section {
-        background-position: 70% 5%; /* Adjust these coordinates based on your specific rectangular area */
-    }
-}
-
 @media (max-width: 768px) { /* Mobile-specific rules */
     .top-box {
         flex-direction: row;
