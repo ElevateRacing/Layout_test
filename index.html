@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elevate Racing - AirKart</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -45,12 +45,20 @@
                     <img src="NightStreet1.jpg" alt="Night Street" class="slide" id="slide4">
                 </div>
                 <div class="dots">
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    <span class="dot" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="content-section-right">
+        <div class="content-right">
+            <h2>Own Your AirKart</h2>
+            <h3>Secure your spot for $199,000</h3>
+            <p>Join the elite few who own an AirKart. Limited production slots available—reserve now to experience flight like never before.</p>
         </div>
     </section>
 
@@ -62,14 +70,15 @@
             <a href="#">Privacy</a>
         </div>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Logo positioning
             const logo1 = document.querySelector('.logo1');
             const logo2 = document.querySelector('.logo2');
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
 
-            // Debounce function
             function debounce(func, wait) {
                 let timeout;
                 return function(...args) {
@@ -87,49 +96,75 @@
                     return;
                 }
 
-                // Get widths
                 const topBoxWidth = topBox.offsetWidth;
                 const logo1Width = logo1.offsetWidth;
                 const logo2Width = logo2.offsetWidth;
                 const navWidth = nav.offsetWidth;
 
-                // Total width needed for all elements
-                const totalMinWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding each side
+                const totalMinWidth = logo2Width + logo1Width + navWidth + 40;
                 const availableSpace = topBoxWidth - logo2Width - navWidth - 40;
 
-                // Step 1: Hide logo1 if not enough space
                 if (topBoxWidth <= totalMinWidth || availableSpace < logo1Width + 20) {
                     logo1.style.display = 'none';
                     return;
                 }
 
-                // Step 2: Position logo1
                 logo1.style.display = 'block';
                 logo1.style.position = 'absolute';
 
-                // Check if nav encroaches on centered logo1
                 const centerPoint = topBoxWidth / 2;
                 const logo1RightEdge = centerPoint + (logo1Width / 2);
                 const navLeftEdge = topBoxWidth - navWidth - 20;
 
                 if (logo1RightEdge + 20 >= navLeftEdge) {
-                    // Shift left
                     const newLeft = logo2Width + 20 + (availableSpace - logo1Width) / 2;
                     logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
                     logo1.style.transform = 'translateY(-50%)';
                 } else {
-                    // Center
                     logo1.style.left = '50%';
                     logo1.style.transform = 'translate(-50%, -50%)';
                 }
             }
 
-            // Initial adjustment
             adjustLogoPosition();
-
-            // Debounced resize handler (restored to working version)
             const debouncedAdjust = debounce(adjustLogoPosition, 50);
             window.addEventListener('resize', debouncedAdjust);
+
+            // Slideshow functionality
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            let currentSlide = 0;
+            let interval;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.left = i === index ? '0' : '100%';
+                    slide.style.animation = 'none'; // Remove animation for manual control
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            function startSlideshow() {
+                interval = setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    showSlide(currentSlide);
+                }, 4000);
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    clearInterval(interval);
+                    const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                    showSlide(slideIndex);
+                    setTimeout(startSlideshow, 4000); // Restart after 4s pause
+                });
+            });
+
+            showSlide(0); // Show first slide
+            startSlideshow(); // Start automatic slideshow
         });
     </script>
 </body>
