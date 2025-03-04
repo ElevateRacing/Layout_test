@@ -65,7 +65,7 @@ header {
     top: 50%;
     transform: translate(-50%, -50%);
     order: 2;
-    transition: left 0.1s ease, transform 0.1s ease, display 0s; /* Smooth transitions */
+    transition: left 0.1s ease, transform 0.1s ease; /* Smooth transitions */
     z-index: 10; /* Ensure logo1 stays above nav */
 }
 
