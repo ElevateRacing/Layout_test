@@ -67,11 +67,18 @@ header {
     width: auto;  /* Maintains aspect ratio */
 }
 
+.logo1 {
+    height: 50px; /* Fixed height */
+    width: auto;  /* Maintains aspect ratio */
+    position: absolute; /* Center it */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 nav {
     display: flex;
     gap: 10px;
     flex-shrink: 0;
-    margin-left: auto;
 }
 
 .btn {
@@ -89,7 +96,6 @@ nav {
 
 .btn:hover {
     background-color: var(--button-hover);
-    transform: translateY(-2px);
 }
 
 .btn:focus {
