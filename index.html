@@ -119,29 +119,40 @@
                     // Mobile view: logo1 centered, nav hidden
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
-                    logo1.style.left = '50%';
-                    logo1.style.transform = 'translate(-50%, -50%)';
-                    nav.style.display = 'none';
-                    return;
-                }
-
-                // Desktop view: hide logo1 if not enough space
-                const totalRequiredWidth = logo2Width + logo1Width + navWidth + minGap * 2;
-                if (topBoxWidth < totalRequiredWidth) {
-                    logo1.style.display = 'none';
-                } else {
-                    logo1.style.display = 'block';
-                    logo1.style.position = 'absolute';
-                    const leftEdge = logo2Width + minGap;
-                    const rightEdge = topBoxWidth - navWidth - minGap;
-                    const centerPosition = leftEdge + (rightEdge - leftEdge - logo1Width) / 2;
-                    logo1.style.left = `${centerPosition}px`;
+                    logo1.style.left = 'auto';
+                    logo1.style.right = '10px'; // Position from right with padding
                     logo1.style.transform = 'translateY(-50%)';
+                    logo2.style.position = 'absolute';
+                    logo2.style.left = '10px'; // Position from left with padding
+                    logo2.style.transform = 'translateY(-50%)';
+                    nav.style.display = 'none';
+                } else {
+                    // Desktop view: show nav and adjust logo1
+                    nav.style.display = 'flex'; // Ensure buttons are visible
+                    const totalRequiredWidth = logo2Width + logo1Width + navWidth + minGap * 3;
+                    if (topBoxWidth < totalRequiredWidth) {
+                        logo1.style.display = 'none';
+                        logo2.style.position = 'absolute';
+                        logo2.style.left = '10px';
+                        logo2.style.transform = 'translateY(-50%)';
+                    } else {
+                        logo1.style.display = 'block';
+                        logo1.style.position = 'absolute';
+                        const leftEdge = logo2Width + minGap;
+                        const rightEdge = topBoxWidth - navWidth - minGap;
+                        const centerPosition = leftEdge + (rightEdge - leftEdge - logo1Width) / 2;
+                        logo1.style.left = `${centerPosition}px`;
+                        logo1.style.right = 'auto';
+                        logo1.style.transform = 'translateY(-50%)';
+                        logo2.style.position = 'absolute';
+                        logo2.style.left = '10px';
+                        logo2.style.transform = 'translateY(-50%)';
+                    }
                 }
             }
 
             adjustLogoPosition();
-            const debouncedAdjust = debounce(adjustLogoPosition, 50);
+            const debouncedAdjust = debounce(adjustLogoPosition, 10); // Reduced delay for faster response
             window.addEventListener('resize', debouncedAdjust);
 
             // Slideshow functionality
