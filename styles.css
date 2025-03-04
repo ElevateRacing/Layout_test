@@ -1,7 +1,7 @@
-/* Fonts */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
-/* CSS Variables */
+/* CSS Variables for consistent styling */
 :root {
     --primary-color: #333333;
     --secondary-color: #FFFFFF;
@@ -9,10 +9,10 @@
     --background-light: #F5F5F5;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --focus-color: #007bff;
-    --button-hover: #e0e0e0;
+    --button-hover: #e0e0e0; /* Light grey for modern hover */
 }
 
-/* Reset and Base Styles */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -31,13 +31,14 @@ body {
     overflow-x: hidden;
 }
 
+/* Image optimization */
 img {
     max-width: 100%;
     height: auto;
     loading: lazy;
 }
 
-/* Header */
+/* Header styles */
 header {
     width: 100%;
     position: fixed;
@@ -63,11 +64,14 @@ header {
 .logo-container {
     position: relative;
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .logo2 {
     position: absolute;
     top: 50%;
+    left: 20px;
     transform: translateY(-50%);
 }
 
@@ -77,10 +81,9 @@ header {
 }
 
 .logo1 {
-    position: absolute;
+    position: relative;
     top: 50%;
-    transition: left 0.1s ease, transform 0.1s ease, display 0s;
-    z-index: 10;
+    transform: translateY(-50%);
 }
 
 .logo1 img {
@@ -101,162 +104,4 @@ nav {
     color: #000000;
     background-color: transparent;
     border-radius: 12px;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.4;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-    background-color: var(--button-hover);
-    transform: translateY(-2px);
-}
-
-.btn:focus {
-    outline: 2px solid var(--focus-color);
-    outline-offset: 2px;
-}
-
-/* Hero Section */
-.hero-section {
-    height: 100vh;
-    width: 100%;
-    background: url('sky2.jpg') no-repeat center center/cover;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    scroll-snap-align: start;
-    padding: 90px 0 0 0;
-    z-index: 1000;
-    background-position: 70% 5%;
-}
-
-.hero-content {
-    text-align: left;
-    color: var(--secondary-color);
-    padding: 20px 30px;
-    max-width: 800px;
-    z-index: 1100;
-    background-color: rgba(64, 64, 64, 0.8);
-    border-radius: 8px;
-    margin: 10% 0 0 15%;
-}
-
-.hero-content h1 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 4vw;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 10px;
-    max-font-size: 60px;
-}
-
-.hero-content h2 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 2vw;
-    font-style: italic;
-    font-weight: 400;
-    margin-bottom: 10px;
-    max-font-size: 30px;
-}
-
-.hero-text {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.6;
-    display: block;
-}
-
-/* Content Section */
-.content-section {
-    min-height: 100vh;
-    padding: 110px 0 20px;
-    scroll-snap-align: start;
-    z-index: 900;
-}
-
-.split-container {
-    display: flex;
-    height: calc(100vh - 130px);
-    width: 100%;
-}
-
-.left-content {
-    width: 50%;
-    background-color: var(--background-light);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.left-content h2 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.text-swap-container {
-    position: relative;
-    min-height: 80px;
-    margin-bottom: 20px;
-}
-
-.text-swap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    animation: fadeSwap 10s infinite;
-}
-
-.text-swap#text2 {
-    animation-delay: 5s;
-}
-
-@keyframes fadeSwap {
-    0%, 45% { opacity: 1; }
-    50%, 95% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-.left-content p:not(.text-swap) {
-    position: relative;
-}
-
-.reserve-btn {
-    padding: 12px 24px;
-    text-decoration: none;
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
-    border-radius: 8px;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-    margin-top: 20px;
-    display: inline-block;
-}
-
-.reserve-btn:hover {
-    background-color: var(--hover-color);
-}
-
-.reserve-btn:focus {
-    outline: 2px solid var(--focus-color);
-    outline-offset: 2px;
-}
-
-.right-slideshow {
-    width: 50%;
-    position: relative;
-    overflow: hidden;
-}
-
-.slides {
+    font-family: 'Montserrat', Arial, sans-
