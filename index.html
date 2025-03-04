@@ -75,22 +75,24 @@
                 const navWidth = nav.offsetWidth;
 
                 // Calculate key points
-                const totalContentWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding on each side
-                const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40;
+                const totalContentWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding each side
+                const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40; // Space between logo2 and nav
+                const navLeftEdge = topBoxWidth - navWidth - 20; // Nav's left edge relative to top-box
 
-                // Case 1: Enough space to center logo1
-                if (topBoxWidth > totalContentWidth + 50) { // 50px buffer for centering
+                // Case 1: Enough space to center logo1 without overlap
+                const centeredLogo1RightEdge = (topBoxWidth / 2) + (logo1Width / 2);
+                if (centeredLogo1RightEdge + 20 < navLeftEdge) { // 20px buffer before nav
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     logo1.style.left = '50%';
                     logo1.style.transform = 'translate(-50%, -50%)';
                 }
-                // Case 2: Move logo1 left as nav encroaches
-                else if (spaceBetweenLogosAndNav > logo1Width + 20) { // 20px buffer
+                // Case 2: Move logo1 left to avoid nav encroachment
+                else if (spaceBetweenLogosAndNav > logo1Width + 30) { // 30px buffer for safety
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     const newLeft = logo2Width + 20 + (spaceBetweenLogosAndNav - logo1Width) / 2;
-                    logo1.style.left = newLeft + 'px';
+                    logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px'; // Ensure it doesn’t overlap logo2
                     logo1.style.transform = 'translateY(-50%)';
                 }
                 // Case 3: Hide logo1 if not enough space
