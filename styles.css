@@ -159,6 +159,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    position: relative; /* Contain absolute children */
 }
 
 .left-content h2 {
@@ -166,20 +167,38 @@ nav {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 20px;
+    position: relative; /* Keep static positioning */
 }
 
-.left-content p {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 auto 20px;
-}
-
-.text-swap {
+.left-content .text-swap-container {
     position: relative;
+    min-height: 80px; /* Reserve space for tallest text */
+    margin-bottom: 20px;
+}
+
+.left-content .text-swap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Shorter duration for cleaner swap */
+}
+
+.left-content .text-swap.active {
     opacity: 1;
 }
+
+}
+.left-content p:not(.text-swap) {
+    position: relative; /* Static bottom text */
+}
+
+.reserve-btn {
+    position: relative; /* Static button */
+}
+
+
 
 .reserve-btn {
     display: inline-block;
@@ -193,6 +212,7 @@ nav {
     font-size: 1rem;
     transition: background-color 0.3s;
     margin-top: 20px;
+    width: auto; /* Ensure it shrinks to content */
 }
 
 .reserve-btn:hover {
@@ -330,9 +350,10 @@ footer {
         width: auto;
     }
     .logo1 {
-        position: static;
-        transform: none;
-        margin-left: 10px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     .logo1 img {
         max-height: 60px;
