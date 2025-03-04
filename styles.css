@@ -10,7 +10,6 @@
 
 html {
     scroll-snap-type: y mandatory;
-    scroll-behavior: smooth; /* Restored with custom timing */
 }
 
 /*
@@ -113,7 +112,7 @@ nav {
     box-sizing: border-box;
     z-index: 1000;
     background-position: 70% 5%; /* Adjust these coordinates based on your specific rectangular area */
-    transition: all 0.8s ease-out; /* Added here for smooth snapping */
+    transition: all 1.2s ease-in-out; /* Slower and smoother */
 }
 
 .hero-content {
@@ -173,7 +172,7 @@ nav {
     text-align: center;
     scroll-snap-align: start;
     z-index: 900;
-    transition: all 0.8s ease-out; /* Added here for smooth snapping */
+    transition: all 1.2s ease-in-out; /* Slower and smoother */
 }
 
 .content-section h2 {
@@ -212,7 +211,7 @@ nav {
     padding: 110px 20px 20px;
     box-sizing: border-box;
     z-index: 900;
-    transition: all 0.8s ease-out; /* Added here for smooth snapping */
+    transition: all 1.2s ease-in-out; /* Slower and smoother */
 }
 
 .content-right {
