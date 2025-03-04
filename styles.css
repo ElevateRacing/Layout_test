@@ -31,19 +31,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Image optimization */
-img {
-    max-width: 100%;
-    height: auto;
-    loading: lazy;
-}
-
 /* Header styles */
 header {
     width: 100%;
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 2000;
 }
 
@@ -57,18 +49,14 @@ header {
     min-height: 70px;
     border-radius: 8px;
     margin: 20px 10px;
-    min-width: 300px;
     position: relative;
     justify-content: space-between;
     max-width: calc(100% - 20px); /* Prevents overflow from margins */
-    overflow: hidden; /* Prevents overflow */
 }
 
 .logo2 {
     height: 50px; /* Fixed height */
     width: auto;  /* Maintains aspect ratio */
-    flex-shrink: 0; /* Prevents shrinking */
-    margin-right: 10px; /* Space between logos */
 }
 
 .logo1 {
@@ -76,18 +64,12 @@ header {
     max-height: 50px; /* Explicitly enforce max height */
     width: auto;  /* Maintains aspect ratio */
     position: absolute; /* Center it */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1; /* Above other elements */
+    transition: left 0.3s ease; /* Smooth movement */
 }
 
 nav {
     display: flex;
     gap: 10px;
-    flex-shrink: 1;
-    flex-wrap: nowrap; /* Prevents wrapping */
-    max-width: 50%; /* Limits nav width to avoid overflow */
-    margin-left: auto; /* Push to the right */
 }
 
 .btn {
@@ -113,29 +95,28 @@ nav {
     outline-offset: 2px;
 }
 
-/* Desktop Dynamic Behavior (No Media Queries) */
-.top-box {
-    /* Use a pseudo-element trick to approximate dynamic centering */
-    position: relative;
-}
-
-.logo1 {
-    /* Default centered */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Hide logo1 when space is too tight (approximation with calc) */
-.top-box:has(nav:where(:nth-child(3))) {
-    /* This is a rough approximation; exact behavior needs JS */
-    /* If nav overlaps logo1, hide it */
-}
-
 /* Hide navigation on mobile devices */
 @media (max-width: 768px) {
     nav {
         display: none; /* Hides nav buttons on mobile */
     }
+
+    .top-box {
+                justify-content: flex-start; /* Align logos left */
+                padding: 10px 5px;
+    }
+    .logo2 {
+                height: 40px; /* Same height */
+                width: auto;
+                margin-right: 10px;
+                max-width: 45%; /* Fit horizontally */
+    }
+    .logo1 {
+                height: 40px; /* Same height */
+                width: auto;
+                position: static; /* Side-by-side */
+                max-width: 45%; /* Fit horizontally */
+    } 
 }
 
 /* Hero section */
