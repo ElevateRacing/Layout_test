@@ -86,36 +86,50 @@
                 const logo2Width = logo2.offsetWidth;
                 const navWidth = nav.offsetWidth;
 
-                // Calculate available space
+                // Calculate total minimum width needed
                 const totalMinWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding each side
                 const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40;
                 const navLeftEdge = topBoxWidth - navWidth - 20;
 
-                // Case 1: Hide logo1 if not enough space for both logos and nav
-                if (topBoxWidth < totalMinWidth) {
+                // Debug logs (remove after testing)
+                console.log({
+                    topBoxWidth,
+                    totalMinWidth,
+                    spaceBetweenLogosAndNav,
+                    logo1Width,
+                    logo2Width,
+                    navWidth
+                });
+
+                // Step 1: Hide logo1 if not enough total space
+                if (topBoxWidth <= totalMinWidth) {
                     logo1.style.display = 'none';
-                    return; // Exit early
+                    console.log('Hiding logo1: Insufficient total width');
+                    return;
                 }
 
-                // Case 2: Move logo1 left if nav encroaches
+                // Step 2: Position logo1
                 const centeredLogo1RightEdge = (topBoxWidth / 2) + (logo1Width / 2);
-                if (centeredLogo1RightEdge + 40 >= navLeftEdge && spaceBetweenLogosAndNav >= logo1Width + 40) {
-                    logo1.style.display = 'block';
-                    logo1.style.position = 'absolute';
-                    const newLeft = logo2Width + 20 + (spaceBetweenLogosAndNav - logo1Width) / 2;
-                    logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
-                    logo1.style.transform = 'translateY(-50%)';
-                }
-                // Case 3: Center logo1 if plenty of space
-                else if (spaceBetweenLogosAndNav >= logo1Width + 40) {
+                if (centeredLogo1RightEdge + 40 >= navLeftEdge) {
+                    // Move left if nav encroaches, but only if enough space
+                    if (spaceBetweenLogosAndNav >= logo1Width + 40) {
+                        logo1.style.display = 'block';
+                        logo1.style.position = 'absolute';
+                        const newLeft = logo2Width + 20 + (spaceBetweenLogosAndNav - logo1Width) / 2;
+                        logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
+                        logo1.style.transform = 'translateY(-50%)';
+                        console.log('Shifting logo1 left');
+                    } else {
+                        logo1.style.display = 'none';
+                        console.log('Hiding logo1: Insufficient space between logos and nav');
+                    }
+                } else {
+                    // Center logo1 if plenty of space
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     logo1.style.left = '50%';
                     logo1.style.transform = 'translate(-50%, -50%)';
-                }
-                // Fallback: Hide if space is too tight
-                else {
-                    logo1.style.display = 'none';
+                    console.log('Centering logo1');
                 }
             }
 
