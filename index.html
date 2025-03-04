@@ -52,5 +52,48 @@
             <a href="#">Privacy</a>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo1 = document.querySelector('.logo1');
+            const logo2 = document.querySelector('.logo2');
+            const nav = document.querySelector('nav');
+            const topBox = document.querySelector('.top-box');
+
+            function adjustLogoPosition() {
+                if (window.innerWidth > 768) { // Only apply on laptops
+                    const logo1Rect = logo1.getBoundingClientRect();
+                    const logo2Rect = logo2.getBoundingClientRect();
+                    const navRect = nav.getBoundingClientRect();
+                    const topBoxRect = topBox.getBoundingClientRect();
+
+                    // Check if nav encroaches on logo1
+                    if (navRect.left < logo1Rect.right) {
+                        // Calculate available space
+                        const availableSpace = navRect.left - logo2Rect.right;
+                        const logo1Width = logo1Rect.width;
+
+                        if (availableSpace < logo1Width) {
+                            // Not enough space, hide logo1
+                            logo1.style.display = 'none';
+                        } else {
+                            // Move logo1 to the left
+                            logo1.style.display = 'block';
+                            const newLeft = navRect.left - (availableSpace / 2) - (logo1Width / 2); // Center logo1 between logo2 and nav
+                            logo1.style.left = newLeft + 'px';
+                            logo1.style.transform = 'translateY(-50%)'; // Keep vertical centering
+                        }
+                    } else {
+                        // No encroachment, center logo1
+                        logo1.style.display = 'block';
+                        logo1.style.left = '50%';
+                        logo1.style.transform = 'translate(-50%, -50%)';
+                    }
+                }
+            }
+
+            adjustLogoPosition(); // Initial check
+            window.addEventListener('resize', adjustLogoPosition); // Check on resize
+        });
+    </script>
 </body>
 </html>
