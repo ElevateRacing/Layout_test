@@ -49,6 +49,7 @@ header {
     margin: 20px 10px;
     min-width: 300px;
     z-index: 2000;
+    position: relative;
 }
 
 .logo2 img {
@@ -58,14 +59,17 @@ header {
     order: 1;
 }
 
-.logo1 img {
-    max-height: 45px; /* Fits within 70px height with padding */
-    width: auto;
+.logo1 {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     order: 2;
+}
+
+.logo1 img {
+    max-height: 45px; /* Fits within 70px height with padding */
+    width: auto;
 }
 
 nav {
