@@ -125,7 +125,14 @@ nav {
     color: #FFFFFF;
 }
 
-.hero-content p {
+.hero-content p1 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: none;
+}
+
+.hero-content p2 {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
