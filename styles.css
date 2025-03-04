@@ -3,9 +3,7 @@
 
 /* CSS Variables for consistent styling */
 :root {
-    --primary-color: #333333;
     --secondary-color: #FFFFFF;
-    --hover-color: #555555;
     --background-light: #F5F5F5;
     --shadow-color: rgba(0, 0, 0, 0.1);
     --focus-color: #007bff;
@@ -25,8 +23,6 @@ html {
 
 body {
     background-color: var(--background-light);
-    color: #000000;
-    line-height: 1.6;
     font-family: 'Open Sans', Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -46,30 +42,30 @@ header {
     box-shadow: 0 2px 4px var(--shadow-color);
     padding: 10px;
     height: 70px;
-    min-height: 70px;
     border-radius: 8px;
     margin: 20px 10px;
     position: relative;
     justify-content: space-between;
-    max-width: calc(100% - 20px); /* Prevents overflow from margins */
 }
 
 .logo2 {
     height: 50px; /* Fixed height */
     width: auto;  /* Maintains aspect ratio */
+    flex-shrink: 0;
 }
 
 .logo1 {
     height: 50px; /* Fixed height */
-    max-height: 50px; /* Explicitly enforce max height */
     width: auto;  /* Maintains aspect ratio */
     position: absolute; /* Center it */
-    transition: left 0.3s ease; /* Smooth movement */
+    transition: left 0.3s ease, opacity 0.2s ease; /* Smooth movement */
+    opacity: 1;
 }
 
 nav {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .btn {
@@ -81,7 +77,6 @@ nav {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
-    line-height: 1.4;
     transition: background-color 0.3s ease;
     white-space: nowrap; /* Prevents text wrapping */
 }
@@ -106,17 +101,16 @@ nav {
                 padding: 10px 5px;
     }
     .logo2 {
-                height: 40px; /* Same height */
-                width: auto;
-                margin-right: 10px;
+                height: 40px;
                 max-width: 45%; /* Fit horizontally */
+                margin-right: 10px;
     }
     .logo1 {
-                height: 40px; /* Same height */
-                width: auto;
-                position: static; /* Side-by-side */
+                height: 40px;
                 max-width: 45%; /* Fit horizontally */
-    } 
+                position: static; /* Side-by-side */
+                opacity: 1; /* Ensure visible */
+    }
 }
 
 /* Hero section */
