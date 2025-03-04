@@ -59,12 +59,13 @@
     const nav = document.querySelector('nav');
     const topBox = document.querySelector('.top-box');
 
+    let logo1Moved = false; // Flag to track if logo1 has been moved left
+
     function adjustLogoPosition() {
         if (window.innerWidth > 768) { // Only apply on laptops
             const logo1Rect = logo1.getBoundingClientRect();
-            const logo2Rect = logo2.getBoundingClientRect();
+            const logo2Rect = logo2Rect = logo2.getBoundingClientRect();
             const navRect = nav.getBoundingClientRect();
-            const topBoxRect = topBox.getBoundingClientRect();
 
             // Check if nav encroaches on logo1
             if (navRect.left < logo1Rect.right) {
@@ -75,24 +76,22 @@
                 if (availableSpace < logo1Width) {
                     // Not enough space, hide logo1
                     logo1.style.display = 'none';
+                    logo1Moved = false; // Reset flag
                 } else {
                     // Move logo1 to the left
                     logo1.style.display = 'block';
                     let newLeft = navRect.left - (availableSpace / 2) - (logo1Width / 2); // Center logo1 between logo2 and nav
-
-                    //If logo1.style.left is 50% change it to pixel value before changing it again.
-                    if (logo1.style.left === '50%'){
-                        newLeft = navRect.left - (availableSpace / 2) - (logo1Width / 2);
-                    }
-
                     logo1.style.left = newLeft + 'px';
                     logo1.style.transform = 'translateY(-50%)'; // Keep vertical centering
+                    logo1Moved = true; // Set flag
                 }
             } else {
                 // No encroachment, center logo1
-                logo1.style.display = 'block';
-                logo1.style.left = '50%';
-                logo1.style.transform = 'translate(-50%, -50%)';
+                if (!logo1Moved) { // Only center if logo1 hasn't been moved
+                    logo1.style.display = 'block';
+                    logo1.style.left = '50%';
+                    logo1.style.transform = 'translate(-50%, -50%)';
+                }
             }
         }
     }
