@@ -22,13 +22,13 @@
     <!-- Header with navigation -->
     <header>
         <div class="top-box">
+            <div class="logo2"><img src="logo2.png" alt="AirKart Logo" onerror="this.src='fallback-logo.png'"></div>
+            <div class="logo1"><img src="logo1.png" alt="Elevate Racing Logo" onerror="this.src='fallback-logo.png'"></div>
             <nav>
                 <a href="reserve.html" class="btn">Reserve your AirKart</a>
                 <a href="book.html" class="btn">Book a Flight</a>
                 <a href="investors.html" class="btn">For Investors</a>
             </nav>
-            <div class="logo2"><img src="logo2.png" alt="AirKart Logo" onerror="this.src='fallback-logo.png'"></div>
-            <div class="logo1"><img src="logo1.png" alt="Elevate Racing Logo" onerror="this.src='fallback-logo.png'"></div>
         </div>
     </header>
 
@@ -71,7 +71,7 @@
         </div>
     </section>
 
-    <!-- Right-aligned content section -->
+    <!-- Right-aligned contentisection -->
     <section class="content-section-right">
         <div class="content-right">
             <h2>Own Your AirKart</h2>
@@ -122,14 +122,14 @@
                     logo1.style.right = '10px';
                     logo1.style.transform = 'translateY(-50%)';
                     logo2.style.position = 'absolute';
-                    logo2.style.left = `${navWidth + minGap}px`;
+                    logo2.style.left = `${minGap}px`; // Updated: Fixed position after gap
                     logo2.style.transform = 'translateY(-50%)';
                     nav.style.display = 'none';
                 } else {
-                    // Desktop view: nav on left, logo1 centered, logo2 after nav
+                    // Desktop view: logo2 on left, logo1 centered, nav on right
                     nav.style.display = 'flex';
                     logo2.style.position = 'absolute';
-                    logo2.style.left = `${navWidth + minGap}px`;
+                    logo2.style.left = `${minGap}px`; // Updated: Fixed position after gap
                     logo2.style.transform = 'translateY(-50%)';
                     const totalRequiredWidth = logo2Width + logo1Width + navWidth + minGap * 3;
                     if (topBoxWidth < totalRequiredWidth) {
