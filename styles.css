@@ -58,7 +58,12 @@ header {
     margin: 20px 10px;
     min-width: 300px;
     position: relative;
-    justify-content: space-between; /* Updated: Space elements */
+    justify-content: space-between; /* Ensure nav pushes to right */
+}
+
+.logo-container {
+    position: relative;
+    flex: 1; /* Take up available space on left */
 }
 
 .logo2 {
@@ -86,10 +91,10 @@ header {
 }
 
 nav {
-    margin-right: 10px; /* Updated: Position on right */
     display: flex;
     gap: 10px; /* Increased for modern spacing */
     flex-shrink: 0;
+    margin-left: auto; /* Updated: Push to right */
 }
 
 .btn {
@@ -355,88 +360,4 @@ footer {
 }
 
 .footer-links a {
-    color: var(--secondary-color);
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-    .top-box {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: 70px;
-        padding: 10px;
-        border-radius: 0;
-        margin: 0;
-    }
-
-    .logo2 img {
-        max-height: 50px;
-        width: auto; /* Maintain aspect ratio */
-    }
-
-    .logo1 {
-        right: 10px;
-    }
-
-    .logo1 img {
-        max-height: 50px;
-        width: auto; /* Maintain aspect ratio */
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hero-section {
-        background-position: 70% 5%;
-        height: 90vh;
-        padding-top: 70px;
-        background-attachment: scroll;
-    }
-
-    .hero-content {
-        margin: 5% 5% 5% 5%;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-        line-height: 1.4;
-    }
-
-    .hero-content h2 {
-        font-size: 1.2rem;
-        line-height: 1.4;
-    }
-
-    .hero-text {
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-
-    .content-section {
-        padding-top: 90px;
-    }
-
-    .split-container {
-        flex-direction: column;
-        height: auto;
-        min-height: calc(100vh - 90px);
-    }
-
-    .left-content, .right-slideshow {
-        width: 100%;
-        height: auto;
-        min-height: 50vh;
-    }
-
-    .left-content {
-        padding: 20px;
-    }
-}
+    color: va
