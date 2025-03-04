@@ -112,7 +112,6 @@ nav {
     box-sizing: border-box;
     z-index: 1000;
     background-position: 70% 5%; /* Adjust these coordinates based on your specific rectangular area */
-    transition: all 3s linear; /* Changed to linear */
 }
 
 .hero-content {
@@ -172,7 +171,6 @@ nav {
     text-align: center;
     scroll-snap-align: start;
     z-index: 900;
-    transition: all 3s linear; /* Changed to linear */
 }
 
 .content-section h2 {
@@ -211,7 +209,6 @@ nav {
     padding: 110px 20px 20px;
     box-sizing: border-box;
     z-index: 900;
-    transition: all 3s linear; /* Changed to linear */
 }
 
 .content-right {
@@ -308,7 +305,7 @@ footer {
     }
     .hero-section {
         background-position: 70% 5%;
-        height: 80vh;
+        height: 100vh;
         padding-top: 70px;
     }
     }
