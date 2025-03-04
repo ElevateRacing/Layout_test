@@ -59,7 +59,7 @@
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
 
-            // Debounce function to ensure updates complete
+            // Debounce function
             function debounce(func, wait) {
                 let timeout;
                 return function(...args) {
@@ -77,38 +77,31 @@
                     return;
                 }
 
-                // Get widths
                 const topBoxWidth = topBox.offsetWidth;
                 const logo1Width = logo1.offsetWidth;
                 const logo2Width = logo2.offsetWidth;
                 const navWidth = nav.offsetWidth;
 
-                // Total width needed for all elements
-                const totalMinWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding each side
+                const totalMinWidth = logo2Width + logo1Width + navWidth + 40;
                 const availableSpace = topBoxWidth - logo2Width - navWidth - 40;
 
-                // Step 1: Hide logo1 if not enough space
                 if (topBoxWidth <= totalMinWidth || availableSpace < logo1Width + 20) {
                     logo1.style.display = 'none';
                     return;
                 }
 
-                // Step 2: Position logo1
                 logo1.style.display = 'block';
                 logo1.style.position = 'absolute';
 
-                // Check if nav encroaches on centered logo1
                 const centerPoint = topBoxWidth / 2;
                 const logo1RightEdge = centerPoint + (logo1Width / 2);
                 const navLeftEdge = topBoxWidth - navWidth - 20;
 
                 if (logo1RightEdge + 20 >= navLeftEdge) {
-                    // Shift left
                     const newLeft = logo2Width + 20 + (availableSpace - logo1Width) / 2;
                     logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
                     logo1.style.transform = 'translateY(-50%)';
                 } else {
-                    // Center
                     logo1.style.left = '50%';
                     logo1.style.transform = 'translate(-50%, -50%)';
                 }
@@ -117,9 +110,64 @@
             // Initial adjustment
             adjustLogoPosition();
 
-            // Debounced resize handler
-            const debouncedAdjust = debounce(adjustLogoPosition, 50);
+            // Fast resize handler with RAF and reduced debounce
+            let rafId;
+            const debouncedAdjust = debounce(() => {
+                cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(adjustLogoPosition);
+            }, 16); // 16ms ~ 60fps
+
             window.addEventListener('resize', debouncedAdjust);
+
+            // Smooth scrolling override
+            document.querySelectorAll('html, body').forEach(el => {
+                el.style.scrollBehavior = 'auto'; // Disable default smooth scroll
+            });
+
+            let isScrolling = false;
+            window.addEventListener('scroll', function() {
+                if (isScrolling) return;
+
+                isScrolling = true;
+                const scrollPos = window.scrollY;
+                const sections = document.querySelectorAll('.hero-section, .content-section, .content-section-right');
+                let targetSection;
+
+                sections.forEach(section => {
+                    const top = section.offsetTop;
+                    const height = section.offsetHeight;
+                    if (scrollPos >= top - height / 2 && scrollPos < top + height / 2) {
+                        targetSection = section;
+                    }
+                });
+
+                if (targetSection) {
+                    const targetTop = targetSection.offsetTop;
+                    const startPos = scrollPos;
+                    const distance = targetTop - startPos;
+                    const duration = 1000; // 1 second for smooth, professional scroll
+                    let startTime;
+
+                    function animateScroll(timestamp) {
+                        if (!startTime) startTime = timestamp;
+                        const elapsed = timestamp - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const ease = 1 - Math.pow(1 - progress, 4); // Ease-out quartic
+
+                        window.scrollTo(0, startPos + distance * ease);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animateScroll);
+                        } else {
+                            isScrolling = false;
+                        }
+                    }
+
+                    requestAnimationFrame(animateScroll);
+                } else {
+                    isScrolling = false;
+                }
+            }, { passive: true });
         });
     </script>
 </body>
