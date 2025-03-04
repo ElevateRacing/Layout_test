@@ -66,6 +66,7 @@ header {
     transform: translate(-50%, -50%);
     order: 2;
     transition: left 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    z-index: 10; /* Ensure logo1 stays above nav */
 }
 
 .logo1 img {
@@ -79,6 +80,7 @@ nav {
     gap: 5px;
     order: 3;
     flex-shrink: 0; /* Prevent buttons from shrinking */
+    z-index: 5; /* Lower than logo1 to avoid overlap */
 }
 
 .btn {
