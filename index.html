@@ -59,7 +59,7 @@
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
 
-            // Throttle function to limit execution rate
+            // Throttle function
             function throttle(func, limit) {
                 let inThrottle;
                 return function(...args) {
@@ -87,29 +87,31 @@
                 const navWidth = nav.offsetWidth;
 
                 // Calculate key points
-                const totalContentWidth = logo2Width + logo1Width + navWidth + 40;
-                const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40;
+                const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40; // Space between logo2 and nav
                 const navLeftEdge = topBoxWidth - navWidth - 20;
+                const minSpaceNeeded = logo1Width + logo2Width + 60; // Buffer for both logos
 
-                // Case 1: Center logo1 with buffer
-                const centeredLogo1RightEdge = (topBoxWidth / 2) + (logo1Width / 2);
-                if (centeredLogo1RightEdge + 40 < navLeftEdge) { // Increased buffer to 40px
-                    logo1.style.display = 'block';
-                    logo1.style.position = 'absolute';
-                    logo1.style.left = '50%';
-                    logo1.style.transform = 'translate(-50%, -50%)';
+                // Case 1: Hide logo1 if not enough space for both logos and nav
+                if (topBoxWidth < minSpaceNeeded || spaceBetweenLogosAndNav < logo1Width + 40) {
+                    logo1.style.display = 'none';
+                    return; // Exit early to prevent centering
                 }
-                // Case 2: Move logo1 left with tighter threshold
-                else if (spaceBetweenLogosAndNav > logo1Width + 40) { // Increased buffer to 40px
+
+                // Case 2: Move logo1 left if nav encroaches
+                const centeredLogo1RightEdge = (topBoxWidth / 2) + (logo1Width / 2);
+                if (centeredLogo1RightEdge + 40 >= navLeftEdge) {
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     const newLeft = logo2Width + 20 + (spaceBetweenLogosAndNav - logo1Width) / 2;
                     logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
                     logo1.style.transform = 'translateY(-50%)';
                 }
-                // Case 3: Hide logo1 earlier
+                // Case 3: Center logo1 if plenty of space
                 else {
-                    logo1.style.display = 'none';
+                    logo1.style.display = 'block';
+                    logo1.style.position = 'absolute';
+                    logo1.style.left = '50%';
+                    logo1.style.transform = 'translate(-50%, -50%)';
                 }
             }
 
@@ -126,7 +128,7 @@
                     });
                     ticking = true;
                 }
-            }, 50); // 50ms throttle
+            }, 50);
 
             window.addEventListener('resize', throttledAdjust);
         });
