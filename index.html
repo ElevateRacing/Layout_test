@@ -64,7 +64,7 @@
     function adjustLogoPosition() {
         if (window.innerWidth > 768) { // Only apply on laptops
             const logo1Rect = logo1.getBoundingClientRect();
-            const logo2Rect = logo2Rect = logo2.getBoundingClientRect();
+            const logo2Rect = logo2.getBoundingClientRect(); // Corrected line
             const navRect = nav.getBoundingClientRect();
 
             // Check if nav encroaches on logo1
