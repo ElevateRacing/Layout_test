@@ -34,8 +34,10 @@
         <div class="split-container">
             <div class="left-content">
                 <h2>Own Your AirKart</h2>
-                <h3>Secure your spot for $199,000</h3>
-                <p>Join the elite few who own an AirKart. Limited production slots available—reserve now to experience flight like never before.</p>
+                <p class="text-swap" id="text1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
+                <p class="text-swap" id="text2" style="display: none;">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. Your AirKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+                <p>Limited production slots available soon.</p>
+                <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
             </div>
             <div class="right-slideshow">
                 <div class="slides">
@@ -134,12 +136,12 @@
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.dot');
             let currentSlide = 0;
-            let interval;
+            let slideInterval;
 
             function showSlide(index) {
                 slides.forEach((slide, i) => {
                     slide.style.left = i === index ? '0' : '100%';
-                    slide.style.animation = 'none'; // Remove animation for manual control
+                    slide.style.animation = 'none';
                 });
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
@@ -148,7 +150,7 @@
             }
 
             function startSlideshow() {
-                interval = setInterval(() => {
+                slideInterval = setInterval(() => {
                     currentSlide = (currentSlide + 1) % slides.length;
                     showSlide(currentSlide);
                 }, 4000);
@@ -156,15 +158,53 @@
 
             dots.forEach(dot => {
                 dot.addEventListener('click', () => {
-                    clearInterval(interval);
+                    clearInterval(slideInterval);
                     const slideIndex = parseInt(dot.getAttribute('data-slide'));
                     showSlide(slideIndex);
-                    setTimeout(startSlideshow, 4000); // Restart after 4s pause
+                    setTimeout(startSlideshow, 4000);
                 });
             });
 
-            showSlide(0); // Show first slide
-            startSlideshow(); // Start automatic slideshow
+            showSlide(0);
+            startSlideshow();
+
+            // Text swap functionality
+            const text1 = document.getElementById('text1');
+            const text2 = document.getElementById('text2');
+
+            function swapText() {
+                if (text1.style.display === 'none') {
+                    text1.style.display = 'block';
+                    text1.style.opacity = '0';
+                    text2.style.opacity = '1';
+                    setTimeout(() => {
+                        text1.style.transition = 'opacity 1s';
+                        text1.style.opacity = '1';
+                        text2.style.transition = 'opacity 1s';
+                        text2.style.opacity = '0';
+                    }, 50);
+                    setTimeout(() => {
+                        text2.style.display = 'none';
+                    }, 1050);
+                } else {
+                    text2.style.display = 'block';
+                    text2.style.opacity = '0';
+                    text1.style.opacity = '1';
+                    setTimeout(() => {
+                        text2.style.transition = 'opacity 1s';
+                        text2.style.opacity = '1';
+                        text1.style.transition = 'opacity 1s';
+                        text1.style.opacity = '0';
+                    }, 50);
+                    setTimeout(() => {
+                        text1.style.display = 'none';
+                    }, 1050);
+                }
+            }
+
+            setInterval(swapText, 5000); // Swap every 5 seconds
+            text1.style.transition = 'opacity 1s';
+            text2.style.transition = 'opacity 1s';
         });
     </script>
 </body>
