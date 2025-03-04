@@ -58,6 +58,7 @@ header {
     margin: 20px 10px;
     min-width: 300px;
     position: relative;
+    justify-content: space-between; /* Updated: Space elements */
 }
 
 .logo2 {
@@ -85,7 +86,7 @@ header {
 }
 
 nav {
-    margin-left: 10px;
+    margin-right: 10px; /* Updated: Position on right */
     display: flex;
     gap: 10px; /* Increased for modern spacing */
     flex-shrink: 0;
