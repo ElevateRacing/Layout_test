@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for character encoding and responsive viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO and metadata -->
     <title>Elevate Racing</title>
     <meta name="description" content="Discover AirKart by Elevate Racing, the ultimate eVTOL for personal flight and racing.">
     <meta name="keywords" content="AirKart, eVTOL, Elevate Racing, personal flight">
     <meta name="robots" content="index, follow">
-    <!-- Favicon and preloaded resources for performance -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preload" href="sky2.jpg" as="image">
     <link rel="preload" href="styles.css" as="style">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <!-- Link to external CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with navigation -->
     <header>
         <div class="top-box">
             <div class="logo-container">
@@ -34,7 +28,6 @@
         </div>
     </header>
 
-    <!-- Main hero section -->
     <main class="hero-section">
         <section class="hero-content">
             <h1>Experience the Thrill of AirKarting</h1>
@@ -44,7 +37,6 @@
         </section>
     </main>
 
-    <!-- Content section with split layout -->
     <section class="content-section">
         <div class="split-container">
             <div class="left-content">
@@ -73,7 +65,6 @@
         </div>
     </section>
 
-    <!-- Right-aligned content section -->
     <section class="content-section-right">
         <div class="content-right">
             <h2>Own Your AirKart</h2>
@@ -82,7 +73,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2025 Elevate Racing</p>
         <p><a href="mailto:info@elevateracing.com">info@elevateracing.com</a></p>
@@ -92,7 +82,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript for dynamic functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Logo positioning and visibility
@@ -100,7 +89,6 @@
             const logo2 = document.querySelector('.logo2');
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
-            const logoContainer = document.querySelector('.logo-container');
 
             function debounce(func, wait) {
                 let timeout;
@@ -119,7 +107,6 @@
 
                 if (window.innerWidth <= 768) {
                     // Mobile view: logos side by side, nav hidden
-                    logoContainer.style.flex = '1';
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     logo1.style.left = 'auto';
@@ -131,7 +118,6 @@
                     nav.style.display = 'none';
                 } else {
                     // Desktop view: logo2 left, logo1 center or adjusted, nav right
-                    logoContainer.style.flex = '1';
                     nav.style.display = 'flex';
                     logo2.style.position = 'absolute';
                     logo2.style.left = `${minGap}px`;
@@ -144,12 +130,9 @@
                     } else {
                         logo1.style.display = 'block';
                         logo1.style.position = 'absolute';
-                        const encroachmentThreshold = logo2Width + navWidth + minGap * 2 + logo1Width;
-                        if (topBoxWidth > encroachmentThreshold) {
-                            // Full center of top-box
-                            logo1.style.left = '50%';
-                            logo1.style.transform = 'translate(-50%, -50%)';
-                        } else {
+                        logo1.style.left = '50%';
+                        logo1.style.transform = 'translate(-50%, -50%)';
+                        if(topBoxWidth < (logo2Width + navWidth + logo1Width + minGap * 3)){
                             // Center of available space between logo2 and nav
                             const leftEdge = logo2Width + minGap;
                             const rightEdge = topBoxWidth - navWidth - minGap;
@@ -157,51 +140,9 @@
                             logo1.style.left = `${centerPosition}px`;
                             logo1.style.transform = 'translateY(-50%)';
                         }
-                        logo1.style.right = 'auto';
                     }
                 }
             }
 
             adjustLogoPosition();
             const debouncedAdjust = debounce(adjustLogoPosition, 10);
-            window.addEventListener('resize', debouncedAdjust);
-
-            // Slideshow functionality
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            let currentSlide = 0;
-            let slideInterval;
-
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.style.left = i === index ? '0' : '100%';
-                    slide.style.animation = 'none';
-                });
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-                currentSlide = index;
-            }
-
-            function startSlideshow() {
-                slideInterval = setInterval(() => {
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    showSlide(currentSlide);
-                }, 4000);
-            }
-
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    clearInterval(slideInterval);
-                    const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                    showSlide(slideIndex);
-                    setTimeout(startSlideshow, 4000);
-                });
-            });
-
-            showSlide(0);
-            startSlideshow();
-        });
-    </script>
-</body>
-</html>
