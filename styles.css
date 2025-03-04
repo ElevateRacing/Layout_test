@@ -112,7 +112,7 @@ nav {
 
 .hero-content h1 {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 4vw;
+    font-size: 2vw;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 10px;
@@ -121,7 +121,7 @@ nav {
 
 .hero-content h2 {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 2vw;
+    font-size: 1vw;
     font-style: italic;
     font-weight: 400;
     margin-bottom: 10px;
@@ -131,7 +131,7 @@ nav {
 
 .hero-content p1 {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 0.5vw;
     font-weight: 400;
     line-height: 1.6;
     max-width: none;
@@ -139,7 +139,7 @@ nav {
 
 .hero-content p2 {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 0.5vw;
     font-weight: 400;
     line-height: 1.6;
     max-width: none;
@@ -323,11 +323,11 @@ footer {
         line-height: 1.4;
     }
     .hero-content p1 {
-        font-size: 2vw; /* 15px for mobile */
+        font-size: 3vw; /* 15px for mobile */
         line-height: 1.6; /* Approx. 24px */
     }
     .hero-content p2 {
-        font-size: 2vw; /* 15px for mobile */
+        font-size: 3vw; /* 15px for mobile */
         line-height: 1.6; /* Approx. 24px */
     }
     .content-section {
