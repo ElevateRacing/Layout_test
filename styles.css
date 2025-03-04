@@ -60,19 +60,23 @@ header {
     position: relative;
 }
 
+.logo2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .logo2 img {
-    max-height: 100%; /* Fit available height */
-    height: 50px; /* Specific height for consistency */
+    max-height: 50%; /* Fit available height */
     width: auto;
     margin-left: 10px;
 }
 
 .logo1 {
     position: absolute;
-    left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    transition: left 0.1s ease, transform 0.1s ease, display 0s;
+    transform: translateY(-50%);
+    transition: left 0.1s ease, right 0.1s ease, transform 0.1s ease, display 0s;
     z-index: 10;
 }
 
@@ -124,7 +128,7 @@ nav {
     scroll-snap-align: start;
     padding: 90px 0 0 0;
     z-index: 1000;
-    background-position: 70% 5%;
+    background-position: 50% 25%;
 }
 
 .hero-content {
@@ -372,20 +376,24 @@ footer {
         margin: 0;
     }
 
+    .logo2 {
+        left: 10px; /* Fixed position with padding */
+    }
+
     .logo2 img {
         height: 50px; /* Fit available height */
+        max-width: 45%; /* Constrain width for mobile */
         width: auto;
     }
 
     .logo1 {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        right: 10px; /* Fixed position with padding */
+        left: auto;
     }
 
     .logo1 img {
         max-height: 50px;
+        max-width: 45%; /* Constrain width for mobile */
         width: auto;
     }
 
