@@ -16,8 +16,8 @@
 <body>
     <header>
         <div class="top-box">
-            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
             <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
+            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
             <nav>
                 <a href="reserve.html" class="btn">Reserve your AirKart</a>
                 <a href="book.html" class="btn">Book a Flight</a>
@@ -37,35 +37,32 @@
     
     <!-- Embedded JavaScript -->
     <script>
-        // Get elements
         const topBox = document.querySelector('.top-box');
         const logo1 = document.querySelector('.logo1');
         const logo2 = document.querySelector('.logo2');
         const nav = document.querySelector('nav');
 
-        // Function to adjust logo1
         function adjustLogo1() {
-            // Get widths
+            // Get widths and positions
             const boxWidth = topBox.offsetWidth;
             const logo2Width = logo2.offsetWidth;
             const logo1Width = logo1.offsetWidth;
             const navWidth = nav.offsetWidth;
+            const navLeft = boxWidth - navWidth - 10; // Left edge of nav
 
-            // Calculate total space needed
-            const totalWidth = logo2Width + logo1Width + navWidth + 20; // 20px for padding
+            // Define boundaries
+            const leftBoundary = logo2Width + 20; // After logo2 + buffer
+            const rightBoundary = navLeft - 20; // Before nav + buffer
+            const availableSpace = rightBoundary - leftBoundary;
 
-            if (boxWidth < totalWidth) {
+            if (availableSpace < logo1Width) {
                 // Not enough space, hide logo1
-                logo1.style.display = 'none';
+                logo1.style.opacity = '0';
+                logo1.style.left = '50%'; // Reset position
             } else {
-                // Enough space, show and position logo1
-                logo1.style.display = 'block';
-                
-                // Center between logo2 and nav
-                const leftSpace = logo2Width + 10; // After logo2 + padding
-                const rightSpace = boxWidth - navWidth - 10; // Before nav
-                const center = (leftSpace + rightSpace) / 2; // Midpoint
-                
+                // Enough space, position logo1 between logo2 and nav
+                logo1.style.opacity = '1';
+                const center = leftBoundary + (availableSpace / 2);
                 logo1.style.left = center + 'px';
                 logo1.style.transform = 'translateX(-50%)';
             }
