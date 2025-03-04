@@ -56,7 +56,6 @@ header {
     max-height: 45px; /* Fits within 70px height with padding */
     width: auto;
     margin-left: 10px;
-    order: 1;
 }
 
 .logo1 {
@@ -64,7 +63,6 @@ header {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    order: 2;
     transition: left 0.1s ease, transform 0.1s ease; /* Smooth transitions */
     z-index: 10; /* Ensure logo1 stays above nav */
 }
@@ -78,9 +76,7 @@ nav {
     margin-right: 10px;
     display: flex;
     gap: 5px;
-    order: 3;
     flex-shrink: 0; /* Prevent buttons from shrinking */
-    position:relative;
     z-index: 5; /* Lower than logo1 to avoid overlap */
 }
 
