@@ -54,45 +54,50 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const logo1 = document.querySelector('.logo1');
-    const logo2 = document.querySelector('.logo2');
-    const nav = document.querySelector('nav');
-    const topBox = document.querySelector('.top-box');
+            const logo1 = document.querySelector('.logo1');
+            const logo2 = document.querySelector('.logo2');
+            const nav = document.querySelector('nav');
+            const topBox = document.querySelector('.top-box');
 
-    function adjustLogoPosition() {
-        if (window.innerWidth > 768) {
-            const logo1Rect = logo1.getBoundingClientRect();
-            const logo2Rect = logo2.getBoundingClientRect();
-            const navRect = nav.getBoundingClientRect();
+            function adjustLogoPosition() {
+                if (window.innerWidth <= 768) return; // Mobile handled by CSS
 
-            // Check if nav encroaches on logo1
-            if (navRect.left < logo1Rect.right) {
-                // Calculate available space
-                const availableSpace = navRect.left - logo2Rect.right;
+                const logo1Rect = logo1.getBoundingClientRect();
+                const logo2Rect = logo2.getBoundingClientRect();
+                const navRect = nav.getBoundingClientRect();
+                const topBoxRect = topBox.getBoundingClientRect();
+
                 const logo1Width = logo1Rect.width;
+                const logo2Width = logo2Rect.width;
+                const navLeft = navRect.left - topBoxRect.left;
+                const spaceAfterLogo2 = logo2Rect.right - topBoxRect.left;
+                const availableSpace = navLeft - spaceAfterLogo2;
 
-                if (availableSpace < logo1Width) {
-                    // Not enough space, hide logo1
-                    logo1.style.display = 'none';
-                } else {
-                    // Move logo1 to the left
-                    logo1.style.display = 'block';
-                    const newLeft = navRect.left - (availableSpace / 2) - (logo1Width / 2);
-                    logo1.style.left = newLeft + 'px';
-                    logo1.style.transform = 'translateY(-50%)';
-                }
-            } else {
-                // No encroachment, center logo1
-                logo1.style.display = 'block';
+                // Default: Center logo1
                 logo1.style.left = '50%';
                 logo1.style.transform = 'translate(-50%, -50%)';
-            }
-        }
-    }
+                logo1.style.display = 'block';
 
-    adjustLogoPosition();
-    window.addEventListener('resize', adjustLogoPosition);
-});
+                // Check if nav encroaches on centered logo1
+                const centerPoint = topBoxRect.width / 2;
+                const logo1LeftEdge = centerPoint - (logo1Width / 2);
+                const logo1RightEdge = centerPoint + (logo1Width / 2);
+
+                if (navLeft < logo1RightEdge) {
+                    const minSpaceNeeded = logo1Width + logo2Width + 20; // 20px buffer
+                    if (availableSpace < minSpaceNeeded) {
+                        logo1.style.display = 'none';
+                    } else {
+                        const newLeft = spaceAfterLogo2 + (availableSpace - logo1Width) / 2;
+                        logo1.style.left = newLeft + 'px';
+                        logo1.style.transform = 'translateY(-50%)';
+                    }
+                }
+            }
+
+            adjustLogoPosition();
+            window.addEventListener('resize', adjustLogoPosition);
+        });
     </script>
 </body>
 </html>
