@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elevate Racing - AirKart</title>
+    <title>Elevate Racing</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Discover AirKart by Elevate Racing, the ultimate eVTOL for personal flight and racing.">
 </head>
 <body>
     <header>
@@ -25,8 +26,8 @@
         <section class="hero-content">
             <h1>Experience the Thrill of AirKarting</h1>
             <h2>Own your AirKart or take fly at one of our AeroKarting Tracks</h2>
-            <p1>Elevate Racing unveils AirKart, the ultimate eVTOL for personal flight and racing excitement.</p1>
-            <p2>Engineered for agility and speed, it’s your ticket to the skies.</p2>
+            <p class="hero-text hero-text-1">Elevate Racing unveils AirKart, the ultimate eVTOL for personal flight and racing excitement.</p>
+            <p class="hero-text hero-text-2">Engineered for agility and speed, it’s your ticket to the skies.</p>
         </section>
     </main>
 
@@ -48,11 +49,11 @@
                     <img src="landing_garage.jpg" alt="Landing Garage" class="slide" id="slide3">
                     <img src="NightStreet1.jpg" alt="Night Street" class="slide" id="slide4">
                 </div>
-                <div class="dots">
-                    <span class="dot" data-slide="0"></span>
-                    <span class="dot" data-slide="1"></span>
-                    <span class="dot" data-slide="2"></span>
-                    <span class="dot" data-slide="3"></span>
+                <div class="dots" role="tablist">
+                    <span class="dot" data-slide="0" role="tab" aria-selected="true"></span>
+                    <span class="dot" data-slide="1" role="tab" aria-selected="false"></span>
+                    <span class="dot" data-slide="2" role="tab" aria-selected="false"></span>
+                    <span class="dot" data-slide="3" role="tab" aria-selected="false"></span>
                 </div>
             </div>
         </div>
@@ -68,7 +69,7 @@
 
     <footer>
         <p>© 2025 Elevate Racing</p>
-        <p>info@elevateracing.com</p>
+        <p><a href="mailto:info@elevateracing.com">info@elevateracing.com</a></p>
         <div class="footer-links">
             <a href="#">Terms</a>
             <a href="#">Privacy</a>
@@ -114,19 +115,11 @@
                 } else {
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
-
-                    const availableSpace = topBoxWidth - logo2Width - navWidth - minGap * 2;
-                    if (availableSpace < logo1Width) {
-                        // Not enough space to center fully, hide logo1
-                        logo1.style.display = 'none';
-                    } else {
-                        // Center logo1 in the available space between logo2 and nav
-                        const leftEdge = logo2Width + minGap;
-                        const rightEdge = topBoxWidth - navWidth - minGap;
-                        const centerPosition = leftEdge + (rightEdge - leftEdge - logo1Width) / 2;
-                        logo1.style.left = `${centerPosition}px`;
-                        logo1.style.transform = 'translateY(-50%)';
-                    }
+                    const leftEdge = logo2Width + minGap;
+                    const rightEdge = topBoxWidth - navWidth - minGap;
+                    const centerPosition = leftEdge + (rightEdge - leftEdge - logo1Width) / 2;
+                    logo1.style.left = `${centerPosition}px`;
+                    logo1.style.transform = 'translateY(-50%)';
                 }
             }
 
