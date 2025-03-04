@@ -34,8 +34,10 @@
         <div class="split-container">
             <div class="left-content">
                 <h2>Own Your AirKart</h2>
-                <p class="text-swap" id="text1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
-                <p class="text-swap" id="text2" style="display: none;">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. Your AirKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+                <div class="text-swap-container">
+                    <p class="text-swap active" id="text1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
+                    <p class="text-swap" id="text2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. Your AirKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+                </div>
                 <p>Limited production slots available soon.</p>
                 <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
             </div>
@@ -90,45 +92,46 @@
             }
 
             function adjustLogoPosition() {
-                if (window.innerWidth <= 768) {
-                    logo1.style.position = 'static';
-                    logo1.style.transform = 'none';
-                    logo1.style.left = 'auto';
-                    logo1.style.display = 'block';
-                    return;
-                }
-
                 const topBoxWidth = topBox.offsetWidth;
                 const logo1Width = logo1.offsetWidth;
                 const logo2Width = logo2.offsetWidth;
                 const navWidth = nav.offsetWidth;
-
-                const totalMinWidth = logo2Width + logo1Width + navWidth + 40;
-                const availableSpace = topBoxWidth - logo2Width - navWidth - 40;
-
-                if (topBoxWidth <= totalMinWidth || availableSpace < logo1Width + 20) {
-                    logo1.style.display = 'none';
+                const minGap = 20; // Minimum space between elements
+                
+                if (window.innerWidth <= 768) {
+                    logo1.style.position = 'absolute';
+                    logo1.style.left = '50%';
+                    logo1.style.transform = 'translate(-50%, -50%)';
+                    logo1.style.display = 'block';
                     return;
                 }
 
-                logo1.style.display = 'block';
-                logo1.style.position = 'absolute';
+                const totalRequiredWidth = logo2Width + logo1Width + navWidth + minGap * 2;
 
-                const centerPoint = topBoxWidth / 2;
-                const logo1RightEdge = centerPoint + (logo1Width / 2);
-                const navLeftEdge = topBoxWidth - navWidth - 20;
-
-                if (logo1RightEdge + 20 >= navLeftEdge) {
-                    const newLeft = logo2Width + 20 + (availableSpace - logo1Width) / 2;
-                    logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
-                    logo1.style.transform = 'translateY(-50%)';
+                if (topBoxWidth < totalRequiredWidth) {
+                    // Not enough space for all elements, hide logo1
+                    logo1.style.display = 'none';
                 } else {
-                    logo1.style.left = '50%';
-                    logo1.style.transform = 'translate(-50%, -50%)';
+                    logo1.style.display = 'block';
+                    logo1.style.position = 'absolute';
+
+                    const availableSpace = topBoxWidth - logo2Width - navWidth - minGap * 2;
+                    if (availableSpace < logo1Width) {
+                        // Not enough space to center fully, hide logo1
+                        logo1.style.display = 'none';
+                    } else {
+                        // Center logo1 in the available space between logo2 and nav
+                        const leftEdge = logo2Width + minGap;
+                        const rightEdge = topBoxWidth - navWidth - minGap;
+                        const centerPosition = leftEdge + (rightEdge - leftEdge - logo1Width) / 2;
+                        logo1.style.left = `${centerPosition}px`;
+                        logo1.style.transform = 'translateY(-50%)';
+                    }
                 }
             }
 
             adjustLogoPosition();
+            
             const debouncedAdjust = debounce(adjustLogoPosition, 50);
             window.addEventListener('resize', debouncedAdjust);
 
@@ -173,38 +176,21 @@
             const text2 = document.getElementById('text2');
 
             function swapText() {
-                if (text1.style.display === 'none') {
-                    text1.style.display = 'block';
-                    text1.style.opacity = '0';
-                    text2.style.opacity = '1';
+                if (text1.classList.contains('active')) {
+                    text1.classList.remove('active');
                     setTimeout(() => {
-                        text1.style.transition = 'opacity 1s';
-                        text1.style.opacity = '1';
-                        text2.style.transition = 'opacity 1s';
-                        text2.style.opacity = '0';
-                    }, 50);
-                    setTimeout(() => {
-                        text2.style.display = 'none';
-                    }, 1050);
+                        text2.classList.add('active');
+                    }, 500); // Wait for fade-out to complete
                 } else {
-                    text2.style.display = 'block';
-                    text2.style.opacity = '0';
-                    text1.style.opacity = '1';
+                    text2.classList.remove('active');
                     setTimeout(() => {
-                        text2.style.transition = 'opacity 1s';
-                        text2.style.opacity = '1';
-                        text1.style.transition = 'opacity 1s';
-                        text1.style.opacity = '0';
-                    }, 50);
-                    setTimeout(() => {
-                        text1.style.display = 'none';
-                    }, 1050);
+                        text1.classList.add('active');
+                    }, 500); // Wait for fade-out to complete
                 }
             }
 
+            text1.classList.add('active'); // Start with text1 visible
             setInterval(swapText, 5000); // Swap every 5 seconds
-            text1.style.transition = 'opacity 1s';
-            text2.style.transition = 'opacity 1s';
         });
     </script>
 </body>
