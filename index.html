@@ -22,8 +22,10 @@
     <!-- Header with navigation -->
     <header>
         <div class="top-box">
-            <div class="logo2"><img src="logo2.png" alt="AirKart Logo" onerror="this.src='fallback-logo.png'"></div>
-            <div class="logo1"><img src="logo1.png" alt="Elevate Racing Logo" onerror="this.src='fallback-logo.png'"></div>
+            <div class="logo-container">
+                <div class="logo2"><img src="logo2.png" alt="AirKart Logo" onerror="this.src='fallback-logo.png'"></div>
+                <div class="logo1"><img src="logo1.png" alt="Elevate Racing Logo" onerror="this.src='fallback-logo.png'"></div>
+            </div>
             <nav>
                 <a href="reserve.html" class="btn">Reserve your AirKart</a>
                 <a href="book.html" class="btn">Book a Flight</a>
@@ -71,7 +73,7 @@
         </div>
     </section>
 
-    <!-- Right-aligned contentisection -->
+    <!-- Right-aligned content section -->
     <section class="content-section-right">
         <div class="content-right">
             <h2>Own Your AirKart</h2>
@@ -98,6 +100,7 @@
             const logo2 = document.querySelector('.logo2');
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
+            const logoContainer = document.querySelector('.logo-container');
 
             function debounce(func, wait) {
                 let timeout;
@@ -115,21 +118,23 @@
                 const minGap = 20;
 
                 if (window.innerWidth <= 768) {
-                    // Mobile view: logo1 and logo2 with gap, nav hidden
+                    // Mobile view: logos on left, nav hidden
+                    logoContainer.style.flex = '1';
                     logo1.style.display = 'block';
                     logo1.style.position = 'absolute';
                     logo1.style.left = 'auto';
                     logo1.style.right = '10px';
                     logo1.style.transform = 'translateY(-50%)';
                     logo2.style.position = 'absolute';
-                    logo2.style.left = `${minGap}px`; // Updated: Fixed position after gap
+                    logo2.style.left = `${minGap}px`;
                     logo2.style.transform = 'translateY(-50%)';
                     nav.style.display = 'none';
                 } else {
-                    // Desktop view: logo2 on left, logo1 centered, nav on right
+                    // Desktop view: logos on left, nav on right
+                    logoContainer.style.flex = '1';
                     nav.style.display = 'flex';
                     logo2.style.position = 'absolute';
-                    logo2.style.left = `${minGap}px`; // Updated: Fixed position after gap
+                    logo2.style.left = `${minGap}px`;
                     logo2.style.transform = 'translateY(-50%)';
                     const totalRequiredWidth = logo2Width + logo1Width + navWidth + minGap * 3;
                     if (topBoxWidth < totalRequiredWidth) {
