@@ -1,5 +1,5 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
 /* Reset and General Styles */
 * {
@@ -71,9 +71,9 @@ nav {
     color: #000000;
     background-color: transparent;
     border-radius: 8px;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 1.75rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
     line-height: 1.4;
     transition: background-color 0.3s;
     white-space: nowrap;
@@ -313,10 +313,22 @@ footer {
         padding: 15px 20px; /* Slightly less padding */
     }
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 2.25rem;
+        font-size: 8vw;
+        line-height: 1.4;
     }
     .hero-content h2 {
-        font-size: 20px;
+        font-size: 1.25rem;
+        font-size: 5vw;
+        line-height: 1.4;
+    }
+    .hero-content p1 {
+        font-size: 0.9375rem; /* 15px for mobile */
+        line-height: 1.6; /* Approx. 24px */
+    }
+    .hero-content p2 {
+        font-size: 0.9375rem; /* 15px for mobile */
+        line-height: 1.6; /* Approx. 24px */
     }
     .content-section {
         padding-top: 90px;
