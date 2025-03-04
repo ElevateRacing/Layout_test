@@ -59,15 +59,12 @@
             const nav = document.querySelector('nav');
             const topBox = document.querySelector('.top-box');
 
-            // Throttle function
-            function throttle(func, limit) {
-                let inThrottle;
+            // Debounce function to ensure updates complete
+            function debounce(func, wait) {
+                let timeout;
                 return function(...args) {
-                    if (!inThrottle) {
-                        func.apply(this, args);
-                        inThrottle = true;
-                        setTimeout(() => inThrottle = false, limit);
-                    }
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(this, args), wait);
                 };
             }
 
@@ -86,69 +83,43 @@
                 const logo2Width = logo2.offsetWidth;
                 const navWidth = nav.offsetWidth;
 
-                // Calculate total minimum width needed
+                // Total width needed for all elements
                 const totalMinWidth = logo2Width + logo1Width + navWidth + 40; // 20px padding each side
-                const spaceBetweenLogosAndNav = topBoxWidth - logo2Width - navWidth - 40;
-                const navLeftEdge = topBoxWidth - navWidth - 20;
+                const availableSpace = topBoxWidth - logo2Width - navWidth - 40;
 
-                // Debug logs (remove after testing)
-                console.log({
-                    topBoxWidth,
-                    totalMinWidth,
-                    spaceBetweenLogosAndNav,
-                    logo1Width,
-                    logo2Width,
-                    navWidth
-                });
-
-                // Step 1: Hide logo1 if not enough total space
-                if (topBoxWidth <= totalMinWidth) {
+                // Step 1: Hide logo1 if not enough space
+                if (topBoxWidth <= totalMinWidth || availableSpace < logo1Width + 20) {
                     logo1.style.display = 'none';
-                    console.log('Hiding logo1: Insufficient total width');
                     return;
                 }
 
                 // Step 2: Position logo1
-                const centeredLogo1RightEdge = (topBoxWidth / 2) + (logo1Width / 2);
-                if (centeredLogo1RightEdge + 40 >= navLeftEdge) {
-                    // Move left if nav encroaches, but only if enough space
-                    if (spaceBetweenLogosAndNav >= logo1Width + 40) {
-                        logo1.style.display = 'block';
-                        logo1.style.position = 'absolute';
-                        const newLeft = logo2Width + 20 + (spaceBetweenLogosAndNav - logo1Width) / 2;
-                        logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
-                        logo1.style.transform = 'translateY(-50%)';
-                        console.log('Shifting logo1 left');
-                    } else {
-                        logo1.style.display = 'none';
-                        console.log('Hiding logo1: Insufficient space between logos and nav');
-                    }
+                logo1.style.display = 'block';
+                logo1.style.position = 'absolute';
+
+                // Check if nav encroaches on centered logo1
+                const centerPoint = topBoxWidth / 2;
+                const logo1RightEdge = centerPoint + (logo1Width / 2);
+                const navLeftEdge = topBoxWidth - navWidth - 20;
+
+                if (logo1RightEdge + 20 >= navLeftEdge) {
+                    // Shift left
+                    const newLeft = logo2Width + 20 + (availableSpace - logo1Width) / 2;
+                    logo1.style.left = Math.max(logo2Width + 20, newLeft) + 'px';
+                    logo1.style.transform = 'translateY(-50%)';
                 } else {
-                    // Center logo1 if plenty of space
-                    logo1.style.display = 'block';
-                    logo1.style.position = 'absolute';
+                    // Center
                     logo1.style.left = '50%';
                     logo1.style.transform = 'translate(-50%, -50%)';
-                    console.log('Centering logo1');
                 }
             }
 
             // Initial adjustment
             adjustLogoPosition();
 
-            // Throttled resize handler with requestAnimationFrame
-            let ticking = false;
-            const throttledAdjust = throttle(function() {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        adjustLogoPosition();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, 50);
-
-            window.addEventListener('resize', throttledAdjust);
+            // Debounced resize handler
+            const debouncedAdjust = debounce(adjustLogoPosition, 50);
+            window.addEventListener('resize', debouncedAdjust);
         });
     </script>
 </body>
