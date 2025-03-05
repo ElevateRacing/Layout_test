@@ -50,24 +50,38 @@
             const navWidth = nav.offsetWidth;
             const navLeft = boxWidth - navWidth - 10; // Left edge of nav
 
+            // Step 1: Center logo1 in the full top-box width
+            const centerFullBox = boxWidth / 2;
+
             // Define boundaries
             const leftBoundary = logo2Width + 20; // After logo2 + buffer
             const rightBoundary = navLeft - 20; // Before nav + buffer
             const availableSpace = rightBoundary - leftBoundary;
 
-            if (availableSpace < logo1Width) {
-                // Not enough space, hide logo1
-                logo1.style.opacity = '0';
-                logo1.style.left = '50%'; // Reset position
+            // Check if nav or logo2 encroached on logo1's centered position
+            const logo1LeftEdge = centerFullBox - (logo1Width / 2);
+            const logo1RightEdge = centerFullBox + (logo1Width / 2);
+
+            if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
+                // Step 2: Center in available space if encroachment
+                if (availableSpace < logo1Width) {
+                    // Step 3: Not enough space, hide logo1
+                        logo1.style.opacity = '0';
+                        logo1.style.left = '50%'; // Reset position
+                } else {
+                    // Center in available space
+                    const centerAvailable = leftBoundary + (availableSpace / 2);
+                    logo1.style.opacity = '1';
+                    logo1.style.left = centerAvailable + 'px';
+                    logo1.style.transform = 'translateX(-50%)';
+                }
             } else {
-                // Enough space, position logo1 between logo2 and nav
+                // No encroachment, center in full box
                 logo1.style.opacity = '1';
-                const center = leftBoundary + (availableSpace / 2);
-                logo1.style.left = center + 'px';
+                logo1.style.left = '50%';
                 logo1.style.transform = 'translateX(-50%)';
             }
         }
-
         // Run on load and resize
         window.addEventListener('load', adjustLogo1);
         window.addEventListener('resize', adjustLogo1);
