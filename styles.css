@@ -99,18 +99,23 @@ nav {
     .top-box {
         justify-content: flex-start; /* Align logos left */
         padding: 10px 5px;
+        overflow: hidden
     }
     .logo2 {
         height: 35px;
+        max-height: 50px;
         max-width: 45%; /* Fit horizontally */
         margin-right: 10px;
+        object-fit: contain;
         flex-shrinking: 0;        
     }
     .logo1 {
         height: 35px;
+        max-height: 50px;
         max-width: 45%; /* Fit horizontally */
         position: static; /* Side-by-side */
         opacity: 1; /* Ensure visible */
+        object-fit: contain;
         flex-shrinking: 0;
     }
 }
