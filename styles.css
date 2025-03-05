@@ -1,6 +1,11 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth; /* Add this line */
+}
+
 /* CSS Variables for consistent styling */
 :root {
     --secondary-color: #FFFFFF;
@@ -338,6 +343,71 @@ nav {
     transform: scale(1.1);
 }
 
+/* Content2 Section */
+.content2-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('sky3.jpg') no-repeat center center/cover; /* Add your own background image */
+    background-attachment: fixed;
+    position: relative;
+    scroll-snap-align: start;
+    overflow: hidden;
+    padding: 90px 0 0 0; /* Matches hero-section padding */
+}
+
+.content2-section h2 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--secondary-color);
+    text-align: center;
+    background-color: rgba(64, 64, 64, 0.8);
+    padding: 20px 30px;
+    border-radius: 8px;
+    z-index: 1100;
+}
+
+/* Content3 Section */
+.content3-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('sky4.jpg') no-repeat center center/cover; /* Add your own background image */
+    background-attachment: fixed;
+    position: relative;
+    scroll-snap-align: start;
+    overflow: hidden;
+    padding: 90px 0 0 0; /* Matches hero-section padding */
+}
+
+.content3-section h2 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--secondary-color);
+    text-align: center;
+    background-color: rgba(64, 64, 64, 0.8);
+    padding: 20px 30px;
+    border-radius: 8px;
+    z-index: 1100;
+}
+
+
+
+
+
+
+
+
+
+
 /* Hide navigation on mobile devices */
 @media (max-width: 768px) {
     nav {
@@ -507,4 +577,33 @@ nav {
     .dots-container {
         bottom: 20px;
     }
+
+    .content2-section {
+        height: 100vh;
+        padding: 70px 0 0 0; /* Slightly less top padding for mobile */
+    }
+
+    .content2-section h2 {
+        font-size: clamp(1.75rem, 6vw, 3rem);
+        padding: 15px 20px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .content3-section {
+        height: 100vh;
+        padding: 70px 0 0 0; /* Slightly less top padding for mobile */
+    }
+
+    .content3-section h2 {
+        font-size: clamp(1.75rem, 6vw, 3rem);
+        padding: 15px 20px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+
+
+
+    
 }
