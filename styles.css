@@ -97,9 +97,10 @@ nav {
     }
 
     .top-box {
-        justify-content: flex-start; /* Align logos left */
+        justify-content: space-between;
         padding: 10px 5px;
         overflow: hidden
+        aligh-items: center;
     }
     .logo2 {
         height: 35px;
