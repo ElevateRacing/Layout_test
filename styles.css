@@ -104,6 +104,7 @@ nav {
     padding: 90px 0 0 0;
     z-index: 1000;
     background-position: 40% 60%;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -115,6 +116,18 @@ nav {
     background-color: rgba(64, 64, 64, 0.8);
     border-radius: 8px;
     margin: 20% 0 0 5%;
+    position: relative;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('sky2.jpg') no-repeat center center/cover;
+    background-position: 40% 60%;
+    z-index: 999; /* Below content */
 }
 
 .hero-content h1 {
