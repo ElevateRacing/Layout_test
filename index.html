@@ -43,44 +43,53 @@
         const nav = document.querySelector('nav');
 
         function adjustLogo1() {
-            // Get widths and positions
-            const boxWidth = topBox.offsetWidth;
-            const logo2Width = logo2.offsetWidth;
-            const logo1Width = logo1.offsetWidth;
-            const navWidth = nav.offsetWidth;
-            const navLeft = boxWidth - navWidth - 10; // Left edge of nav
+            // Only adjust logo1 on desktop (whwn nav is visible)
+            if (window.innerWidth > 768) {
+                // Get widths and positions
+                const boxWidth = topBox.offsetWidth;
+                const logo2Width = logo2.offsetWidth;
+                const logo1Width = logo1.offsetWidth;
+                const navWidth = nav.offsetWidth;
+                const navLeft = boxWidth - navWidth - 10; // Left edge of nav
 
-            // Step 1: Center logo1 in the full top-box width
-            const centerFullBox = boxWidth / 2;
+                // Step 1: Center logo1 in the full top-box width
+                const centerFullBox = boxWidth / 2;
 
-            // Define boundaries
-            const leftBoundary = logo2Width + 20; // After logo2 + buffer
-            const rightBoundary = navLeft - 20; // Before nav + buffer
-            const availableSpace = rightBoundary - leftBoundary;
+                // Define boundaries
+                const leftBoundary = logo2Width + 20; // After logo2 + buffer
+                const rightBoundary = navLeft - 20; // Before nav + buffer
+                const availableSpace = rightBoundary - leftBoundary;
 
-            // Check if nav or logo2 encroached on logo1's centered position
-            const logo1LeftEdge = centerFullBox - (logo1Width / 2);
-            const logo1RightEdge = centerFullBox + (logo1Width / 2);
+                // Check if nav or logo2 encroached on logo1's centered position
+                const logo1LeftEdge = centerFullBox - (logo1Width / 2);
+                const logo1RightEdge = centerFullBox + (logo1Width / 2);
 
-            if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
-                // Step 2: Center in available space if encroachment
-                if (availableSpace < logo1Width) {
-                    // Step 3: Not enough space, hide logo1
-                        logo1.style.opacity = '0';
+                if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
+                    // Step 2: Center in available space if encroachment
+                    if (availableSpace < logo1Width) {
+                        // Step 3: Not enough space, hide logo1
+                            logo1.style.opacity = '0';
+                    } else {
+                        // Center in available space
+                        const centerAvailable = leftBoundary + (availableSpace / 2);
+                        logo1.style.opacity = '1';
+                        logo1.style.left = centerAvailable + 'px';
+                        logo1.style.transform = 'translateX(-50%)';
+                    }
                 } else {
-                    // Center in available space
-                    const centerAvailable = leftBoundary + (availableSpace / 2);
+                    // No encroachment, center in full box
                     logo1.style.opacity = '1';
-                    logo1.style.left = centerAvailable + 'px';
+                    logo1.style.left = '50%';
                     logo1.style.transform = 'translateX(-50%)';
                 }
             } else {
-                // No encroachment, center in full box
+                // On mobile, reset logo1 styles to let CSS handle it
+                logo1.style.left = '';
+                logo1.style.transform = '';
                 logo1.style.opacity = '1';
-                logo1.style.left = '50%';
-                logo1.style.transform = 'translateX(-50%)';
             }
         }
+                 
         // Run on load and resize
         window.addEventListener('load', adjustLogo1);
         window.addEventListener('resize', adjustLogo1);
