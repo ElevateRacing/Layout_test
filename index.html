@@ -183,26 +183,24 @@
 
     // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
         // Image Slider Animation
-        const sliderImages = document.querySelectorAll('.slider-image');
+        const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
         let currentImageIndex = 0;
 
         function updateSlider(index) {
-            sliderImages.forEach((img, i) => {
-                img.classList.remove('active');
-                dots[i].classList.remove('active');
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+                slide.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
             });
-            sliderImages[index].classList.add('active');
-            dots[index].classList.add('active');
         }
 
         function autoSlide() {
-            currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+            currentImageIndex = (currentImageIndex + 1) % slides.length;
             updateSlider(currentImageIndex);
         }
 
-        sliderImages[0].classList.add('active'); // Initial image
-        dots[0].classList.add('active');
+        updateSlider(0);
         let slideInterval = setInterval(autoSlide, 5000);
 
         // Dot Navigation
@@ -214,6 +212,30 @@
                 slideInterval = setInterval(autoSlide, 5000); // Restart auto-slide
             });
         });
+
+        // Swipe Functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.image-slider').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.image-slider').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            clearInterval(slideInterval);
+            if (touchEndX < touchStartX - 50) { // Swipe left
+                currentImageIndex = (currentImageIndex + 1) % slides.length;
+            } else if (touchEndX > touchStartX + 50) { // Swipe right
+                currentImageIndex = (currentImageIndex - 1 + slides.length) % slides.length;
+            }
+            updateSlider(currentImageIndex);
+            slideInterval = setInterval(autoSlide, 5000);
+        } 
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     </script>
