@@ -360,44 +360,69 @@ nav {
     }
     .content1-section {
         flex-direction: column;
-        height: auto;
-        min-height: 100vh;
+        height: 100vh;
+        position: relative;
     }
 
     .content1-left {
-        width: 100%;
-        padding: 20px;
-        text-align: center;
-        align-items: center;
-        order: 2; /* Text below image */
+        display: none;
     }
 
     .content1-right {
         width: 100%;
-        height: 50vh; /* Half screen for image */
+        height: 100vh;
         order: 1; /* Image on top */
     }
 
-    .text-swap-container {
-        min-height: 100px;
-        max-width: 90%;
+    .image-slider {
+        height: 100%;
+        width: 100%;
+        display: flex; /* For swipe functionality */
+        overflow: hidden;
     }
 
-    .text-swap {
-        opacity: 0;
+    .slide {
+        position: relative;
+        min-width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    .slider-image {
         position: absolute;
-        bottom: 0; /* Fade in from bottom */
-        transform: translateY(20px);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1; /* Always visible on mobile */
+    }
+
+    .slide-text {
+        position: absolute;
+        bottom: 60px; /* Above dots */
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--secondary-color);
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+        line-height: 1.6;
+        text-align: center;
+        background-color: rgba(64, 64, 64, 0.8);
+        padding: 10px 20px;
+        border-radius: 8px;
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
         transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .text-swap.active {
+    .slide.active .slide-text {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
 
-    .reserve-btn {
-        width: auto;
-        padding: 8px 16px;
+    .dots-container {
+        bottom: 20px;
     }
 }
