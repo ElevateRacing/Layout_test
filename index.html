@@ -83,10 +83,30 @@
                     logo1.style.transform = 'translateX(-50%)';
                 }
             } else {
-                // On mobile, reset logo1 styles to let CSS handle it
-                logo1.style.left = '';
-                logo1.style.transform = '';
+                // Mobile logic
+                const logo2Width = logo2.offsetWidth;
+                const logo1Width = logo1.offsetWidth;
+                const totalLogoWidth = logo2Width + logo1Width;
+                const padding = 20; // 10px left + 10px right
+                const availableWidth = boxWidth - padding;
+
+                // Center logo1 in the available space after logo2
+                const spaceAfterLogo2 = boxWidth - logo2Width;
+                const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
+                logo1.style.left = centerPoint + 'px';
+                logo1.style.transform = 'translateX(-50%)';
                 logo1.style.opacity = '1';
+
+                // Scale down logos if combined width exceeds available space
+                if (totalLogoWidth > availableWidth) {
+                    const scaleFactor = availableWidth / totalLogoWidth;
+                    logo2.style.width = (logo2Width * scaleFactor) + 'px';
+                    logo1.style.width = (logo1Width * scaleFactor) + 'px';
+                } else {
+                    // Reset widths if previously scaled
+                    logo2.style.width = '';
+                    logo1.style.width = '';
+                }
             }
         }
                  
