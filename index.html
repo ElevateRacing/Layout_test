@@ -34,9 +34,39 @@
             <p class="hero-text hero-text-2">Engineered for agility and speed, it’s your ticket to the skies.</p>
         </section>
     </main>
+
+    <section class="content1-section">
+    <div class="content1-left">
+        <h2>Own Your AirKart</h2>
+        <div class="text-swap-container">
+            <p class="text-swap" id="text1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
+            <p class="text-swap" id="text2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. Your AirKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+        </div>
+        <p class="availability-text">Limited production slots available soon.</p>
+        <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
+    </div>
+    <div class="content1-right">
+        <div class="image-slider">
+            <img src="Forest.jpg" alt="Forest View" class="slider-image" data-bg-position="center center">
+            <img src="landing_bridge.jpg" alt="Landing Bridge" class="slider-image" data-bg-position="50% 60%">
+            <img src="landing_garage.jpg" alt="Landing Garage" class="slider-image" data-bg-position="center top">
+            <img src="NightStreet1.jpg" alt="Night Street" class="slider-image" data-bg-position="30% 70%">
+        </div>
+        <div class="dots-container">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+        </div>
+    </div>
+</section>
+
+    
     
     <!-- Embedded JavaScript -->
     <script>
+
+    // - - - - - - LOGO ADJUSTMENT SCRIPT - - - - - -
         const topBox = document.querySelector('.top-box');
         const logo1 = document.querySelector('.logo1');
         const logo2 = document.querySelector('.logo2');
@@ -122,6 +152,57 @@
         window.addEventListener('resize', adjustLogos);
         logo1.addEventListener('load', adjustLogos);
         logo2.addEventListener('load', adjustLogos);
+    // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
+
+    // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
+        const textSwaps = document.querySelectorAll('.text-swap');
+        let currentTextIndex = 0;
+
+        function swapText() {
+            textSwaps[currentTextIndex].classList.remove('active');
+            currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
+            textSwaps[currentTextIndex].classList.add('active');
+        }
+
+        textSwaps[0].classList.add('active'); // Initial text
+        setInterval(swapText, 5000);
+    // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
+
+    // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
+        // Image Slider Animation
+        const sliderImages = document.querySelectorAll('.slider-image');
+        const dots = document.querySelectorAll('.dot');
+        let currentImageIndex = 0;
+
+        function updateSlider(index) {
+            sliderImages.forEach((img, i) => {
+                img.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            sliderImages[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function autoSlide() {
+            currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+            updateSlider(currentImageIndex);
+        }
+
+        sliderImages[0].classList.add('active'); // Initial image
+        dots[0].classList.add('active');
+        let slideInterval = setInterval(autoSlide, 5000);
+
+        // Dot Navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                currentImageIndex = parseInt(dot.getAttribute('data-index'));
+                updateSlider(currentImageIndex);
+                slideInterval = setInterval(autoSlide, 5000); // Restart auto-slide
+            });
+        });
+    // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
+
     </script>
 </body>
 </html>
