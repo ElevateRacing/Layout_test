@@ -188,18 +188,25 @@
         const dots = document.querySelectorAll('.dot');
         let currentImageIndex = 0;
 
-        function updateSlider(index) {
+        function updateSlider(index, direction = 'next') {
             slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
+                slide.classList.remove('active', 'prev', 'next');
+                if (i === index) {
+                    slide.classList.add('active');
+                } else if (direction === 'next' && i === (index - 1 + slides.length) % slides.length) {
+                    slide.classList.add('prev');
+                } else if (direction === 'prev' && i === (index + 1) % slides.length) {
+                    slide.classList.add('next');
+                }
             });
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i=== index);
+                dot.classList.toggle('active', i === index);
             });
         }
 
         function autoSlide() {
             currentImageIndex = (currentImageIndex + 1) % slides.length;
-            updateSlider(currentImageIndex);
+            updateSlider(currentImageIndex, 'next');
         }
 
         updateSlider(0);
@@ -230,12 +237,14 @@
 
         function handleSwipe() {
             clearInterval(slideInterval);
+            const prevIndex = currentImageIndex;
             if (touchEndX < touchStartX - 50) { // Swipe left
                 currentImageIndex = (currentImageIndex + 1) % slides.length;
+                updateSlider(currentImageIndex, 'next');
             } else if (touchEndX > touchStartX + 50) { // Swipe right
                 currentImageIndex = (currentImageIndex - 1 + slides.length) % slides.length;
+                updateSlider(currentImageIndex, 'prev');
             }
-            updateSlider(currentImageIndex);
             slideInterval = setInterval(autoSlide, 5000);
         } 
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
