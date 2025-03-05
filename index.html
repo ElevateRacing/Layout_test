@@ -190,9 +190,10 @@
 
         function updateSlider(index) {
             slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${(i - index) * 100}%)`;
                 slide.classList.toggle('active', i === index);
-                dots[i].classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i=== index);
             });
         }
 
