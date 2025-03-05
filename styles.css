@@ -154,7 +154,7 @@ nav {
     .top-box {
         justify-content: flex-start;
         padding: 10px 5px;
-        aligh-items: center;
+        align-items: center;
         position: relative;
         overflow: visible;
         max-width: 100%;
@@ -168,7 +168,7 @@ nav {
         flex-shrinking: 0;        
     }
     .logo1 {
-        height: 35px;
+        height: 40px;
         max-height: 50px;
         max-width: 45%; /* Fit horizontally */
         position: absolute;
@@ -182,8 +182,15 @@ nav {
         background-position: 40% 60%;
     }
     .hero-content {
-        margin: 25% 0 0 3%; /* Slightly lower and closer on mobile */
-        padding: 15px 20px; /* Reduce padding for smaller screens */
+        /* New positioning for mobile */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%); /* Centers horizontally */
+        bottom: 20px; /* Adds margin from the bottom */
+        margin: 0; /* Remove previous margin to avoid conflicts */
+        padding: 15px 20px; /* Keep padding as is */
+        width: 90%; /* Ensures it fits nicely on mobile */
+        max-width: 900px; /* Keeps max-width consistent with desktop */
     }
     .hero-content h1 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
