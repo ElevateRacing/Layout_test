@@ -42,20 +42,17 @@
         const logo2 = document.querySelector('.logo2');
         const nav = document.querySelector('nav');
 
-        function adjustLogo1() {
+        function adjustLogos() {
             // Only adjust logo1 on desktop (whwn nav is visible)
+            const boxWidth = topBox.offsetWidth;
+            
             if (window.innerWidth > 768) {
                 // Get widths and positions
-                const boxWidth = topBox.offsetWidth;
                 const logo2Width = logo2.offsetWidth;
                 const logo1Width = logo1.offsetWidth;
                 const navWidth = nav.offsetWidth;
                 const navLeft = boxWidth - navWidth - 10; // Left edge of nav
-
-                // Step 1: Center logo1 in the full top-box width
                 const centerFullBox = boxWidth / 2;
-
-                // Define boundaries
                 const leftBoundary = logo2Width + 20; // After logo2 + buffer
                 const rightBoundary = navLeft - 20; // Before nav + buffer
                 const availableSpace = rightBoundary - leftBoundary;
@@ -84,35 +81,47 @@
                 }
             } else {
                 // Mobile logic
-                const logo2Width = logo2.offsetWidth;
-                const logo1Width = logo1.offsetWidth;
-                const totalLogoWidth = logo2Width + logo1Width;
-                const padding = 20; // 10px left + 10px right
-                const availableWidth = boxWidth - padding;
+                // Ensure images are loaded before calculating width
+                if (logo2.complete && logo1.complete) {
+                    const logo2Width = logo2.offsetWidth || 0;
+                    const logo1Width = logo1.offsetWidth || 0;
+                    const padding = 20; // 10px left + 10px right
+                    const availableWidth = boxWidth - padding;
 
-                // Center logo1 in the available space after logo2
-                const spaceAfterLogo2 = boxWidth - logo2Width;
-                const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
-                logo1.style.left = centerPoint + 'px';
-                logo1.style.transform = 'translateX(-50%)';
-                logo1.style.opacity = '1';
+                    // Center logo1 in the available space after logo2
+                    const spaceAfterLogo2 = boxWidth - logo2Width - padding;
+                    const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
+                    const logo1Left = Math.max(logo2Width + 10, Math.min(centerPoint, boxWidth - logo1Width - 10));
+                    
+                    logo1.style.left = logo1Left + 'px';
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
 
-                // Scale down logos if combined width exceeds available space
-                if (totalLogoWidth > availableWidth) {
-                    const scaleFactor = availableWidth / totalLogoWidth;
-                    logo2.style.width = (logo2Width * scaleFactor) + 'px';
-                    logo1.style.width = (logo1Width * scaleFactor) + 'px';
+                    // Scale down logos if combined width exceeds available space
+                    const totalLogoWidth = logo2Width + logo1Width;
+                    if (totalLogoWidth > availableWidth) {
+                        const scaleFactor = availableWidth / totalLogoWidth;
+                        logo2.style.width = (logo2Width * scaleFactor) + 'px';
+                        logo1.style.width = (logo1Width * scaleFactor) + 'px';
+                    } else {
+                        // Reset widths if previously scaled
+                        logo2.style.width = '';
+                        logo1.style.width = '';
+                    }
                 } else {
-                    // Reset widths if previously scaled
-                    logo2.style.width = '';
-                    logo1.style.width = '';
+                    // Fallback if images aren't loaded yet
+                    logo1.style.left = '50%'; // Temporary center
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
                 }
             }
         }
                  
-        // Run on load and resize
-        window.addEventListener('load', adjustLogo1);
-        window.addEventListener('resize', adjustLogo1);
+        // Run on load, resize, and after images load
+        window.addEventListener('load', adjustLogos);
+        window.addEventListener('resize', adjustLogos);
+        logo1.addEventListener('load', adjustLogos);
+        logo2.addEventListener('load', adjustLogos);
     </script>
 </body>
 </html>
