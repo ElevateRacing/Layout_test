@@ -97,19 +97,21 @@ nav {
     }
 
     .top-box {
-                justify-content: flex-start; /* Align logos left */
-                padding: 10px 5px;
+        justify-content: flex-start; /* Align logos left */
+        padding: 10px 5px;
     }
     .logo2 {
-                height: 40px;
-                max-width: 45%; /* Fit horizontally */
-                margin-right: 10px;
+        height: 35px;
+        max-width: 45%; /* Fit horizontally */
+        margin-right: 10px;
+        flex-shrinking: 0;        
     }
     .logo1 {
-                height: 40px;
-                max-width: 45%; /* Fit horizontally */
-                position: static; /* Side-by-side */
-                opacity: 1; /* Ensure visible */
+        height: 35px;
+        max-width: 45%; /* Fit horizontally */
+        position: static; /* Side-by-side */
+        opacity: 1; /* Ensure visible */
+        flex-shrinking: 0;
     }
 }
 
