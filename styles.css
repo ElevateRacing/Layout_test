@@ -401,7 +401,6 @@ nav {
     .content1-section {
         flex-direction: column;
         height: 100vh;
-        position: relative;
     }
 
     .content1-left {
@@ -411,7 +410,38 @@ nav {
     .content1-right {
         width: 100%;
         height: 100vh;
-        order: 1; /* Image on top */
+        position: relative;
+    }
+
+    .mobile-text-btn {
+        position: absolute;
+        bottom: 80px; /* Above dots */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        z-index: 10; /* In front of images */
+        text-align: center;
+    }
+
+    .mobile-text-swap {
+        min-height: 60px; /* Adjust for shorter text */
+        margin-bottom: 10px;
+    }
+
+    .mobile-text-swap .text-swap {
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        line-height: 1.5;
+        background-color: rgba(64, 64, 64, 0.8);
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: var(--secondary-color);
+    }
+
+    .mobile-reserve-btn {
+        position: static; /* Static within container */
+        display: inline-block;
+        background-color: var(--secondary-color);
+        z-index: 11;
     }
 
     .image-slider {
