@@ -178,15 +178,19 @@
 
     // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
         const textSwaps = document.querySelectorAll('.text-swap');
+        const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap .text-swap');
         let currentTextIndex = 0;
 
         function swapText() {
             textSwaps[currentTextIndex].classList.remove('active');
+            mobileTextSwaps[currentTextIndex].classList.remove('active');
             currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
             textSwaps[currentTextIndex].classList.add('active');
+            mobileTextSwaps[currentTextIndex].classList.add('active');
         }
 
         textSwaps[0].classList.add('active'); // Initial text
+        mobileTextSwaps[0].classList.add('active');
         setInterval(swapText, 5000);
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
