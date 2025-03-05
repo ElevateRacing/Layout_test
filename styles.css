@@ -82,7 +82,7 @@ nav {
 
 .btn:hover {
     background-color: var(--button-hover);
-    transform: scale(1.05); /* Slight scale-up for modern feel */
+    transform: scale(1.02); /* Slight scale-up for modern feel */
 }
 
 .btn:focus {
