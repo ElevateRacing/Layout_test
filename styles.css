@@ -112,7 +112,7 @@ nav {
     text-align: left;
     color: var(--secondary-color);
     padding: 20px 30px;
-    max-width: 800px;
+    max-width: 900px;
     z-index: 1100;
     background-color: rgba(64, 64, 64, 0.8);
     border-radius: 8px;
