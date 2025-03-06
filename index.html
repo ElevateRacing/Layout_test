@@ -52,13 +52,13 @@
                 <img src="Forest.jpg" alt="Forest View" class="content1-SliderImage" data-bg-position="center center">
             </div>
             <div class="slide">
-                <img src="landing_bridge.jpg" alt="Landing Bridge" class="content1-SliderImage" data-bg-position="50% 60%">
+                <img src="landing_bridge.jpg" alt="Landing Bridge" class="content1-SliderImage" data-bg-position="center center">
             </div>
             <div class="slide">
-                <img src="landing_garage.jpg" alt="Landing Garage" class="content1-SliderImage" data-bg-position="center top">
+                <img src="landing_garage.jpg" alt="Landing Garage" class="content1-SliderImage" data-bg-position="center center">
             </div>
         </div>
-        <!-- Move text-swap and button here for mobile -->
+        <!-- Mobile text and button -->
         <div class="content1-mobileTextBtn">
             <div class="content1-TextSwapContainerMobileTextSwap">
                 <p class="text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
@@ -71,7 +71,6 @@
             <span class="dot" data-index="0"></span>
             <span class="dot" data-index="1"></span>
             <span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
         </div>
     </div>
 </section>
@@ -186,37 +185,33 @@
 
     // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
         const textSwaps = document.querySelectorAll('.text-swap');
-        const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap .text-swap');
+        const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap');
         let currentTextIndex = 0;
 
         function swapText() {
-            textSwaps[currentTextIndex].classList.remove('active');
-            mobileTextSwaps[currentTextIndex].classList.remove('active');
+            textSwaps.forEach(t => t.classList.remove('active'));
+            mobileTextSwaps.forEach(t => t.classList.remove('active'));
             currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
             textSwaps[currentTextIndex].classList.add('active');
             mobileTextSwaps[currentTextIndex].classList.add('active');
         }
 
-        textSwaps[0].classList.add('active'); // Initial text
+        textSwaps[0].classList.add('active');
         mobileTextSwaps[0].classList.add('active');
         setInterval(swapText, 5000);
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
         // Image Slider Animation
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.content1-slide');
         const dots = document.querySelectorAll('.dot');
         let currentImageIndex = 0;
 
-        function updateSlider(index, direction = 'next') {
+        function updateSlider(index) {
             slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'prev', 'next');
+                slide.classList.remove('active');
                 if (i === index) {
                     slide.classList.add('active');
-                } else if (direction === 'next' && i === (index - 1 + slides.length) % slides.length) {
-                    slide.classList.add('prev');
-                } else if (direction === 'prev' && i === (index + 1) % slides.length) {
-                    slide.classList.add('next');
                 }
             });
             dots.forEach((dot, i) => {
@@ -225,8 +220,8 @@
         }
 
         function autoSlide() {
-            currentImageIndex = (currentImageIndex + 1) % slides.length;
-            updateSlider(currentImageIndex, 'next');
+            currentImageIndex = (currentImageIndex + 1) % slides.length; // Loop
+            updateSlider(currentImageIndex);
         }
 
         updateSlider(0);
@@ -238,7 +233,7 @@
                 clearInterval(slideInterval);
                 currentImageIndex = parseInt(dot.getAttribute('data-index'));
                 updateSlider(currentImageIndex);
-                slideInterval = setInterval(autoSlide, 5000); // Restart auto-slide
+                slideInterval = setInterval(autoSlide, 5000);
             });
         });
 
@@ -246,27 +241,26 @@
         let touchStartX = 0;
         let touchEndX = 0;
 
-        document.querySelector('.image-slider').addEventListener('touchstart', e => {
+        document.querySelector('.content1-ImageSlider').addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
         });
 
-        document.querySelector('.image-slider').addEventListener('touchend', e => {
+        document.querySelector('.content1-ImageSlider').addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
 
         function handleSwipe() {
             clearInterval(slideInterval);
-            const prevIndex = currentImageIndex;
             if (touchEndX < touchStartX - 50) { // Swipe left
                 currentImageIndex = (currentImageIndex + 1) % slides.length;
-                updateSlider(currentImageIndex, 'next');
+                updateSlider(currentImageIndex);
             } else if (touchEndX > touchStartX + 50) { // Swipe right
                 currentImageIndex = (currentImageIndex - 1 + slides.length) % slides.length;
-                updateSlider(currentImageIndex, 'prev');
+                updateSlider(currentImageIndex);
             }
             slideInterval = setInterval(autoSlide, 5000);
-        } 
+        }
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     </script>
