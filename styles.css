@@ -197,10 +197,9 @@ nav {
 
 .text-swap-container {
     position: relative;
-    min-height: 200px; /* Fixed height to keep layout stable */
+    min-height: 120px; /* Fixed height to keep layout stable */
     width: 100%;
     max-width: 500px;
-    margin-bottom: 20px;
 }
 
 .text-swap {
@@ -232,7 +231,7 @@ nav {
     padding: 10px 20px;
     text-decoration: none;
     color: #000000;
-    background-color: #FF6F61; /* Modern orange */
+    background-color: var(--secondary-color);
     border-radius: 12px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
@@ -244,7 +243,7 @@ nav {
 }
 
 .reserve-btn:hover {
-    background-color: #FF8A75; /* Slightly lighter orange on hover */
+    background-color: var(--button-hover);
     transform: scale(1.02);
 }
 
@@ -253,8 +252,6 @@ nav {
     width: 50%;
     position: relative;
     overflow: hidden;
-    height: calc(100vh - 90px); /* Starts below top-box (70px height + 20px margin) */
-    margin-top: 90px; /* Matches top-box height + margin */
 }
 
 .image-slider {
@@ -316,6 +313,7 @@ nav {
 .slider-image[data-bg-position="center center"] { object-position: center center; }
 .slider-image[data-bg-position="50% 60%"] { object-position: 50% 60%; }
 .slider-image[data-bg-position="center top"] { object-position: center top; }
+.slider-image[data-bg-position="30% 70%"] { object-position: 30% 70%; }
 
 /* Dots Navigation */
 .dots-container {
@@ -482,7 +480,7 @@ nav {
     .content1-right {
         width: 100%;
         height: 100vh;
-        margin-top: 0;
+        position: relative;
     }
 
     .mobile-text-btn {
@@ -552,53 +550,6 @@ nav {
         opacity: 1; /* Always visible on mobile */
     }
 
-    .mobile-text-btn {
-        position: absolute;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        z-index: 10;
-        text-align: center;
-    }
-
-    .mobile-text-swap {
-        min-height: 60px;
-        margin-bottom: 10px;
-    }
-
-    .mobile-text-swap .text-swap {
-        font-size: clamp(0.875rem, 2.5vw, 1rem);
-        line-height: 1.5;
-        background-color: rgba(64, 64, 64, 0.8);
-        padding: 8px 16px;
-        border-radius: 8px;
-        color: var(--secondary-color);
-        position: absolute;
-        bottom: 0; /* Start from bottom */
-        left: 0;
-        width: 100%;
-        opacity: 0;
-        transform: translateY(100%); /* Start below screen */
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .mobile-text-swap .text-swap.active {
-        opacity: 1;
-        transform: translateY(-10px); /* Lands just above button */
-    }
-
-    .mobile-reserve-btn {
-        position: static;
-        display: inline-block;
-        background-color: #FF6F61; /* Modern orange */
-        z-index: 11;
-    }
-
-    .mobile-reserve-btn:hover {
-        background-color: #FF8A75; /* Lighter orange on hover */
-    }
-
     .slide-text {
         position: absolute;
         bottom: 60px; /* Above dots */
@@ -616,10 +567,6 @@ nav {
         opacity: 0;
         transform: translateX(-50%) translateY(20px);
         transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .dots-container {
-        bottom: 20px;
     }
 
     .slide.active .slide-text {
