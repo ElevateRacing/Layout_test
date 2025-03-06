@@ -91,7 +91,7 @@ nav {
 .hero-section {
     height: 100vh;
     width: 100%;
-    background: url('Test10.PNG') no-repeat center center/cover;
+    /* background: url('Test10.PNG') no-repeat center center/cover; */
     background-attachment: fixed;
     display: flex;
     align-items: center;
@@ -100,7 +100,7 @@ nav {
     scroll-snap-align: start;
     padding: 90px 0 0 0;
     z-index: 1000;
-    background-position: 50% 50%;
+    /* background-position: 50% 50%; */
     overflow: hidden;
 }
 
@@ -417,7 +417,7 @@ nav {
     .hero-section {
         height: 100vh;
         width: 100%;
-        background-position: 50% 50%;
+        background-position: 70% 50%;
     }
     .hero-content {
         /* New positioning for mobile */
