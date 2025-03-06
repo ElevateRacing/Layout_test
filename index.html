@@ -183,21 +183,86 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
-        const textSwaps = document.querySelectorAll('.text-swap');
+        const textSwaps = document.querySelectorAll('.content1-left .text-swap');
         const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap .text-swap');
-        let currentTextIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
 
-        function swapText() {
-            textSwaps[currentTextIndex].classList.remove('active');
-            mobileTextSwaps[currentTextIndex].classList.remove('active');
-            currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
-            textSwaps[currentTextIndex].classList.add('active');
-            mobileTextSwaps[currentTextIndex].classList.add('active');
+        function updateContent(index, direction = 'next') {
+            // Update desktop text
+            textSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
+
+            // Update mobile text
+            mobileTextSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
+
+            // Update slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev', 'next');
+                if (i === index) {
+                    slide.classList.add('active');
+                } else if (direction === 'next' && i === (index - 1 + slides.length) % slides.length) {
+                    slide.classList.add('prev');
+                } else if (direction === 'prev' && i === (index + 1) % slides.length) {
+                    slide.classList.add('next');
+                }
+            });
+
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
 
-        textSwaps[0].classList.add('active'); // Initial text
-        mobileTextSwaps[0].classList.add('active');
-        setInterval(swapText, 5000);
+        function autoSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateContent(currentIndex, 'next');
+        }
+
+        // Initialize
+        updateContent(0);
+        let slideInterval = setInterval(autoSlide, 8000); // Increased to 8 seconds
+
+        // Dot Navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateContent(currentIndex);
+                slideInterval = setInterval(autoSlide, 8000);
+            });
+        });
+
+        // Swipe Functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.image-slider').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.image-slider').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            clearInterval(slideInterval);
+            if (touchEndX < touchStartX - 50) { // Swipe left
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateContent(currentIndex, 'next');
+            } else if (touchEndX > touchStartX + 50) { // Swipe right
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateContent(currentIndex, 'prev');
+            }
+            slideInterval = setInterval(autoSlide, 8000);
+        }
+
+      
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
