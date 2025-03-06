@@ -42,6 +42,7 @@
             <p class="text-swap" id="text2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. YourKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
             <p class="text-swap" id="text3">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance. Fly low above the ground or weave through forests — no pilot license required (U.S. only, for now). This isn’t just a vehicle; it’s a revolution in recreational flight. Secure your piece of the future and experience the ultimate freedom of low-altitude racing.</p>
         </div>
+        <br>
         <p class="availability-text">Limited production slots available soon.</p>
         <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
     </div>
@@ -49,12 +50,19 @@
         <div class="image-slider">
             <div class="slide">
                 <img src="Forest.jpg" alt="Forest View" class="slider-image" data-bg-position="center center">
+                <p class="slide-text">Explore breathtaking landscapes</p>
             </div>
             <div class="slide">
                 <img src="landing_bridge.jpg" alt="Landing Bridge" class="slider-image" data-bg-position="50% 60%">
+                <p class="slide-text">Precision landing anywhere</p>
             </div>
             <div class="slide">
                 <img src="landing_garage.jpg" alt="Landing Garage" class="slider-image" data-bg-position="center top">
+                <p class="slide-text">Your personal flight hub</p>
+            </div>
+            <div class="slide">
+                <img src="NightStreet1.jpg" alt="Night Street" class="slider-image" data-bg-position="30% 70%">
+                <p class="slide-text">Nighttime adventures await</p>
             </div>
         </div>
         <!-- Move text-swap and button here for mobile -->
@@ -62,7 +70,6 @@
             <div class="text-swap-container mobile-text-swap">
                 <p class="text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
                 <p class="text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
-                <p class="text-swap" id="mobile-text3">Take flight with the AirKart—your personal eVTOL.</p>
             </div>
             <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
         </div>
@@ -70,6 +77,7 @@
             <span class="dot" data-index="0"></span>
             <span class="dot" data-index="1"></span>
             <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
         </div>
     </div>
 </section>
@@ -183,86 +191,21 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
-        const textSwaps = document.querySelectorAll('.content1-left .text-swap');
+        const textSwaps = document.querySelectorAll('.text-swap');
         const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap .text-swap');
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        let currentIndex = 0;
+        let currentTextIndex = 0;
 
-        function updateContent(index, direction = 'next') {
-            // Update desktop text
-            textSwaps.forEach((text, i) => {
-                text.classList.toggle('active', i === index);
-            });
-
-            // Update mobile text
-            mobileTextSwaps.forEach((text, i) => {
-                text.classList.toggle('active', i === index);
-            });
-
-            // Update slides
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'prev', 'next');
-                if (i === index) {
-                    slide.classList.add('active');
-                } else if (direction === 'next' && i === (index - 1 + slides.length) % slides.length) {
-                    slide.classList.add('prev');
-                } else if (direction === 'prev' && i === (index + 1) % slides.length) {
-                    slide.classList.add('next');
-                }
-            });
-
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
+        function swapText() {
+            textSwaps[currentTextIndex].classList.remove('active');
+            mobileTextSwaps[currentTextIndex].classList.remove('active');
+            currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
+            textSwaps[currentTextIndex].classList.add('active');
+            mobileTextSwaps[currentTextIndex].classList.add('active');
         }
 
-        function autoSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateContent(currentIndex, 'next');
-        }
-
-        // Initialize
-        updateContent(0);
-        let slideInterval = setInterval(autoSlide, 8000); // Increased to 8 seconds
-
-        // Dot Navigation
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                currentIndex = parseInt(dot.getAttribute('data-index'));
-                updateContent(currentIndex);
-                slideInterval = setInterval(autoSlide, 8000);
-            });
-        });
-
-        // Swipe Functionality
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.querySelector('.image-slider').addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.querySelector('.image-slider').addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            clearInterval(slideInterval);
-            if (touchEndX < touchStartX - 50) { // Swipe left
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateContent(currentIndex, 'next');
-            } else if (touchEndX > touchStartX + 50) { // Swipe right
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                updateContent(currentIndex, 'prev');
-            }
-            slideInterval = setInterval(autoSlide, 8000);
-        }
-
-      
+        textSwaps[0].classList.add('active'); // Initial text
+        mobileTextSwaps[0].classList.add('active');
+        setInterval(swapText, 5000);
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
