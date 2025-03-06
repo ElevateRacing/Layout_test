@@ -61,9 +61,9 @@
         <!-- Mobile text and button -->
         <div class="content1-mobileTextBtn">
             <div class="content1-TextSwapContainerMobileTextSwap">
-                <p class="text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
-                <p class="text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
-                <p class="text-swap" id="mobile-text3">TEXT TEXT</p>
+                <p class="text-swap mobile-text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
+                <p class="text-swap mobile-text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
+                <p class="text-swap mobile-text-swap" id="mobile-text3">TEXT TEXT</p>
             </div>
             <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
         </div>
@@ -184,21 +184,34 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
-        const textSwaps = document.querySelectorAll('.text-swap');
-        const mobileTextSwaps = document.querySelectorAll('.mobile-text-swap');
-        let currentTextIndex = 0;
+        const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
+        let currentContent1TextIndex = 0;
 
-        function swapText() {
-            textSwaps.forEach(t => t.classList.remove('active'));
-            mobileTextSwaps.forEach(t => t.classList.remove('active'));
-            currentTextIndex = (currentTextIndex + 1) % textSwaps.length;
-            textSwaps[currentTextIndex].classList.add('active');
-            mobileTextSwaps[currentTextIndex].classList.add('active');
+        function swapContent1Text() {
+            content1TextSwaps.forEach(t => t.classList.remove('active'));
+            currentContent1TextIndex = (currentContent1TextIndex + 1) % content1TextSwaps.length;
+            content1TextSwaps[currentContent1TextIndex].classList.add('active');
         }
 
-        textSwaps[0].classList.add('active');
+        content1TextSwaps[0].classList.add('active');
+        setInterval(swapContent1Text, 5000);
+
+        // Content1 Mobile Text Swap
+        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .text-swap'); // Note: .mobile-text-swap class not in HTML, using .text-swap
+        let currentMobileTextIndex = 0;
+
+        function swapMobileText() {
+            mobileTextSwaps.forEach(t => t.classList.remove('active'));
+            currentMobileTextIndex = (currentMobileTextIndex + 1) % mobileTextSwaps.length;
+            mobileTextSwaps[currentMobileTextIndex].classList.add('active');
+            mobileTextSwaps[currentMobileTextIndex].style.animation = 'none';
+            setTimeout(() => {
+                mobileTextSwaps[currentMobileTextIndex].style.animation = 'fadeInUp 0.5s ease forwards 1s';
+            }, 10);
+        }
+
         mobileTextSwaps[0].classList.add('active');
-        setInterval(swapText, 5000);
+        setInterval(swapMobileText, 5000);
     // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
