@@ -35,45 +35,45 @@
     </main>
 
     <section class="content1-section">
-    <div class="content1-left">
-        <h2>Own Your AirKart</h2>
-        <div class="content1-text-swap-container">
-            <p class="text-swap" id="content1-SwapText1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
-            <p class="text-swap" id="content1-SwapText2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. YourKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
-            <p class="text-swap" id="content1-SwapText3">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance. Fly low above the ground or weave through forests — no pilot license required (U.S. only, for now). This isn’t just a vehicle; it’s a revolution in recreational flight. Secure your piece of the future and experience the ultimate freedom of low-altitude racing.</p>
-        </div>
-        <br>
-        <p class="content1-text">Limited production slots available soon.</p>
-        <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
-    </div>
-    <div class="content1-right">
-        <div class="content1-ImageSlider">
-            <div class="content1-slide">
-                <img src="Forest.jpg" alt="Forest View" class="content1-SliderImage" data-bg-position="center center">
+        <div class="content1-left">
+            <h2>Own Your AirKart</h2>
+            <div class="content1-text-swap-container">
+                <p class="text-swap" id="content1-SwapText1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
+                <p class="text-swap" id="content1-SwapText2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. YourKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+                <p class="text-swap" id="content1-SwapText3">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance.</p>
             </div>
-            <div class="slide">
-                <img src="landing_bridge.jpg" alt="Landing Bridge" class="content1-SliderImage" data-bg-position="center center">
+            <br>
+            <p class="content1-text">Limited production slots available soon.</p>
+            <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
+        </div>
+        <div class="content1-right">
+            <div class="content1-ImageSlider">
+                <div class="content1-slide">
+                    <img src="Forest.jpg" alt="Forest View" class="content1-SliderImage" data-bg-position="center center">
+                </div>
+                <div class="content1-slide">
+                    <img src="landing_bridge.jpg" alt="Landing Bridge" class="content1-SliderImage" data-bg-position="center center">
+                </div>
+                <div class="content1-slide">
+                    <img src="landing_garage.jpg" alt="Landing Garage" class="content1-SliderImage" data-bg-position="center center">
+                </div>
             </div>
-            <div class="slide">
-                <img src="landing_garage.jpg" alt="Landing Garage" class="content1-SliderImage" data-bg-position="center center">
+            <!-- Mobile text and button -->
+            <div class="content1-mobileTextBtn">
+                <div class="content1-TextSwapContainerMobileTextSwap">
+                    <p class="text-swap mobile-text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
+                    <p class="text-swap mobile-text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
+                    <p class="text-swap mobile-text-swap" id="mobile-text3">TEXT TEXT</p>
+                </div>
+                <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
+            </div>
+            <div class="dots-container">
+                <span class="dot" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
             </div>
         </div>
-        <!-- Mobile text and button -->
-        <div class="content1-mobileTextBtn">
-            <div class="content1-TextSwapContainerMobileTextSwap">
-                <p class="text-swap mobile-text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
-                <p class="text-swap mobile-text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
-                <p class="text-swap mobile-text-swap" id="mobile-text3">TEXT TEXT</p>
-            </div>
-            <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
-        </div>
-        <div class="dots-container">
-            <span class="dot" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-        </div>
-    </div>
-</section>
+    </section>
 
 <section class="content2-section">
     <h2>Buy your ticket</h2>
@@ -183,98 +183,71 @@
         logo2.addEventListener('load', adjustLogos);
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
-    // - - - - - - CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
+    // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
         const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
-        let currentContent1TextIndex = 0;
-
-        function swapContent1Text() {
-            content1TextSwaps.forEach(t => t.classList.remove('active'));
-            currentContent1TextIndex = (currentContent1TextIndex + 1) % content1TextSwaps.length;
-            content1TextSwaps[currentContent1TextIndex].classList.add('active');
-        }
-
-        content1TextSwaps[0].classList.add('active');
-        setInterval(swapContent1Text, 5000);
-
-        // Content1 Mobile Text Swap
-        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .text-swap'); // Note: .mobile-text-swap class not in HTML, using .text-swap
-        let currentMobileTextIndex = 0;
-
-        function swapMobileText() {
-            mobileTextSwaps.forEach(t => t.classList.remove('active'));
-            currentMobileTextIndex = (currentMobileTextIndex + 1) % mobileTextSwaps.length;
-            mobileTextSwaps[currentMobileTextIndex].classList.add('active');
-            mobileTextSwaps[currentMobileTextIndex].style.animation = 'none';
-            setTimeout(() => {
-                mobileTextSwaps[currentMobileTextIndex].style.animation = 'fadeInUp 0.5s ease forwards 1s';
-            }, 10);
-        }
-
-        mobileTextSwaps[0].classList.add('active');
-        setInterval(swapMobileText, 5000);
-    // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
-
-    // - - - - - - CONTENT1 IMAGE SLIDER ANIMATION SCRIPT - - - - - -
-        // Image Slider Animation
+        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
         const slides = document.querySelectorAll('.content1-slide');
         const dots = document.querySelectorAll('.dot');
-        let currentImageIndex = 0;
+        let currentIndex = 0;
 
-        function updateSlider(index) {
+        function updateContent(index) {
             slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('active');
-                }
+                slide.classList.toggle('active', i === index);
             });
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
+            content1TextSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
+            mobileTextSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
         }
 
         function autoSlide() {
-            currentImageIndex = (currentImageIndex + 1) % slides.length; // Loop
-            updateSlider(currentImageIndex);
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateContent(currentIndex);
         }
 
-        updateSlider(0);
+        updateContent(0);
         let slideInterval = setInterval(autoSlide, 5000);
 
-        // Dot Navigation
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
                 clearInterval(slideInterval);
-                currentImageIndex = parseInt(dot.getAttribute('data-index'));
-                updateSlider(currentImageIndex);
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateContent(currentIndex);
                 slideInterval = setInterval(autoSlide, 5000);
             });
         });
 
-        // Swipe Functionality
         let touchStartX = 0;
         let touchEndX = 0;
 
-        document.querySelector('.content1-ImageSlider').addEventListener('touchstart', e => {
+        const slider = document.querySelector('.content1-ImageSlider');
+        slider.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
         });
 
-        document.querySelector('.content1-ImageSlider').addEventListener('touchend', e => {
+        slider.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
 
         function handleSwipe() {
             clearInterval(slideInterval);
-            if (touchEndX < touchStartX - 50) { // Swipe left
-                currentImageIndex = (currentImageIndex + 1) % slides.length;
-                updateSlider(currentImageIndex);
-            } else if (touchEndX > touchStartX + 50) { // Swipe right
-                currentImageIndex = (currentImageIndex - 1 + slides.length) % slides.length;
-                updateSlider(currentImageIndex);
+            if (touchEndX < touchStartX - 50) {
+                currentIndex = (currentIndex + 1) % slides.length;
+            } else if (touchEndX > touchStartX + 50) {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             }
+            updateContent(currentIndex);
             slideInterval = setInterval(autoSlide, 5000);
         }
-    // - - - - - - END OF CONTENT1 TEXT SWAP ANIMATION SCRIPT - - - - - -
+
+       
+    // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
     </script>
 </body>
