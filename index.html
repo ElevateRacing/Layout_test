@@ -184,84 +184,88 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
+
         const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
-        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
-        const slides = document.querySelectorAll('.content1-slide');
-        const dots = document.querySelectorAll('.dot');
-        let currentIndex = 0;
+    const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
+    const slides = document.querySelectorAll('.content1-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
 
-        function updateContent(index) {
-            slides.forEach((slide, i) => {
-                if (window.innerWidth <= 768) {
-                    slide.style.transform = i === index ? 'translateX(0)' : 'translateX(100%)';
-                } else {
-                    slide.classList.toggle('active', i === index);
-                }
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            content1TextSwaps.forEach((text, i) => {
-                text.classList.toggle('active', i === index);
-            });
-            mobileTextSwaps.forEach((text, i) => {
-                text.classList.toggle('active', i === index);
-            });
-        }
-
-        function autoSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateContent(currentIndex);
-        }
-
-        updateContent(0);
-        let slideInterval = setInterval(autoSlide, 5000);
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                currentIndex = parseInt(dot.getAttribute('data-index'));
-                updateContent(currentIndex);
-                slideInterval = setInterval(autoSlide, 5000);
-            });
-        });
-
-        let touchStartX = 0;
-        let touchMoveX = 0;
-        let touchEndX = 0;
-
-        const slider = document.querySelector('.content1-ImageSlider');
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            const delta = touchMoveX - touchStartX;
-            if (window.innerWidth <= 768) {
-                slides[currentIndex].style.transform = `translateX(${delta}px)`;
+    function updateContent(index) {
+        slides.forEach((slide, i) => {
+            if (window.innerWidth > 768) {
+                slide.classList.toggle('active', i === index);
+            } else {
+                slide.style.transform = i === index ? 'translateX(0)' : 'translateX(100%)';
             }
         });
-
-        slider.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            if (window.innerWidth <= 768) {
-                slides[currentIndex].style.transform = 'translateX(0)';
-            }
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
         });
+        content1TextSwaps.forEach((text, i) => {
+            text.classList.toggle('active', i === index);
+        });
+        mobileTextSwaps.forEach((text, i) => {
+            text.classList.toggle('active', i === index);
+        });
+    }
 
-        function handleSwipe() {
+    function autoSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateContent(currentIndex);
+    }
+
+    updateContent(0); // Initialize with first slide visible
+    let slideInterval = setInterval(autoSlide, 5000);
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
             clearInterval(slideInterval);
-            const delta = touchEndX - touchStartX;
-            if (delta < -75) {
-                currentIndex = (currentIndex + 1) % slides.length;
-            } else if (delta > 75) {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            }
+            currentIndex = parseInt(dot.getAttribute('data-index'));
             updateContent(currentIndex);
             slideInterval = setInterval(autoSlide, 5000);
+        });
+    });
+
+    let touchStartX = 0;
+    let touchMoveX = 0;
+    let touchEndX = 0;
+
+    const slider = document.querySelector('.content1-ImageSlider');
+    slider.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    slider.addEventListener('touchmove', e => {
+        touchMoveX = e.changedTouches[0].screenX;
+        const delta = touchMoveX - touchStartX;
+        if (window.innerWidth <= 768) {
+            slides[currentIndex].style.transform = `translateX(${delta}px)`;
         }
+    });
+
+    slider.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        if (window.innerWidth <= 768) {
+            slides[currentIndex].style.transform = 'translateX(0)';
+        }
+    });
+
+    function handleSwipe() {
+        clearInterval(slideInterval);
+        const delta = touchEndX - touchStartX;
+        if (delta < -75) {
+            currentIndex = (currentIndex + 1) % slides.length;
+        } else if (delta > 75) {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        }
+        updateContent(currentIndex);
+        slideInterval = setInterval(autoSlide, 5000);
+    }
+
+        
+        
 
        
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
