@@ -417,7 +417,7 @@ nav {
     .hero-section {
         height: 100vh;
         width: 100%;
-        background-position: 30% 20%;
+        background-position: 40% 20%;
     }
     .hero-content {
         /* New positioning for mobile */
@@ -431,7 +431,7 @@ nav {
         max-width: 900px; /* Keeps max-width consistent with desktop */
     }
     .hero-background {
-        background-position: 30% 20%; /* Center the background */
+        background-position: 40% 20%; /* Center the background */
         background-attachment: scroll; /* Override fixed to ensure responsiveness */
         background-size: cover; /* Ensure it still covers the area */
     }
