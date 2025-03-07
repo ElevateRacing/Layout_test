@@ -91,6 +91,8 @@ nav {
 .hero-section {
     height: 100vh;
     width: 100%;
+    /* background: url('test2.PNG') no-repeat center center/cover; */
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -98,7 +100,20 @@ nav {
     scroll-snap-align: start;
     padding: 90px 0 0 0;
     z-index: 1000;
+    /* background-position: 50% 50%; */
     overflow: hidden;
+}
+
+.hero-content {
+    text-align: left;
+    color: var(--secondary-color);
+    padding: 20px 30px;
+    max-width: 900px;
+    z-index: 1100;
+    /* background-color: rgba(64, 64, 64, 0.8);
+    border-radius: 8px; */
+    margin: 20% 0 0 5%;
+    position: relative;
 }
 
 .hero-background {
@@ -109,20 +124,7 @@ nav {
     height: 100%;
     background: url('test2.PNG') no-repeat center center/cover;
     background-position: 50% 50%;
-    background-attachment: fixed; /* Ensures the center stays in view */
-    z-index: 999;
-}
-
-.hero-content {
-    text-align: left;
-    color: var(--secondary-color);
-    padding: 20px 30px;
-    max-width: 900px;
-    z-index: 1100;
-    position: absolute; /* Changed from relative to absolute for better control */
-    left: 5%; /* Matches original margin-left */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjusts for content height */
+    z-index: 999; /* Below content */
 }
 
 .hero-content h1 {
@@ -375,14 +377,7 @@ nav {
 
 
 
-/* Media query for desktop minimized screens (between mobile and full desktop) */
-@media (min-width: 769px) and (max-height: 600px) {
-    .hero-content {
-        top: auto; /* Override top positioning */
-        bottom: 20px; /* Match mobile for smaller heights */
-        transform: none; /* Remove vertical centering */
-    }
-}
+
 
 
 
@@ -423,10 +418,6 @@ nav {
         height: 100vh;
         width: 100%;
         background-position: 70% 50%;
-    }
-    }
-    .hero-background {
-        background-position: 70% 50%; /* Ensure consistency with mobile */
     }
     .hero-content {
         /* New positioning for mobile */
