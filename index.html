@@ -191,23 +191,24 @@
     let currentIndex = 0;
 
     function updateContent(index) {
-        slides.forEach((slide, i) => {
-            if (window.innerWidth > 768) {
-                slide.classList.toggle('active', i === index);
-            } else {
-                slide.style.transform = i === index ? 'translateX(0)' : 'translateX(100%)';
-            }
-        });
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-        content1TextSwaps.forEach((text, i) => {
-            text.classList.toggle('active', i === index);
-        });
-        mobileTextSwaps.forEach((text, i) => {
-            text.classList.toggle('active', i === index);
-        });
-    }
+    slides.forEach((slide, i) => {
+        // Always toggle active class, regardless of screen size
+        slide.classList.toggle('active', i === index);
+        if (window.innerWidth <= 768) {
+            // Add transform for mobile sliding
+            slide.style.transform = i === index ? 'translateX(0)' : 'translateX(100%)';
+        }
+    });
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+    content1TextSwaps.forEach((text, i) => {
+        text.classList.toggle('active', i === index);
+    });
+    mobileTextSwaps.forEach((text, i) => {
+        text.classList.toggle('active', i === index);
+    });
+}
 
     function autoSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
