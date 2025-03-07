@@ -3,19 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserve Your AirKart</title>
+    <title>Form Submission</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; }
-        .container { display: flex; height: 100vh; overflow: hidden; }
-        .left, .right { width: 50%; padding: 20px; box-sizing: border-box; }
-        .left { background-color: #f4f4f4; display: flex; flex-direction: column; justify-content: center; }
-        .right { background-color: #ddd; }
-        .right img { width: 100%; height: 100%; object-fit: cover; }
-        form { display: flex; flex-direction: column; gap: 15px; }
-        input { padding: 10px; font-size: 16px; }
-        button { padding: 10px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        .footer { text-align: center; padding: 10px; background-color: #333; color: white; position: fixed; bottom: 0; width: 100%; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .left, .right {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .left {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right {
+            background-color: #ddd;
+        }
+        .right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -27,8 +72,8 @@
                 <input type="text" name="country" placeholder="Country" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="number" name="age" placeholder="Age" required>
-                <input type="hidden" name="_subject" value="New Form Submission">
-                <input type="hidden" name="_next" value="https://yourusername.github.io/my-form-page/?success=1">
+                <input type="hidden" name="_subject" value="New Form Submission - {{date}}">
+                <input type="hidden" name="_next" value="https://elevateracing.github.io/Layout_test/#content4/?success=1">
                 <button type="submit">Submit</button>
             </form>
         </div>
