@@ -184,7 +184,6 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
-
         const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
     const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
     const slides = document.querySelectorAll('.content1-slide');
@@ -216,14 +215,14 @@
     }
 
     updateContent(0); // Initialize with first slide visible
-    let slideInterval = setInterval(autoSlide, 5000);
+    let slideInterval = setInterval(autoSlide, 8000); // Slowed down to 8 seconds
 
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             clearInterval(slideInterval);
             currentIndex = parseInt(dot.getAttribute('data-index'));
             updateContent(currentIndex);
-            slideInterval = setInterval(autoSlide, 5000);
+            slideInterval = setInterval(autoSlide, 8000); // Reset with 8 seconds
         });
     });
 
@@ -261,13 +260,9 @@
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         }
         updateContent(currentIndex);
-        slideInterval = setInterval(autoSlide, 5000);
+        slideInterval = setInterval(autoSlide, 10000); // Reset with 10 seconds
     }
 
-        
-        
-
-       
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
     // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
