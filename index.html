@@ -249,6 +249,18 @@
        
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
+    // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
+        function setHeroHeight() {
+            const heroSection = document.querySelector('.hero-section');
+            heroSection.style.height = `${window.innerHeight}px`;
+            heroSection.querySelector('.hero-background').style.height = `${window.innerHeight}px`;
+        }
+        window.addEventListener('resize', setHeroHeight);
+        window.addEventListener('load', setHeroHeight);
+        setHeroHeight();
+
+    // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
+
     </script>
 </body>
 </html>
