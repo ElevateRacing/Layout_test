@@ -422,7 +422,7 @@ nav {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 0; /* Anchor to bottom */
+        bottom: 20px; /* Anchor to bottom */
         padding: 15px 20px;
         width: 90%;
         max-width: 900px;
