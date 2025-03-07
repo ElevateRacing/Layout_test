@@ -119,7 +119,7 @@ nav {
     width: 100%;
     height: 100%;
     background: url('Test16.png') no-repeat center center/cover;
-    background-position: 50% 50%;
+    background-position: 50% 20%;
     z-index: 999; /* Below content */
 }
 
@@ -427,13 +427,13 @@ nav {
         width: 90%;
         max-width: 900px;
         margin: 0; /* Remove desktop margin */
-        padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); /* Increased padding */
+        padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Increased padding */
         box-sizing: border-box;
         top: auto; /* Reset any top positioning */
 
     }
     .hero-background {
-        background-position: 40% 20%;
+        background-position: 45% 20%;
         background-attachment: scroll; /* Better for mobile */
         background-size: cover;
         height: 100%; /* Match section height */
