@@ -480,6 +480,10 @@ nav {
         transition: transform 0.8s ease;
     }
 
+    .content1-slide.active {
+        transform: translateX(0);
+    }
+
     .content1-SliderImage {
         position: absolute;
         top: 0;
