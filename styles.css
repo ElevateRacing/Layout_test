@@ -100,7 +100,6 @@ nav {
     padding: 90px 0 0 0;
     z-index: 1000;
     overflow: hidden;
-    padding-bottom: env(safe-area-inset-bottom, 20px); /* Fallback to 20px if env() not supported */
 }
 
 .hero-content {
@@ -412,27 +411,30 @@ nav {
         flex-shrinking: 0;
     }
     .hero-section {
-        height: 100vh;
+        height: 100dvh; /* Use dynamic viewport height for mobile */
         width: 100%;
         background-position: 40% 20%;
-        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Extra padding for nav bar */
-    }
+        padding: 90px 0 0 0; /* Keep top padding */
+        padding-bottom: 0; /* Remove extra padding, we’ll handle it below */
     }
     .hero-content {
-        /* New positioning for mobile */
         position: absolute;
         left: 50%;
-        transform: translateX(-50%); /* Centers horizontally */
-        bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Ensure it’s above nav bar */
-        margin: 0; /* Remove previous margin to avoid conflicts */
-        padding: 15px 20px; /* Keep padding as is */
-        width: 90%; /* Ensures it fits nicely on mobile */
-        max-width: 900px; /* Keeps max-width consistent with desktop */
+        transform: translateX(-50%);
+        bottom: 0; /* Anchor to bottom */
+        padding: 15px 20px;
+        width: 90%;
+        max-width: 900px;
+        margin: 0; /* Remove desktop margin */
+        /* Ensure content stays above nav bar with a wrapper */
+        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
     }
     .hero-background {
-        background-position: 40% 20%; /* Center the background */
-        background-attachment: scroll; /* Override fixed to ensure responsiveness */
-        background-size: cover; /* Ensure it still covers the area */
+        background-position: 40% 20%;
+        background-attachment: scroll; /* Better for mobile */
+        background-size: cover;
+        height: 100dvh; /* Match section height */
     }
     .hero-content h1 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
