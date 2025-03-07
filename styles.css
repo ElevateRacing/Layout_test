@@ -411,11 +411,13 @@ nav {
         flex-shrinking: 0;
     }
     .hero-section {
-        height: 100dvh; /* Use dynamic viewport height for mobile */
+        height: 100vh; /* Base height */
         width: 100%;
         background-position: 40% 20%;
-        padding: 90px 0 0 0; /* Keep top padding */
-        padding-bottom: 0; /* Remove extra padding, we’ll handle it below */
+        padding: 90px 0 0 0;
+        position: relative;
+        /* Ensure content isn’t clipped */
+        display: block; /* Change from flex to block for better control */
     }
     .hero-content {
         position: absolute;
@@ -426,15 +428,16 @@ nav {
         width: 90%;
         max-width: 900px;
         margin: 0; /* Remove desktop margin */
-        /* Ensure content stays above nav bar with a wrapper */
-        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
         box-sizing: border-box;
+        /* Ensure it fits when address bar is visible */
+        top: auto; /* Reset any top positioning */
+
     }
     .hero-background {
         background-position: 40% 20%;
         background-attachment: scroll; /* Better for mobile */
         background-size: cover;
-        height: 100dvh; /* Match section height */
+        height: 100%; /* Match section height */
     }
     .hero-content h1 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
