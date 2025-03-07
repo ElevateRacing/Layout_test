@@ -91,7 +91,6 @@ nav {
 .hero-section {
     height: 100vh;
     width: 100%;
-    /* background: url('Test15.PNG') no-repeat center center/cover; */
     background-attachment: fixed;
     display: flex;
     align-items: center;
@@ -100,8 +99,8 @@ nav {
     scroll-snap-align: start;
     padding: 90px 0 0 0;
     z-index: 1000;
-    /* background-position: 50% 50%; */
     overflow: hidden;
+    padding-bottom: env(safe-area-inset-bottom, 20px); /* Fallback to 20px if env() not supported */
 }
 
 .hero-content {
@@ -110,8 +109,6 @@ nav {
     padding: 20px 30px;
     max-width: 900px;
     z-index: 1100;
-    /* background-color: rgba(64, 64, 64, 0.8);
-    border-radius: 8px; */
     margin: 20% 0 0 5%;
     position: relative;
 }
@@ -418,13 +415,15 @@ nav {
         height: 100vh;
         width: 100%;
         background-position: 40% 20%;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Extra padding for nav bar */
+    }
     }
     .hero-content {
         /* New positioning for mobile */
         position: absolute;
         left: 50%;
         transform: translateX(-50%); /* Centers horizontally */
-        bottom: 20px; /* Adds margin from the bottom */
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* Ensure it’s above nav bar */
         margin: 0; /* Remove previous margin to avoid conflicts */
         padding: 15px 20px; /* Keep padding as is */
         width: 90%; /* Ensures it fits nicely on mobile */
