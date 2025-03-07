@@ -417,7 +417,7 @@ nav {
     .hero-section {
         height: 100vh;
         width: 100%;
-        background-position: 60% 50%;
+        background-position: 50% 50%;
     }
     .hero-content {
         /* New positioning for mobile */
@@ -429,6 +429,11 @@ nav {
         padding: 15px 20px; /* Keep padding as is */
         width: 90%; /* Ensures it fits nicely on mobile */
         max-width: 900px; /* Keeps max-width consistent with desktop */
+    }
+    .hero-background {
+        background-position: 50% 50%; /* Center the background */
+        background-attachment: scroll; /* Override fixed to ensure responsiveness */
+        background-size: cover; /* Ensure it still covers the area */
     }
     .hero-content h1 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
