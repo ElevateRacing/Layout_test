@@ -3,63 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Flight - Elevate Racing</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Elevate Racing - New Dimension of Motorsport</title>
+    <meta name="description" content="Discover AirKart by Elevate Racing, the ultimate eVTOL for personal flight and racing.">
+    <meta name="keywords" content="AirKart, eVTOL, Elevate Racing, personal flight">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preload" href="Test2.PNG" as="image">
+    <link rel="preload" href="styles.css" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="logo">Elevate Racing</div>
-            <div class="tagline">AeroKarting Revolution</div>
-            <div class="social">
-                <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-                <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
-            </div>
+        <div class="top-box">
+            <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
+            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
+            <nav>
+                <a href="reserve.html" class="btn">Reserve your AirKart</a>
+                <a href="book.html" class="btn">Book a Flight</a>
+                <a href="#content4" class="btn">Contact</a>
+            </nav>
         </div>
-        <nav>
-            <a href="reserve.html" class="btn btn-red">Reserve your AirKart</a>
-            <a href="book.html" class="btn btn-blue active">Book a Flight</a>
-            <a href="investors.html" class="btn btn-grey">Investors</a>
-        </nav>
     </header>
 
-    <main class="subpage">
-        <section class="left">
-            <h1>Race the Skies</h1>
-            <h2>Book your AeroKarting Track flight</h2>
-            <p>Feel the rush of piloting an AirKart at our state-of-the-art AeroKarting Track. Tickets start at $299 per flight.</p>
-            <img src="images/track.jpg" alt="AeroKarting Track" class="render">
-            <p class="caption">AeroKarting Track</p>
-        </section>
-        <section class="right">
-            <form class="book-form">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="date" placeholder="Preferred Date" required>
-                <select required>
-                    <option value="" disabled selected>Number of Tickets</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <button type="submit" class="btn btn-blue">Book Now</button>
-                <p class="note">Subject to availability. Confirmation and payment details will be emailed.</p>
-            </form>
+    <main class="hero-section">
+        <div class="hero-background"></div>
+        <section class="hero-content">
+            <h1>Experience the Thrill of AirKarting</h1>
+            <h2>Own your AirKart or take fly at one of our AeroKarting Tracks</h2>
         </section>
     </main>
 
-    <footer>
-        <p>© 2025 Elevate Racing</p>
-        <p>info@elevateracing.com</p>
-        <div class="footer-links">
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
+    <section class="content1-section">
+        <div class="content1-left">
+            <h2>Own Your AirKart</h2>
+            <div class="content1-text-swap-container">
+                <p class="text-swap" id="content1-SwapText1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
+                <p class="text-swap" id="content1-SwapText2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. YourKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
+                <p class="text-swap" id="content1-SwapText3">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance.</p>
+            </div>
+            <br>
+            <p class="content1-text">Limited production slots available soon.</p>
+            <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
         </div>
-    </footer>
+        <div class="content1-right">
+            <div class="content1-ImageSlider">
+                <div class="content1-slide">
+                    <img src="Forest.jpg" alt="Forest View" class="content1-SliderImage" data-bg-position="center center">
+                </div>
+                <div class="content1-slide">
+                    <img src="landing_bridge.jpg" alt="Landing Bridge" class="content1-SliderImage" data-bg-position="center center">
+                </div>
+                <div class="content1-slide">
+                    <img src="landing_garage.jpg" alt="Landing Garage" class="content1-SliderImage" data-bg-position="center center">
+                </div>
+            </div>
+            <!-- Mobile text and button -->
+            <div class="content1-mobileTextBtn">
+                <div class="content1-TextSwapContainerMobileTextSwap">
+                    <p class="text-swap mobile-text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart.</p>
+                    <p class="text-swap mobile-text-swap" id="mobile-text2">Experience the thrill of ground-skimming flight.</p>
+                    <p class="text-swap mobile-text-swap" id="mobile-text3">TEXT TEXT</p>
+                </div>
+                <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
+            </div>
+            <div class="dots-container">
+                <span class="dot" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </section>
+
+<section class="content2-section">
+    <h2>Buy your ticket</h2>
+    <p class="text-swap" id="text1">No AirKart of your own? No problem. Step into the pilot’s seat at one of Elevate Racing’s AeroKarting Tracks and feel the rush of low-altitude flight. Our purpose-built circuits let you push the AirKart to its limits—racing against the clock or battling friends in a whole new dimension of karting. With no pilot license needed, anyone can soar just feet above the ground, experiencing the thrill of flight fused with the intensity of go-karting. Book your ticket today and join the aerial revolution — excitement, and bragging rights included.</p>
+    <p class="text-swap" id="text2">Take on the skies your way at our AeroKarting Tracks. Test your skills on solo time trials, weaving through tight turns and open straights just inches above the ground. Or bring your crew and compete head-to-head in high-flying races that redefine friendly rivalry. With tracks designed for all skill levels—from beginner loops to pro-grade circuits—there’s a challenge waiting for everyone. No experience? No wings? No worries—just pure, unfiltered fun awaits. Grab your ticket and elevate your game.</p>
+    <p class="text-swap" id="text3">Welcome to the future of fun: Elevate Racing’s AeroKarting Tracks are where gravity takes a backseat. Our AirKarts’ design let you push boundaries, while our expert staff ensure every flight is a blast. Whether it’s a weekend thrill or a bucket-list checkmark, this is go-karting evolved. Secure your spot now and soar into the action.</p>
+</section>
+
+<section class="content3-section">
+    <h2>AirKart Technical Details</h2>
+</section>
+
+<section class="content4-section" id="content4">
+    <h2>Contact</h2>
+</section>
+
+    
+    
+    <!-- Embedded JavaScript -->
+    <script>
+
+    // - - - - - - LOGO ADJUSTMENT SCRIPT - - - - - -
+        const topBox = document.querySelector('.top-box');
+        const logo1 = document.querySelector('.logo1');
+        const logo2 = document.querySelector('.logo2');
+        const nav = document.querySelector('nav');
+
+        function adjustLogos() {
+            // Only adjust logo1 on desktop (whwn nav is visible)
+            const boxWidth = topBox.offsetWidth;
+            
+            if (window.innerWidth > 768) {
+                // Get widths and positions
+                const logo2Width = logo2.offsetWidth;
+                const logo1Width = logo1.offsetWidth;
+                const navWidth = nav.offsetWidth;
+                const navLeft = boxWidth - navWidth - 10; // Left edge of nav
+                const centerFullBox = boxWidth / 2;
+                const leftBoundary = logo2Width + 20; // After logo2 + buffer
+                const rightBoundary = navLeft - 20; // Before nav + buffer
+                const availableSpace = rightBoundary - leftBoundary;
+
+                // Check if nav or logo2 encroached on logo1's centered position
+                const logo1LeftEdge = centerFullBox - (logo1Width / 2);
+                const logo1RightEdge = centerFullBox + (logo1Width / 2);
+
+                if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
+                    // Step 2: Center in available space if encroachment
+                    if (availableSpace < logo1Width) {
+                        // Step 3: Not enough space, hide logo1
+                            logo1.style.opacity = '0';
+                    } else {
+                        // Center in available space
+                        const centerAvailable = leftBoundary + (availableSpace / 2);
+                        logo1.style.opacity = '1';
+                        logo1.style.left = centerAvailable + 'px';
+                        logo1.style.transform = 'translateX(-50%)';
+                    }
+                } else {
+                    // No encroachment, center in full box
+                    logo1.style.opacity = '1';
+                    logo1.style.left = '50%';
+                    logo1.style.transform = 'translateX(-50%)';
+                }
+            } else {
+                // Mobile logic
+                // Ensure images are loaded before calculating width
+                if (logo2.complete && logo1.complete) {
+                    const logo2Width = logo2.offsetWidth || 0;
+                    const logo1Width = logo1.offsetWidth || 0;
+                    const padding = 20; // 10px left + 10px right
+                    const availableWidth = boxWidth - padding;
+
+                    // Center logo1 in the available space after logo2
+                    const spaceAfterLogo2 = boxWidth - logo2Width - padding;
+                    const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
+                    const logo1Left = Math.max(logo2Width + 10, Math.min(centerPoint, boxWidth - logo1Width - 10));
+                    
+                    logo1.style.left = logo1Left + 'px';
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
+
+                    // Scale down logos if combined width exceeds available space
+                    const totalLogoWidth = logo2Width + logo1Width;
+                    if (totalLogoWidth > availableWidth) {
+                        const scaleFactor = availableWidth / totalLogoWidth;
+                        logo2.style.width = (logo2Width * scaleFactor) + 'px';
+                        logo1.style.width = (logo1Width * scaleFactor) + 'px';
+                    } else {
+                        // Reset widths if previously scaled
+                        logo2.style.width = '';
+                        logo1.style.width = '';
+                    }
+                } else {
+                    // Fallback if images aren't loaded yet
+                    logo1.style.left = '50%'; // Temporary center
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
+                }
+            }
+        }
+                 
+        // Run on load, resize, and after images load
+        window.addEventListener('load', adjustLogos);
+        window.addEventListener('resize', adjustLogos);
+        logo1.addEventListener('load', adjustLogos);
+        logo2.addEventListener('load', adjustLogos);
+    // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
+
+    // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
+        const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
+        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
+        const slides = document.querySelectorAll('.content1-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+
+        function updateContent(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            content1TextSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
+            mobileTextSwaps.forEach((text, i) => {
+                text.classList.toggle('active', i === index);
+            });
+        }
+
+        function autoSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateContent(currentIndex);
+        }
+
+        updateContent(0);
+        let slideInterval = setInterval(autoSlide, 5000);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateContent(currentIndex);
+                slideInterval = setInterval(autoSlide, 5000);
+            });
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const slider = document.querySelector('.content1-ImageSlider');
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            clearInterval(slideInterval);
+            if (touchEndX < touchStartX - 50) {
+                currentIndex = (currentIndex + 1) % slides.length;
+            } else if (touchEndX > touchStartX + 50) {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            }
+            updateContent(currentIndex);
+            slideInterval = setInterval(autoSlide, 5000);
+        }
+
+       
+    // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
+
+    </script>
 </body>
 </html>
