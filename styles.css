@@ -414,7 +414,7 @@ nav {
     max-width: 1600px; /* Cap at 1600px for very wide screens */
     margin: 0 auto; /* Center with auto margins */
     position: absolute;
-    height: calc(60vh - 55px);
+    height: calc(70vh - 55px);
 }
 
 .Monocoque {
