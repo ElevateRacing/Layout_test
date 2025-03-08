@@ -398,66 +398,46 @@ nav {
     position: relative;
     scroll-snap-align: start;
     overflow: hidden;
-    display: flex; /* Added flex for easier layout control */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-}
-
-/* Top tech-item (Monocoque) */
-.top-tech-item {
     display: flex;
-    flex-direction: column; /* Stack image and text vertically */
-    align-items: center; /* Center items horizontally */
-    text-align: center; /* Center text */
-    padding: 20px; /* Add padding for spacing */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding around the section */
 }
 
-.top-tech-item .tech-image {
-    order: -1; /* Place image above text */
-}
-
-.top-tech-item .tech-text.right {
-    margin: 10px 0 0 0; /* Add margin below image */
-    text-align: center; /* Center text */
-}
-
-.content3-lower-content {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    text-align: center; /* Center text */
-    padding: 20px; /* Add padding for spacing */
-}
-
-.content3-lower-content .tech-item {
-    flex-direction: column; /* Stack image and text vertically */
-    align-items: center; /* Center items horizontally */
-    text-align: center; /* Center text */
-}
-
-.content3-lower-content .tech-item .tech-text.left {
-    margin: 10px 0 0 0; /* Add margin below image */
-    text-align: center; /* Center text */
-}
-
-.content3-lower-content .tech-item .tech-text.left h2 {
-    order: -1; /* place heading above paragraph */
-}
-
-.tech-item {
+.Monocoque, .Ducts {
     display: flex;
     align-items: center;
-    gap: 20px;
     width: 100%;
     max-width: 1200px;
-    margin: 20px 0; /* Add margin between items */
+    margin: 20px 0;
 }
 
-.tech-image {
+.Monocoque {
+    justify-content: flex-start; /* Align image to the left */
+}
+
+.Ducts {
+    justify-content: flex-end; /* Align image to the right */
+}
+
+.Monocoque-image, .Ducts-image {
     height: 40vh;
     width: auto;
     object-fit: contain;
+}
+
+.Monocoque-text-right, .Ducts-text-left {
+    flex: 1; /* Allow text to take remaining space */
+    padding: 0 20px; /* Add some padding around the text */
+}
+
+.Monocoque-text-right {
+    text-align: left;
+}
+
+.Ducts-text-left {
+    text-align: right;
 }
 
 .tech-text {
@@ -472,6 +452,10 @@ nav {
 .tech-center .tech-image {
     width: 400px;
 }
+
+
+
+
 
 /* End of Content3 Section */
 
