@@ -347,7 +347,7 @@ nav {
 }
 
 .content2-center h2 {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
     font-weight: 700;
     line-height: 1.1; /* Match content1-left h2 */
@@ -444,8 +444,8 @@ nav {
 
 .Monocoque-text-right h2,
 .Ducts-text-left h2 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(2rem, 3vw, 3.5rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(1.75rem, 2.5vw, 3rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
     font-weight: 700;
     line-height: 1.1; /* Tighter for a bold, impactful look */
 }
@@ -453,8 +453,7 @@ nav {
 .Monocoque-text-right p,
 .Ducts-text-left p {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.75rem); /* Min: 20px, Preferred: 2vw, Max: 32px */
-    font-style: italic;
+    font-size: clamp(0.75rem, 1.25vw, 1.5rem); /* Min: 20px, Preferred: 2vw, Max: 32px */
     font-weight: 400;
     line-height: 1.3;
 }
