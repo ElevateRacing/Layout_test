@@ -321,11 +321,12 @@
     // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
         function setSectionHeights() {
     const sections = document.querySelectorAll('.hero-section, .content1-section, .content2-section, .content3-section, .content4-section');
+    const margin = 20; // Match the CSS margin-bottom value
     sections.forEach(section => {
-        section.style.height = `${window.innerHeight}px`;
+        section.style.height = `${window.innerHeight - margin}px`; // Adjust height for margin
         const background = section.querySelector('.hero-background');
         if (background) {
-            background.style.height = `${window.innerHeight}px`;
+            background.style.height = `${window.innerHeight - margin}px`;
         }
     });
 }
