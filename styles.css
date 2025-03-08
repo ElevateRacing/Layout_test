@@ -393,7 +393,7 @@ nav {
 /* Content3 Section */
 
 .content3-section {
-    height: 100vh;
+    height: calc(100vh - 20px); /* Adjusted height */
     width: 100%;
     position: relative;
     scroll-snap-align: start;
@@ -402,7 +402,8 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0 40px 0; /* Increased bottom padding from 20px to 40px */
+    padding: 20px 0;
+    margin-bottom: 20px; /* Margin now fits */
 }
 
 .Monocoque,
@@ -456,15 +457,16 @@ nav {
 /* Content4 Section */
 
 .content4-section {
-    height: 100vh;
+    height: calc(100vh - 20px); /* Adjusted height */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 0 60px 0; /* Increased bottom padding from 40px to 60px */
+    padding: 40px 0;
     scroll-snap-align: start;
     overflow: hidden;
     position: relative;
+    margin-bottom: 20px; /* Margin now fits */
 }
 
 .Electronics,
