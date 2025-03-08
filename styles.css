@@ -395,52 +395,69 @@ nav {
 .content3-section {
     height: 100vh;
     width: 100%;
-    position: relative; /* Allow absolute positioning of top-tech-item */
+    position: relative;
     scroll-snap-align: start;
-    overflow: hidden; /* Prevent overflow */
+    overflow: hidden;
+    display: flex; /* Added flex for easier layout control */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
 }
 
 /* Top tech-item (Monocoque) */
 .top-tech-item {
-    position: absolute;
-    top: 110px; /* Below top-box (70px height + 20px top margin + 20px buffer) */
-    left: 0;
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center; /* Center the pair horizontally */
-    gap: 20px;
-    z-index: 1;
-    padding: 0 40px; /* Match section padding */
-    box-sizing: border-box;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add padding for spacing */
 }
 
-/* Remaining content */
+.top-tech-item .tech-image {
+    order: -1; /* Place image above text */
+}
+
+.top-tech-item .tech-text.right {
+    margin: 10px 0 0 0; /* Add margin below image */
+    text-align: center; /* Center text */
+}
+
 .content3-lower-content {
-    position: relative;
-    top: calc(110px + 40vh + 20px); /* Start below top-tech-item: 110px (top-box) + 40vh (image height) + 20px (gap) */
-    height: calc(100vh - (110px + 40vh + 20px)); /* Remaining height */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Distribute items */
-    padding: 0 40px 40px 40px; /* Match original padding, adjust bottom */
-    z-index: 2;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add padding for spacing */
 }
 
-/* General tech-item styling */
+.content3-lower-content .tech-item {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+}
+
+.content3-lower-content .tech-item .tech-text.left {
+    margin: 10px 0 0 0; /* Add margin below image */
+    text-align: center; /* Center text */
+}
+
+.content3-lower-content .tech-item .tech-text.left h2 {
+    order: -1; /* place heading above paragraph */
+}
+
 .tech-item {
     display: flex;
     align-items: center;
     gap: 20px;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px 0; /* Add margin between items */
 }
 
 .tech-image {
-    height: 40vh; /* 40% of viewport height */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure full image visibility */
+    height: 40vh;
+    width: auto;
+    object-fit: contain;
 }
 
 .tech-text {
@@ -448,21 +465,12 @@ nav {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
 }
 
-/* Adjust text spacing for larger images */
-.tech-text.right { 
-    margin-left: 30px; /* Increased from 20px for better spacing */
-}
-.tech-text.left { 
-    margin-right: 30px; /* Increased from 20px for better spacing */
-}
-
 .tech-center {
     text-align: center;
 }
 
-/* Ensure tech-center image is also larger */
 .tech-center .tech-image {
-    width: 400px; /* Slightly larger for the central AirKart image - adjust as needed */
+    width: 400px;
 }
 
 /* End of Content3 Section */
@@ -478,35 +486,70 @@ nav {
     align-items: center;
     padding: 40px;
     scroll-snap-align: start;
+    text-align: center; /* Center the whole section */
 }
 
-.content4-section h2 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem);
+.content4-section .tech-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%; /* Ensure full width */
+    max-width: 1200px; /* Limit max width */
+}
+
+.content4-section .tech-item:nth-child(1) { /* Electronics Item */
+    flex-direction: row-reverse; /* Image on right, text on left */
+}
+
+.content4-section .tech-item .tech-image {
+    height: 40vh;
+    width: auto;
+    object-fit: contain;
+}
+
+.content4-section .tech-item .tech-text {
+    text-align: left;
+    margin: 0 20px;
+}
+
+.content4-section .tech-item:nth-child(1) .tech-text {
+    margin-right: 0;
+}
+
+.content4-section .tech-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px; /* Add space between items */
+}
+
+.content4-section .tech-center .tech-image {
+    width: 400px;
+    height: auto;
+    object-fit: contain;
     margin-bottom: 20px;
 }
 
-.content4-section form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
+.content4-section .tech-center .reserve-btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000000;
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
 }
 
-.content4-section label {
-    font-family: 'Open Sans', Arial, sans-serif;
-    margin: 10px 0 5px;
-}
-
-.content4-section input, .content4-section textarea {
-    padding: 8px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-.content4-section textarea {
-    height: 100px;
+.content4-section .tech-center .reserve-btn:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.02);
 }
 
 /* End of Content4 Section */
