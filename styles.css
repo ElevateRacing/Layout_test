@@ -159,7 +159,7 @@ nav {
 .content1-left {
     width: 50%;
     background-color: var(--background-light);
-    padding: 40px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -237,10 +237,10 @@ nav {
 }
 
 .content1-ImageSlider {
-    height: calc(100% - 90px);
+    height: 100%;
     width: 100%;
     position: absolute;
-    top: 110px;
+    /* top: 110px; */
     left: 0;
     display: flex;
     overflow: hidden;
