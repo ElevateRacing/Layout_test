@@ -316,6 +316,7 @@ nav {
     height: 100vh;
     display: flex;
     overflow: hidden; /* Match content1-section */
+    background-color: #E8ECEF;
 }
 
 .content2-left, .content2-right {
@@ -585,6 +586,7 @@ nav {
     align-items: center;
     overflow: hidden;
     padding: 20px;
+    background-color: #E3E8F0;
 }
 
 .contact-container {
