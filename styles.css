@@ -402,16 +402,16 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px; /* Reduced from 20px to 10px on left/right */
+    padding: 20px 0; /* Remove horizontal padding, rely on child margins */
 }
 
 .Monocoque,
 .Ducts {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 1400px; /* Increased from 1200px to reduce margins */
-    margin: 0;
+    width: 90%; /* Use 90% of viewport width, leaving 5% margin on each side */
+    max-width: 1600px; /* Cap at 1600px for very wide screens */
+    margin: 0 auto; /* Center with auto margins */
     position: absolute;
     height: calc(50vh - 55px);
 }
@@ -437,7 +437,7 @@ nav {
 .Monocoque-text-right,
 .Ducts-text-left {
     flex: 1;
-    padding: 0 15px; /* Adjusted from 20px to 15px for tighter spacing */
+    padding: 0 15px; /* Keep internal spacing */
 }
 
 /* Ensure text aligns properly */
@@ -461,7 +461,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 10px; /* Reduced from 40px to 10px on left/right */
+    padding: 40px 0; /* Remove horizontal padding, rely on child margins */
     scroll-snap-align: start;
     overflow: hidden;
     position: relative;
@@ -471,9 +471,9 @@ nav {
 .AirKart {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 1400px; /* Increased from 1200px to reduce margins */
-    margin: 0;
+    width: 90%; /* Use 90% of viewport width, leaving 5% margin on each side */
+    max-width: 1600px; /* Cap at 1600px for very wide screens */
+    margin: 0 auto; /* Center with auto margins */
     position: absolute;
     height: calc(50vh - 55px);
 }
@@ -501,7 +501,7 @@ nav {
 .Electronics-text-left,
 .AirKart-text-right {
     flex: 1;
-    padding: 0 15px; /* Adjusted from 20px to 15px for tighter spacing */
+    padding: 0 15px; /* Keep internal spacing */
 }
 
 .Electronics-text-left {
