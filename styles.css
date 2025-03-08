@@ -402,7 +402,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px 0; /* Remove horizontal padding, rely on child margins */
+    padding: 20px 0 40px 0; /* Increased bottom padding from 20px to 40px */
 }
 
 .Monocoque,
@@ -456,15 +456,15 @@ nav {
 /* Content4 Section */
 
 .content4-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
-    scroll-snap-align: start;
-    overflow: hidden;
-    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 60px 0; /* Increased bottom padding from 40px to 60px */
+    scroll-snap-align: start;
+    overflow: hidden;
+    position: relative;
 }
 
 .Electronics,
