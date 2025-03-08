@@ -3,86 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submission</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .left, .right {
-            width: 50%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .left {
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .right {
-            background-color: #ddd;
-        }
-        .right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        input {
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>Reserve Your AirKart - Elevate Racing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="left">
-            <h2>Submit Your Details</h2>
-            <form action="https://formspree.io/f/xqapzyay" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="text" name="country" placeholder="Country" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="number" name="age" placeholder="Age" required>
-                <input type="hidden" name="_subject" value="New Form Submission - {{date}}">
-                <input type="hidden" name="_next" value="https://elevateracing.github.io/Layout_test/#content4/?success=1">
-                <button type="submit">Submit</button>
+    <header>
+        <div class="top-box">
+            <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
+            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
+            <nav>
+                <a href="index.html" class="btn">Home</a>
+                <a href="book.html" class="btn">Book a Flight</a>
+                <a href="#content4" class="btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="reserve-section">
+        <div class="reserve-left">
+            <h2>Reserve Your AirKart</h2>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone">
+                <button type="submit" class="reserve-btn">Submit Reservation</button>
             </form>
         </div>
-        <div class="right">
-            <img src="https://via.placeholder.com/800x600" alt="Placeholder Image">
+        <div class="reserve-right">
+            <div class="reserve-ImageSlider">
+                <div class="reserve-slide active"><img src="front.jpg" alt="AirKart Front"></div>
+                <div class="reserve-slide"><img src="right.jpg" alt="AirKart Right"></div>
+                <div class="reserve-slide"><img src="back.jpg" alt="AirKart Back"></div>
+                <div class="reserve-slide"><img src="left.jpg" alt="AirKart Left"></div>
+            </div>
+            <p class="reserve-desc">The AirKart: Engineered for thrill with a Formula 1-inspired monocoque and eight ducted propellers.</p>
         </div>
-    </div>
-    <div class="footer">
-        <p>This is the footer text at the bottom of the page.</p>
-    </div>
+    </main>
+
+    <script>
+        // Image Slider
+        const slides = document.querySelectorAll('.reserve-slide');
+        let currentIndex = 0;
+        function updateSlide() {
+            slides.forEach((slide, i) => slide.classList.toggle('active', i === currentIndex));
+            currentIndex = (currentIndex + 1) % slides.length;
+        }
+        setInterval(updateSlide, 5000);
+    </script>
 </body>
 </html>
