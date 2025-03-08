@@ -804,7 +804,10 @@ nav {
     }
 
     .dots-container {
-        position: static; /* Remove absolute positioning */
+        position: absolute;
+        top: 90px; /* Below header (70px + 20px margin) */
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         justify-content: center;
         gap: 10px;
