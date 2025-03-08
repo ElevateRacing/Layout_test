@@ -392,169 +392,97 @@ nav {
 .content3-section {
     height: 100vh;
     width: 100%;
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px 0 40px 0;
-
+    padding: 110px 0 20px 0; /* Space for fixed header and bottom padding */
+    background-color: var(--background-light);
+    overflow: hidden;
 }
 
-.Monocoque,
-.Ducts {
+.content3-item {
+    width: 90%;
+    max-width: 1600px;
+    height: 22vh; /* Roughly 25% of viewport height each, adjusted for button */
     display: flex;
     align-items: center;
-    width: 90%; /* Use 90% of viewport width, leaving 5% margin on each side */
-    max-width: 1600px; /* Cap at 1600px for very wide screens */
-    margin: 0 auto; /* Center with auto margins */
-    position: absolute;
-    height: calc(70vh - 5px);
+    justify-content: space-between;
+    margin: 10px auto;
 }
 
-.Monocoque {
-    top: 110px;
-}
-
-.Ducts {
-    top: calc(110px + (50vh - 5px));
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    padding-bottom: 40px;
-}
-
-.Monocoque-image,
-.Ducts-image {
+.content3-image {
     height: 100%;
     width: auto;
-    object-fit: contain;
     max-width: 50%;
-}
-
-.Monocoque-text-right,
-.Ducts-text-left {
-    flex: 1;
-    padding: 0 15px; /* Keep internal spacing */
-}
-
-.Monocoque-text-right h2,
-.Ducts-text-left h2 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(1.5rem, 2vw, 2.25rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
-    font-weight: 700;
-    line-height: 1.1; /* Tighter for a bold, impactful look */
-}
-
-.Monocoque-text-right p,
-.Ducts-text-left p {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(1rem, 1.25vw, 1.5rem); /* Min: 20px, Preferred: 2vw, Max: 32px */
-    font-weight: 400;
-    line-height: 1.3;
-}
-
-/* Ensure text aligns properly */
-.Monocoque-text-right {
-    text-align: left;
-}
-
-.Ducts-text-left {
-    text-align: right;
-}
-
-
-/* End of Content3 Section */
-
-
-/* Content4 Section */
-
-.content4-section {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0 40px 0; /* Matches content3 */
-}
-
-.Electronics,
-.AirKart {
-    display: flex;
-    align-items: center;
-    width: 90%; /* Matches content3 */
-    max-width: 1600px; /* Matches content3 */
-    margin: 0 auto; /* Center with auto margins */
-    position: absolute;
-    height: calc(50vh - 55px); /* Matches content3's effective height */
-}
-
-.Electronics {
-    top: 110px; /* Matches .Monocoque top */
-    justify-content: flex-end; /* Picture on right */
-    flex-direction: row-reverse; /* Text left, image right */
-}
-
-.AirKart {
-    top: calc(110px + (50vh - 55px)); /* Matches .Ducts top */
-    justify-content: flex-start; /* Picture on left */
-    flex-direction: row; /* Image left, text right */
-    padding-bottom: 40px; /* Space for button below */
-}
-
-.Electronics-image,
-.AirKart-image {
-    height: 100%;
-    width: auto;
     object-fit: contain;
-    max-width: 50%; /* Matches content3 */
 }
 
-.Electronics-text-left,
-.AirKart-text-right {
+.content3-text {
     flex: 1;
-    padding: 0 15px; /* Matches content3 */
+    padding: 0 20px;
 }
 
-.Electronics-text-left {
-    text-align: right; /* Matches .Ducts-text-left for right-aligned text */
-}
-
-.AirKart-text-right {
-    text-align: left; /* Matches .Monocoque-text-right for left-aligned text */
-}
-
-.content4-center {
-    position: absolute;
-    bottom: 20px; /* Position at bottom of section */
-    width: 100%;
-    text-align: center;
-    z-index: 10; /* Ensure it’s above other elements */
-}
-
-/* Ensure consistency with content3 text styling */
-.Electronics-text-left h2,
-.AirKart-text-right h2 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem); /* Matches content3 */
+.content3-text h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.Electronics-text-left p,
-.AirKart-text-right p {
+.content3-text p {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Matches content3 */
+    font-size: clamp(0.875rem, 1.25vw, 1.125rem);
     font-weight: 400;
     line-height: 1.6;
 }
 
-/* Reserve button styling (already defined, just ensuring consistency) */
-.reserve-btn {
+/* Specific Layouts */
+.Monocoque {
+    flex-direction: row; /* Image left, text right */
+}
+
+.Ducts {
+    flex-direction: row-reverse; /* Image right, text left */
+}
+
+.Electronics {
+    flex-direction: row; /* Image left, text right */
+}
+
+.AirKart {
+    justify-content: center; /* Center the content */
+    flex-direction: column; /* Stack image and text vertically */
+    height: 28vh; /* Slightly taller to accommodate text */
+}
+
+.airkart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.airkart-image {
+    max-width: 60%; /* Slightly larger for prominence */
+    margin-bottom: 10px;
+}
+
+.airkart-text {
+    text-align: center;
+    padding: 0;
+}
+
+/* Centered Button */
+.content3-button {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.content3-button .reserve-btn {
     padding: 10px 20px;
     text-decoration: none;
     color: #000000;
@@ -565,20 +493,19 @@ nav {
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: inline-block;
-    width: auto;
-    text-align: center;
-    cursor: pointer;
 }
 
-.reserve-btn:hover {
+.content3-button .reserve-btn:hover {
     background-color: var(--button-hover);
     transform: scale(1.02);
 }
 
 
-/* End of Content4 Section */
+/* End of Content3 Section */
 
-/* Content5 Section */
+
+
+/* Content4 Section */
 .content5-section {
     height: 100vh;
     display: flex;
@@ -653,7 +580,7 @@ nav {
     transform: scale(1.02);
 }
 
-/* End of Content5 Section */
+/* End of Content4 Section */
 
 
 
@@ -869,53 +796,41 @@ nav {
     }
 
     .content3-section {
-        height: 100vh;
+        padding: 90px 0 20px 0; /* Adjust for mobile header */
     }
 
-    .top-tech-item {
-        top: 40px; /* Adjust for mobile top-box */
-        flex-direction: column; /* Stack image and text on mobile */
+    .content3-item {
+        flex-direction: column;
+        height: auto;
+        min-height: 22vh;
         text-align: center;
-        padding: 0 20px;
+        margin: 5px auto;
     }
 
-    .top-tech-item .tech-text.right {
-        margin-left: 0; /* Reset for mobile stacking */
-        margin-top: 10px; /* Space below image */
+    .content3-image {
+        max-width: 80%;
+        height: auto;
+        margin: 10px 0;
     }
 
-    .content3-lower-content {
-        top: calc(40px + 40vh + 20px); /* Adjust for mobile top-box */
-        height: calc(100vh - (40px + 40vh + 20px));
-        padding: 0 20px 20px 20px; /* Reduce padding */
+    .content3-text {
+        padding: 10px;
     }
 
-    .tech-item {
-        flex-direction: column; /* Stack all items on mobile */
-        text-align: center;
+    .AirKart {
+        height: auto;
+        min-height: 28vh;
     }
 
-    .tech-text.left {
-        margin-right: 0; /* Reset for mobile stacking */
-        margin-bottom: 10px; /* Space above image */
+    .airkart-image {
+        max-width: 70%;
     }
 
-    .tech-image {
-        height: 40vh; /* Consistent height */
+    .content3-button {
+        padding: 10px 0;
     }
 
-    .tech-text {
-        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile readability */
-    }
-
-
-
-
-    
 }
-
-
-
 
 
 // - - - - - - RESERVE.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
