@@ -394,26 +394,53 @@ nav {
 
 .content3-section {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 40px;
+    width: 100%;
+    position: relative; /* Allow absolute positioning of top-tech-item */
     scroll-snap-align: start;
+    overflow: hidden; /* Prevent overflow */
 }
 
-/* Adjust tech-item to handle larger images */
+/* Top tech-item (Monocoque) */
+.top-tech-item {
+    position: absolute;
+    top: 110px; /* Below top-box (70px height + 20px top margin + 20px buffer) */
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the pair horizontally */
+    gap: 20px;
+    z-index: 1;
+    padding: 0 40px; /* Match section padding */
+    box-sizing: border-box;
+}
+
+/* Remaining content */
+.content3-lower-content {
+    position: relative;
+    top: calc(110px + 40vh + 20px); /* Start below top-tech-item: 110px (top-box) + 40vh (image height) + 20px (gap) */
+    height: calc(100vh - (110px + 40vh + 20px)); /* Remaining height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute items */
+    padding: 0 40px 40px 40px; /* Match original padding, adjust bottom */
+    z-index: 2;
+}
+
+/* General tech-item styling */
 .tech-item {
     display: flex;
     align-items: center;
     gap: 20px;
-    width: 100%; /* Ensure it spans the container */
-    max-width: 1200px; /* Optional: limit max width for larger screens */
-    margin: 0 auto; /* Center the items */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .tech-image {
-    width: 300px;
-    height: auto;
+    height: 40vh; /* 40% of viewport height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure full image visibility */
 }
 
 .tech-text {
@@ -698,12 +725,43 @@ nav {
     }
 
     .content3-section {
-        height: 100vh; /* Retain original mobile behavior */
-        scroll-snap-align: start;
+        height: 100vh;
+    }
+
+    .top-tech-item {
+        top: 40px; /* Adjust for mobile top-box */
+        flex-direction: column; /* Stack image and text on mobile */
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .top-tech-item .tech-text.right {
+        margin-left: 0; /* Reset for mobile stacking */
+        margin-top: 10px; /* Space below image */
+    }
+
+    .content3-lower-content {
+        top: calc(40px + 40vh + 20px); /* Adjust for mobile top-box */
+        height: calc(100vh - (40px + 40vh + 20px));
+        padding: 0 20px 20px 20px; /* Reduce padding */
+    }
+
+    .tech-item {
+        flex-direction: column; /* Stack all items on mobile */
+        text-align: center;
+    }
+
+    .tech-text.left {
+        margin-right: 0; /* Reset for mobile stacking */
+        margin-bottom: 10px; /* Space above image */
     }
 
     .tech-image {
-        width: 150px;
+        height: 40vh; /* Consistent height */
+    }
+
+    .tech-text {
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile readability */
     }
 
 
