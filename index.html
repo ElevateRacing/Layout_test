@@ -238,26 +238,19 @@
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
     // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
-        const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
-const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
+        const slider = document.querySelector('.content1-ImageSlider');
 const slides = document.querySelectorAll('.content1-slide');
-const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
+let touchStartX = 0;
+let touchCurrentX = 0;
+let isSwiping = false;
 
-function updateContent(index, direction = null) {
+function updateContent(index, animate = true) {
     slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
         if (window.innerWidth <= 768) {
-            if (i === index) {
-                slide.style.transition = 'transform 0.5s ease';
-                slide.style.transform = 'translateX(0)';
-            } else if (direction === 'left') {
-                slide.style.transform = 'translateX(-100%)'; // Slide out to left
-            } else if (direction === 'right') {
-                slide.style.transform = 'translateX(100%)'; // Slide out to right
-            } else {
-                slide.style.transform = i < index ? 'translateX(-100%)' : 'translateX(100%)';
-            }
+            slide.style.transition = animate ? 'transform 0.5s ease' : 'none';
+            slide.style.transform = `translateX(${(i - index) * 100}%)`;
         } else {
             slide.style.opacity = i === index ? '1' : '0';
         }
@@ -269,10 +262,10 @@ function updateContent(index, direction = null) {
 
 function autoSlide() {
     currentIndex = (currentIndex + 1) % slides.length;
-    updateContent(currentIndex, 'right');
+    updateContent(currentIndex);
 }
 
-updateContent(0); // Initialize with first slide visible
+updateContent(0); // Initialize
 let slideInterval = setInterval(autoSlide, 15000);
 
 dots.forEach(dot => {
@@ -284,36 +277,39 @@ dots.forEach(dot => {
     });
 });
 
-let touchStartX = 0;
-let touchEndX = 0;
-
-const slider = document.querySelector('.content1-ImageSlider');
+// Swipe handling
 slider.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX = e.touches[0].screenX;
+    touchCurrentX = touchStartX;
+    isSwiping = true;
+    clearInterval(slideInterval);
+    slides.forEach(slide => slide.style.transition = 'none'); // Disable transition during swipe
+});
+
+slider.addEventListener('touchmove', e => {
+    if (!isSwiping) return;
+    touchCurrentX = e.touches[0].screenX;
+    const deltaX = touchCurrentX - touchStartX;
+    slides.forEach((slide, i) => {
+        const offset = (i - currentIndex) * 100 + (deltaX / slider.offsetWidth) * 100;
+        slide.style.transform = `translateX(${offset}%)`;
+    });
 });
 
 slider.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
+    if (!isSwiping) return;
+    isSwiping = false;
+    const deltaX = touchCurrentX - touchStartX;
+    const threshold = 50; // Adjusted for sensitivity
 
-function handleSwipe() {
-    clearInterval(slideInterval);
-    const delta = touchEndX - touchStartX;
-    const threshold = 75;
-
-    if (delta < -threshold) {
-        // Swipe left: next slide, animate from right to left
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateContent(currentIndex, 'right');
-    } else if (delta > threshold) {
-        // Swipe right: previous slide, animate from left to right
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateContent(currentIndex, 'left');
+    if (deltaX < -threshold) {
+        currentIndex = Math.min(currentIndex + 1, slides.length - 1);
+    } else if (deltaX > threshold) {
+        currentIndex = Math.max(currentIndex - 1, 0);
     }
+    updateContent(currentIndex);
     slideInterval = setInterval(autoSlide, 15000);
-}
- 
+});
 
 
       
