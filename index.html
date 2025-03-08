@@ -239,22 +239,27 @@
 
     // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
         const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
-    const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
-    const slides = document.querySelectorAll('.content1-slide');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
+const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
+const slides = document.querySelectorAll('.content1-slide');
+const dots = document.querySelectorAll('.dot');
+let currentIndex = 0;
 
-    function updateContent(index) {
+function updateContent(index, direction = null) {
     slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
         if (window.innerWidth <= 768) {
             if (i === index) {
+                slide.style.transition = 'transform 0.5s ease';
                 slide.style.transform = 'translateX(0)';
-            } else if (i < index) {
-                slide.style.transform = 'translateX(-100%)'; // Previous slides go left
+            } else if (direction === 'left') {
+                slide.style.transform = 'translateX(-100%)'; // Slide out to left
+            } else if (direction === 'right') {
+                slide.style.transform = 'translateX(100%)'; // Slide out to right
             } else {
-                slide.style.transform = 'translateX(100%)'; // Next slides go right
+                slide.style.transform = i < index ? 'translateX(-100%)' : 'translateX(100%)';
             }
+        } else {
+            slide.style.opacity = i === index ? '1' : '0';
         }
     });
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
@@ -262,63 +267,56 @@
     mobileTextSwaps.forEach((text, i) => text.classList.toggle('active', i === index));
 }
 
-    function autoSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
+function autoSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateContent(currentIndex, 'right');
+}
+
+updateContent(0); // Initialize with first slide visible
+let slideInterval = setInterval(autoSlide, 15000);
+
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        currentIndex = parseInt(dot.getAttribute('data-index'));
         updateContent(currentIndex);
-    }
-
-    updateContent(0); // Initialize with first slide visible
-    let slideInterval = setInterval(autoSlide, 15000); // Slowed down to 15 seconds
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            currentIndex = parseInt(dot.getAttribute('data-index'));
-            updateContent(currentIndex);
-            slideInterval = setInterval(autoSlide, 15000); // Reset with 15 seconds
-        });
+        slideInterval = setInterval(autoSlide, 15000);
     });
+});
 
-    let touchStartX = 0;
-    let touchMoveX = 0;
-    let touchEndX = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
-    const slider = document.querySelector('.content1-ImageSlider');
-    slider.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
+const slider = document.querySelector('.content1-ImageSlider');
+slider.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
 
-    slider.addEventListener('touchmove', e => {
-        touchMoveX = e.changedTouches[0].screenX;
-        const delta = touchMoveX - touchStartX;
-        if (window.innerWidth <= 768) {
-            slides[currentIndex].style.transform = `translateX(${delta}px)`;
-        }
-    });
+slider.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
 
-    slider.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        if (window.innerWidth <= 768) {
-            slides[currentIndex].style.transform = 'translateX(0)';
-        }
-    });
-
-    function handleSwipe() {
+function handleSwipe() {
     clearInterval(slideInterval);
     const delta = touchEndX - touchStartX;
-    const threshold = 75; // Swipe sensitivity
+    const threshold = 75;
 
     if (delta < -threshold) {
-        // Swipe left (show next slide, move from right to left)
+        // Swipe left: next slide, animate from right to left
         currentIndex = (currentIndex + 1) % slides.length;
+        updateContent(currentIndex, 'right');
     } else if (delta > threshold) {
-        // Swipe right (show previous slide, move from left to right)
+        // Swipe right: previous slide, animate from left to right
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateContent(currentIndex, 'left');
     }
-    updateContent(currentIndex);
-    slideInterval = setInterval(autoSlide, 15000); // Reset interval
+    slideInterval = setInterval(autoSlide, 15000);
 }
+ 
+
+
+      
 
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
