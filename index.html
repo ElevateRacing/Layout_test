@@ -58,15 +58,13 @@
             <div class="content1-mobileTextBtn">
                 <div class="content1-TextSwapContainerMobileTextSwap">
                     <p class="text-swap mobile-text-swap" id="mobile-text1">Imagine the freedom of owning your AirKart, ready to take flight whenever you desire. Explore breathtaking landscapes, master challenging courses, and redefine your personal sense of adventure.</p>
-                    <p class="text-swap mobile-text-swap" id="mobile-text2">Experience the unmatched precision of ducted propulsion, the sleek design of our sport car-inspired monocoque, and the pure joy of ground-skimming flight. YourKart is more than a vehicle; it’s a gateway to a new era of motorsport and leisure.</p>
-                    <p class="text-swap mobile-text-swap" id="mobile-text3">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance.</p>
+                    <p class="text-swap mobile-text-swap" id="mobile-text2">Take flight with the AirKart—your personal eVTOL designed for thrill-seekers and innovators. Engineered with a Formula 1-inspired monocoque and eight ducted propellers, the AirKart delivers safety, style, and performance.</p>
                 </div>
                 <a href="reserve.html" class="reserve-btn mobile-reserve-btn">Reserve your AirKart today</a>
             </div>
             <div class="dots-container">
                 <span class="dot" data-index="0"></span>
                 <span class="dot" data-index="1"></span>
-                <span class="dot" data-index="2"></span>
             </div>
         </div>
     </section>
@@ -248,22 +246,20 @@
 
     function updateContent(index) {
     slides.forEach((slide, i) => {
-        // Always toggle active class, regardless of screen size
         slide.classList.toggle('active', i === index);
         if (window.innerWidth <= 768) {
-            // Add transform for mobile sliding
-            slide.style.transform = i === index ? 'translateX(0)' : 'translateX(100%)';
+            if (i === index) {
+                slide.style.transform = 'translateX(0)';
+            } else if (i < index) {
+                slide.style.transform = 'translateX(-100%)'; // Previous slides go left
+            } else {
+                slide.style.transform = 'translateX(100%)'; // Next slides go right
+            }
         }
     });
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-    content1TextSwaps.forEach((text, i) => {
-        text.classList.toggle('active', i === index);
-    });
-    mobileTextSwaps.forEach((text, i) => {
-        text.classList.toggle('active', i === index);
-    });
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    content1TextSwaps.forEach((text, i) => text.classList.toggle('active', i === index));
+    mobileTextSwaps.forEach((text, i) => text.classList.toggle('active', i === index));
 }
 
     function autoSlide() {
@@ -309,16 +305,20 @@
     });
 
     function handleSwipe() {
-        clearInterval(slideInterval);
-        const delta = touchEndX - touchStartX;
-        if (delta < -75) {
-            currentIndex = (currentIndex + 1) % slides.length;
-        } else if (delta > 75) {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        }
-        updateContent(currentIndex);
-        slideInterval = setInterval(autoSlide, 10000); // Reset with 10 seconds
+    clearInterval(slideInterval);
+    const delta = touchEndX - touchStartX;
+    const threshold = 75; // Swipe sensitivity
+
+    if (delta < -threshold) {
+        // Swipe left (show next slide, move from right to left)
+        currentIndex = (currentIndex + 1) % slides.length;
+    } else if (delta > threshold) {
+        // Swipe right (show previous slide, move from left to right)
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     }
+    updateContent(currentIndex);
+    slideInterval = setInterval(autoSlide, 15000); // Reset interval
+}
 
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
