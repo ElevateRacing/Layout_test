@@ -326,7 +326,7 @@ nav {
 
 .content2-center {
     width: 33.33%;
-    padding: 40px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -336,10 +336,10 @@ nav {
 
 .content2-image {
     width: 100%;
-    height: calc(100vh - 110px); /* Start below top-box (70px height + 20px margin + 20px buffer) */
+    height: 100%; /* Start below top-box (70px height + 20px margin + 20px buffer) */
     object-fit: cover;
     position: absolute;
-    top: 110px; /* Align with content1-ImageSlider top */
+    /* top: 110px; /* Align with content1-ImageSlider top */
     left: 0;
 }
 
