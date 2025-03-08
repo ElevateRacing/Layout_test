@@ -414,7 +414,7 @@ nav {
     max-width: 1600px; /* Cap at 1600px for very wide screens */
     margin: 0 auto; /* Center with auto margins */
     position: absolute;
-    height: calc(70vh - 55px);
+    height: calc(70vh - 5px);
 }
 
 .Monocoque {
@@ -422,7 +422,7 @@ nav {
 }
 
 .Ducts {
-    top: calc(110px + (50vh - 55px));
+    top: calc(110px + (50vh - 5px));
     justify-content: flex-end;
     flex-direction: row-reverse;
     padding-bottom: 40px;
