@@ -722,15 +722,15 @@ nav {
         width: 100%;
         height: 100vh;
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
     .content1-ImageSlider {
-        height: 100vh;
-        /* top: 40px; */
-        position: absolute;
+        flex-grow: 1; /* Take remaining space */
+        height: auto; /* Adjust to content */
+        position: relative;
         width: 100%;
-        top: 0;
-        left: 0;
     }
 
     .content1-slide {
@@ -739,7 +739,6 @@ nav {
         position: absolute;
         top: 0;
         left: 0;
-        transform: translateX(100%); /* Off-screen by default */
     }
 
     .content1-slide.active {
@@ -751,9 +750,6 @@ nav {
     }
 
     .content1-SliderImage {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -761,11 +757,11 @@ nav {
 
     .content1-mobileTextBtn {
         display: block;
-        position: absolute;
-        bottom: 60px;
+        position: static; /* Remove absolute positioning */
         width: 100%;
         text-align: center;
         z-index: 11;
+        padding: 10px 0;
     }
 
     .content1-TextSwapContainerMobileTextSwap {
@@ -778,23 +774,21 @@ nav {
         font-family: 'Open Sans', Arial, sans-serif;
         font-size: clamp(0.875rem, 2.5vw, 1rem);
         line-height: 1.5;
-        background-color: rgba(64, 64, 64, 0.8);
         padding: 8px 16px;
         border-radius: 8px;
-        color: var(--secondary-color);
+        color: #000; /* Black text, adjust as needed */
         position: absolute;
-        top: auto;
-        bottom: 0;
+        top: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
         opacity: 0;
         transition: opacity 0.5s ease;
+        background: none; /* Remove background */
     }
 
     .mobile-text-swap.active {
         opacity: 1;
-        animation: fadeInUpMobile 0.5s ease forwards;
     }
 
     @keyframes fadeInUpMobile {
@@ -809,13 +803,17 @@ nav {
     }
 
     .mobile-reserve-btn {
-        margin-top: 10px;
+        margin: 10px auto;
         background-color: var(--secondary-color);
-        z-index: 11;
+        display: inline-block;
     }
 
     .dots-container {
-        bottom: 10px;
+        position: static; /* Remove absolute positioning */
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 0;
         z-index: 11;
     }
 
