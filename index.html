@@ -278,6 +278,39 @@
 
     // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
 
+    // - - - - - - FINETUNING SCROLLING ON MOBILE - - - - - -
+        let isScrolling = false;
+const sections = document.querySelectorAll('[scroll-snap-align="start"]');
+const sectionHeight = window.innerHeight;
+
+function snapToSection() {
+    if (isScrolling) return;
+    isScrolling = true;
+
+    const scrollPosition = window.scrollY;
+    const currentSectionIndex = Math.round(scrollPosition / sectionHeight);
+    const targetPosition = currentSectionIndex * sectionHeight;
+
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
+
+    setTimeout(() => {
+        isScrolling = false;
+    }, 500); // Debounce time (adjust as needed)
+}
+
+window.addEventListener('scroll', () => {
+    if (window.innerWidth <= 768) { // Mobile only
+        requestAnimationFrame(snapToSection);
+    }
+});
+
+    // - - - - - - END OF FINETUNING SCROLLING ON MOBILE - - - - - -
+
+        
+
     </script>
 </body>
 </html>
