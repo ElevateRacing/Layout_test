@@ -694,8 +694,8 @@ nav {
     }
 
     .content1-ImageSlider {
-        height: calc(100vh - 40px);
-        top: 40px;
+        height: 100hv;
+        /* top: 40px; */
         position: absolute;
         width: 100%;
     }
