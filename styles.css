@@ -463,7 +463,7 @@ nav {
     align-items: center;
     padding: 40px 0;
     scroll-snap-align: start;
-    overflow: hidden;
+    overflow: visible; /*Change to visible*/
     position: relative;
 }
 
@@ -473,19 +473,15 @@ nav {
     align-items: center;
     width: 90%;
     max-width: 1600px;
-    margin: 0 auto;
-    position: absolute;
-    height: calc(50vh - 55px); /* Keep this height */
+    margin: 20px auto; /* Add margin for spacing */
 }
 
 .Electronics {
-    top: 110px;
     justify-content: flex-end;
     flex-direction: row-reverse;
 }
 
 .AirKart {
-    top: calc(110px + (50vh - 55px)); /* Stays the same */
     justify-content: flex-start;
     flex-direction: row;
 }
@@ -513,11 +509,10 @@ nav {
 }
 
 .content4-center {
-    /* Remove absolute positioning */
-    margin-top: calc(110px + (50vh - 55px) + (50vh - 55px) + 20px); /* Position below AirKart */
+    margin-top: 40px; /* Add some spacing above the button */
     width: 100%;
     text-align: center;
-    z-index: 10; /* Ensure it’s above any background elements */
+    z-index: 10;
 }
 
 
