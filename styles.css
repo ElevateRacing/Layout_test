@@ -489,19 +489,6 @@ nav {
 
 
 
-/* Ensure desktop behavior */
-@media (min-width: 769px) {
-    .content3-section {
-        height: auto; /* Allow natural height on desktop */
-        scroll-snap-align: none; /* Disable snapping until button is in view */
-    }
-
-    /* Ensure content4 snaps correctly when reached */
-    .content4-section {
-        scroll-snap-align: start; /* Ensure it’s a valid snap point */
-    }
-}
-
 
 
 
