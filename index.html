@@ -267,14 +267,20 @@
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
     // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
-        function setHeroHeight() {
-            const heroSection = document.querySelector('.hero-section');
-            heroSection.style.height = `${window.innerHeight}px`;
-            heroSection.querySelector('.hero-background').style.height = `${window.innerHeight}px`;
+        function setSectionHeights() {
+    const sections = document.querySelectorAll('.hero-section, .content1-section, .content2-section, .content3-section, .content4-section');
+    sections.forEach(section => {
+        section.style.height = `${window.innerHeight}px`;
+        const background = section.querySelector('.hero-background');
+        if (background) {
+            background.style.height = `${window.innerHeight}px`;
         }
-        window.addEventListener('resize', setHeroHeight);
-        window.addEventListener('load', setHeroHeight);
-        setHeroHeight();
+    });
+}
+
+window.addEventListener('resize', setSectionHeights);
+window.addEventListener('load', setSectionHeights);
+setSectionHeights();
 
     // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
 
