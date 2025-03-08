@@ -390,36 +390,35 @@ nav {
 /* Content3 Section */
 
 .content3-section {
-    /* height: 100vh; */
+    height: auto; /* Allow natural height for scrolling */
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items from top */
     align-items: center;
-    padding: 110px 0 20px 0; /* Space for fixed header and bottom padding */
+    padding: 110px 0 20px 0;
     background-color: var(--background-light);
-    overflow: hidden;
+    overflow: visible; /* Allow scrolling */
 }
 
 .content3-item {
     width: 90%;
     max-width: 1600px;
-    height: 22vh; /* Roughly 25% of viewport height each, adjusted for button */
+    height: 25vh; /* Default height, adjustable per item */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px auto;
+    margin: 20px auto; /* More spacing between items */
 }
 
 .content3-image {
+    width: 50%; /* 50% of container */
     height: 100%;
-    width: auto;
-    max-width: 50%;
     object-fit: contain;
 }
 
 .content3-text {
-    flex: 1;
+    width: 50%; /* 50% of container */
     padding: 0 20px;
 }
 
@@ -454,25 +453,28 @@ nav {
 .AirKart {
     justify-content: center; /* Center the content */
     flex-direction: column; /* Stack image and text vertically */
-    height: 28vh; /* Slightly taller to accommodate text */
+    height: 35vh; /* Slightly taller to accommodate text */
 }
 
 .airkart-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    width: 100%;
     height: 100%;
 }
 
 .airkart-image {
-    max-width: 60%; /* Slightly larger for prominence */
+    width: auto;
+    max-width: 60%;
+    height: auto;
+    max-height: 70%; /* Prevent cropping */
     margin-bottom: 10px;
 }
 
 .airkart-text {
-    text-align: center;
     padding: 0;
+    width: 100%;
 }
 
 /* Centered Button */
@@ -480,6 +482,7 @@ nav {
     width: 100%;
     text-align: center;
     padding: 20px 0;
+    margin-top: 20px; /* Space above button */
 }
 
 .content3-button .reserve-btn {
@@ -506,32 +509,32 @@ nav {
 
 
 /* Content4 Section */
-.content5-section {
+.content4-section { /* Changed from .content5-section */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     padding: 20px;
     background-color: #E3E8F0;
+    overflow: hidden;
 }
 
 .contact-container {
     text-align: center;
     width: 100%;
-    max-width: 600px; /* Limit form width */
+    max-width: 600px;
 }
 
 .contact-container h2 {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem);
-    font-weight: 700;
+    font-family: 'Roboto', Arial, sans-serif; /* Match hero */
+    font-size: clamp(2rem, 3.5vw, 4rem); /* Match hero */
+    font-weight: 700; /* Match hero */
     margin-bottom: 20px;
 }
 
 .contact-email {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-family: 'Open Sans', Arial, sans-serif; /* Match hero */
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match hero */
     margin-bottom: 30px;
 }
 
@@ -539,6 +542,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center; /* Center form elements */
 }
 
 .contact-form label {
@@ -546,6 +550,8 @@ nav {
     font-size: clamp(0.875rem, 1vw, 1rem);
     margin: 10px 0 5px;
     text-align: left;
+    width: 100%;
+    max-width: 400px; /* Limit input width */
 }
 
 .contact-form input,
@@ -556,10 +562,11 @@ nav {
     border: 1px solid #ccc;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 1rem;
+    width: 100%;
+    max-width: 400px; /* Center and limit width */
 }
 
-.contact-form textarea {
-    resize: vertical; /* Allow vertical resize only */
+
 }
 
 .contact-form .reserve-btn {
@@ -591,7 +598,7 @@ nav {
 
 
 
-/* Hide navigation on mobile devices */
+
 @media (max-width: 768px) {
     nav {
         display: none; /* Hides nav buttons on mobile */
@@ -622,6 +629,8 @@ nav {
         object-fit: contain;
         flex-shrinking: 0;
     }
+
+    /* - - - - - - HERO SECTION - - - - - - */
     .hero-section {
         height: 100vh; /* Base height */
         width: 100%;
@@ -663,6 +672,12 @@ nav {
         font-size: clamp(0.875rem, 2.5vw, 1rem); /* Ensures readability on mobile */
         line-height: 1.5;
     }
+
+/* - - - - - - END OF HERO SECTION - - - - - - */
+
+/* - - - - - - CONTENT1 SECTION - - - - - - */
+
+
     .content1-section {
         flex-direction: column;
         height: 100vh;
@@ -765,6 +780,9 @@ nav {
         z-index: 11;
     }
 
+    /* - - - - - - END OF CONTENT1 SECTION - - - - - - */
+
+    /* - - - - - - CONTENT2 SECTION - - - - - - */
     .content2-section {
         flex-direction: column;
         height: 100vh;
@@ -772,7 +790,6 @@ nav {
 
     .content2-left, .content2-center, .content2-right {
         width: 100%;
-        height: 33.33vh; /* Keep proportional split */
     }
 
     .content2-image {
@@ -781,8 +798,12 @@ nav {
     }
 
     .content2-center {
-        padding: 20px; /* Reduce padding for mobile */
+        height: 50vh; /* Text takes top half */
+        padding: 20px;
+        order: 1; /* Text on top */
     }
+
+    
 
     .content2-center h2 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile hero h1 */
@@ -795,40 +816,47 @@ nav {
         margin-bottom: 10px; /* Adjust for mobile flow */
     }
 
+    /* - - - - - - END OF CONTENT2 SECTION - - - - - - */
+
+    /* - - - - - - CONTENT3 SECTION - - - - - - */
+
     .content3-section {
-        padding: 90px 0 20px 0; /* Adjust for mobile header */
+        padding: 90px 0 20px 0;
+        height: auto; /* Allow scrolling */
     }
 
     .content3-item {
         flex-direction: column;
-        height: auto;
-        min-height: 22vh;
-        text-align: center;
-        margin: 5px auto;
+        height: auto; /* Natural height per item */
+        min-height: 0; /* Remove forced min-height */
+        margin: 10px auto;
     }
 
     .content3-image {
         max-width: 80%;
+        width: 100%; /* Full width on mobile */
         height: auto;
-        margin: 10px 0;
     }
 
     .content3-text {
+        width: 100%; /* Full width on mobile */
         padding: 10px;
     }
 
     .AirKart {
-        height: auto;
-        min-height: 28vh;
+        height: auto; /* Natural height */
     }
 
     .airkart-image {
         max-width: 70%;
+        max-height: none; /* Allow full image */
     }
 
     .content3-button {
         padding: 10px 0;
     }
+
+    /* - - - - - - END OF CONTENT3 SECTION - - - - - - */
 
 }
 
