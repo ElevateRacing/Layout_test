@@ -456,66 +456,69 @@ nav {
 /* Content4 Section */
 
 .content4-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
-    scroll-snap-align: start;
-    overflow: visible; /*Change to visible*/
-    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    scroll-snap-align: start;
+    overflow: hidden;
+    position: relative;
 }
 
 .Electronics,
 .AirKart {
-    display: flex;
-    align-items: center;
-    width: 90%;
-    max-width: 1600px;
-    margin: 20px auto; /* Add margin for spacing */
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
+    position: absolute;
+    height: calc(50vh - 55px); /* Keep this height */
 }
 
 .Electronics {
-    justify-content: flex-end;
-    flex-direction: row-reverse;
+    top: 110px;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
 }
 
 .AirKart {
-    justify-content: flex-start;
-    flex-direction: row;
+    top: calc(110px + (50vh - 55px)); /* Stays the same */
+    justify-content: flex-start;
+    flex-direction: row;
 }
 
 .Electronics-image,
 .AirKart-image {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    max-width: 50%;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    max-width: 50%;
 }
 
 .Electronics-text-left,
 .AirKart-text-right {
-    flex: 1;
-    padding: 0 15px;
+    flex: 1;
+    padding: 0 15px;
 }
 
 .Electronics-text-left {
-    text-align: right;
+    text-align: right;
 }
 
 .AirKart-text-right {
-    text-align: left;
+    text-align: left;
 }
 
 .content4-center {
-    margin-top: 40px; /* Add some spacing above the button */
-    width: 100%;
-    text-align: center;
-    z-index: 10;
+    /* Remove absolute positioning */
+    margin-top: calc(110px + (50vh - 55px) + (50vh - 55px) + 20px); /* Position below AirKart */
+    width: 100%;
+    text-align: center;
+    z-index: 10; /* Ensure it’s above any background elements */
 }
-
-
 
 
 /* End of Content4 Section */
