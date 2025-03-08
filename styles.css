@@ -425,6 +425,7 @@ nav {
     top: calc(110px + (50vh - 55px));
     justify-content: flex-end;
     flex-direction: row-reverse;
+    padding-bottom: 40px;
 }
 
 .Monocoque-image,
