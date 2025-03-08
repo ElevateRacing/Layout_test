@@ -402,50 +402,42 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 20px 10px; /* Reduced from 20px to 10px on left/right */
 }
 
-.Monocoque {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0; /* Remove vertical margin to control positioning */
-    position: absolute;
-    top: 110px; /* Start below top-box, matching content1 and content2 */
-    height: calc(50vh - 55px); /* Half the remaining space (100vh - 110px) / 2 */
-}
-
-.Monocoque-image {
-    height: 100%; /* Fill container height */
-    width: auto;
-    object-fit: contain;
-    max-width: 50%; /* Limit image width */
-}
-
+.Monocoque,
 .Ducts {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px; /* Increased from 1200px to reduce margins */
     margin: 0;
     position: absolute;
-    top: calc(110px + (50vh - 55px)); /* Position below Monocoque */
-    height: calc(50vh - 55px); /* Remaining half */
+    height: calc(50vh - 55px);
+}
+
+.Monocoque {
+    top: 110px;
+}
+
+.Ducts {
+    top: calc(110px + (50vh - 55px));
     justify-content: flex-end;
     flex-direction: row-reverse;
 }
 
+.Monocoque-image,
 .Ducts-image {
-    height: 100%; /* Fill container height */
+    height: 100%;
     width: auto;
     object-fit: contain;
     max-width: 50%;
 }
 
-.Monocoque-text-right, .Ducts-text-left {
+.Monocoque-text-right,
+.Ducts-text-left {
     flex: 1;
-    padding: 0 20px;
+    padding: 0 15px; /* Adjusted from 20px to 15px for tighter spacing */
 }
 
 /* Ensure text aligns properly */
@@ -456,11 +448,6 @@ nav {
 .Ducts-text-left {
     text-align: right;
 }
-
-
-
-
-
 
 
 /* End of Content3 Section */
@@ -474,55 +461,47 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px 10px; /* Reduced from 40px to 10px on left/right */
     scroll-snap-align: start;
     overflow: hidden;
-    position: relative; /* Add relative positioning for absolute children */
+    position: relative;
 }
 
-.Electronics {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0;
-    position: absolute;
-    top: 110px; /* Start below top-box */
-    height: calc(50vh - 55px); /* Half the remaining space */
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-}
-
-.Electronics-image {
-    height: 100%; /* Fill container height */
-    width: auto;
-    object-fit: contain;
-    max-width: 50%;
-}
-
+.Electronics,
 .AirKart {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px; /* Increased from 1200px to reduce margins */
     margin: 0;
     position: absolute;
-    top: calc(110px + (50vh - 55px)); /* Position below Electronics */
-    height: calc(50vh - 55px); /* Remaining half */
+    height: calc(50vh - 55px);
+}
+
+.Electronics {
+    top: 110px;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.AirKart {
+    top: calc(110px + (50vh - 55px));
     justify-content: flex-start;
     flex-direction: row;
 }
 
+.Electronics-image,
 .AirKart-image {
-    height: 100%; /* Fill container height */
+    height: 100%;
     width: auto;
     object-fit: contain;
     max-width: 50%;
 }
 
-.Electronics-text-left, .AirKart-text-right {
+.Electronics-text-left,
+.AirKart-text-right {
     flex: 1;
-    padding: 0 20px;
+    padding: 0 15px; /* Adjusted from 20px to 15px for tighter spacing */
 }
 
 .Electronics-text-left {
@@ -535,7 +514,7 @@ nav {
 
 .content4-center {
     position: absolute;
-    bottom: 20px; /* Position button at bottom */
+    bottom: 20px;
     width: 100%;
     text-align: center;
 }
