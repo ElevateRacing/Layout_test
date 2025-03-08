@@ -489,7 +489,13 @@ nav {
 
 
 
-
+/* Ensure desktop behavior */
+@media (min-width: 769px) {
+    .content3-section {
+        height: auto; /* Allow natural height on desktop */
+        scroll-snap-align: none; /* Disable snapping until button is in view */
+    }
+}
 
 
 
@@ -700,7 +706,8 @@ nav {
     }
 
     .content3-section {
-        padding: 20px;
+        height: 100vh; /* Retain original mobile behavior */
+        scroll-snap-align: start;
     }
 
     .tech-image {
