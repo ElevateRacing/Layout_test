@@ -362,9 +362,11 @@ window.addEventListener('scroll', () => {
     const rect = exploreBtn.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // Check if the button is fully in view
-    if (rect.top >= 0 && rect.bottom <= windowHeight) {
-        // Button is visible, enable snapping to next section
+    // Check if the button is near the bottom of the viewport (within 100px)
+    const isButtonNearBottom = rect.bottom <= windowHeight && rect.bottom >= (windowHeight - 100);
+    
+    if (isButtonNearBottom && rect.top >= 0) {
+        // Button is near bottom and fully visible, snap to content4
         window.scrollTo({
             top: content4Section.offsetTop,
             behavior: 'smooth'
