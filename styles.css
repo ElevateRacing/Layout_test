@@ -402,7 +402,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Add some padding around the section */
+    padding: 20px;
 }
 
 .Monocoque, .Ducts {
@@ -414,22 +414,25 @@ nav {
 }
 
 .Monocoque {
-    justify-content: flex-start; /* Align image to the left */
+    justify-content: flex-start; /* Image on left */
+    flex-direction: row; /* Ensure image left, text right */
 }
 
 .Ducts {
-    justify-content: flex-end; /* Align image to the right */
+    justify-content: flex-end; /* Image on right */
+    flex-direction: row-reverse; /* Image right, text left */
 }
 
 .Monocoque-image, .Ducts-image {
     height: 40vh;
     width: auto;
     object-fit: contain;
+    max-width: 50%; /* Limit image width to leave space for text */
 }
 
 .Monocoque-text-right, .Ducts-text-left {
-    flex: 1; /* Allow text to take remaining space */
-    padding: 0 20px; /* Add some padding around the text */
+    flex: 1;
+    padding: 0 20px;
 }
 
 .Monocoque-text-right {
@@ -440,18 +443,7 @@ nav {
     text-align: right;
 }
 
-.tech-text {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
-}
 
-.tech-center {
-    text-align: center;
-}
-
-.tech-center .tech-image {
-    width: 400px;
-}
 
 
 
@@ -470,73 +462,128 @@ nav {
     align-items: center;
     padding: 40px;
     scroll-snap-align: start;
-    text-align: center; /* Center the whole section */
+    overflow: hidden;
 }
 
-.content4-section .tech-item {
+.Electronics, .AirKart {
     display: flex;
-    justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 1200px;
     margin: 20px 0;
-    width: 100%; /* Ensure full width */
-    max-width: 1200px; /* Limit max width */
 }
 
-.content4-section .tech-item:nth-child(1) { /* Electronics Item */
-    flex-direction: row-reverse; /* Image on right, text on left */
+.Electronics {
+    justify-content: flex-end; /* Image on right */
+    flex-direction: row-reverse; /* Image right, text left */
 }
 
-.content4-section .tech-item .tech-image {
+.AirKart {
+    justify-content: flex-start; /* Image on left */
+    flex-direction: row; /* Image left, text right */
+}
+
+.Electronics-image, .AirKart-image {
     height: 40vh;
     width: auto;
     object-fit: contain;
+    max-width: 50%; /* Limit image width */
 }
 
-.content4-section .tech-item .tech-text {
-    text-align: left;
-    margin: 0 20px;
+.Electronics-text-left, .AirKart-text-right {
+    flex: 1;
+    padding: 0 20px;
 }
 
-.content4-section .tech-item:nth-child(1) .tech-text {
-    margin-right: 0;
+.Electronics-text-left {
+    text-align: right; /* Text aligned right for left-side positioning */
 }
 
-.content4-section .tech-center {
+.AirKart-text-right {
+    text-align: left; /* Text aligned left for right-side positioning */
+}
+
+
+
+
+/* End of Content4 Section */
+
+/* Content5 Section */
+.content5-section {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 40px; /* Add space between items */
+    scroll-snap-align: start;
+    overflow: hidden;
+    padding: 20px;
 }
 
-.content4-section .tech-center .tech-image {
-    width: 400px;
-    height: auto;
-    object-fit: contain;
+.contact-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* Limit form width */
+}
+
+.contact-container h2 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
     margin-bottom: 20px;
 }
 
-.content4-section .tech-center .reserve-btn {
+.contact-email {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contact-form label {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(0.875rem, 1vw, 1rem);
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resize only */
+}
+
+.contact-form .reserve-btn {
     padding: 10px 20px;
-    text-decoration: none;
-    color: #000000;
     background-color: var(--secondary-color);
+    color: #000000;
+    border: none; /* Remove default button border */
     border-radius: 12px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
-    width: auto;
-    text-align: center;
     cursor: pointer;
 }
 
-.content4-section .tech-center .reserve-btn:hover {
+.contact-form .reserve-btn:hover {
     background-color: var(--button-hover);
     transform: scale(1.02);
 }
 
-/* End of Content4 Section */
+/* End of Content5 Section */
 
 
 
