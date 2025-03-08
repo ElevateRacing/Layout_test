@@ -571,15 +571,17 @@ nav {
 
 .contact-form .reserve-btn {
     padding: 10px 20px;
+    text-decoration: none; /* Add this */
     background-color: var(--secondary-color);
     color: #000000;
-    border: none; /* Remove default button border */
+    border: none;
     border-radius: 12px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
     cursor: pointer;
+    display: inline-block; /* Add this */
 }
 
 .contact-form .reserve-btn:hover {
@@ -703,12 +705,16 @@ nav {
     .content1-slide {
         min-width: 100%;
         height: 100%;
-        transform: translateX(100%);
+        transform: translateX(100%); /* Default off-screen right */
         transition: transform 0.8s ease;
     }
 
     .content1-slide.active {
         transform: translateX(0);
+    }
+
+    .content1-slide:not(.active) {
+        transform: translateX(100%); /* Default to right */
     }
 
     .content1-SliderImage {
@@ -786,10 +792,17 @@ nav {
     .content2-section {
         flex-direction: column;
         height: 100vh;
+        position: relative; /* Allow absolute positioning of images */
     }
 
-    .content2-left, .content2-center, .content2-right {
+    .content2-left, .content2-right {
         width: 100%;
+        height: 50%; /* Each image takes half the height */
+        position: absolute;
+    }
+
+    .content2-left {
+        top: 0; /* First image at top */
     }
 
     .content2-image {
@@ -798,12 +811,17 @@ nav {
     }
 
     .content2-center {
-        height: 50vh; /* Text takes top half */
+        height: 100%; /* Full height to overlay */
         padding: 20px;
-        order: 1; /* Text on top */
+        order: 1;
+        position: relative; /* Bring text above image */
+        z-index: 1;
+        background: rgba(245, 245, 245, 0.8); /* Semi-transparent background for readability */
     }
 
-    
+    .content2-right {
+        display: none; /* Hide second image on mobile for simplicity */
+    }
 
     .content2-center h2 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile hero h1 */
@@ -826,31 +844,53 @@ nav {
     }
 
     .content3-item {
-        flex-direction: column;
-        height: auto; /* Natural height per item */
-        min-height: 0; /* Remove forced min-height */
-        margin: 10px auto;
-    }
+    width: 90%;
+    max-width: 1600px;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px auto;
+}
 
-    .content3-image {
-        max-width: 80%;
-        width: 100%; /* Full width on mobile */
-        height: auto;
-    }
+.Monocoque .content3-image {
+    width: 60%; /* Increase image size */
+}
+.Monocoque .content3-text {
+    width: 40%; /* Decrease text size */
+}
 
-    .content3-text {
-        width: 100%; /* Full width on mobile */
-        padding: 10px;
-    }
+.Ducts .content3-image {
+    width: 55%; /* Adjust as desired */
+}
+.Ducts .content3-text {
+    width: 45%;
+}
 
-    .AirKart {
-        height: auto; /* Natural height */
-    }
+.Electronics .content3-image {
+    width: 65%; /* Larger image */
+}
+.Electronics .content3-text {
+    width: 35%;
+}
 
-    .airkart-image {
-        max-width: 70%;
-        max-height: none; /* Allow full image */
-    }
+
+    
+
+
+    .AirKart .airkart-image {
+    width: 50%; /* Set desired width (e.g., 50%, 600px, etc.) */
+    max-width: 100%; /* Prevent overflow */
+    max-height: 70%;
+    margin-bottom: 10px;
+}
+
+    .AirKart .airkart-text {
+    width: 100%;
+    text-align: center; /* Center text horizontally */
+    padding: 0;
+}
+    
 
     .content3-button {
         padding: 10px 0;
