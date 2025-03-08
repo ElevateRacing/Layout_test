@@ -240,8 +240,12 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 40% 50%; /* 40% from left, 50% from top */
 }
+
+.content1-slide:nth-child(1) .content1-SliderImage {
+    object-position: 40% 50%; /* Forest image */}
+.content1-slide:nth-child(2) .content1-SliderImage {
+    object-position: 30% 50%; /* Bridge image */}
 
 .content1-slide {
     position: absolute;
@@ -721,17 +725,21 @@ nav {
     }
 
     .content1-ImageSlider {
-        height: 100hv;
+        height: 100vh;
         /* top: 40px; */
         position: absolute;
         width: 100%;
+        top: 0;
+        left: 0;
     }
 
     .content1-slide {
-        min-width: 100%;
+        width: 100%;
         height: 100%;
-        transform: translateX(100%); /* Default off-screen right */
-        transition: transform 0.8s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(100%); /* Off-screen by default */
     }
 
     .content1-slide.active {
