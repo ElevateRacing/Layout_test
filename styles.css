@@ -445,7 +445,7 @@ nav {
 .Monocoque-text-right h2,
 .Ducts-text-left h2 {
     font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(1.5rem, 2.25vw, 2.5rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
+    font-size: clamp(1.5rem, 2vw, 2.25rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
     font-weight: 700;
     line-height: 1.1; /* Tighter for a bold, impactful look */
 }
