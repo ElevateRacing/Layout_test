@@ -352,6 +352,45 @@ window.addEventListener('scroll', () => {
 
     // - - - - - - END OF FINETUNING SCROLLING ON MOBILE - - - - - -
 
+    // - - - - - - CONTENT3 SCROLL SNAPPING WHEN BUTTON VISIBLE - - - - - -
+        function handleContent3Scroll() {
+    if (window.innerWidth <= 768) return; // Skip on mobile
+
+    const exploreBtn = document.getElementById('explore-airkart-btn');
+    const content3Section = document.querySelector('.content3-section');
+    const content4Section = document.querySelector('.content4-section');
+    const rect = exploreBtn.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Check if the button is fully in view
+    if (rect.top >= 0 && rect.bottom <= windowHeight) {
+        // Button is visible, enable snapping to next section
+        window.scrollTo({
+            top: content4Section.offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Debounce function to limit scroll event frequency
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add scroll listener with debounce
+window.addEventListener('scroll', debounce(handleContent3Scroll, 100));
+
+
+    // - - - - - - END OF CONTENT3 SCROLL SNAPPING WHEN BUTTON VISIBLE - - - - - -
+
         
 
     </script>
