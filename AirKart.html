@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirKart Design - Elevate Racing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="top-box">
+            <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
+            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
+            <nav>
+                <a href="index.html" class="btn">Home</a>
+                <a href="reserve.html" class="btn">Reserve AirKart</a>
+                <a href="book.html" class="btn">Book a Flight</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="airkart-section">
+        <div id="threejs-container" style="width: 100%; height: calc(100vh - 110px);"></div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script>
+        // Basic Three.js setup (placeholder)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight - 110), 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight - 110);
+        document.getElementById('threejs-container').appendChild(renderer.domElement);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / (window.innerHeight - 110);
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight - 110);
+        });
+    </script>
+</body>
+</html>
