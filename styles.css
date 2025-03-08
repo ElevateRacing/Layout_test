@@ -401,14 +401,18 @@ nav {
     scroll-snap-align: start;
 }
 
+/* Adjust tech-item to handle larger images */
 .tech-item {
     display: flex;
     align-items: center;
     gap: 20px;
+    width: 100%; /* Ensure it spans the container */
+    max-width: 1200px; /* Optional: limit max width for larger screens */
+    margin: 0 auto; /* Center the items */
 }
 
 .tech-image {
-    width: 200px;
+    width: 300px;
     height: auto;
 }
 
@@ -417,11 +421,21 @@ nav {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
 }
 
-.tech-text.right { margin-left: 20px; }
-.tech-text.left { margin-right: 20px; }
+/* Adjust text spacing for larger images */
+.tech-text.right { 
+    margin-left: 30px; /* Increased from 20px for better spacing */
+}
+.tech-text.left { 
+    margin-right: 30px; /* Increased from 20px for better spacing */
+}
 
 .tech-center {
     text-align: center;
+}
+
+/* Ensure tech-center image is also larger */
+.tech-center .tech-image {
+    width: 400px; /* Slightly larger for the central AirKart image - adjust as needed */
 }
 
 /* End of Content3 Section */
