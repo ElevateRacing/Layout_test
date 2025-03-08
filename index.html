@@ -238,7 +238,13 @@
 
     // - - - - - - CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
         const slider = document.querySelector('.content1-ImageSlider');
-const slides = document.querySelectorAll('.content1-slide');
+        const slides = document.querySelectorAll('.content1-slide');
+        const dots = document.querySelectorAll('.dot');
+        const content1TextSwaps = document.querySelectorAll('.content1-text-swap-container .text-swap');
+        const mobileTextSwaps = document.querySelectorAll('.content1-TextSwapContainerMobileTextSwap .mobile-text-swap');
+
+
+        
 let currentIndex = 0;
 let touchStartX = 0;
 let touchCurrentX = 0;
@@ -251,6 +257,7 @@ function updateContent(index, animate = true) {
             slide.style.transition = animate ? 'transform 0.5s ease' : 'none';
             slide.style.transform = `translateX(${(i - index) * 100}%)`;
         } else {
+            slide.style.transition = animate ? 'opacity 0.8s ease' : 'none'; // Match CSS
             slide.style.opacity = i === index ? '1' : '0';
         }
     });
