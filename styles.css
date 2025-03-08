@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
 html {
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth; /* Add this line */
+    scroll-behavior: smooth;
 }
 
 /* CSS Variables for consistent styling */
@@ -96,7 +95,6 @@ nav {
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    scroll-snap-align: start;
     padding: 90px 0 0 0;
     z-index: 1000;
     overflow: hidden;
@@ -154,7 +152,6 @@ nav {
     height: 100vh;
     width: 100%;
     display: flex;
-    scroll-snap-align: start;
     overflow: hidden;
 }
 
@@ -318,7 +315,6 @@ nav {
 .content2-section {
     height: 100vh;
     display: flex;
-    scroll-snap-align: start;
     overflow: hidden; /* Match content1-section */
 }
 
@@ -396,7 +392,6 @@ nav {
     height: 100vh;
     width: 100%;
     position: relative;
-    scroll-snap-align: start;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -477,7 +472,6 @@ nav {
     height: 100vh;
     width: 100%;
     position: relative;
-    scroll-snap-align: start;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -589,7 +583,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
     overflow: hidden;
     padding: 20px;
 }
