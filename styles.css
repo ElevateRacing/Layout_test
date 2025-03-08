@@ -458,10 +458,10 @@ nav {
 .content4-section {
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack children vertically */
     justify-content: center;
     align-items: center;
-    padding: 40px 0; /* Remove horizontal padding, rely on child margins */
+    padding: 40px 0;
     scroll-snap-align: start;
     overflow: hidden;
     position: relative;
@@ -471,11 +471,11 @@ nav {
 .AirKart {
     display: flex;
     align-items: center;
-    width: 90%; /* Use 90% of viewport width, leaving 5% margin on each side */
-    max-width: 1600px; /* Cap at 1600px for very wide screens */
-    margin: 0 auto; /* Center with auto margins */
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
     position: absolute;
-    height: calc(50vh - 55px);
+    height: calc(50vh - 55px); /* Keep this height */
 }
 
 .Electronics {
@@ -485,7 +485,7 @@ nav {
 }
 
 .AirKart {
-    top: calc(110px + (50vh - 55px));
+    top: calc(110px + (50vh - 55px)); /* Stays the same */
     justify-content: flex-start;
     flex-direction: row;
 }
@@ -501,7 +501,7 @@ nav {
 .Electronics-text-left,
 .AirKart-text-right {
     flex: 1;
-    padding: 0 15px; /* Keep internal spacing */
+    padding: 0 15px;
 }
 
 .Electronics-text-left {
@@ -513,10 +513,11 @@ nav {
 }
 
 .content4-center {
-    position: absolute;
-    bottom: 20px;
+    /* Remove absolute positioning */
+    margin-top: calc(110px + (50vh - 55px) + (50vh - 55px) + 20px); /* Position below AirKart */
     width: 100%;
     text-align: center;
+    z-index: 10; /* Ensure it’s above any background elements */
 }
 
 
