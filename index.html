@@ -254,8 +254,7 @@ let isSwiping = false;
 function resetSlides() {
     slides.forEach((slide, i) => {
         slide.style.transition = 'none';
-        // Initially, all slides except the current one are off-screen to the right
-        slide.style.transform = i === currentIndex ? 'translateX(0)' : 'translateX(100%)';
+        slide.style.transform = i === currentIndex ? 'translateX(0)' : 'translateX(100%)'; // Default to right
         slide.classList.toggle('active', i === currentIndex);
     });
 }
@@ -263,27 +262,24 @@ function resetSlides() {
 function updateContent(newIndex, direction) {
     const oldIndex = currentIndex;
     currentIndex = (newIndex + slides.length) % slides.length; // Ensure looping
-
     const isForward = direction === 'forward';
 
+    // Step 1: Pre-position all slides without animation
     slides.forEach((slide, i) => {
-        slide.style.transition = 'none'; // Reset transition before positioning
-
+        slide.style.transition = 'none';
         if (i === oldIndex) {
-            // Old slide will exit
             slide.classList.remove('active');
+            slide.style.transform = 'translateX(0)'; // Old slide starts at center
         } else if (i === currentIndex) {
-            // New slide will enter
             slide.classList.add('active');
-            // Position it based on direction
+            // New slide starts on the correct side
             slide.style.transform = isForward ? 'translateX(100%)' : 'translateX(-100%)';
         } else {
-            // Other slides stay off-screen to the right
-            slide.style.transform = 'translateX(100%)';
+            slide.style.transform = 'translateX(100%)'; // Others off-screen right
         }
     });
 
-    // Trigger animation after positioning
+    // Step 2: Animate the transition
     requestAnimationFrame(() => {
         slides.forEach((slide, i) => {
             slide.style.transition = 'transform 0.5s ease';
@@ -291,10 +287,13 @@ function updateContent(newIndex, direction) {
                 slide.style.transform = isForward ? 'translateX(-100%)' : 'translateX(100%)';
             } else if (i === currentIndex) {
                 slide.style.transform = 'translateX(0)';
+            } else {
+                slide.style.transform = 'translateX(100%)'; // Keep others on right
             }
         });
     });
 
+    // Update dots and text swaps
     dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
     content1TextSwaps.forEach((text, i) => text.classList.toggle('active', i === currentIndex));
     mobileTextSwaps.forEach((text, i) => text.classList.toggle('active', i === currentIndex));
@@ -361,6 +360,7 @@ slider.addEventListener('touchend', e => {
     }
     slideInterval = setInterval(autoSlide, 15000);
 });
+        
         
         
         
