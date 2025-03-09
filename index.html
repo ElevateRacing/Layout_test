@@ -275,7 +275,8 @@ function autoSlide() {
     updateContent(currentIndex);
 }
 
-updateContent(0, false); // Initialize without animation
+// Initialize immediately
+updateContent(0, false); // No animation on load
 let slideInterval = setInterval(autoSlide, 15000);
 
 dots.forEach(dot => {
@@ -319,10 +320,7 @@ slider.addEventListener('touchend', e => {
     updateContent(currentIndex);
     slideInterval = setInterval(autoSlide, 15000);
 });
-    
-
-
-
+       
       
 
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
