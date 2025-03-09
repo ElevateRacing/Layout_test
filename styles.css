@@ -450,7 +450,7 @@ nav {
 }
 
 .Ducts {
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 .Ducts .content3-image {
     width: 50%;
