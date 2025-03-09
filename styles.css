@@ -724,7 +724,7 @@ nav {
     }
 
     .content1-mobile-top {
-        height: 50%; /* Top half */
+        height: 40%; /* Top half */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -766,7 +766,7 @@ nav {
     }
 
     .content1-mobile-bottom {
-        height: 50%; /* Bottom half */
+        height: 60%; /* Bottom half */
         position: relative;
         overflow: hidden;
         background-color: #000; /* Temporary background to debug visibility */
@@ -787,6 +787,7 @@ nav {
         left: 0;
         transition: transform 0.5s ease;
         transform: translateX(100%); /* Default: off-screen right */
+        opacity: 1;
     }
 
     .content1-slide.active {
