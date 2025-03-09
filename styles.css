@@ -654,9 +654,7 @@ nav {
 /* - - - - - - CONTENT1 SECTION - - - - - - */
     .content1-section {
         flex-direction: column;
-        height: 100vh; /* Full viewport height */
-    }
-
+        height: 100vh;}
     .content1-left {display: none;}
 
     .content1-right {
@@ -667,7 +665,7 @@ nav {
     }
 
     .content1-mobile-top {
-        height: 40%; /* Top half */
+        height: 50%; /* Top half */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -709,7 +707,7 @@ nav {
     }
 
     .content1-mobile-bottom {
-        height: 60%; /* Bottom half */
+        height: 50%; /* Bottom half */
         position: relative;
         overflow: hidden;
         background-color: #000; /* Temporary background to debug visibility */
@@ -754,12 +752,10 @@ nav {
         font-weight: 600;
         font-size: 1rem;
         transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
-        display: inline-block;
         width: auto;
         text-align: center;
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */
-
         position: absolute;
         bottom: 50px;
         left: 50%;
@@ -768,36 +764,6 @@ nav {
         display: inline-block;
     }
 
- 
-
-
-    /*
-    #mobileReserveBtn {
-        position: absolute;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%) !important;
-        z-index: 12;
-        display: inline-block;
-
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #ffffff;
-        background-color: #ff6200;
-        border-radius: 12px;
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        display: inline-block;
-        width: auto;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
-    }
-*/
-
-    
     .dots-container {
         position: absolute;
         bottom: 10px;
@@ -809,8 +775,7 @@ nav {
         z-index: 11;
     }
 
- 
-    /* - - - - - - END OF CONTENT1 SECTION - - - - - - */
+
 
     /* - - - - - - CONTENT2 SECTION - - - - - - */
     .content2-section {
