@@ -795,6 +795,21 @@ nav {
         transform: translateX(-50%) !important; /* Override any JS changes */
         z-index: 12;
         display: inline-block; /* Ensure visibility on mobile */
+
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #ffffff; /* White text for contrast against orange */
+        background-color: #ff6200; /* Vibrant modern orange */
+        border-radius: 12px;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+        display: inline-block;
+        width: auto;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */  
     }
 
     .dots-container {
