@@ -674,6 +674,7 @@ nav {
         text-align: center;
         background-color: var(--background-light);
         padding: 40px 20px 20px;
+        overflow: hidden;
     }
 
     .content1-mobile-top h2 {
@@ -687,8 +688,8 @@ nav {
     .content1-TextSwapContainerMobileTextSwap {
         position: relative;
         width: 90%;
-        min-height: 80px;
-        margin-bottom: 20px; /* Space before static text */
+        min-height: 100px;
+        margin-bottom: 30px; /* Space before static text */
     }
 
     .mobile-text-swap {
@@ -716,7 +717,7 @@ nav {
         color: #000; /* Ensure visibility */
         text-align: center;
         position: relative;
-        margin-top: 0;
+        margin-top: 20px;
     }
 
     .content1-mobile-bottom {
