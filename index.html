@@ -251,10 +251,11 @@ let touchStartX = 0;
 let touchCurrentX = 0;
 let isSwiping = false;
 
-function positionSlides() {
+function resetSlides() {
     slides.forEach((slide, i) => {
         slide.style.transition = 'none';
-        slide.style.transform = i === currentIndex ? 'translateX(0)' : 'translateX(100%)'; // All non-active slides start on the right
+        // Initially, all slides except the current one are off-screen to the right
+        slide.style.transform = i === currentIndex ? 'translateX(0)' : 'translateX(100%)';
         slide.classList.toggle('active', i === currentIndex);
     });
 }
@@ -263,29 +264,35 @@ function updateContent(newIndex, direction) {
     const oldIndex = currentIndex;
     currentIndex = (newIndex + slides.length) % slides.length; // Ensure looping
 
-    // Determine if moving forward or backward
     const isForward = direction === 'forward';
 
     slides.forEach((slide, i) => {
-        slide.style.transition = 'transform 0.5s ease';
+        slide.style.transition = 'none'; // Reset transition before positioning
 
         if (i === oldIndex) {
-            // Old slide exits to the opposite side of the new slide's entry
-            slide.style.transform = isForward ? 'translateX(-100%)' : 'translateX(100%)';
+            // Old slide will exit
             slide.classList.remove('active');
         } else if (i === currentIndex) {
-            // New slide enters from the correct side
-            slide.style.transform = 'translateX(0)';
+            // New slide will enter
             slide.classList.add('active');
-            // Set starting position just before animation
+            // Position it based on direction
             slide.style.transform = isForward ? 'translateX(100%)' : 'translateX(-100%)';
-            // Trigger reflow to ensure animation starts from the correct position
-            slide.offsetHeight; // Force reflow
-            slide.style.transform = 'translateX(0)';
         } else {
-            // Non-active slides stay off-screen on the right (for forward) or reset after backward
+            // Other slides stay off-screen to the right
             slide.style.transform = 'translateX(100%)';
         }
+    });
+
+    // Trigger animation after positioning
+    requestAnimationFrame(() => {
+        slides.forEach((slide, i) => {
+            slide.style.transition = 'transform 0.5s ease';
+            if (i === oldIndex) {
+                slide.style.transform = isForward ? 'translateX(-100%)' : 'translateX(100%)';
+            } else if (i === currentIndex) {
+                slide.style.transform = 'translateX(0)';
+            }
+        });
     });
 
     dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
@@ -298,7 +305,7 @@ function autoSlide() {
 }
 
 // Initial setup
-positionSlides();
+resetSlides();
 let slideInterval = setInterval(autoSlide, 15000);
 
 dots.forEach(dot => {
@@ -354,6 +361,7 @@ slider.addEventListener('touchend', e => {
     }
     slideInterval = setInterval(autoSlide, 15000);
 });
+        
         
         
         
