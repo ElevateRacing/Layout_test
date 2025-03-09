@@ -329,7 +329,7 @@ nav {
 
                 /* .content1-SliderImage[data-bg-position="center center"] { object-position: center center; } */
 
-                .reserve-btn mobile-reserve-btn {
+                .mobile-reserve-btn {
                     display: none; /* Hide on desktop */
                 }
 
