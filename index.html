@@ -267,11 +267,17 @@ function updateContent(index, animate = true) {
             if (i === index) {
                 slide.style.transform = 'translateX(0)';
             } else if (i < index) {
-                slide.style.transform = 'translateX(-100%)'; // Left
+                slide.style.transform = 'translateX(-100%)';
             } else {
-                slide.style.transform = 'translateX(100%)'; // Right
+                slide.style.transform = 'translateX(100%)';
             }
         });
+        // Ensure button stays centered
+        const button = document.querySelector('.mobile-reserve-btn');
+        if (button) {
+            button.style.left = '50%';
+            button.style.transform = 'translateX(-50%)';
+        }
     }
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
     content1TextSwaps.forEach((text, i) => text.classList.toggle('active', i === index));
@@ -348,6 +354,13 @@ slider.addEventListener('touchend', e => {
 window.addEventListener('resize', setSectionHeights);
 window.addEventListener('load', setSectionHeights);
 setSectionHeights();
+        window.addEventListener('pageshow', () => {
+    const button = document.querySelector('.mobile-reserve-btn');
+    if (button) {
+        button.style.left = '50%';
+        button.style.transform = 'translateX(-50%)';
+    }
+});
 
     // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
 
