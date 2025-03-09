@@ -684,13 +684,13 @@ nav {
         font-weight: 700;
         line-height: 1.1;
         margin-bottom: 5px;
-        max-width: 70%; /* New: condense horizontally */
+        margin-top: 10px;
     }
 
     .content1-TextSwapContainerMobileTextSwap {
     position: relative;
     width: 100%; /* Full width of container */
-    max-width: 70%; /* Prevent text from hitting edges */
+    max-width: 90%; /* Prevent text from hitting edges */
     flex-grow: 1; /* Allow it to take available space */
     display: flex; /* Ensure proper stacking */
     align-items: center; /* Center dynamic text vertically */
@@ -726,7 +726,6 @@ nav {
         text-align: center;
         margin-top: 5px;
         margin-bottom: 10px;
-        max-width: 70%; /* New: condense horizontally */
     }
 
     .content1-mobile-bottom {
