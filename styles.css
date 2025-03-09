@@ -2,32 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
 
 html {
-    scroll-behavior: smooth;}
+    scroll-behavior: smooth;
+}
 
 /* CSS Variables for consistent styling */
 :root {
     --secondary-color: #FFFFFF;
     --background-light: #F5F5F5;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --button-hover: #e0e0e0;}
+    --button-hover: #e0e0e0; /* Light grey for modern hover */
+}
 
 /* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;}
+    box-sizing: border-box;
+}
 
 body {
     background-color: var(--background-light);
     font-family: 'Open Sans', Arial, sans-serif;
-    overflow-x: hidden;}
+    overflow-x: hidden;
+}
 
 /* - - - - - - Header styles - - - - - - */
 header {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 2000;}
+    z-index: 2000;
+}
+
 .top-box {
     display: flex;
     align-items: center;
@@ -38,21 +44,29 @@ header {
     border-radius: 8px;
     margin: 20px 10px;
     position: relative;
-    justify-content: space-between;}
+    justify-content: space-between;
+}
+
 .logo2 {
     height: 50px; /* Fixed height */
     width: auto;  /* Maintains aspect ratio */
-    flex-shrink: 0;}
+    flex-shrink: 0;
+}
+
 .logo1 {
     height: 50px; /* Fixed height */
     width: auto;  /* Maintains aspect ratio */
     position: absolute; /* Center it */
     transition: left 0.3s ease, opacity 0.2s ease; /* Smooth movement */
-    opacity: 1;}
+    opacity: 1;
+}
+
 nav {
     display: flex;
     gap: 10px;
-    flex-shrink: 0;}
+    flex-shrink: 0;
+}
+
 .btn {
     padding: 8px 16px;
     text-decoration: none;
@@ -63,10 +77,13 @@ nav {
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    white-space: nowrap; /* Prevents text wrapping */}
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
 .btn:hover {
     background-color: var(--button-hover);
-    transform: scale(1.02); /* Slight scale-up for modern feel */}
+    transform: scale(1.02); /* Slight scale-up for modern feel */
+}
 /* - - - - - - End of Header styles - - - - - - */
 
 /* - - - - - - Hero section - - - - - - */
@@ -80,7 +97,9 @@ nav {
     position: relative;
     padding: 90px 0 0 0;
     z-index: 1000;
-    overflow: hidden;}
+    overflow: hidden;
+}
+
 .hero-content {
     text-align: left;
     color: var(--secondary-color);
@@ -88,7 +107,9 @@ nav {
     max-width: 900px;
     z-index: 1100;
     margin: 20% 0 0 5%;
-    position: relative;}
+    position: relative;
+}
+
 .hero-background {
     position: absolute;
     top: 0;
@@ -97,115 +118,34 @@ nav {
     height: 100%;
     background: url('Test16.png') no-repeat center center/cover;
     background-position: 50% 20%;
-    z-index: 999; /* Below content */}
+    z-index: 999; /* Below content */
+}
+
 .hero-content h1 {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: clamp(2rem, 3.5vw, 4rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
     font-weight: 700;
     line-height: 1.1; /* Tighter for a bold, impactful look */
-    margin: 0 0 12px 0; /* Consistent margin syntax */}
+    margin: 0 0 12px 0; /* Consistent margin syntax */
+}
+
 .hero-content h2 {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: clamp(1.25rem, 2vw, 2rem); /* Min: 20px, Preferred: 2vw, Max: 32px */
     font-style: italic;
     font-weight: 400;
     line-height: 1.3;
-    margin: 0 0 16px 0;}
+    margin: 0 0 16px 0;
+}
+
 .hero-text {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.125rem); /* Min: 16px, Preferred: 1.5vw, Max: 18px */
     font-weight: 400;
     line-height: 1.6;
-    margin: 0; /* Clean up spacing */}
-/* - - - - - - End of Hero section - - - - - - */
-
-
-
-
-
-@media (max-width: 768px) {
-    /* - - - - - - HEADER - - - - - - */
-    nav {
-        display: none; /* Hides nav buttons on mobile */}
-    .top-box {
-        justify-content: flex-start;
-        padding: 10px 5px;
-        align-items: center;
-        position: relative;
-        overflow: visible;
-        max-width: 100%;}
-        .logo2 {
-            height: 35px;
-            max-height: 50px;
-            max-width: 45%; /* Fit horizontally */
-            margin-right: 10px;
-            object-fit: contain;
-            flex-shrinking: 0;}
-        .logo1 {
-            height: 40px;
-            max-height: 50px;
-            max-width: 45%; /* Fit horizontally */
-            position: absolute;
-            opacity: 1; /* Ensure visible */
-            object-fit: contain;
-            flex-shrinking: 0;}
-    
-    /* - - - - - - HERO SECTION - - - - - - */
-    .hero-section {
-        height: 100vh; /* Base height */
-        width: 100%;
-        background-position: 45% 20%;
-        padding: 90px 0 0 0;
-        position: relative;
-        display: block;}
-        .hero-content {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 20px; /* Anchor to bottom */
-            padding: 15px 20px;
-            width: 90%;
-            max-width: 900px;
-            margin: 0; /* Remove desktop margin */
-            padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Increased padding */
-            box-sizing: border-box;
-            top: auto;}
-        .hero-background {
-            background-position: 45% 20%;
-            background-attachment: scroll; /* Better for mobile */
-            background-size: cover;
-            height: 100%;}
-        .hero-content h1 {
-            font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
-            line-height: 1.2;
-            margin-bottom: 10px;}
-        .hero-content h2 {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            margin-bottom: 12px;}
-        .hero-text {
-            font-size: clamp(0.875rem, 2.5vw, 1rem); /* Ensures readability on mobile */
-            line-height: 1.5;}
-
-
-
-
-    
+    margin: 0; /* Clean up spacing */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*-----------------------------------------------------------------------------------------------*/
-
-
+/* - - - - - - End of Hero section - - - - - - */
 
 /* - - - - - - Content1 section - - - - - - */
 .content1-section {
@@ -227,111 +167,113 @@ nav {
     text-align: center;
 }
 
-    .content1-left h2 {
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-size: clamp(2rem, 3.5vw, 4rem);
-        font-weight: 700;
-        line-height: 1.1;
-        margin-bottom: 20px;
-    }
+.content1-left h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
 
-    .content1-text-swap-container {
-        position: relative;
-        min-height: 120px; /* Fixed height to keep layout stable */
-        width: 100%;
-        max-width: 500px;
-    }
+.content1-text-swap-container {
+    position: relative;
+    min-height: 120px; /* Fixed height to keep layout stable */
+    width: 100%;
+    max-width: 500px;
+}
 
-        .text-swap {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(1rem, 1.5vw, 1.125rem);
-            font-weight: 400;
-            line-height: 1.6;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease; /* Already in your CSS */
-        }
+.text-swap {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Already in your CSS */
+}
 
-        .text-swap.active {
-            opacity: 1;
-        }
+.text-swap.active {
+    opacity: 1;
+}
 
-    .content1-text {
-        font-family: 'Open Sans', Arial, sans-serif;
-        font-size: clamp(1rem, 1.5vw, 1.125rem);
-        font-weight: 400;
-        line-height: 1.6;
-        margin: 20px 0;
-    }
+.content1-text {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 20px 0;
+}
 
-    .reserve-btn {
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #000000;
-        background-color: var(--secondary-color);
-        border-radius: 12px;
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        display: inline-block;
-        width: auto;
-        text-align: center;
-        cursor: pointer; /* Ensure clickable appearance */
-    }
+.reserve-btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000000;
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    cursor: pointer; /* Ensure clickable appearance */
+}
 
-    .reserve-btn:hover {
-        background-color: var(--button-hover);
-        transform: scale(1.02);
-    }
-    /* End of Content1 Left Section */
+.reserve-btn:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.02);
+}
+/* End of Content1 Left Section */
 
-    /* Content1 Right Section */
-    .content1-right {
-        width: 50%;
-        position: relative;
-        overflow: hidden;
-        display: flex; /* Ensure proper stacking context */
-        flex-direction: column;
-    }
+/* Content1 Right Section */
+.content1-right {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
 
-        .content1-SliderImage {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-        }
+.content1-SliderImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-            .content1-slide {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transition: opacity 0.8s ease; /* Already in your CSS */
-            }
+.content1-slide:nth-child(1) .content1-SliderImage {
+    object-position: 40% 50%; /* Forest image */}
+.content1-slide:nth-child(2) .content1-SliderImage {
+    object-position: 30% 50%; /* Bridge image */}
 
-            .content1-slide.active {
-                opacity: 1;
-            }
+.content1-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease; /* Already in your CSS */
+}
 
-                .content1-slide:nth-child(1) .content1-SliderImage {
-                    object-position: 40% 50%; /* Forest image */}
-                .content1-slide:nth-child(2) .content1-SliderImage {
-                    object-position: 30% 50%; /* Bridge image */}
+.content1-slide.active {
+    opacity: 1;
+}
 
-                
+.content1-SliderImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-                /* .content1-SliderImage[data-bg-position="center center"] { object-position: center center; } */
-/*
-                .mobile-reserve-btn {
-                    display: none; /* Hide on desktop */
-                }
-*/
+.content1-SliderImage[data-bg-position="center center"] { object-position: center center; }
+
+.content1-mobileTextBtn {
+    display: none; /* Hide on desktop */
+}
+/* End of Content1 Right Section */
+
 /* Dots Navigation */
 .dots-container {
     position: absolute;
@@ -342,6 +284,7 @@ nav {
     gap: 10px;
     z-index: 10;
 }
+
 .dot {
     width: 12px;
     height: 12px;
@@ -360,20 +303,6 @@ nav {
     transform: scale(1.1);
 }
 /* End of Dots Navigation */
-
-/* End of Content1 Right Section */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -702,6 +631,81 @@ nav {
 
 
 @media (max-width: 768px) {
+    nav {
+        display: none; /* Hides nav buttons on mobile */
+    }
+
+    .top-box {
+        justify-content: flex-start;
+        padding: 10px 5px;
+        align-items: center;
+        position: relative;
+        overflow: visible;
+        max-width: 100%;
+    }
+    .logo2 {
+        height: 35px;
+        max-height: 50px;
+        max-width: 45%; /* Fit horizontally */
+        margin-right: 10px;
+        object-fit: contain;
+        flex-shrinking: 0;        
+    }
+    .logo1 {
+        height: 40px;
+        max-height: 50px;
+        max-width: 45%; /* Fit horizontally */
+        position: absolute;
+        opacity: 1; /* Ensure visible */
+        object-fit: contain;
+        flex-shrinking: 0;
+    }
+
+    /* - - - - - - HERO SECTION - - - - - - */
+    .hero-section {
+        height: 100vh; /* Base height */
+        width: 100%;
+        background-position: 45% 20%;
+        padding: 90px 0 0 0;
+        position: relative;
+        display: block; /* Change from flex to block for better control */
+    }
+    .hero-content {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px; /* Anchor to bottom */
+        padding: 15px 20px;
+        width: 90%;
+        max-width: 900px;
+        margin: 0; /* Remove desktop margin */
+        padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Increased padding */
+        box-sizing: border-box;
+        top: auto; /* Reset any top positioning */
+
+    }
+    .hero-background {
+        background-position: 45% 20%;
+        background-attachment: scroll; /* Better for mobile */
+        background-size: cover;
+        height: 100%; /* Match section height */
+    }
+    .hero-content h1 {
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+    .hero-content h2 {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        margin-bottom: 12px;
+    }
+    .hero-text {
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Ensures readability on mobile */
+        line-height: 1.5;
+    }
+
+/* - - - - - - END OF HERO SECTION - - - - - - */
+
 /* - - - - - - CONTENT1 SECTION - - - - - - */
     .content1-section {
         flex-direction: column;
@@ -719,73 +723,102 @@ nav {
         flex-direction: column;
     }
 
-        .content1-mobile-top {
-            height: 40%; /* Top half */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-color: var(--background-light);
-            padding: 20px;
-        }
+    .content1-mobile-top {
+        height: 40%; /* Top half */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: var(--background-light);
+        padding: 20px;
+    }
 
-            .content1-mobile-top h2 {
-                font-family: 'Montserrat', Arial, sans-serif;
-                font-size: clamp(1.75rem, 6vw, 3rem);
-                font-weight: 700;
-                line-height: 1.1;
-                margin-bottom: 15px;
-            }
+    .content1-mobile-top h2 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: clamp(1.75rem, 6vw, 3rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 15px;
+    }
 
+    .content1-TextSwapContainerMobileTextSwap {
+        position: relative;
+        width: 90%;
+        min-height: 60px;
+    }
 
-        .content1-mobile-bottom {
-            height: 60%; /* Bottom half */
-            position: relative;
-            overflow: hidden;
-            background-color: #000; /* Temporary background to debug visibility */
-        }
+    .mobile-text-swap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        line-height: 1.5;
+    }
 
-            .content1-ImageSlider {
-                width: 100%; /* Full width of container */
-                height: 100%;
-                position: relative;
-                overflow: hidden; /* Contain slides */
-            }
+    .mobile-text-swap.active {
+        opacity: 1;
+    }
 
-                .content1-slide {
-                    width: 100%; /* Each slide fills viewport */
-                    height: 100%;
-                    position: absolute; /* Stack slides */
-                    top: 0;
-                    left: 0;
-                    transition: transform 0.5s ease;
-                    opacity: 1;
-                }
+    .content1-mobile-bottom {
+        height: 60%; /* Bottom half */
+        position: relative;
+        overflow: hidden;
+        background-color: #000; /* Temporary background to debug visibility */
+    }
 
-                    .content1-SliderImage {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block; /* Ensure images render */
-                    }
+    .content1-ImageSlider {
+        width: 100%; /* Full width of container */
+        height: 100%;
+        position: relative;
+        overflow: hidden; /* Contain slides */
+    }
 
-            .mobile-reserve-btn {
-                position: absolute;
-                bottom: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 12;
-                background-color: #FFFFFF; /* Ensure visibility */
-                color: #000000;
-                padding: 10px 20px; /* Match reserve-btn */
-                border-radius: 12px;
-            }
+    .content1-slide {
+        width: 100%; /* Each slide fills viewport */
+        height: 100%;
+        position: absolute; /* Stack slides */
+        top: 0;
+        left: 0;
+        transition: transform 0.5s ease;
+        transform: translateX(100%); /* Default: off-screen right */
+        opacity: 1;
+    }
 
-            .dots-container {
-                bottom: 10px;
+    .content1-slide.active {
+        transform: translateX(0); /* Active slide in view */
+    }
 
-            }
+    .content1-SliderImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block; /* Ensure images render */
+    }
+
+    .mobile-reserve-btn {
+        position: absolute;
+        bottom: 50px; /* Above dots */
+        left: 50%;
+        transform: translateX(-50%) !important; /* Override any JS changes */
+        z-index: 12;
+    }
+
+    .dots-container {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        z-index: 11;
+    }
 
  
     /* - - - - - - END OF CONTENT1 SECTION - - - - - - */
@@ -924,30 +957,6 @@ nav {
     /* - - - - - - END OF CONTENT3 SECTION - - - - - - */
 
 }
-
-
-/* Desktop-specific fix for dots visibility */
-@media (min-width: 769px) {
-    .content1-right {
-        height: 100%; /* Ensure full height for slider */
-    }
-
-    .content1-ImageSlider {
-        height: 100%; /* Match parent height */
-        position: relative;
-    }
-
-    .dots-container {
-        bottom: 20px; /* Consistent with design */
-        z-index: 10; /* Ensure above images */
-    }
-
-    .content1-mobile-top,
-    .content1-mobile-bottom {
-        display: none; /* Hide mobile-specific sections on desktop */
-    }
-}
-
 
 
 // - - - - - - RESERVE.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
