@@ -591,26 +591,21 @@ nav {
 
 
 @media (max-width: 768px) {
-    nav {
-        display: none; /* Hides nav buttons on mobile */
-    }
-
+    nav {display: none;} /* Hides nav buttons on mobile */
     .top-box {
         justify-content: flex-start;
         padding: 10px 5px;
         align-items: center;
         position: relative;
         overflow: visible;
-        max-width: 100%;
-    }
+        max-width: 100%;}
     .logo2 {
         height: 35px;
         max-height: 50px;
         max-width: 45%; /* Fit horizontally */
         margin-right: 10px;
         object-fit: contain;
-        flex-shrinking: 0;        
-    }
+        flex-shrinking: 0;}
     .logo1 {
         height: 40px;
         max-height: 50px;
@@ -618,18 +613,16 @@ nav {
         position: absolute;
         opacity: 1; /* Ensure visible */
         object-fit: contain;
-        flex-shrinking: 0;
-    }
+        flex-shrinking: 0;}
 
     /* - - - - - - HERO SECTION - - - - - - */
     .hero-section {
         height: 100vh; /* Base height */
         width: 100%;
-        background-position: 45% 20%;
+        background-position: 50% 20%;
         padding: 90px 0 0 0;
         position: relative;
-        display: block; /* Change from flex to block for better control */
-    }
+        display: block;}
     .hero-content {
         position: absolute;
         left: 50%;
@@ -641,30 +634,22 @@ nav {
         margin: 0; /* Remove desktop margin */
         padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* Increased padding */
         box-sizing: border-box;
-        top: auto; /* Reset any top positioning */
-
-    }
+        top: auto;}
     .hero-background {
-        background-position: 45% 20%;
+        background-position: 50% 20%;
         background-attachment: scroll; /* Better for mobile */
         background-size: cover;
-        height: 100%; /* Match section height */
-    }
+        height: 100%;}
     .hero-content h1 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly larger on small screens */
         line-height: 1.2;
-        margin-bottom: 10px;
-    }
+        margin-bottom: 10px;}
     .hero-content h2 {
         font-size: clamp(1rem, 4vw, 1.5rem);
-        margin-bottom: 12px;
-    }
+        margin-bottom: 12px;}
     .hero-text {
         font-size: clamp(0.875rem, 2.5vw, 1rem); /* Ensures readability on mobile */
-        line-height: 1.5;
-    }
-
-/* - - - - - - END OF HERO SECTION - - - - - - */
+        line-height: 1.5;}
 
 /* - - - - - - CONTENT1 SECTION - - - - - - */
     .content1-section {
@@ -672,9 +657,7 @@ nav {
         height: 100vh; /* Full viewport height */
     }
 
-    .content1-left {
-        display: none;
-    }
+    .content1-left {display: none;}
 
     .content1-right {
         width: 100%;
@@ -776,6 +759,13 @@ nav {
         text-align: center;
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */
+
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%) !important;
+        z-index: 12;
+        display: inline-block;
     }
 
  
