@@ -804,7 +804,7 @@ nav {
         position: absolute;
         bottom: 50px; /* Above dots */
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) !important; /* Override any JS changes */
         z-index: 12;
     }
 
