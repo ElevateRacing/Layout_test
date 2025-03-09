@@ -786,12 +786,7 @@ nav {
         top: 0;
         left: 0;
         transition: transform 0.5s ease;
-        transform: translateX(100%); /* Default: off-screen right */
         opacity: 1;
-    }
-
-    .content1-slide.active {
-        transform: translateX(0); /* Active slide in view */
     }
 
     .content1-SliderImage {
