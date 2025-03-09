@@ -269,19 +269,9 @@ nav {
 
 .content1-SliderImage[data-bg-position="center center"] { object-position: center center; }
 
-
-
-
 .content1-mobileTextBtn {
     display: none; /* Hide on desktop */
 }
-
-/* Add to base styles (outside any media query) */
-.content1-mobile-top,
-.content1-mobile-bottom {
-    display: none; /* Hidden by default on desktop */
-}
-
 /* End of Content1 Right Section */
 
 /* Dots Navigation */
@@ -392,11 +382,6 @@ nav {
     transform: scale(1.02);
 }
 
-/* Ensure mobile-reserve-btn is hidden on desktop by default */
-.mobile-reserve-btn {
-    display: none; /* Hidden by default */
-}
-
 /* End of Content2 Section */
 
 
@@ -494,7 +479,7 @@ nav {
 }
 
 .Monocoque .content3-image {
-    width: 90%; /* Increased from 50% */
+    width: 60%; /* Increased from 50% */
 }
 
 .Ducts .content3-image {
@@ -785,7 +770,6 @@ nav {
         position: relative;
         overflow: hidden;
         background-color: #000; /* Temporary background to debug visibility */
-        display: block; /* Show on mobile */
     }
 
     .content1-ImageSlider {
@@ -875,15 +859,6 @@ nav {
         left: 0;
     }
 
-    .content2-right .mobile-reserve-btn {
-        display: block; /* Show on mobile */
-        position: absolute;
-        bottom: 50px; /* Matches content1 mobile positioning */
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 12; /* Above image */
-    }
-
     .content2-right .content2-image {
         content: url('Images/Content1Right.png'); /* Use Content1Right.png */
         width: 100%;
@@ -921,7 +896,7 @@ nav {
     }
 
 .Monocoque .content3-image {
-        width: 100%;
+        width: 80%;
         order: 1; /* Image on top */
     }
     .Monocoque .content3-text {
@@ -1157,4 +1132,3 @@ nav {
     height: 100vh;
     scroll-snap-align: start;
 }
-
