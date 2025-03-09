@@ -402,24 +402,24 @@ nav {
     overflow: visible; /* Allow scrolling */
 }
 
-.content3-item {
+.content3-row {
     width: 90%;
     max-width: 1600px;
-    height: 25vh; /* Default height, adjustable per item */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px auto; /* More spacing between items */
+    margin: 20px auto;
+    min-height: 25vh; /* Consistent minimum height for rows */
 }
 
+
+
 .content3-image {
-    width: 50%; /* 50% of container */
     height: 100%;
     object-fit: contain;
 }
 
 .content3-text {
-    width: 50%; /* 50% of container */
     padding: 0 20px;
 }
 
@@ -440,78 +440,48 @@ nav {
 
 /* Specific Layouts */
 .Monocoque {
-    flex-direction: row; /* Image left, text right */
+    flex-direction: row;
+}
+.Monocoque .content3-image {
+    width: 60%;
+}
+.Monocoque .content3-text {
+    width: 40%;
 }
 
 .Ducts {
-    flex-direction: row-reverse; /* Image right, text left */
+    flex-direction: row-reverse;
+}
+.Ducts .content3-image {
+    width: 50%;
+}
+.Ducts .content3-text {
+    width: 50%;
 }
 
 .Electronics {
-    flex-direction: row; /* Image left, text right */
+    flex-direction: row;
+}
+.Electronics .content3-image {
+    width: 40%;
+}
+.Electronics .content3-text {
+    width: 60%;
 }
 
 .AirKart {
-    justify-content: center; /* Center the content */
-    flex-direction: column; /* Stack image and text vertically */
-    height: 35vh; /* Slightly taller to accommodate text */
+    justify-content: center;
+    flex-direction: row; /* Keep as row for centering */
 }
-
-.airkart-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+.AirKart .content3-image {
+    width: 65%;
 }
-
-.airkart-image {
-    width: auto;
-    max-width: 60%;
-    height: auto;
-    max-height: 70%; /* Prevent cropping */
-    margin-bottom: 10px;
-}
-
-.airkart-text {
-    padding: 0;
-    width: 100%;
-}
-
-.Monocoque .content3-image {
-    width: 60%; /* Increased from 50% */
-}
-
-.Ducts .content3-image {
-    width: 60%; /* Increased from 50% */
-}
-
-.Electronics .content3-image {
-    width: 60%; /* Increased from 50% */
-}
-
-.AirKart .airkart-wrapper {
-    position: relative;
-}
-
-.AirKart .airkart-image {
-    width: 50%; /* Increased to 50% of page width */
-    max-width: 50%;
-    max-height: 80%; /* Adjusted to fit */
-}
-
-.AirKart .airkart-text {
-    display: none; /* Remove text underneath */
-}
-
 
 
 /* Centered Button */
 .content3-button {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px; /* Space above button */
+    justify-content: center;
+    min-height: auto; /* Button row doesn’t need full height */
 }
 
 .content3-button .reserve-btn {
@@ -524,7 +494,6 @@ nav {
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
 }
 
 .content3-button .reserve-btn:hover {
@@ -912,61 +881,31 @@ nav {
         height: auto; /* Allow scrolling */
     }
 
-    .content3-item {
+    .content3-row {
         flex-direction: column;
-        height: auto; /* Allow natural height */
+        height: auto;
         margin: 20px auto;
     }
 
-.Monocoque .content3-image {
-        width: 80%;
+    .Monocoque .content3-image,
+    .Ducts .content3-image,
+    .Electronics .content3-image,
+    .AirKart .content3-image {
+        width: 95%;
         order: 1; /* Image on top */
     }
-    .Monocoque .content3-text {
+
+    .Monocoque .content3-text,
+    .Ducts .content3-text,
+    .Electronics .content3-text {
         width: 100%;
         order: 2; /* Text below */
         padding: 10px 20px;
     }
 
-.Ducts {
-        flex-direction: column; /* Override row-reverse */
+    .AirKart .content3-image {
+        width: 95%;
     }
-    .Ducts .content3-text {
-        width: 100%;
-        order: 1; /* Text on top */
-        padding: 10px 20px;
-    }
-    .Ducts .content3-image {
-        width: 80%;
-        order: 2; /* Image below */
-    }
-
-.Electronics {
-        flex-direction: column; /* Ensure column layout */
-    }
-    .Electronics .content3-text {
-        width: 100%;
-        order: 1; /* Text on top */
-        padding: 10px 20px;
-    }
-    .Electronics .content3-image {
-        width: 80%;
-        order: 2; /* Image below */
-    }
-
-
-    
-
-
-    .AirKart .airkart-image {
-        width: 80%;
-        max-width: 80%;
-        max-height: 70%;
-    }
-    .AirKart .airkart-text {
-        display: none; /* Remove text */
-    }
-    
 
     .content3-button {
         padding: 10px 0;
