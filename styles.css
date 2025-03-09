@@ -294,6 +294,8 @@ nav {
         width: 50%;
         position: relative;
         overflow: hidden;
+        display: flex; /* Ensure proper stacking context */
+        flex-direction: column;
     }
 
         .content1-SliderImage {
@@ -322,11 +324,7 @@ nav {
                 .content1-slide:nth-child(2) .content1-SliderImage {
                     object-position: 30% 50%; /* Bridge image */}
 
-                .content1-SliderImage {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+                
 
                 /* .content1-SliderImage[data-bg-position="center center"] { object-position: center center; } */
 /*
@@ -740,28 +738,6 @@ nav {
                 margin-bottom: 15px;
             }
 
-            .content1-TextSwapContainerMobileTextSwap {
-                position: relative;
-                width: 90%;
-                min-height: 60px;
-            }
-
-                .mobile-text-swap {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    text-align: center;
-                    opacity: 0;
-                    transition: opacity 0.5s ease;
-                    font-family: 'Open Sans', Arial, sans-serif;
-                    font-size: clamp(0.875rem, 2.5vw, 1rem);
-                    line-height: 1.5;
-                }
-
-                .mobile-text-swap.active {
-                    opacity: 1;
-                }
 
         .content1-mobile-bottom {
             height: 60%; /* Bottom half */
@@ -775,7 +751,6 @@ nav {
                 height: 100%;
                 position: relative;
                 overflow: hidden; /* Contain slides */
-                z-index: 1;
             }
 
                 .content1-slide {
@@ -808,14 +783,8 @@ nav {
             }
 
             .dots-container {
-                position: absolute;
                 bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-                z-index: 11;
+
             }
 
  
@@ -955,6 +924,30 @@ nav {
     /* - - - - - - END OF CONTENT3 SECTION - - - - - - */
 
 }
+
+
+/* Desktop-specific fix for dots visibility */
+@media (min-width: 769px) {
+    .content1-right {
+        height: 100%; /* Ensure full height for slider */
+    }
+
+    .content1-ImageSlider {
+        height: 100%; /* Match parent height */
+        position: relative;
+    }
+
+    .dots-container {
+        bottom: 20px; /* Consistent with design */
+        z-index: 10; /* Ensure above images */
+    }
+
+    .content1-mobile-top,
+    .content1-mobile-bottom {
+        display: none; /* Hide mobile-specific sections on desktop */
+    }
+}
+
 
 
 // - - - - - - RESERVE.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
