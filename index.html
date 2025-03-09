@@ -251,33 +251,39 @@ let touchStartX = 0;
 let touchCurrentX = 0;
 let isSwiping = false;
 
-function positionSlides(index) {
+function positionSlides() {
     slides.forEach((slide, i) => {
-        slide.style.transition = 'none'; // Reset transition
-        if (i === index) {
+        slide.style.transition = 'none'; // No transition during initial positioning
+        if (i === currentIndex) {
             slide.style.transform = 'translateX(0)';
-        } else if (i < index) {
+        } else if (i < currentIndex) {
             slide.style.transform = 'translateX(-100%)'; // Left of current
         } else {
             slide.style.transform = 'translateX(100%)'; // Right of current
         }
+        slide.classList.toggle('active', i === currentIndex);
     });
 }
 
-function updateContent(index, direction = null) {
-    currentIndex = (index + slides.length) % slides.length; // Ensure looping
+function updateContent(newIndex, isForward) {
+    const oldIndex = currentIndex;
+    currentIndex = (newIndex + slides.length) % slides.length; // Ensure looping
+
     slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentIndex);
-        slide.style.transition = direction ? 'transform 0.5s ease' : 'none'; // Animate only when swiping
+        slide.style.transition = 'transform 0.5s ease'; // Enable transition for animation
         
         if (i === currentIndex) {
+            // New slide: comes from right if moving forward, left if backward
             slide.style.transform = 'translateX(0)';
-        } else if (direction === 'left') {
-            // Swipe left (right-to-left): all non-active slides move left
-            slide.style.transform = 'translateX(-100%)';
-        } else if (direction === 'right') {
-            // Swipe right (left-to-right): all non-active slides move right
-            slide.style.transform = 'translateX(100%)';
+            slide.classList.add('active');
+        } else if (i === oldIndex) {
+            // Old slide: moves left if moving forward, right if backward
+            slide.style.transform = isForward ? 'translateX(-100%)' : 'translateX(100%)';
+            slide.classList.remove('active');
+        } else {
+            // Other slides: position based on their relation to currentIndex
+            slide.style.transform = i < currentIndex ? 'translateX(-100%)' : 'translateX(100%)';
+            slide.classList.remove('active');
         }
     });
 
@@ -287,20 +293,19 @@ function updateContent(index, direction = null) {
 }
 
 function autoSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateContent(currentIndex, 'left'); // Default to right-to-left for auto-slide
+    updateContent(currentIndex + 1, true); // Always forward for auto-slide
 }
 
-positionSlides(0); // Initial positioning without animation
-updateContent(0, null); // Initialize without animation
+// Initial setup
+positionSlides();
 let slideInterval = setInterval(autoSlide, 15000);
 
 dots.forEach(dot => {
     dot.addEventListener('click', () => {
         clearInterval(slideInterval);
         const newIndex = parseInt(dot.getAttribute('data-index'));
-        const direction = newIndex > currentIndex ? 'left' : 'right';
-        updateContent(newIndex, direction);
+        const isForward = newIndex > currentIndex || (newIndex === 0 && currentIndex === slides.length - 1);
+        updateContent(newIndex, isForward);
         slideInterval = setInterval(autoSlide, 15000);
     });
 });
@@ -319,7 +324,7 @@ slider.addEventListener('touchmove', e => {
     if (!isSwiping || window.innerWidth > 768) return;
     touchCurrentX = e.touches[0].screenX;
     const deltaX = (touchCurrentX - touchStartX) / slider.offsetWidth * 100;
-    
+
     slides.forEach((slide, i) => {
         const baseOffset = (i - currentIndex) * 100;
         slide.style.transform = `translateX(${baseOffset + deltaX}%)`;
@@ -333,19 +338,21 @@ slider.addEventListener('touchend', e => {
     const threshold = 50;
 
     if (deltaX < -threshold) {
-        // Swipe left (right-to-left)
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateContent(currentIndex, 'left');
+        // Swipe right-to-left (forward)
+        updateContent(currentIndex + 1, true);
     } else if (deltaX > threshold) {
-        // Swipe right (left-to-right)
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateContent(currentIndex, 'right');
+        // Swipe left-to-right (backward)
+        updateContent(currentIndex - 1, false);
     } else {
         // Snap back if swipe distance is too small
-        updateContent(currentIndex, null);
+        slides.forEach((slide, i) => {
+            slide.style.transition = 'transform 0.5s ease';
+            slide.style.transform = i === currentIndex ? 'translateX(0)' : (i < currentIndex ? 'translateX(-100%)' : 'translateX(100%)');
+        });
     }
     slideInterval = setInterval(autoSlide, 15000);
 });
+        
         
         
 
