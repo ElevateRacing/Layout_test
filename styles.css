@@ -122,7 +122,7 @@ nav {
 }
 
 .hero-content h1 {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: clamp(2rem, 3.5vw, 4rem); /* Min: 32px, Preferred: 3.5vw, Max: 64px */
     font-weight: 700;
     line-height: 1.1; /* Tighter for a bold, impactful look */
