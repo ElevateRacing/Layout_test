@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserve Your AirKart - Elevate Racing</title>
+    <title>Reserve Your Airkart - Elevate Racing</title>
+    <meta name="description" content="Discover AirKart by Elevate Racing, the ultimate eVTOL for personal flight and racing.">
+    <meta name="keywords" content="AirKart, eVTOL, Elevate Racing, personal flight">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preload" href="Test16.png" as="image">
+    <link rel="preload" href="styles.css" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,13 +19,13 @@
             <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
             <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
             <nav>
-                <a href="index.html" class="btn">Home</a>
-                <a href="book.html" class="btn">Book a Flight</a>
-                <a href="#content4" class="btn">Contact</a>
+                <a href="index.html" class="header-btn">Home</a>
+                <a href="book.html" class="header-btn">Book a Flight</a>
+                <a href="index.html" class="header-btn">Contact</a>
             </nav>
         </div>
     </header>
-
+    
     <main class="reserve-section">
         <div class="reserve-left">
             <h2>Reserve Your AirKart</h2>
@@ -45,14 +51,94 @@
     </main>
 
     <script>
-        // Image Slider
-        const slides = document.querySelectorAll('.reserve-slide');
-        let currentIndex = 0;
-        function updateSlide() {
-            slides.forEach((slide, i) => slide.classList.toggle('active', i === currentIndex));
-            currentIndex = (currentIndex + 1) % slides.length;
+        // - - - - - - LOGO ADJUSTMENT SCRIPT - - - - - -
+        const topBox = document.querySelector('.top-box');
+        const logo1 = document.querySelector('.logo1');
+        const logo2 = document.querySelector('.logo2');
+        const nav = document.querySelector('nav');
+
+        function adjustLogos() {
+            // Only adjust logo1 on desktop (whwn nav is visible)
+            const boxWidth = topBox.offsetWidth;
+            
+            if (window.innerWidth > 768) {
+                // Get widths and positions
+                const logo2Width = logo2.offsetWidth;
+                const logo1Width = logo1.offsetWidth;
+                const navWidth = nav.offsetWidth;
+                const navLeft = boxWidth - navWidth - 10; // Left edge of nav
+                const centerFullBox = boxWidth / 2;
+                const leftBoundary = logo2Width + 20; // After logo2 + buffer
+                const rightBoundary = navLeft - 20; // Before nav + buffer
+                const availableSpace = rightBoundary - leftBoundary;
+
+                // Check if nav or logo2 encroached on logo1's centered position
+                const logo1LeftEdge = centerFullBox - (logo1Width / 2);
+                const logo1RightEdge = centerFullBox + (logo1Width / 2);
+
+                if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
+                    // Step 2: Center in available space if encroachment
+                    if (availableSpace < logo1Width) {
+                        // Step 3: Not enough space, hide logo1
+                            logo1.style.opacity = '0';
+                    } else {
+                        // Center in available space
+                        const centerAvailable = leftBoundary + (availableSpace / 2);
+                        logo1.style.opacity = '1';
+                        logo1.style.left = centerAvailable + 'px';
+                        logo1.style.transform = 'translateX(-50%)';
+                    }
+                } else {
+                    // No encroachment, center in full box
+                    logo1.style.opacity = '1';
+                    logo1.style.left = '50%';
+                    logo1.style.transform = 'translateX(-50%)';
+                }
+            } else {
+                // Mobile logic
+                // Ensure images are loaded before calculating width
+                if (logo2.complete && logo1.complete) {
+                    const logo2Width = logo2.offsetWidth || 0;
+                    const logo1Width = logo1.offsetWidth || 0;
+                    const padding = 20; // 10px left + 10px right
+                    const availableWidth = boxWidth - padding;
+
+                    // Center logo1 in the available space after logo2
+                    const spaceAfterLogo2 = boxWidth - logo2Width - padding;
+                    const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
+                    const logo1Left = Math.max(logo2Width + 10, Math.min(centerPoint, boxWidth - logo1Width - 10));
+                    
+                    logo1.style.left = logo1Left + 'px';
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
+
+                    // Scale down logos if combined width exceeds available space
+                    const totalLogoWidth = logo2Width + logo1Width;
+                    if (totalLogoWidth > availableWidth) {
+                        const scaleFactor = availableWidth / totalLogoWidth;
+                        logo2.style.width = (logo2Width * scaleFactor) + 'px';
+                        logo1.style.width = (logo1Width * scaleFactor) + 'px';
+                    } else {
+                        // Reset widths if previously scaled
+                        logo2.style.width = '';
+                        logo1.style.width = '';
+                    }
+                } else {
+                    // Fallback if images aren't loaded yet
+                    logo1.style.left = '50%'; // Temporary center
+                    logo1.style.transform = 'translateX(-50%)';
+                    logo1.style.opacity = '1';
+                }
+            }
         }
-        setInterval(updateSlide, 5000);
+                 
+        // Run on load, resize, and after images load
+        window.addEventListener('load', adjustLogos);
+        window.addEventListener('resize', adjustLogos);
+        logo1.addEventListener('load', adjustLogos);
+        logo2.addEventListener('load', adjustLogos);
+    // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
+
     </script>
 </body>
 </html>
