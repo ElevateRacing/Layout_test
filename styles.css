@@ -444,6 +444,7 @@ nav {
 }
 .Monocoque .content3-image {
     width: 60%;
+    margin: 10px 10px 10px 10px;
 }
 .Monocoque .content3-text {
     width: 40%;
@@ -893,6 +894,7 @@ nav {
     .AirKart .content3-image {
         width: 95%;
         order: 1; /* Image on top */
+        margin: 10px, 10px, 10px, 10px;
     }
 
     .Monocoque .content3-text,
