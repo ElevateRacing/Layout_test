@@ -622,7 +622,24 @@ nav {
 
 
 
+/* Ensure mobile elements are hidden on desktop */
+@media (min-width: 769px) {
+    #mobileReserveBtn {
+        display: none; /* Hide the mobile reserve button on desktop */
+    }
 
+    .content1-TextSwapContainerMobileTextSwap {
+        display: none; /* Hide the entire mobile text swap container on desktop */
+    }
+
+    .mobile-text-swap {
+        display: none; /* Additional safety to hide mobile text swaps */
+    }
+
+    .content1-mobile-top {
+        display: none; /* Hide the mobile top section on desktop */
+    }
+}
 
 
 
@@ -801,12 +818,13 @@ nav {
         display: block; /* Ensure images render */
     }
 
-    .mobile-reserve-btn {
+    #mobileReserveBtn {
         position: absolute;
         bottom: 50px; /* Above dots */
         left: 50%;
         transform: translateX(-50%) !important; /* Override any JS changes */
         z-index: 12;
+        display: inline-block; /* Ensure visibility on mobile */
     }
 
     .dots-container {
