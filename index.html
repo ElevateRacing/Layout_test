@@ -19,9 +19,9 @@
             <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
             <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
             <nav>
-                <a href="reserve.html" class="btn">Reserve your AirKart</a>
-                <a href="book.html" class="btn">Book a Flight</a>
-                <a href="#content4-section" class="btn">Contact</a>
+                <a href="reserve.html" class="header-btn">Reserve your AirKart</a>
+                <a href="book.html" class="header-btn">Book a Flight</a>
+                <a href="#content4-section" class="header-btn">Contact</a>
             </nav>
         </div>
     </header>
@@ -44,7 +44,7 @@
             <br>
             <br>
             <p class="content1-text">Limited production slots available soon.</p>
-            <a href="reserve.html" class="reserve-btn">Reserve your AirKart today</a>
+            <a href="reserve.html" class="desktop-btn">Reserve your AirKart today</a>
         </div>
         <div class="content1-right">
             <div class="content1-mobile-top">
@@ -63,7 +63,7 @@
                         <img src="Images/Content1_Bridge.PNG" alt="Landing Bridge" class="content1-SliderImage">
                     </div>
                 </div>
-                <a href="reserve.html" class="reserve-btn mobile-reserve-btn" id="mobileReserveBtn">Reserve your AirKart today</a>
+                <a href="reserve.html" class="mobile-btn" id="mobileReserveBtn">Reserve your AirKart today</a>
                 <div class="dots-container">
                     <span class="dot" data-index="0"></span>
                     <span class="dot" data-index="1"></span>
@@ -79,7 +79,7 @@
     <div class="content2-center">
         <h2>No AirKart of your own? No problem.</h2>
         <p>Step into the pilot’s seat at one of our AeroKarting Tracks and feel the rush of low-altitude flight. Our purpose-build circuits let you push the AirKart to its limits – racing against the clock or battling friends in a whole new dimension of karting. With no pilot license needed, anyone can soar just feet above the ground, experiencing the thrill of flight combined with the intensity of go-karting. Book your ticket today and join the aerial revolution – excitement and bragging rights included.</p>
-        <a href="book.html" class="reserve-btn">Book a Flight</a>
+        <a href="book.html" class="desktop-btn">Book a Flight</a>
     </div>
     <div class="content2-right">
         <img src="Images/Content1Right.png" alt="AeroKarting 2" class="content2-image">
@@ -87,7 +87,7 @@
 </section>
 
 <section class="content3-section">
-    <!-- Monocoque: Image Left (60%), Text Right (40%) -->
+    <!-- Monocoque: Image Left (40%), Text Right (60%) -->
     <div class="content3-row Monocoque">
         <img src="Images/Monocoque.png" alt="Monocoque" class="content3-image">
         <div class="content3-text">
@@ -105,7 +105,7 @@
         <img src="Images/Ducts.png" alt="Duct" class="content3-image">
     </div>
     
-    <!-- Electronics: Image Left (40%), Text Right (60%) -->
+    <!-- Electronics: Image Left (35%), Text Right (65%) -->
     <div class="content3-row Electronics">
         <img src="Images/Electronics.png" alt="Electronics" class="content3-image">
         <div class="content3-text">
@@ -114,14 +114,14 @@
         </div>
     </div>
     
-    <!-- AirKart: Image Only, Centered (65%) -->
+    <!-- AirKart: Image Only, Centered (60%) -->
     <div class="content3-row AirKart">
         <img src="Images/AirKart.png" alt="AirKart" class="content3-image">
     </div>
     
     <!-- Centered Button -->
     <div class="content3-row content3-button">
-        <a href="AirKart.html" class="reserve-btn">Explore AirKart Design</a>
+        <a href="AirKart.html" class="desktop-btn">Explore AirKart Design</a>
     </div>
 </section>
 
@@ -136,7 +136,7 @@
             <input type="email" id="email" name="email" required>
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit" class="reserve-btn">Send Message</button>
+            <button type="submit" class="desktop-btn">Send Message</button>
         </form>
     </div>
 </section>
@@ -347,6 +347,7 @@ slider.addEventListener('touchend', e => {
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
     // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
+        /*
         function setSectionHeights() {
     const sections = document.querySelectorAll('.hero-section, .content4-section');
     sections.forEach(section => {
@@ -368,7 +369,7 @@ setSectionHeights();
         button.style.transform = 'translateX(-50%)';
     }
 });
-
+*/
     // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
 
 
