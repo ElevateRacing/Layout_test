@@ -416,11 +416,11 @@ nav {
     flex-direction: row;
 }
 .Monocoque .content3-image {
-    width: 60%;
+    width: 40%;
     margin: 10px 10px 10px 10px;
 }
 .Monocoque .content3-text {
-    width: 40%;
+    width: 60%;
 }
 
 .Ducts {
@@ -437,10 +437,10 @@ nav {
     flex-direction: row;
 }
 .Electronics .content3-image {
-    width: 40%;
+    width: 35%;
 }
 .Electronics .content3-text {
-    width: 60%;
+    width: 65%;
 }
 
 .AirKart {
@@ -448,7 +448,7 @@ nav {
     flex-direction: row; /* Keep as row for centering */
 }
 .AirKart .content3-image {
-    width: 65%;
+    width: 60%;
 }
 
 
