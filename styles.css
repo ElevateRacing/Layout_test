@@ -300,7 +300,7 @@ nav {
 
 .content2-center {
     width: 33.33%;
-    padding: 20px;
+    padding: 20px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -331,6 +331,7 @@ nav {
     font-weight: 400;
     line-height: 1.6; /* Match content1 text-swap */
     margin: 0 0 20px 0; /* Match content1 spacing (adjusted for flow) */
+    max-width: 100%; /* Ensure it respects padding */
 }
 
 /* Reserve button styling already matches content1 */
@@ -668,11 +669,11 @@ nav {
         height: 50%; /* Top half */
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-align: center;
         background-color: var(--background-light);
-        padding: 20px;
+        padding: 40px 20px 20px;
     }
 
     .content1-mobile-top h2 {
@@ -687,6 +688,7 @@ nav {
         position: relative;
         width: 90%;
         min-height: 60px;
+        margin-bottom: 15px; /* Space before static text */
     }
 
     .mobile-text-swap {
@@ -704,6 +706,15 @@ nav {
 
     .mobile-text-swap.active {
         opacity: 1;
+    }
+
+    .content1-static-text {
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile text size */
+        font-weight: 400;
+        line-height: 1.5;
+        color: #000; /* Ensure visibility */
+        text-align: center;
     }
 
     .content1-mobile-bottom {
