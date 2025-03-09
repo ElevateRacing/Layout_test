@@ -687,8 +687,8 @@ nav {
     .content1-TextSwapContainerMobileTextSwap {
         position: relative;
         width: 90%;
-        min-height: 60px;
-        margin-bottom: 15px; /* Space before static text */
+        min-height: 80px;
+        margin-bottom: 20px; /* Space before static text */
     }
 
     .mobile-text-swap {
@@ -715,6 +715,8 @@ nav {
         line-height: 1.5;
         color: #000; /* Ensure visibility */
         text-align: center;
+        position: relative;
+        margin-top: 0;
     }
 
     .content1-mobile-bottom {
