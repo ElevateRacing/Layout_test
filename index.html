@@ -288,7 +288,7 @@ function autoSlide() {
 
 positionSlides(0); // Initial positioning without animation
 updateContent(0, null); // Initialize without animation
-let slideInterval = setInterval(autoSlide, 15000);
+let slideInterval = setInterval(autoSlide, 10000);
 
 dots.forEach(dot => {
     dot.addEventListener('click', () => {
@@ -296,7 +296,7 @@ dots.forEach(dot => {
         const newIndex = parseInt(dot.getAttribute('data-index'));
         const direction = newIndex > currentIndex ? 'left' : 'right';
         updateContent(newIndex, direction);
-        slideInterval = setInterval(autoSlide, 15000);
+        slideInterval = setInterval(autoSlide, 10000);
     });
 });
 
@@ -339,7 +339,7 @@ slider.addEventListener('touchend', e => {
         // Snap back if swipe distance is too small
         updateContent(currentIndex, null);
     }
-    slideInterval = setInterval(autoSlide, 15000);
+    slideInterval = setInterval(autoSlide, 10000);
 });
         
         
