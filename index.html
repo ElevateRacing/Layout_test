@@ -348,7 +348,7 @@ slider.addEventListener('touchend', e => {
 
     // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
         function setSectionHeights() {
-    const sections = document.querySelectorAll('.hero-section, .content1-section, .content2-section, .content4-section');
+    const sections = document.querySelectorAll('.hero-section, .content4-section');
     sections.forEach(section => {
         section.style.height = `${window.innerHeight}px`; // Adjust height for margin
         const background = section.querySelector('.hero-background');
