@@ -260,10 +260,18 @@ function updateContent(index, animate = true) {
             slide.style.opacity = i === index ? '1' : '0';
         });
     } else {
-        // Mobile: Continuous sliding with looping
-        const offset = -index * 100; // Percentage-based offset
-        slider.style.transition = animate ? 'transform 0.5s ease' : 'none';
-        slider.style.transform = `translateX(${offset}%)`;
+        // Mobile: Slide-based transition
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+            slide.style.transition = animate ? 'transform 0.5s ease' : 'none';
+            if (i === index) {
+                slide.style.transform = 'translateX(0)';
+            } else if (i < index) {
+                slide.style.transform = 'translateX(-100%)'; // Left
+            } else {
+                slide.style.transform = 'translateX(100%)'; // Right
+            }
+        });
     }
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
     content1TextSwaps.forEach((text, i) => text.classList.toggle('active', i === index));
@@ -275,8 +283,7 @@ function autoSlide() {
     updateContent(currentIndex);
 }
 
-// Initialize immediately
-updateContent(0, false); // No animation on load
+updateContent(0, false); // Initialize without animation
 let slideInterval = setInterval(autoSlide, 15000);
 
 dots.forEach(dot => {
@@ -295,15 +302,17 @@ slider.addEventListener('touchstart', e => {
     touchCurrentX = touchStartX;
     isSwiping = true;
     clearInterval(slideInterval);
-    slider.style.transition = 'none'; // Smooth dragging
+    slides.forEach(slide => slide.style.transition = 'none'); // Smooth dragging
 });
 
 slider.addEventListener('touchmove', e => {
     if (!isSwiping || window.innerWidth > 768) return;
     touchCurrentX = e.touches[0].screenX;
     const deltaX = (touchCurrentX - touchStartX) / slider.offsetWidth * 100;
-    const offset = -currentIndex * 100 + deltaX;
-    slider.style.transform = `translateX(${offset}%)`;
+    slides.forEach((slide, i) => {
+        const baseOffset = (i - currentIndex) * 100;
+        slide.style.transform = `translateX(${baseOffset + deltaX}%)`;
+    });
 });
 
 slider.addEventListener('touchend', e => {
@@ -320,8 +329,7 @@ slider.addEventListener('touchend', e => {
     updateContent(currentIndex);
     slideInterval = setInterval(autoSlide, 15000);
 });
-       
-      
+        
 
     // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
 
