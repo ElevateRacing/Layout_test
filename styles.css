@@ -774,6 +774,7 @@ nav {
                 height: 100%;
                 position: relative;
                 overflow: hidden; /* Contain slides */
+                z-index: 1;
             }
 
                 .content1-slide {
@@ -795,10 +796,14 @@ nav {
 
             .mobile-reserve-btn {
                 position: absolute;
-                bottom: 50px; /* Above dots */
+                bottom: 50px;
                 left: 50%;
-                transform: translateX(-50%) !important; /* Override any JS changes */
+                transform: translateX(-50%);
                 z-index: 12;
+                background-color: #FFFFFF; /* Ensure visibility */
+                color: #000000;
+                padding: 10px 20px; /* Match reserve-btn */
+                border-radius: 12px;
             }
 
             .dots-container {
