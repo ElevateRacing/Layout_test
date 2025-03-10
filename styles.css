@@ -590,7 +590,10 @@ nav {
     object-position: 25% 50%; /* Sets the focus point */
   }
 
-
+    .content2-right img.content2-image {
+    object-fit: cover; /* Ensures the image covers the container */
+    object-position: 40% 50%; /* Sets the focus point */
+  }
     
 }
 
