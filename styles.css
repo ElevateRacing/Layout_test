@@ -918,20 +918,58 @@ nav {
 
 // - - - - - - RESERVE.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 .reserve-section {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping for mobile */
-        }
-        .reserve-left, .reserve-right {
-            width: 50%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .reserve-right img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: 40% 40%;
-        }
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.reserve-left {
+    width: 50%;
+    background-color: var(--background-light);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.reserve-left h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+
+.reserve-left p {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Already in your CSS */
+}
+
+.reserve-right {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.reserve-right img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: 40% 40%;
+}
+
         @media (max-width: 768px) {
             .reserve-left, .reserve-right {
                 width: 100%;
