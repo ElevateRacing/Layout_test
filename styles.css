@@ -490,6 +490,7 @@ nav {
     padding: 20px;
     background-color: #E3E8F0;
     overflow: hidden;
+    background: url('Images/Contact-Background.png') no-repeat center center/cover;
 }
 
 .contact-container {
