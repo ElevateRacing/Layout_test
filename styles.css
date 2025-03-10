@@ -586,7 +586,7 @@ nav {
 
     .content2-left img.content2-image {
     object-fit: cover; /* Ensures the image covers the container */
-    object-position: 15% 50%; /* Sets the focus point */
+    object-position: 20% 50%; /* Sets the focus point */
   }
 
 
