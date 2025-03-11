@@ -684,6 +684,248 @@ nav {
     transform: scale(1.02);}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
+.reserve-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    overflow: hidden;}
+/* Content1 Left Section */
+.reserve-left {
+    width: 50%;
+    background-color: var(--background-light);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;}
+.reserve-left h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;}
+.reserve-text-swap-container {
+    position: relative;
+    min-height: 120px; /* Fixed height to keep layout stable */
+    width: 100%;
+    max-width: 500px;}
+.text-swap {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Already in your CSS */}
+.text-swap.active {
+    opacity: 1;}
+.reserve-text {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 20px 0;}
+.desktop-btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff6200;
+    border-radius: 12px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    cursor: pointer; /* Ensure clickable appearance */
+    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
+.desktop-btn:hover {
+    background-color: #ff7f33;
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5); /* Enhanced shadow on hover */}
+/* Content1 Right Section */
+.reserve-right {
+    width: 50%;
+    position: relative;
+    overflow: hidden;}
+.reserve-SliderImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;}
+.reserve-slide:nth-child(1) .reserve-SliderImage {
+    object-position: 40% 50%; /* Forest image */}
+.reserve-slide:nth-child(2) .reserve-SliderImage {
+    object-position: 30% 50%; /* Bridge image */}
+.reserve-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease; /* Already in your CSS */}
+.reserve-slide.active {
+    opacity: 1;}
+.reserve-SliderImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;}
+.reserve-SliderImage[data-bg-position="center center"] { object-position: center center; }
+.reserve-mobileTextBtn {
+    display: none; /* Hide on desktop */}
+/* Dots Navigation */
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;}
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.5); /* Semi-transparent grey */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;}
+.dot.active {
+    background-color: #FFFFFF; /* White for active */
+    transform: scale(1.2);}
+.dot:hover {
+    transform: scale(1.1);}
+
+@media (max-width: 768px) {
+    .reserve-section {
+        flex-direction: column;
+        height: 100vh;
+        width: 100%}
+    .reserve-left {display: none;}
+    .reserve-right {
+        width: 100%;
+        height: 100%; /* Full height of section */
+        display: flex;
+        flex-direction: column;}
+    .reserve-mobile-top {
+        height: 50%; /* Top half */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: var(--background-light);
+        padding: 20px;
+        overflow: hidden;}
+    .reserve-mobile-top h2 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: clamp(1.75rem, 6vw, 3rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 5px;
+        margin-top: 30px;}
+    .reserve-TextSwapContainerMobileTextSwap {
+        position: relative;
+        width: 100%; /* Full width of container */
+        max-width: 90%; /* Prevent text from hitting edges */
+        flex-grow: 1; /* Allow it to take available space */
+        display: flex; /* Ensure proper stacking */
+        align-items: center; /* Center dynamic text vertically */
+        justify-content: center; /* Center dynamic text horizontally */
+        min-height: 50px; /* Minimum height to avoid collapse */
+        margin: 0;}
+    .reserve-text-swap {
+        position: absolute;
+        top: 50%; /* Center vertically within container */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Precise centering */
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        line-height: 1.5;}
+    .mobile-text-swap.active {
+        opacity: 1;}
+    .reserve-static-text {
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile text size */
+        font-weight: 400;
+        line-height: 1.5;
+        color: #000; /* Ensure visibility */
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 30px;}
+    .reserve-mobile-bottom {
+        height: 50%; /* Bottom half */
+        position: relative;
+        overflow: hidden;
+        background-color: #000;}
+    .reserve-ImageSlider {
+        width: 100%; /* Full width of container */
+        height: 100%;
+        position: relative;}
+    .reserve-slide {
+        width: 100%; /* Each slide fills viewport */
+        height: 100%;
+        position: absolute; /* Stack slides */
+        top: 0;
+        left: 0;
+        transition: transform 0.5s ease;
+        transform: translateX(100%);}
+    .reserve-slide.active {
+        transform: translateX(0);}
+    .reserve-SliderImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;}
+    .mobile-btn {
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #ffffff; /* White text for contrast against orange */
+        background-color: #ff6200; /* Vibrant modern orange */
+        border-radius: 12px;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+        width: auto;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%) !important;
+        z-index: 12;
+        display: inline-block;}
+    .dots-container {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        z-index: 11;}
+}
+
+@media (min-width: 769px) {
+    #mobileReserveBtn {
+        display: none;}
+    .reserve-TextSwapContainerMobileTextSwap {
+        display: none;}
+    .mobile-text-swap {
+        display: none;}
+    .reserve-mobile-top {
+        display: none;}
+}
 
 
     
