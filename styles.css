@@ -684,138 +684,113 @@ nav {
     transform: scale(1.02);}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
-.reserve-section {
+.content2-section {
+    height: 100vh;
     display: flex;
-    height: calc(100vh - 70px); /* Adjust for header height */
-    background-color: #E8ECEF;
-}
-
-.reserve-left {
-    width: 50%;
+    overflow: hidden; /* Match content1-section */
+    background-color: #E8ECEF;}
+.content2-left, .content2-right {
+    width: 33.33%;
+    position: relative; /* For positioning images */}
+.content2-center {
+    width: 33.33%;
+    padding: 20px 50px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-}
-
-.reserve-content {
-    text-align: center;
-    max-width: 500px; /* Limits content width */
-}
-
-.reserve-content h2 {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.reserve-content p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.reserve-form {
-    display: table; /* Tabular form */
+    text-align: center;}
+.content2-image {
     width: 100%;
-    margin-bottom: 20px;
-}
-
-.form-row {
-    display: table-row;
-}
-
-.form-row label {
-    display: table-cell;
-    padding: 10px 10px 10px 0;
-    text-align: left;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.form-row input {
-    display: table-cell;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-}
-
+    height: 100%; /* Start below top-box (70px height + 20px margin + 20px buffer) */
+    object-fit: cover;
+    position: absolute;
+    /* top: 110px; /* Align with content1-ImageSlider top */
+    left: 0;}
+.content2-center h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
+    font-weight: 700;
+    line-height: 1.1; /* Match content1-left h2 */
+    margin-bottom: 20px; /* Match content1-left h2 */}
+.content2-center p {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
+    font-weight: 400;
+    line-height: 1.6; /* Match content1 text-swap */
+    margin: 0 0 20px 0; /* Match content1 spacing (adjusted for flow) */
+    max-width: 100%;}
 .reserve-btn {
     padding: 10px 20px;
-    color: #fff;
-    background-color: #ff6200;
-    border: none;
+    text-decoration: none;
+    color: #000000;
+    background-color: var(--secondary-color);
     border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
-    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
-    display: block;
-    margin: 0 auto; /* Centers button */
-}
-
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    cursor: pointer;}
 .reserve-btn:hover {
-    background-color: #ff7f33;
-    transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);
-}
-
-.reserve-right {
-    width: 50%;
-}
-
-.reserve-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-
+    background-color: var(--button-hover);
+    transform: scale(1.02);}
 
 @media (max-width: 768px) {
-    .reserve-section {
+    .content2-section {
         flex-direction: column;
-        height: auto;
-    }
-
-    .reserve-left {
+        height: 100vh;
+        position: relative;}
+    .content2-left, .content2-right {
         width: 100%;
+        height: 50%; /* Each image takes half the height */
+        position: absolute;}
+    .content2-left {
+        display: none;}
+    .content2-image {
+        height: 100%; /* Full height of container on mobile */
+        top: 0;}
+    .content2-center {
+        width: 100%;
+        height: 50%; /* Top half for text */
         padding: 20px;
-    }
-
-    .reserve-right {
+        position: relative;
+        z-index: 1;
+        background: rgba(245, 245, 245, 0.8);
+        overflow-y: auto;}
+    .content2-right {
+        display: block; /* Show the right image */
         width: 100%;
-        height: 50vh; /* Adjust as needed */
-    }
-
-    .reserve-content h2 {
-        font-size: clamp(1.75rem, 6vw, 2.5rem);
-    }
-
-    .reserve-content p {
-        font-size: clamp(0.875rem, 2.5vw, 1rem);
-    }
-
-    .form-row label {
-        padding: 5px 10px 5px 0;
-    }
-
-    .form-row input {
-        margin-bottom: 15px;
-    }
-
-    .reserve-btn {
+        height: 50%; /* Bottom half for image */
+        position: absolute;
+        top: 50%; /* Start at halfway point */
+        left: 0;}
+    .content2-right .content2-image {
+        content: url('Images/Content1Right.png'); /* Use Content1Right.png */
         width: 100%;
-        max-width: 200px; /* Limits button width on mobile */
-    }
-    
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;}
+    .content2-center h2 {
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile hero h1 */
+        margin-bottom: 10px;}
+    .content2-center p {
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile text-swap */
+        line-height: 1.5; /* Match mobile text-swap */
+        margin-bottom: 10px;}
+}
+
+@media (min-width: 769px) {
+    .content2-left img.content2-image {
+    object-fit: cover; /* Ensures the image covers the container */
+    object-position: 25% 50%;}
+    .content2-right img.content2-image {
+    object-fit: cover; /* Ensures the image covers the container */
+    object-position: 40% 50%;}
 }
 
     
