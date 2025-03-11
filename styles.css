@@ -919,6 +919,7 @@ nav {
 .reserve-section {
     width: 100%;
     display: flex;
+    flex-direction: row;
     overflow: hidden;
     background-color: #E8ECEF; /* Matches content2-section */
 }
@@ -998,7 +999,7 @@ nav {
 
 .reserve-right {
     width: 50%;
-    height: 100vh; /* Full height on desktop */
+    height: 100%; /* Full height on desktop */
     position: relative;
 }
 
