@@ -684,36 +684,36 @@ nav {
     transform: scale(1.02);}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
-.content2-section {
+.reserve-section {
     height: 100vh;
     display: flex;
     overflow: hidden; /* Match content1-section */
     background-color: #E8ECEF;}
-.content2-left, .content2-right {
-    width: 33.33%;
+.reserve-right {
+    width: 50%;
     position: relative; /* For positioning images */}
 .content2-center {
-    width: 33.33%;
+    width: 50%;
     padding: 20px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;}
-.content2-image {
+.reserve-image {
     width: 100%;
     height: 100%; /* Start below top-box (70px height + 20px margin + 20px buffer) */
     object-fit: cover;
     position: absolute;
     /* top: 110px; /* Align with content1-ImageSlider top */
     left: 0;}
-.content2-center h2 {
+.reserve-center h2 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
     font-weight: 700;
     line-height: 1.1; /* Match content1-left h2 */
     margin-bottom: 20px; /* Match content1-left h2 */}
-.content2-center p {
+.reserve-center p {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
     font-weight: 400;
@@ -739,20 +739,18 @@ nav {
     transform: scale(1.02);}
 
 @media (max-width: 768px) {
-    .content2-section {
+    .reserve-section {
         flex-direction: column;
         height: 100vh;
         position: relative;}
-    .content2-left, .content2-right {
+    .reserve-right {
         width: 100%;
         height: 50%; /* Each image takes half the height */
         position: absolute;}
-    .content2-left {
-        display: none;}
-    .content2-image {
+    .reserve-image {
         height: 100%; /* Full height of container on mobile */
         top: 0;}
-    .content2-center {
+    .reserve-center {
         width: 100%;
         height: 50%; /* Top half for text */
         padding: 20px;
@@ -760,14 +758,14 @@ nav {
         z-index: 1;
         background: rgba(245, 245, 245, 0.8);
         overflow-y: auto;}
-    .content2-right {
+    .reserve-right {
         display: block; /* Show the right image */
         width: 100%;
         height: 50%; /* Bottom half for image */
         position: absolute;
         top: 50%; /* Start at halfway point */
         left: 0;}
-    .content2-right .content2-image {
+    .reserve-right .reserve-image {
         content: url('Images/Content1Right.png'); /* Use Content1Right.png */
         width: 100%;
         height: 100%;
@@ -775,20 +773,20 @@ nav {
         position: absolute;
         top: 0;
         left: 0;}
-    .content2-center h2 {
+    .reserve-center h2 {
         font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile hero h1 */
         margin-bottom: 10px;}
-    .content2-center p {
+    .reserve-center p {
         font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile text-swap */
         line-height: 1.5; /* Match mobile text-swap */
         margin-bottom: 10px;}
 }
 
 @media (min-width: 769px) {
-    .content2-left img.content2-image {
+    .reserve-left img.reserve-image {
     object-fit: cover; /* Ensures the image covers the container */
     object-position: 25% 50%;}
-    .content2-right img.content2-image {
+    .reserve-right img.reserve-image {
     object-fit: cover; /* Ensures the image covers the container */
     object-position: 40% 50%;}
 }
