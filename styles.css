@@ -685,124 +685,137 @@ nav {
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
 .reserve-section {
-    height: 100vh;
     display: flex;
-    overflow: hidden;
-    background-color: #E8ECEF;}
+    height: calc(100vh - 70px); /* Adjust for header height */
+    background-color: #E8ECEF;
+}
+
 .reserve-left {
     width: 50%;
-    background-color: #E8ECEF;
-    padding: 20px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;}
+    padding: 20px;
+}
 
-.reserve-text {
-    width: 80%; /* Adjust as needed */
+.reserve-content {
+    text-align: center;
+    max-width: 500px; /* Limits content width */
+}
+
+.reserve-content h2 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.reserve-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 20px;
 }
 
 .reserve-form {
-    display: flex;
-    flex-direction: column;
-    width: 80%; /* Adjust as needed */
-    max-width: 400px;
-}
-
-.reserve-form label {
-    text-align: left;
-    margin-top: 10px;
+    display: table; /* Tabular form */
     width: 100%;
+    margin-bottom: 20px;
 }
 
-.reserve-form input,
-.reserve-form textarea {
+.form-row {
+    display: table-row;
+}
+
+.form-row label {
+    display: table-cell;
+    padding: 10px 10px 10px 0;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-row input {
+    display: table-cell;
+    width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
 }
 
 .reserve-btn {
     padding: 10px 20px;
-    text-decoration: none;
-    color: #ffffff;
+    color: #fff;
     background-color: #ff6200;
+    border: none;
     border-radius: 12px;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 1rem;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
-    width: auto;
-    text-align: center;
-    cursor: pointer; /* Ensure clickable appearance */
-    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
-    aligh-self: center;
+    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
+    display: block;
+    margin: 0 auto; /* Centers button */
+}
 
-    
 .reserve-btn:hover {
     background-color: #ff7f33;
     transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5); /* Enhanced shadow on hover */}
+    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);
+}
 
-
-
-
-    
 .reserve-right {
     width: 50%;
-    position: relative;
-    overflow: hidden;}
+}
 
-    
 .reserve-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: absolute;
-    left: 0;}
+}
+
+
 
 
 @media (max-width: 768px) {
     .reserve-section {
         flex-direction: column;
-        height: auto; /* Allow content to dictate height */
-    }
-
-    .reserve-left,
-    .reserve-right {
-        width: 100%;
         height: auto;
     }
 
-    .reserve-right {
-        order: -1; /* Image appears above text/form */
-        height: 50vh; /* Adjust as needed */
-    }
-
     .reserve-left {
+        width: 100%;
         padding: 20px;
     }
 
-    .reserve-image {
-        position: relative; /* Remove absolute positioning */
+    .reserve-right {
+        width: 100%;
+        height: 50vh; /* Adjust as needed */
     }
 
-    .reserve-text h2 {
-        font-size: clamp(1.75rem, 6vw, 3rem);
-        margin-bottom: 10px;
+    .reserve-content h2 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
     }
 
-    .reserve-text p {
+    .reserve-content p {
         font-size: clamp(0.875rem, 2.5vw, 1rem);
-        line-height: 1.5;
-        margin-bottom: 10px;
     }
+
+    .form-row label {
+        padding: 5px 10px 5px 0;
+    }
+
+    .form-row input {
+        margin-bottom: 15px;
+    }
+
+    .reserve-btn {
+        width: 100%;
+        max-width: 200px; /* Limits button width on mobile */
+    }
+    
 }
 
     
