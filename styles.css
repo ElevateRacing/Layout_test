@@ -1006,6 +1006,7 @@ nav {
     height: 100%; /* Fill available height */
     position: relative;
     overflow: hidden;
+    background-color: #ccc; /* Debug: Grey background if image fails */
 }
 
 .reserve-image {
@@ -1016,6 +1017,7 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
+    display: block; /* Ensure image renders */
 }
 
 @media (max-width: 768px) {
