@@ -921,9 +921,11 @@ nav {
     height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: row; /* Default: horizontal split */
+    flex-direction: row; /* Horizontal split on desktop */
     overflow: hidden;
     background-color: var(--background-light);
+    padding-top: 90px; /* Account for fixed header */
+    box-sizing: border-box;
 }
 
 .reserve-left {
@@ -934,6 +936,7 @@ nav {
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
 .reserve-text h2 {
@@ -1000,15 +1003,19 @@ nav {
 
 .reserve-right {
     width: 50%;
+    height: 100%; /* Fill available height */
     position: relative;
     overflow: hidden;
 }
 
 .reserve-image {
     width: 100%;
-    height: 100%;
+    height: 100%; /* Match content1-SliderImage */
     object-fit: cover;
     object-position: 40% 40%; /* Consistent with your original */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 @media (max-width: 768px) {
