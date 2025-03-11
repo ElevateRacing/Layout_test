@@ -917,33 +917,34 @@ nav {
 
 // - - - - - - RESERVE.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 .reserve-section {
-    height: 100vh;
     width: 100%;
     display: flex;
     overflow: hidden;
+    background-color: #E8ECEF; /* Matches content2-section */
 }
 
+/* Left Side */
 .reserve-left {
     width: 50%;
     padding: 20px 50px;
     display: flex;
     flex-direction: column;
-    /* Remove justify-content and align-items for custom positioning */
-    text-align: left; /* Align text to the left */
+    justify-content: center; /* Center content vertically on desktop */
+    align-items: flex-start; /* Align to left for text consistency */
 }
 
 .reserve-text h2 {
     font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-size: clamp(2rem, 3.5vw, 4rem); /* Matches content2-center h2 */
     font-weight: 700;
     line-height: 1.1;
-    margin-top: 100px; /* Adjust top margin for space under top-box */
+    margin-top: 0; /* No extra top margin; handled by layout */
     margin-bottom: 20px;
 }
 
 .reserve-text p {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Matches content2-center p */
     font-weight: 400;
     line-height: 1.6;
     margin: 0 0 20px 0;
@@ -955,7 +956,6 @@ nav {
     flex-direction: column;
     width: 100%;
     max-width: 400px;
-    margin-top: auto; /* Push form to the bottom */
 }
 
 .reserve-form label {
@@ -998,7 +998,7 @@ nav {
 
 .reserve-right {
     width: 50%;
-    height: 100%;
+    height: 100vh; /* Full height on desktop */
     position: relative;
 }
 
@@ -1006,47 +1006,54 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 80% 50%; /* Matches your desktop requirement */
     position: absolute;
-    object-position: 80% 50%; /* Adjusted focus */
+    top: 0;
+    left: 0;
 }
 
 
 @media (max-width: 768px) {
     .reserve-section {
         flex-direction: column;
-        height: auto; /* Allow natural height for stacking */
-        padding: 90px 0 20px 0; /* Match header offset */
+        height: auto; /* Allow natural height */
+        padding-top: 90px; /* Space for top-box (assuming 70px height + margin) */
+        padding-bottom: 20px;
     }
 
     .reserve-left {
         width: 100%;
         padding: 20px;
+        justify-content: flex-start; /* Stack naturally from top */
+        align-items: center; /* Center horizontally on mobile */
     }
 
     .reserve-text h2 {
-        font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile content1 */
-        margin-bottom: 15px;
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Slightly smaller for mobile */
+        margin-top: 0;
     }
 
     .reserve-text p {
         font-size: clamp(0.875rem, 2.5vw, 1rem);
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     .reserve-form {
         margin-top: 15px;
-        padding: 0 10px;
+        margin-bottom: 20px; /* Space before image */
     }
 
     .reserve-right {
         width: 100%;
         height: 50vh; /* Fixed height for image on mobile */
+        position: relative;
     }
 
     .reserve-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: 80% 50%; /* Maintain focus on mobile */
     }
 }
 // - - - - - - BOOK.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
