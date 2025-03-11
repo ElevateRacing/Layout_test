@@ -671,17 +671,14 @@ nav {
     max-width: 400px;}
 .contact-form .reserve-btn {
     padding: 10px 20px;
-    text-decoration: none; /* Add this */
-    background-color: var(--secondary-color);
+    text-decoration: none;
     color: #000000;
-    border: none;
+    background-color: var(--secondary-color);
     border-radius: 12px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-    display: inline-block;}
 .contact-form .reserve-btn:hover {
     background-color: var(--button-hover);
     transform: scale(1.02);}
