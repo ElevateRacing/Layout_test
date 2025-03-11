@@ -925,33 +925,31 @@ nav {
 
 .reserve-left {
     width: 50%;
-    background-color: var(--background-light);
-    padding: 20px;
+    padding: 20px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-
 .reserve-text h2 {
     font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
+    line-height: 1.1; /* Match content1-left h2 */
+    margin-bottom: 20px; /* Match content1-left h2 */
 }
-
 .reserve-text p {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
     font-weight: 400;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    max-width: 500px; /* Limit text width for readability */
-    position: relative;
+    line-height: 1.6; /* Match content1 text-swap */
+    margin: 0 0 20px 0; /* Match content1 spacing (adjusted for flow) */
+    max-width: 100%; /* Ensure it respects padding */
 }
 
+
+    
 .reserve-form {
     display: flex;
     flex-direction: column;
@@ -977,38 +975,42 @@ nav {
     width: 100%;
 }
 
+
+
+
+    
 .reserve-form .reserve-btn {
     padding: 10px 20px;
-    background-color: #ff6200; /* Match .desktop-btn */
-    color: #ffffff;
-    border: none;
+    text-decoration: none;
+    color: #000000;
+    background-color: var(--secondary-color);
     border-radius: 12px;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 600;
     font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    width: auto;
+    text-align: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
 }
 
 .reserve-form .reserve-btn:hover {
-    background-color: #ff7f33;
+    background-color: var(--button-hover);
     transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);
 }
 
 .reserve-right {
     width: 50%;
     height: 100%; /* Fill available height */
     position: relative;
-    overflow: hidden;
-    background-color: #ccc; /* Debug: Grey background if image fails */
 }
 
 .reserve-image {
     width: 100%;
     height: 100%; /* Match content1-SliderImage */
     object-fit: cover;
+    position: absolute;
     object-position: 40% 40%; /* Consistent with your original */
 }
 
