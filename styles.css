@@ -921,13 +921,14 @@ nav {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: row; /* Default: horizontal split */
     overflow: hidden;
+    background-color: var(--background-light);
 }
 
 .reserve-left {
     width: 50%;
-    background-color: var(--background-light);
-    padding: 20px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -935,7 +936,7 @@ nav {
     text-align: center;
 }
 
-.reserve-left h2 {
+.reserve-text h2 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: clamp(2rem, 3.5vw, 4rem);
     font-weight: 700;
@@ -943,18 +944,58 @@ nav {
     margin-bottom: 20px;
 }
 
-
-.reserve-left p {
+.reserve-text p {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.125rem);
     font-weight: 400;
     line-height: 1.6;
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin-bottom: 15px;
+    max-width: 500px; /* Limit text width for readability */
+}
+
+.reserve-form {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease; /* Already in your CSS */
+    max-width: 400px; /* Consistent form width */
+    margin-top: 20px;
+}
+
+.reserve-form label {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: clamp(0.875rem, 1vw, 1rem);
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
+.reserve-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.reserve-form .reserve-btn {
+    padding: 10px 20px;
+    background-color: #ff6200; /* Match .desktop-btn */
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
+}
+
+.reserve-form .reserve-btn:hover {
+    background-color: #ff7f33;
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);
 }
 
 .reserve-right {
@@ -963,21 +1004,51 @@ nav {
     overflow: hidden;
 }
 
-.reserve-right img {
+.reserve-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    object-position: 40% 40%;
+    object-position: 40% 40%; /* Consistent with your original */
 }
 
-        @media (max-width: 768px) {
-            .reserve-left, .reserve-right {
-                width: 100%;
-            }
-            .reserve-section {
-                flex-direction: column;
-            }
-        }
+@media (max-width: 768px) {
+    .reserve-section {
+        flex-direction: column;
+        height: auto; /* Allow natural height for stacking */
+        padding: 90px 0 20px 0; /* Match header offset */
+    }
+
+    .reserve-left {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .reserve-text h2 {
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile content1 */
+        margin-bottom: 15px;
+    }
+
+    .reserve-text p {
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        margin-bottom: 10px;
+    }
+
+    .reserve-form {
+        margin-top: 15px;
+        padding: 0 10px;
+    }
+
+    .reserve-right {
+        width: 100%;
+        height: 50vh; /* Fixed height for image on mobile */
+    }
+
+    .reserve-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
 // - - - - - - BOOK.HTML - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 .book-section {
     height: 100vh;
