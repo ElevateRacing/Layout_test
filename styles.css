@@ -684,111 +684,115 @@ nav {
     transform: scale(1.02);}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
-.reserve-section {
-    height: 100vh;
-    display: flex;
-    overflow: hidden; /* Match content1-section */
-    background-color: #E8ECEF;}
-.reserve-right {
-    width: 50%;
-    position: relative; /* For positioning images */}
-.content2-center {
-    width: 50%;
-    padding: 20px 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;}
-.reserve-image {
-    width: 100%;
-    height: 100%; /* Start below top-box (70px height + 20px margin + 20px buffer) */
-    object-fit: cover;
-    position: absolute;
-    /* top: 110px; /* Align with content1-ImageSlider top */
-    left: 0;}
-.reserve-center h2 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
-    font-weight: 700;
-    line-height: 1.1; /* Match content1-left h2 */
-    margin-bottom: 20px; /* Match content1-left h2 */}
-.reserve-center p {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
-    font-weight: 400;
-    line-height: 1.6; /* Match content1 text-swap */
-    margin: 0 0 20px 0; /* Match content1 spacing (adjusted for flow) */
-    max-width: 100%;}
-.reserve-btn {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #000000;
-    background-color: var(--secondary-color);
-    border-radius: 12px;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
-    width: auto;
-    text-align: center;
-    cursor: pointer;}
-.reserve-btn:hover {
-    background-color: var(--button-hover);
-    transform: scale(1.02);}
-
-@media (max-width: 768px) {
-    .reserve-section {
-        flex-direction: column;
-        height: 100vh;
-        position: relative;}
-    .reserve-right {
-        width: 100%;
-        height: 50%; /* Each image takes half the height */
-        position: absolute;}
-    .reserve-image {
-        height: 100%; /* Full height of container on mobile */
-        top: 0;}
-    .reserve-center {
-        width: 100%;
-        height: 50%; /* Top half for text */
-        padding: 20px;
-        position: relative;
-        z-index: 1;
-        background: rgba(245, 245, 245, 0.8);
-        overflow-y: auto;}
-    .reserve-right {
-        display: block; /* Show the right image */
-        width: 100%;
-        height: 50%; /* Bottom half for image */
-        position: absolute;
-        top: 50%; /* Start at halfway point */
-        left: 0;}
-    .reserve-right .reserve-image {
-        content: url('Images/Content1Right.png'); /* Use Content1Right.png */
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;}
-    .reserve-center h2 {
-        font-size: clamp(1.75rem, 6vw, 3rem); /* Match mobile hero h1 */
-        margin-bottom: 10px;}
-    .reserve-center p {
-        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match mobile text-swap */
-        line-height: 1.5; /* Match mobile text-swap */
-        margin-bottom: 10px;}
+main {
+    height: calc(100vh - 70px); /* Full height minus header height (adjust 70px as needed) */
+    overflow: hidden; /* No scroll on desktop */
 }
 
-@media (min-width: 769px) {
-    .reserve-left img.reserve-image {
-    object-fit: cover; /* Ensures the image covers the container */
-    object-position: 25% 50%;}
-    .reserve-right img.reserve-image {
-    object-fit: cover; /* Ensures the image covers the container */
-    object-position: 40% 50%;}
+.content-wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.left-half, .right-half {
+    width: 50%;
+    padding: 20px;
+}
+
+.left-half {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: flex-start; /* Align text and form to the left */
+}
+
+h2 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.reserve-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.reserve-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.right-half {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reserve-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the right half */
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    main {
+        height: auto; /* Allow scrolling on mobile */
+        overflow: auto;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-half, .right-half {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .left-half {
+        justify-content: flex-start; /* Stack content at top */
+    }
+
+    .right-half {
+        order: 1; /* Move image to bottom */
+    }
+
+    .reserve-image {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    nav {
+        display: none; /* Hide nav on mobile, adjust if you want a hamburger menu */
+    }
 }
 
     
