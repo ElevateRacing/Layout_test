@@ -714,6 +714,7 @@ nav {
 .reserve-form label {
     text-align: left;
     margin-top: 10px;
+    width: 100%;
 }
 
 .reserve-form input,
@@ -790,6 +791,17 @@ nav {
 
     .reserve-image {
         position: relative; /* Remove absolute positioning */
+    }
+
+    .reserve-text h2 {
+        font-size: clamp(1.75rem, 6vw, 3rem);
+        margin-bottom: 10px;
+    }
+
+    .reserve-text p {
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        line-height: 1.5;
+        margin-bottom: 10px;
     }
 }
 
