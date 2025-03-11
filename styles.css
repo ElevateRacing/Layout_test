@@ -921,7 +921,9 @@ nav {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-wrap: nowrap;
     overflow: hidden;
+    padding-top: 100px; /* Adjust based on .top-box height */
 }
 
 .reserve-left {
@@ -935,52 +937,25 @@ nav {
     text-align: center;
 }
 
-.reserve-text h2 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: clamp(2rem, 3.5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.reserve-text p {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
-    font-weight: 400;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    max-width: 500px; /* Limit text width for readability */
+.reserve-right {
+    width: 50%;
+    height: 100%;
     position: relative;
+    overflow: hidden;
+    background-color: #ccc;
 }
 
-.reserve-form {
-    display: flex;
-    flex-direction: column;
+.reserve-image {
     width: 100%;
-    max-width: 400px; /* Consistent form width */
-    margin-top: 20px;
-}
-
-.reserve-form label {
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: clamp(0.875rem, 1vw, 1rem);
-    margin: 10px 0 5px;
-    text-align: left;
-}
-
-.reserve-form input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1rem;
-    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 40% 40%;
+    display: block;
 }
 
 .reserve-form .reserve-btn {
     padding: 10px 20px;
-    background-color: #ff6200; /* Match .desktop-btn */
+    background-color: #ff6200;
     color: #ffffff;
     border: none;
     border-radius: 12px;
@@ -990,27 +965,7 @@ nav {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3);
-}
-
-.reserve-form .reserve-btn:hover {
-    background-color: #ff7f33;
-    transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);
-}
-
-.reserve-right {
-    width: 50%;
-    height: 100%; /* Fill available height */
-    position: relative;
-    overflow: hidden;
-    background-color: #ccc; /* Debug: Grey background if image fails */
-}
-
-.reserve-image {
-    width: 100%;
-    height: 100%; /* Match content1-SliderImage */
-    object-fit: cover;
-    object-position: 40% 40%; /* Consistent with your original */
+    align-self: center;
 }
 
 @media (max-width: 768px) {
