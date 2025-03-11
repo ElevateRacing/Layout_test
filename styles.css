@@ -684,6 +684,34 @@ nav {
     transform: scale(1.02);}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
+.reserve-section {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background-color: #E8ECEF;}
+.reserve-left {
+    width: 50%;
+    background-color: #E8ECEF;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;}
+.reserve-right {
+    width: 50%;
+    position: relative;
+    overflow: hidden;}
+.reserve-image {
+    width: 100%;
+    height: 100%; /* Start below top-box (70px height + 20px margin + 20px buffer) */
+    object-fit: cover;
+    position: absolute;
+    /* top: 110px; /* Align with content1-ImageSlider top */
+    left: 0;}
+
+    
+    
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - BOOK.HTML - - - - - - */
 
