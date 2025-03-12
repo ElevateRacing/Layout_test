@@ -33,130 +33,74 @@
             .logo1 {height: 40px; max-height: 50px; max-width: 45%; position: absolute; opacity: 1; object-fit: contain; flex-shrinking: 0;}
         }
 
-        .book-section {
-            display: flex;
-            min-height: calc(100vh - 110px);
-            max-height: calc(100vh - 110px);
-            margin-top: 110px;
-            background-color: #F5F5F5;
-            overflow: hidden;}
-        .book-left {
-            flex: 0 0 50%; /* Changed to 50% */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-y: auto;}
-        .book-content {
-            text-align: center;
+        main {
+            margin-top: 110px; /* Space for fixed header (70px height + 20px margin + 20px buffer) */
             width: 100%;
-            margin: 0 40px;}
-        .book-content h2 {
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-size: clamp(2rem, 3.5vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;}
-        .book-content p {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(1rem, 1.5vw, 1.125rem);
-            font-weight: 400;
-            line-height: 1.6;
-            margin: 0 0 20px 0;}
-        .book-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;}
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 15px;}
-        .book-form label {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(0.875rem, 1vw, 1rem);
-            margin-bottom: 5px;
-            text-align: left;}
-        .book-form input {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: 1rem;
-            width: 100%;
-            box-sizing: border-box;}
-        .custom-btn {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #ff6200;
-            border-radius: 12px;
-            border: none;
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
-            max-width: 400px;
-            margin-top: 10px;}
-        .custom-btn:hover {
-            background-color: #ff7f33;
-            transform: scale(1.02);
-            box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);}
-        .book-right {
-            flex: 0 0 50%; /* Changed to 50% */
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;}
-        .book-image {
-            height: 100%; /* Fill available height */
-            width: 100%; /* Let width adjust naturally */
-            max-height: calc(100vh - 110px); /* Match section height */
-            object-fit: cover; /* Trim sides if needed */
-            object-position: 50% 50%;}
-        .book-form select {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: 1rem;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #fff;
-            cursor: pointer;}
-        .book-form select:focus {
-            outline: none;
-            border-color: #ff6200;}
-        @media (max-width: 768px) {
-            .book-section {
-                flex-direction: column;
-                margin-top: 90px;
-                min-height: auto;
-                max-height: none;
-                overflow-y: auto;}
-            .book-left {
-                flex: none;
-                width: 100%;
-                padding: 20px;
-                overflow-y: visible;}
-            .book-right {
-                flex: none;
-                width: 100%;
-                padding: 0;}
-            .book-image {
-                width: 100%;
-                height: auto;
-                max-height: none;
-                object-fit: cover;}
-            .book-content {
-                padding-top: 20px;
-                margin: 0 20px;}
+            height: calc(100vh - 110px); /* Full viewport height minus header */
+            overflow: hidden; /* No scrolling on desktop */
         }
+
+        /* Text styling */
+        .info-text {
+            text-align: center;
+            padding: 10px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            color: #333;
+        }
+
+        .interaction-text,
+        .loading-text {
+            margin: 5px 0;
+        }
+
+        /* Canvas container */
+        #canvas-container {
+            width: 100%;
+            background-color: #f5f5f5; /* Matches your body background */
+        }
+
+        @media (max-width: 768px) {
+            main {
+                height: auto; /* Allow scrolling if content exceeds viewport */
+                overflow-y: auto; /* Enable scrolling on mobile if needed */
+            }
+
+            .info-text {
+                position: relative; /* Stays in flow under header */
+            }
+
+            #canvas-container {
+                height: calc(100vh - 110px - 70px); /* Remaining height after header and text */
+                position: relative;
+            }
+        }
+
+        @media (min-width: 769px) {
+            main {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .info-text {
+                position: absolute; /* Move text to bottom */
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.8); /* Optional: slight background for readability */
+                padding: 10px;
+            }
+
+            #canvas-container {
+                height: calc(100vh - 110px - 70px); /* Adjust based on text height */
+                flex-grow: 1; /* Fills available space */
+            }
+        }
+
+
+
+        
     </style>
 </head>
 <body>
@@ -173,15 +117,13 @@
         </div>
     </header>
 
-    <div class="mobile-section">
-        <p>Use fingers to explore AirKart architecture</p>
-        <p>Hold on, AirKart 3D model might take a while to load.</p>
-    </div>
-    <div id="canvas-container"></div>
-    <div class="desktop-section">
-        <p>Use fingers to explore AirKart architecture</p>
-        <p>Hold on, AirKart 3D model might take a while to load.</p>
-    </div>
+    <main>
+        <div class="info-text">
+            <p class="interaction-text">Swipe and tap to explore the AirKart 3D architecture (mobile) or click and drag (desktop).</p>
+            <p class="loading-text">Hold on, the AirKart 3D model might take a moment to load—worth the wait!</p>
+        </div>
+        <div id="canvas-container"></div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/OBJLoader.js"></script>
@@ -587,18 +529,21 @@
 
         // Resize renderer
         function resizeRenderer() {
-            if (!gridContainer || !container) return;
-            const totalWidth = gridContainer.clientWidth;
-            const leftWidth = leftText ? leftText.offsetWidth : 0;
-            const rightWidth = rightText ? rightText.offsetWidth : 0;
-            const canvasWidth = totalWidth - leftWidth - rightWidth;
+            const container = document.getElementById('canvas-container');
+            if (!container) return;
+            
+            const width = container.clientWidth;
+            const height = container.clientHeight;
 
-            renderer.setSize(canvasWidth, container.clientHeight);
-            camera.aspect = canvasWidth / container.clientHeight;
+
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
         }
+        
         resizeRenderer();
         window.addEventListener('resize', resizeRenderer);
+        window.addEventListener('load', resizeRenderer);
 
         // Mutation observer for dynamic resizing
         const observer = new MutationObserver(resizeRenderer);
