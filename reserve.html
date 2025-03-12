@@ -34,28 +34,33 @@
         }
 
         .reserve-section {
-            height: 100vh;
             display: flex;
-            overflow: hidden; /* Match content1-section */
-            background-color: #E8ECEF;}
+            min-height: calc(100vh - 110px); /* Account for header height */
+            margin-top: 110px; /* Push content below fixed header */
+            background-color: #E8ECEF;
+        }
 
-        .reserve-left-top {
-            width: 50%;
-            padding: 90px 50px;
+        .reserve-left {
+            width: 40%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;}
+            padding: 20px;
+        }
 
-        .reserve-left-top h2 {
+        .reserve-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .reserve-content h2 {
             font-family: 'Montserrat', Arial, sans-serif;
             font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
             font-weight: 700;
             line-height: 1.1; /* Match content1-left h2 */
             margin-bottom: 20px; /* Match content1-left h2 */}
 
-        .reserve-left-top p {
+        .reserve-content p {
             font-family: 'Open Sans', Arial, sans-serif;
             font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
             font-weight: 400;
@@ -87,7 +92,7 @@
             width: 100%;
             max-width: 400px;}
 
-        .reserve-form .reserve-btn {
+        .custom-btn {
             padding: 10px 20px;
             text-decoration: none;
             color: #000000;
@@ -97,9 +102,22 @@
             font-weight: 600;
             font-size: 1rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
-        .reserve-form .reserve-btn:hover {
+        .custom-btn:hover {
             background-color: var(--button-hover);
             transform: scale(1.02);}
+
+        .reserve-right {
+            width: 60%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .reserve-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
 
 
@@ -110,19 +128,28 @@
         @media (max-width: 768px) {
             .reserve-section {
                 flex-direction: column;
-                height: auto;
-                position: relative;}
+                margin-top: 90px; /* Adjusted for mobile header */
+                min-height: auto;
+            }
 
-            .reserve-left-top {
+            .reserve-left {
                 width: 100%;
-                height: 50%; /* Top half for text */
                 padding: 20px;
-                position: relative;
-                z-index: 1;
-                background: rgba(245, 245, 245, 0.8);
-                overflow-y: auto;}
+            }
 
-            
+            .reserve-right {
+                width: 100%;
+                padding: 0;
+            }
+
+            .reserve-image {
+                width: 100%;
+                height: auto;
+            }
+
+            .reserve-content {
+                padding-top: 20px;
+            }
         }
 
         @media (min-width: 769px) {
@@ -144,8 +171,9 @@
         </div>
     </header>
 
-    <main class ="reserve-section">
-        <div class="reserve-left-top">
+    <main class="reserve-section">
+    <div class="reserve-left">
+        <div class="reserve-content">
             <h2>Reserve Your AirKart</h2>
             <p>Production start is planned in 2026 and first deliveries estimated early 2027. Secure your place in line today. AirKart will be ready for collection in one of our training zones after completing comprehensive training for $199,000.</p>
             <p>One of our Sales team members will contact you as soon as possible to discuss future payments and delivery details.</p>
@@ -157,17 +185,14 @@
                 <input type="text" id="country" name="country" required>
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
-                <button type="submit" class="reserve-btn">Send Message</button>
+                <button type="submit" class="custom-btn">Send Message</button>
             </form>
-
-            
         </div>
-        <div class="reserve-right-bottom">
-            <img src="Images/Reserve.png....." alt="AirKart reservation preview image" class="reserve-image">
-            
-        </div>
-
-    </main>
+    </div>
+    <div class="reserve-right">
+        <img src="Images/Reserve.png" alt="AirKart reservation preview image" class="reserve-image">
+    </div>
+</main>
 
 
 
