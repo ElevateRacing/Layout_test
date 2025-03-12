@@ -21,7 +21,7 @@
             <nav>
                 <a href="reserve.html" class="header-btn">Reserve your AirKart</a>
                 <a href="book.html" class="header-btn">Book a Flight</a>
-                <a href="#content4-section" class="header-btn">Contact</a>
+                <a href="#contact-section" class="header-btn">Contact</a>
             </nav>
         </div>
     </header>
@@ -126,7 +126,7 @@
     </div>
 </section>
 
-<section class="content4-section">
+<section class="content4-section" id="contact-section">
     <div class="contact-container">
         <h2>CONTACT</h2>
         <p class="contact-email">contact@elevate-racing.com</p>
@@ -342,57 +342,6 @@ slider.addEventListener('touchend', e => {
     }
     slideInterval = setInterval(autoSlide, 10000);
 });
-
-        // New script to handle smooth scrolling with header offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    const headerHeight = document.querySelector('.top-box').offsetHeight + 40; // Account for header height + margin
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        
-
-    // - - - - - - END OF CONTENT1 TEXT SWAP AND IMAGE SLIDER SYNCH SCRIPT - - - - - -
-
-    // - - - - - - HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
-        /*
-        function setSectionHeights() {
-    const sections = document.querySelectorAll('.hero-section, .content4-section');
-    sections.forEach(section => {
-        section.style.height = `${window.innerHeight}px`; // Adjust height for margin
-        const background = section.querySelector('.hero-background');
-        if (background) {
-            background.style.height = `${window.innerHeight}px`;
-        }
-    });
-}
-
-window.addEventListener('resize', setSectionHeights);
-window.addEventListener('load', setSectionHeights);
-setSectionHeights();
-        window.addEventListener('pageshow', () => {
-    const button = document.querySelector('.mobile-reserve-btn');
-    if (button) {
-        button.style.left = '50%';
-        button.style.transform = 'translateX(-50%)';
-    }
-});
-*/
-    // - - - - - - END OF HERO SECTION HEIGHT FIX FOR MOBILE - - - - - -
-
-
-
-        
 
     </script>
 </body>
