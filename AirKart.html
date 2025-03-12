@@ -167,48 +167,22 @@
             <nav>
                 <a href="index.html" class="header-btn">Home</a>
                 <a href="reserve.html" class="header-btn">Reserve your AirKart</a>
-                <a href="index.html" class="header-btn">Contact</a>
+                <a href="book.html" class="header-btn">Book a Flight</a>
+                <a href="index.html#contact-section" class="header-btn">Contact</a>
             </nav>
         </div>
     </header>
 
-    <main class="book-section">
-    <div class="book-left">
-        <div class="book-content">
-            <h2>Book Your Flight</h2>
-            <p>Step into the next dimension of racing!</p>
-            <p>In 2027, electrifying AirKarting Tracks launch in rugged Texas and stunning Dominican Republic. For $249, claim your 15-minute slot.</p>
-            <p>Hurry, these wings won’t wait!</p>
-            <form action="https://formspree.io/f/your-form-id" method="POST" class="book-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="country">Country of Residence</label>
-                    <input type="text" id="country_of_residence" name="country_of_residence" required>
-                </div>
-                <div class="form-group">
-                        <label for="country">Select Desired Location</label>
-                        <select id="desired_location" name="desired_location" required>
-                            <option value="" disabled selected>Select Desired Location</option>
-                            <option value="US">US</option>
-                            <option value="Dominican Republic">Dominican Republic</option>
-                            <option value="Middle East">Middle East</option>
-                        </select>
-                    </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <button type="submit" class="custom-btn">Send Message</button>
-            </form>
-        </div>
+    <div class="mobile-section">
+        <p>Use fingers to explore AirKart architecture</p>
+        <p>Hold on, AirKart 3D model might take a while to load.</p>
     </div>
-    <div class="book-right">
-        <img src="Images/Book.png" alt="AirKarting booking preview image" class="book-image">
+    <div id="canvas-container"></div>
+    <div class="desktop-section">
+        <p>Use fingers to explore AirKart architecture</p>
+        <p>Hold on, AirKart 3D model might take a while to load.</p>
     </div>
-</main>
+
 
 
 
@@ -302,6 +276,9 @@
         logo2.addEventListener('load', adjustLogos);
     // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
+
+
+        
     </script>
 </body>
 </html>
