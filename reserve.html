@@ -35,83 +35,100 @@
 
         .reserve-section {
         display: flex;
-        min-height: calc(100vh - 110px); /* Account for header */
-        max-height: calc(100vh - 110px); /* Prevent overflow */
-        margin-top: 110px; /* Push below fixed header */
+        min-height: calc(100vh - 110px);
+        max-height: calc(100vh - 110px);
+        margin-top: 110px;
         background-color: #E8ECEF;
-        overflow: hidden; /* Prevent scrolling */
+        overflow: hidden;
     }
 
     .reserve-left {
-        flex: 0 0 40%; /* Fixed 40% width */
+        flex: 0 0 50%; /* Changed to 50% */
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 20px;
-        overflow-y: auto; /* Allow scrolling within left section if needed */
+        overflow-y: auto;
     }
 
     .reserve-content {
         text-align: center;
         width: 100%;
+        margin: 0 40px; /* Added margins */
     }
 
-        .reserve-content h2 {
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-size: clamp(2rem, 3.5vw, 4rem); /* Match content1-left h2 */
-            font-weight: 700;
-            line-height: 1.1; /* Match content1-left h2 */
-            margin-bottom: 20px; /* Match content1-left h2 */}
+    .reserve-content h2 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: clamp(2rem, 3.5vw, 4rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
 
-        .reserve-content p {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(1rem, 1.5vw, 1.125rem); /* Match content1 text-swap */
-            font-weight: 400;
-            line-height: 1.6; /* Match content1 text-swap */
-            margin: 0 0 20px 0; /* Match content1 spacing (adjusted for flow) */
-            /* max-width: 100%;} */
+    .reserve-content p {
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(1rem, 1.5vw, 1.125rem);
+        font-weight: 400;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+    }
 
-        .reserve-form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            align-items: center;}
+    .reserve-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 
-        .reserve-form label {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(0.875rem, 1vw, 1rem);
-            margin: 10px 0 5px;
-            text-align: left;
-            width: 100%;
-            max-width: 400px;}
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 15px;
+    }
 
-        .reserve-form input {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: 1rem;
-            width: 100%;
-            max-width: 400px;}
+    .reserve-form label {
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: clamp(0.875rem, 1vw, 1rem);
+        margin-bottom: 5px;
+        text-align: left;
+    }
 
-        .custom-btn {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #000000;
-            background-color: var(--secondary-color);
-            border-radius: 12px;
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            cursor: pointer;
-        .custom-btn:hover {
-            background-color: var(--button-hover);
-            transform: scale(1.02);}
+    .reserve-form input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-family: 'Open Sans', Arial, sans-serif;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-        .reserve-right {
-        flex: 0 0 60%; /* Fixed 60% width */
+    .custom-btn {
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #000000;
+        background-color: var(--secondary-color);
+        border-radius: 12px;
+        border: none;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        max-width: 400px;
+        margin-top: 10px;
+    }
+
+    .custom-btn:hover {
+        background-color: var(--button-hover);
+        transform: scale(1.02);
+    }
+
+    .reserve-right {
+        flex: 0 0 50%; /* Changed to 50% */
         padding: 0;
         display: flex;
         align-items: center;
@@ -121,8 +138,8 @@
     .reserve-image {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Changed from cover to contain */
-        max-height: calc(100vh - 110px); /* Match section height */
+        object-fit: contain;
+        max-height: calc(100vh - 110px);
     }
 
 
@@ -137,7 +154,7 @@
             margin-top: 90px;
             min-height: auto;
             max-height: none;
-            overflow-y: auto; /* Allow scrolling if content exceeds viewport */
+            overflow-y: auto;
         }
 
         .reserve-left {
@@ -157,13 +174,14 @@
             width: 100%;
             height: auto;
             max-height: none;
-            object-fit: cover; /* Fill width on mobile */
+            object-fit: cover;
         }
 
         .reserve-content {
             padding-top: 20px;
+            margin: 0 20px; /* Adjusted margin for mobile */
         }
-        }
+}
 
         @media (min-width: 769px) {
 
@@ -192,12 +210,18 @@
             <p>One of our Sales team members will contact you as soon as possible to discuss future payments and delivery details.</p>
             <p>Secure your place in line today.</p>
             <form action="https://formspree.io/f/your-form-id" method="POST" class="reserve-form">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-                <label for="country">Country</label>
-                <input type="text" id="country" name="country" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
                 <button type="submit" class="custom-btn">Send Message</button>
             </form>
         </div>
