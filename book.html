@@ -119,6 +119,19 @@
             max-height: calc(100vh - 110px); /* Match section height */
             object-fit: cover; /* Trim sides if needed */
             object-position: 50% 50%;}
+        .book-form select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #fff;
+            cursor: pointer;}
+        .book-form select:focus {
+            outline: none;
+            border-color: #ff6200;}
         @media (max-width: 768px) {
             .book-section {
                 flex-direction: column;
@@ -172,9 +185,18 @@
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" id="country" name="country" required>
+                    <label for="country">Country of Residence</label>
+                    <input type="text" id="country_of_residence" name="country_of_residence" required>
                 </div>
+                <div class="form-group">
+                        <label for="country">Select Desired Location</label>
+                        <select id="desired_location" name="desired_location" required>
+                            <option value="" disabled selected>Select Desired Location</option>
+                            <option value="US">US</option>
+                            <option value="Dominican Republic">Dominican Republic</option>
+                            <option value="Middle East">Middle East</option>
+                        </select>
+                    </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
