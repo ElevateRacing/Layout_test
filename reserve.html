@@ -63,67 +63,49 @@
             font-weight: 400;
             line-height: 1.6;
             margin: 0 0 20px 0;}
-
-    .reserve-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 15px;
-    }
-
-    .reserve-form label {
-        font-family: 'Open Sans', Arial, sans-serif;
-        font-size: clamp(0.875rem, 1vw, 1rem);
-        margin-bottom: 5px;
-        text-align: left;
-    }
-
-    .reserve-form input {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-family: 'Open Sans', Arial, sans-serif;
-        font-size: 1rem;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .custom-btn {
-        padding: 10px 20px;
-        text-decoration: none;
-        color: #ffffff;
-        background-color: #ff6200;
-        border-radius: 12px;
-        border: none;
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-       /* display: inline-block; /* remove if does not work */
-       /* width: auto; /* change to 100% if does not work */
-       /* text-align: center; /* remove */
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
-        
-        
-        max-width: 400px;
-        margin-top: 10px;
-        
-    }
-
-    .custom-btn:hover {
-        background-color: #ff7f33;
-        transform: scale(1.02);
-        box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5); /* Enhanced shadow on hover */}
-    }
+        .reserve-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;}
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;}
+        .reserve-form label {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: clamp(0.875rem, 1vw, 1rem);
+            margin-bottom: 5px;
+            text-align: left;}
+        .reserve-form input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;}
+        .custom-btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #ff6200;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
+            max-width: 400px;
+            margin-top: 10px;}
+        .custom-btn:hover {
+            background-color: #ff7f33;
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);}
 
     .reserve-right {
         flex: 0 0 50%; /* Changed to 50% */
@@ -136,7 +118,7 @@
 
     .reserve-image {
         height: 100%; /* Fill available height */
-        width: auto; /* Let width adjust naturally */
+        width: 100%; /* Let width adjust naturally */
         max-height: calc(100vh - 110px); /* Match section height */
         object-fit: cover; /* Trim sides if needed */
         object-position: 60% 50%; /* Focus on 50% center */
