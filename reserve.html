@@ -106,68 +106,43 @@
             background-color: #ff7f33;
             transform: scale(1.02);
             box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5);}
-
-    .reserve-right {
-        flex: 0 0 50%; /* Changed to 50% */
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .reserve-image {
-        height: 100%; /* Fill available height */
-        width: 100%; /* Let width adjust naturally */
-        max-height: calc(100vh - 110px); /* Match section height */
-        object-fit: cover; /* Trim sides if needed */
-        object-position: 60% 50%; /* Focus on 50% center */
-    }
-
-
-
-
-        
-
-        
+        .reserve-right {
+            flex: 0 0 50%; /* Changed to 50% */
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;}
+        .reserve-image {
+            height: 100%; /* Fill available height */
+            width: 100%; /* Let width adjust naturally */
+            max-height: calc(100vh - 110px); /* Match section height */
+            object-fit: cover; /* Trim sides if needed */
+            object-position: 50% 50%;}
         @media (max-width: 768px) {
             .reserve-section {
-            flex-direction: column;
-            margin-top: 90px;
-            min-height: auto;
-            max-height: none;
-            overflow-y: auto;
-        }
-
-        .reserve-left {
-            flex: none;
-            width: 100%;
-            padding: 20px;
-            overflow-y: visible;
-        }
-
-        .reserve-right {
-            flex: none;
-            width: 100%;
-            padding: 0;
-        }
-
-        .reserve-image {
-            width: 100%;
-            height: auto;
-            max-height: none;
-            object-fit: cover;
-        }
-
-        .reserve-content {
-            padding-top: 20px;
-            margin: 0 20px; /* Adjusted margin for mobile */
-        }
-}
-
-        @media (min-width: 769px) {
-
-            
+                flex-direction: column;
+                margin-top: 90px;
+                min-height: auto;
+                max-height: none;
+                overflow-y: auto;}
+            .reserve-left {
+                flex: none;
+                width: 100%;
+                padding: 20px;
+                overflow-y: visible;}
+            .reserve-right {
+                flex: none;
+                width: 100%;
+                padding: 0;}
+            .reserve-image {
+                width: 100%;
+                height: auto;
+                max-height: none;
+                object-fit: cover;}
+            .reserve-content {
+                padding-top: 20px;
+                margin: 0 20px;}
         }
     </style>
 </head>
