@@ -639,7 +639,7 @@ nav {
     width: 100%;
     max-width: 600px;}
 .contact-container h2 {
-    font-family: 'Roboto', Arial, sans-serif; /* Match hero */
+    font-family: 'Montserrat', Arial, sans-serif; /* Match hero */
     font-size: clamp(2rem, 3.5vw, 4rem); /* Match hero */
     font-weight: 700; /* Match hero */
     margin-bottom: 20px;}
@@ -682,6 +682,26 @@ nav {
 .contact-form .reserve-btn:hover {
     background-color: var(--button-hover);
     transform: scale(1.02);}
+
+@media (min-width: 769px) {
+    .contact-container h2 {
+        font-family: 'Montserrat', Arial, sans-serif; /* Match hero */
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Match hero */
+        font-weight: 700; /* Match hero */
+        margin-bottom: 20px;}
+    .contact-email {
+        font-family: 'Open Sans', Arial, sans-serif; /* Match hero */
+        font-size: clamp(0.875rem, 2.5vw, 1rem); /* Match hero */
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 30px;
+    }
+
+
+    
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - RESERVE.HTML - - - - - - */
 
