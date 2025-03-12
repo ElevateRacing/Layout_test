@@ -34,44 +34,35 @@
         }
 
         .reserve-section {
-        display: flex;
-        min-height: calc(100vh - 110px);
-        max-height: calc(100vh - 110px);
-        margin-top: 110px;
-        background-color: #E8ECEF;
-        overflow: hidden;
-    }
-
-    .reserve-left {
-        flex: 0 0 50%; /* Changed to 50% */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        overflow-y: auto;
-    }
-
-    .reserve-content {
-        text-align: center;
-        width: 100%;
-        margin: 0 40px; /* Added margins */
-    }
-
-    .reserve-content h2 {
-        font-family: 'Montserrat', Arial, sans-serif;
-        font-size: clamp(2rem, 3.5vw, 4rem);
-        font-weight: 700;
-        line-height: 1.1;
-        margin-bottom: 20px;
-    }
-
-    .reserve-content p {
-        font-family: 'Open Sans', Arial, sans-serif;
-        font-size: clamp(1rem, 1.5vw, 1.125rem);
-        font-weight: 400;
-        line-height: 1.6;
-        margin: 0 0 20px 0;
-    }
+            display: flex;
+            min-height: calc(100vh - 110px);
+            max-height: calc(100vh - 110px);
+            margin-top: 110px;
+            background-color: #F5F5F5;
+            overflow: hidden;}
+        .reserve-left {
+            flex: 0 0 50%; /* Changed to 50% */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;}
+        .reserve-content {
+            text-align: center;
+            width: 100%;
+            margin: 0 40px;}
+        .reserve-content h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: clamp(2rem, 3.5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;}
+        .reserve-content p {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            font-weight: 400;
+            line-height: 1.6;
+            margin: 0 0 20px 0;}
 
     .reserve-form {
         display: flex;
@@ -108,23 +99,30 @@
     .custom-btn {
         padding: 10px 20px;
         text-decoration: none;
-        color: #000000;
-        background-color: var(--secondary-color);
+        color: #ffffff;
+        background-color: #ff6200;
         border-radius: 12px;
         border: none;
         font-family: 'Montserrat', Arial, sans-serif;
         font-weight: 600;
         font-size: 1rem;
-        cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease;
-        width: 100%;
+        display: inline-block; /* remove if does not work */
+        width: auto; /* change to 100% if does not work */
+        text-align: center; /* remove */
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(255, 98, 0, 0.3); /* Subtle orange shadow for depth */}
+        
+        /*
         max-width: 400px;
         margin-top: 10px;
+        */
     }
 
     .custom-btn:hover {
-        background-color: var(--button-hover);
+        background-color: #ff7f33;
         transform: scale(1.02);
+        box-shadow: 0 6px 16px rgba(255, 98, 0, 0.5); /* Enhanced shadow on hover */}
     }
 
     .reserve-right {
