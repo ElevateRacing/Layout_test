@@ -494,7 +494,7 @@
                             if (modelInfo.obj === 'models/Mono_optimized.obj') {
                                 const objectBoundingBox = new THREE.Box3().setFromObject(object);
                                 const objectCenter = objectBoundingBox.getCenter(new THREE.Vector3());
-                                camera.position.set(0, -1.5, 1.5);
+                                camera.position.set(0, 0, 0);
                                 camera.lookAt(objectCenter);
                             }
 
