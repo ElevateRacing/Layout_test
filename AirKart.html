@@ -37,70 +37,46 @@
             margin-top: 110px; /* Space for fixed header (70px height + 20px margin + 20px buffer) */
             width: 100%;
             height: calc(100vh - 110px); /* Full viewport height minus header */
-            overflow: hidden; /* No scrolling on desktop */
-        }
-
-        /* Text styling */
+            overflow: hidden;}
         .info-text {
             text-align: center;
             padding: 10px;
             font-family: 'Open Sans', Arial, sans-serif;
             font-size: clamp(0.875rem, 1.5vw, 1rem);
-            color: #333;
-        }
-
+            color: #333;}
         .interaction-text,
         .loading-text {
-            margin: 5px 0;
-        }
-
-        /* Canvas container */
+            margin: 5px 0;}
         #canvas-container {
             width: 100%;
-            background-color: #f5f5f5; /* Matches your body background */
-        }
-
+            background-color: #f5f5f5;}
         @media (max-width: 768px) {
             main {
                 height: auto; /* Allow scrolling if content exceeds viewport */
-                overflow-y: auto; /* Enable scrolling on mobile if needed */
-            }
-
+                overflow-y: auto;}
             .info-text {
-                position: relative; /* Stays in flow under header */
-            }
-
+                position: relative;}
             #canvas-container {
                 height: calc(100vh - 110px - 70px); /* Remaining height after header and text */
-                position: relative;
-            }
+                position: relative;}
         }
 
         @media (min-width: 769px) {
             main {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-            }
-
+                justify-content: space-between;}
             .info-text {
                 position: absolute; /* Move text to bottom */
                 bottom: 0;
                 left: 0;
                 right: 0;
                 background: rgba(255, 255, 255, 0.8); /* Optional: slight background for readability */
-                padding: 10px;
-            }
-
+                padding: 10px;}
             #canvas-container {
                 height: calc(100vh - 110px - 70px); /* Adjust based on text height */
-                flex-grow: 1; /* Fills available space */
-            }
+                flex-grow: 1;}
         }
-
-
-
-        
     </style>
 </head>
 <body>
@@ -330,7 +306,7 @@
                 'Models/Mono_optimized.obj',
                 function (object) {
                     // Scale the model
-                    object.scale.set(0.002, 0.002, 0.002);
+                    object.scale.set(0.001, 0.001, 0.001);
                     object.position.set(0, 0, 0);
                     scene.add(object);
                     console.log('Mono_optimized.obj loaded with materials and added to scene');
@@ -365,7 +341,7 @@
             objLoader.load(
                 'Models/Mono_optimized.obj',
                 function (object) {
-                    object.scale.set(0.00015, 0.00015, 0.00015);
+                    object.scale.set(0.001, 0.001, 0.001);
                     object.position.set(0, 0, 0);
                     scene.add(object);
                     console.log('Mono_optimized.obj loaded without materials as fallback');
