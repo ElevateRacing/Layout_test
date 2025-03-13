@@ -257,7 +257,7 @@
         );
 
         // Define HDR-enhanced materials
-        let Paint_Red, CFRP_Matt;
+        let Paint_Red, CFRP_Matt, CFRP_Glossy;
         function defineHDRMaterials() {
             Paint_Red = new THREE.MeshStandardMaterial({
                 color: 0xFF0501, // Fiery sporty red
@@ -283,72 +283,73 @@
                 envMapIntensity: 0.7
             });
         }
-
-
         
+        // Load model and replace MTL materials with HDR ones
+    function loadModelWithHDRMaterials() {
+        defineHDRMaterials();
 
-      
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load(
+            'Models/Mono_optimized.mtl',
+            function (materials) {
+                materials.preload();
 
-
-
-
-        
-    // Load the MTL and OBJ
-    const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.load(
-        'Models/Mono_optimized.mtl',
-        function (materials) {
-            materials.preload(); // Preload the materials
-
-            const objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials); // Apply the loaded materials
-            objLoader.load(
-                'Models/Mono_optimized.obj',
-                function (object) {
-                    // Scale the model
-                    object.scale.set(0.001, 0.001, 0.001);
-                    object.position.set(0, 0, 0);
-                    scene.add(object);
-                    console.log('Mono_optimized.obj loaded with materials and added to scene');
-
-                    // Adjust camera based on model bounds
-                    const boundingBox = new THREE.Box3().setFromObject(object);
-                    const center = boundingBox.getCenter(new THREE.Vector3());
-                    const size = boundingBox.getSize(new THREE.Vector3());
-                    const maxDim = Math.max(size.x, size.y, size.z);
-                    const fov = camera.fov * (Math.PI / 180);
-                    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-                    camera.position.set(0, -cameraZ, cameraZ);
-                    camera.lookAt(center);
-                    controls.target.copy(center); // Update controls target
-                },
-                function (xhr) {
-                    console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                },
-                function (error) {
-                    console.error('Error loading Mono_optimized.obj:', error);
+                // Replace MTL materials with HDR-defined materials
+                if (materials.materials['Powder_Coat_(Red)']) {
+                    materials.materials['Powder_Coat_(Red)'] = Paint_Red;
                 }
-            );
-        },
-        function (xhr) {
-            console.log(`Mono_optimized.mtl: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-        },
-        function (error) {
-            console.error('Error loading Mono_optimized.mtl:', error);
-            // Fallback: Load OBJ without materials if MTL fails
-            const objLoader = new THREE.OBJLoader();
-            objLoader.load(
-                'Models/Mono_optimized.obj',
-                function (object) {
-                    object.scale.set(0.001, 0.001, 0.001);
-                    object.position.set(0, 0, 0);
-                    scene.add(object);
-                    console.log('Mono_optimized.obj loaded without materials as fallback');
+                if (materials.materials['CFRP']) {
+                    materials.materials['CFRP'] = CFRP_Matt;
                 }
-            );
-        }
-    );
+                // Add more replacements if other materials exist in your MTL file
+                // Example: if (materials.materials['SomeOtherMaterial']) materials.materials['SomeOtherMaterial'] = CFRP_Glossy;
+
+                const objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load(
+                    'Models/Mono_optimized.obj',
+                    function (object) {
+                        object.scale.set(0.001, 0.001, 0.001);
+                        object.position.set(0, 0, 0);
+                        scene.add(object);
+                        console.log('Mono_optimized.obj loaded with HDR-replaced materials');
+
+                        const boundingBox = new THREE.Box3().setFromObject(object);
+                        const center = boundingBox.getCenter(new THREE.Vector3());
+                        const size = boundingBox.getSize(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const fov = camera.fov * (Math.PI / 180);
+                        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+                        camera.position.set(0, -cameraZ, cameraZ);
+                        camera.lookAt(center);
+                        controls.target.copy(center);
+                    },
+                    function (xhr) {
+                        console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                    },
+                    function (error) {
+                        console.error('Error loading Mono_optimized.obj:', error);
+                    }
+                );
+            },
+            function (xhr) {
+                console.log(`Mono_optimized.mtl: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+            },
+            function (error) {
+                console.error('Error loading Mono_optimized.mtl:', error);
+                const objLoader = new THREE.OBJLoader();
+                objLoader.load(
+                    'Models/Mono_optimized.obj',
+                    function (object) {
+                        object.scale.set(0.001, 0.001, 0.001);
+                        scene.add(object);
+                        console.log('Mono_optimized.obj loaded without materials as fallback');
+                    }
+                );
+            }
+        );
+    }
 
 
 
