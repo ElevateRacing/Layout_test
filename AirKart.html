@@ -229,23 +229,36 @@
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 0.9;
         renderer.physicallyCorrectLights = true;
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-    const container = document.getElementById('canvas-container');
-    if (!container) {
-        console.error('Canvas container not found!');
-    } else {
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        container.appendChild(renderer.domElement);
-    }
+        const container = document.getElementById('canvas-container');
+        if (!container) {
+            console.error('Canvas container not found!');
+        } else {
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+        }
 
-    // Add ambient lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
-    scene.add(ambientLight);
+        // Add ambient lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
+        scene.add(ambientLight);
 
-    // Add directional lighting
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
+        // Add directional lighting
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
+        directionalLight.position.set(5, 10, 5);
+        scene.add(directionalLight);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight2.position.set(-5, 5, -5);
+        scene.add(directionalLight2);
+
+        const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.3);
+        directionalLight3.position.set(0, -5, 5);
+        scene.add(directionalLight3);
+
+        const pointLight = new THREE.PointLight(0xffffff, 0.3, 50);
+        pointLight.position.set(0, 5, 5);
+        scene.add(pointLight);
 
     // Load the MTL and OBJ
     const mtlLoader = new THREE.MTLLoader();
