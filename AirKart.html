@@ -223,7 +223,7 @@
     // - - - - - - THREE.JS SCRIPT - - - - - -
         // Scene, camera, and renderer setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setClearColor(0xffffff, 1);
 
@@ -243,12 +243,6 @@
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
-
-    // Create a simple box
-    const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const boxMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-    const box = new THREE.Mesh(boxGeometry, boxMaterial);
-    scene.add(box);
 
     // Load the MTL and OBJ
     const mtlLoader = new THREE.MTLLoader();
