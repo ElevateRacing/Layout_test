@@ -260,6 +260,114 @@
         pointLight.position.set(0, 5, 5);
         scene.add(pointLight);
 
+        // HDR Environment
+        let environmentTexture = null;
+        const rgbeLoader = new THREE.RGBELoader();
+        rgbeLoader.load(
+            'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_1k.hdr',
+            function (texture) {
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+                scene.environment = texture;
+                environmentTexture = texture;
+                console.log('HDR environment loaded successfully!');
+                loadModelWithHDRMaterials(); // Load model after HDR is ready
+            },
+            undefined,
+            function (error) {
+                console.error('Error loading HDR:', error);
+                environmentTexture = null;
+                loadModelWithHDRMaterials(); // Load model even if HDR fails
+            }
+        );
+
+        // Define HDR-enhanced materials
+        let Paint_Red, CFRP_Matt;
+        function defineHDRMaterials() {
+            Paint_Red = new THREE.MeshStandardMaterial({
+                color: 0xFF0501, // Fiery sporty red
+                metalness: 0.3,
+                roughness: 0.1,
+                envMap: environmentTexture,
+                envMapIntensity: 1.0
+            });
+
+            CFRP_Matt = new THREE.MeshStandardMaterial({
+                color: 0x1C2526, // Dark carbon fiber
+                metalness: 0.1,
+                roughness: 0.6,
+                envMap: environmentTexture,
+                envMapIntensity: 0.5
+            });
+        }
+
+        // Load model and apply HDR materials
+    function loadModelWithHDRMaterials() {
+        defineHDRMaterials(); // Define materials with HDR
+
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load(
+            'Models/Mono_optimized.mtl',
+            function (materials) {
+                materials.preload();
+
+                // Override MTL materials with HDR-enhanced versions
+                materials.materials['Powder_Coat_(Red)'] = Paint_Red;
+                materials.materials['CFRP'] = CFRP_Matt;
+
+                const objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load(
+                    'Models/Mono_optimized.obj',
+                    function (object) {
+                        object.scale.set(0.002, 0.002, 0.002); // Adjusted scale from your code
+                        object.position.set(0, 0, 0);
+                        scene.add(object);
+                        console.log('Mono_optimized.obj loaded with HDR-enhanced materials');
+
+                        // Adjust camera
+                        const boundingBox = new THREE.Box3().setFromObject(object);
+                        const center = boundingBox.getCenter(new THREE.Vector3());
+                        const size = boundingBox.getSize(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const fov = camera.fov * (Math.PI / 180);
+                        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+                        camera.position.set(0, -cameraZ, cameraZ);
+                        camera.lookAt(center);
+                        controls.target.copy(center);
+                    },
+                    function (xhr) {
+                        console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                    },
+                    function (error) {
+                        console.error('Error loading Mono_optimized.obj:', error);
+                    }
+                );
+            },
+            function (xhr) {
+                console.log(`Mono_optimized.mtl: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+            },
+            function (error) {
+                console.error('Error loading Mono_optimized.mtl:', error);
+                const objLoader = new THREE.OBJLoader();
+                objLoader.load(
+                    'Models/Mono_optimized.obj',
+                    function (object) {
+                        object.scale.set(0.002, 0.002, 0.002);
+                        scene.add(object);
+                        console.log('Mono_optimized.obj loaded without materials');
+                    }
+                );
+            }
+        );
+    }
+
+
+
+
+
+        
+
         // List of models to load with material mappings
         const modelsToLoad = [
             { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } }
@@ -267,6 +375,10 @@
 
       
 
+
+
+/*
+        
     // Load the MTL and OBJ
     const mtlLoader = new THREE.MTLLoader();
     mtlLoader.load(
@@ -326,7 +438,7 @@
 
 
 
-
+*/
 
 
         
