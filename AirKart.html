@@ -260,6 +260,117 @@
         pointLight.position.set(0, 5, 5);
         scene.add(pointLight);
 
+        // List of models to load with material mappings
+        const modelsToLoad = [
+            { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } }
+        ];
+
+        // Load HDR and initialize materials, then load models
+        const rgbeLoader = new THREE.RGBELoader();
+        rgbeLoader.load(
+            'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_1k.hdr',
+            function (texture) {
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+                scene.environment = texture;
+                environmentTexture = texture;
+                console.log('HDRI environment loaded successfully!');
+
+                // Define materials after HDR is loaded
+                Paint_Red = new THREE.MeshStandardMaterial({
+                    color: 0xFF0501, // Fiery sporty red
+                    metalness: 0.3,
+                    roughness: 0.1,
+                    envMap: environmentTexture,
+                    envMapIntensity: 1.0
+                });
+
+                CFRP_Matt = new THREE.MeshStandardMaterial({
+                    color: 0x1C2526,
+                    metalness: 0.1,
+                    roughness: 0.6,
+                    envMap: environmentTexture,
+                    envMapIntensity: 0.5
+                });
+
+                loadModels(); // Start loading models
+            }
+
+            // Load models sequentially
+            function loadModels() {
+                let loadedCount = 0;
+
+                function loadNextModel(index) {
+                    if (index >= modelsToLoad.length) {
+                        console.log('All models loaded successfully.');
+                        return;
+                    }
+
+                    const modelInfo = modelsToLoad[index];
+                    const mtlLoader = new THREE.MTLLoader();
+                    mtlLoader.load(modelInfo.mtl, function (materials) {
+                        materials.preload();
+
+                        // Map material names to custom materials
+                        const materialMap = {
+                            'Paint_Red': Paint_Red,
+                            'CFRP_Matt': CFRP_Matt
+                        };
+
+                        // Override materials
+                        for (const [mtlName, materialKey] of Object.entries(modelInfo.materials)) {
+                            if (materials.materials[mtlName]) {
+                                materials.materials[mtlName] = materialMap[materialKey];
+                            } else {
+                                console.warn(`Material ${mtlName} not found in ${modelInfo.mtl}`);
+                            }
+                        }
+
+                        const objLoader = new THREE.OBJLoader();
+                        objLoader.setMaterials(materials);
+                        objLoader.load(
+                            modelInfo.obj,
+                            function (object) {
+                                object.position.set(0, 0, 0);
+                                object.scale.set(0.002, 0.002, 0.002);
+                                scene.add(object);
+                                console.log(`${modelInfo.obj} added to scene with HDR materials`);
+
+                                // Set camera based on the first model’s bounding box
+                                if (modelInfo.obj === 'models/Mono_optimized.obj') {
+                                    const objectBoundingBox = new THREE.Box3().setFromObject(object);
+                                    const objectCenter = objectBoundingBox.getCenter(new THREE.Vector3());
+                                    camera.position.set(0, -1.5, 1.5);
+                                    camera.lookAt(objectCenter);
+                                }
+
+                                loadedCount++;
+                                loadNextModel(index + 1); // Load next model
+                            },
+                            function (xhr) {
+                                console.log(`${modelInfo.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                            },
+                            function (error) {
+                                console.error(`Error loading ${modelInfo.obj}:`, error);
+                                loadedCount++;
+                                loadNextModel(index + 1); // Continue despite error
+                            }
+                        );
+                    }, undefined, function (error) {
+                        console.error(`Error loading ${modelInfo.mtl}:`, error);
+                        loadedCount++;
+                        loadNextModel(index + 1); // Continue despite error
+                    });
+                }
+
+                loadNextModel(0); // Start loading from the first model
+            }
+
+         
+
+/*
+
+
+        
     // Load the MTL and OBJ
     const mtlLoader = new THREE.MTLLoader();
     mtlLoader.load(
@@ -317,6 +428,13 @@
         }
     );
 
+
+
+*/
+
+
+
+        
     // Add TrackballControls
     const controls = new THREE.TrackballControls(camera, renderer.domElement);
     controls.rotateSpeed = 2.5;
