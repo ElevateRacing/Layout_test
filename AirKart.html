@@ -222,358 +222,264 @@
 
     // - - - - - - THREE.JS SCRIPT - - - - - -
         // Scene, camera, and renderer setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setClearColor(0xffffff, 1);
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 0.9;
-        renderer.physicallyCorrectLights = true;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setClearColor(0xf5f5f5, 1); // Match your background color
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.9;
+    renderer.physicallyCorrectLights = true;
 
-        const container = document.getElementById('canvas-container');
-        const gridContainer = document.getElementById('grid-container');
-        const leftText = document.getElementById('left-text');
-        const rightText = document.getElementById('right-text');
-        const topText = document.getElementById('top-text');
-        const bottomText = document.getElementById('bottom-text');
-        const logoLeft = document.getElementById('logo-left');
+    const container = document.getElementById('canvas-container');
+    if (!container) {
+        console.error('Canvas container not found! Add <div id="canvas-container"></div> to your HTML.');
+    } else {
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+    }
 
-        if (!container) {
-            console.error('Canvas container not found! Add <div id="canvas-container"></div> to your HTML.');
-        } else {
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
+    // Add ambient lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
+    scene.add(ambientLight);
+
+    // Add directional lighting
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
+    directionalLight1.position.set(5, 10, 5);
+    scene.add(directionalLight1);
+
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.6);
+    directionalLight2.position.set(-5, 5, -5);
+    scene.add(directionalLight2);
+
+    const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.3);
+    directionalLight3.position.set(0, -5, 5);
+    scene.add(directionalLight3);
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.3, 50);
+    pointLight.position.set(0, 5, 5);
+    scene.add(pointLight);
+
+    // Global variables for materials
+    let environmentTexture = null;
+    let Paint_Red, Paint_Black, CFRP_Matt, Blue_Fabric, Brushed_Stainless, Matte_Red_Steel,
+        Plastic_Grey, Plastic_Black, Plastic_Red, Glossy_Aluminium, Black_SemiGloss_Aluminium, CFRP_Glossy;
+
+    // List of models to load with material mappings
+    const modelsToLoad = [
+        { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
+        { obj: 'models/Front_cover_optimized.obj', mtl: 'models/Front_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
+        { obj: 'models/Rear_cover_optimized.obj', mtl: 'models/Rear_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
+        { obj: 'models/Seat_optimized.obj', mtl: 'models/Seat_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
+        { obj: 'models/Left_cover_optimized.obj', mtl: 'models/Left_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Right_cover_optimized.obj', mtl: 'models/Right_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Roll_hoop_optimized.obj', mtl: 'models/Roll_hoop_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Roll_hoop_cover_optimized.obj', mtl: 'models/Roll_hoop_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
+        { obj: 'models/Safety_belt_optimized.obj', mtl: 'models/Safety_belt_optimized.mtl', materials: { 'Stainless_Steel_-_Satin': 'Brushed_Stainless', 'Belt_(Blue)': 'Blue_Fabric', 'Plastic_-_Matte_(Red)': 'Matte_Red_Steel' } },
+        { obj: 'models/Display_panel_optimized.obj', mtl: 'models/Display_panel_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Edge_R_optimized.obj', mtl: 'models/Edge_R_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Edge_L_optimized.obj', mtl: 'models/Edge_L_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Display_holder_optimized.obj', mtl: 'models/Display_holder_optimized.mtl', materials: { 'Steel_-_Satin': 'Brushed_Stainless' } },
+        { obj: 'models/Display_optimized.obj', mtl: 'models/Display_optimized.mtl', materials: { 'Grey_Plastic': 'Plastic_Grey', 'Display_Screen': 'Blue_Fabric' } },
+        { obj: 'models/Joystick_optimized.obj', mtl: 'models/Joystick_optimized.mtl', materials: { 'Plastic_Black': 'Plastic_Black', 'Plastic_Red': 'Plastic_Red' } },
+        { obj: 'models/Throttle_optimized.obj', mtl: 'models/Throttle_optimized.mtl', materials: { 'Plastic_Black': 'Plastic_Black', 'Steel_-_Satin': 'Brushed_Stainless' } },
+        { obj: 'models/Arm_fwd_optimized.obj', mtl: 'models/Arm_fwd_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/test.obj', mtl: 'models/test.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
+        { obj: 'models/Motors_fwd_1_optimized.obj', mtl: 'models/Motors_fwd_1_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
+        { obj: 'models/Motors_fwd_2_optimized.obj', mtl: 'models/Motors_fwd_2_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
+        { obj: 'models/Motors_aft_1_optimized.obj', mtl: 'models/Motors_aft_1_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
+        { obj: 'models/Motors_aft_2_optimized.obj', mtl: 'models/Motors_aft_2_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
+        { obj: 'models/Prop_fwd_top_1_optimized.obj', mtl: 'models/Prop_fwd_top_1_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
+        { obj: 'models/Prop_fwd_top_2_optimized.obj', mtl: 'models/Prop_fwd_top_2_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
+        { obj: 'models/Prop_fwd_bottom_1_optimized.obj', mtl: 'models/Prop_fwd_bottom_1_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
+        { obj: 'models/Prop_fwd_bottom_2_optimized.obj', mtl: 'models/Prop_fwd_bottom_2_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } }
+    ];
+
+    // Load HDR and initialize materials, then load models
+    const rgbeLoader = new THREE.RGBELoader();
+    rgbeLoader.load(
+        'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_1k.hdr',
+        function (texture) {
+            texture.mapping = THREE.EquirectangularReflectionMapping;
+            scene.environment = texture;
+            environmentTexture = texture;
+            console.log('HDRI environment loaded successfully!');
+
+            // Define materials
+            Paint_Red = new THREE.MeshStandardMaterial({ color: 0xFF0501, metalness: 0.3, roughness: 0.1, envMap: environmentTexture, envMapIntensity: 1.0 });
+            Paint_Black = new THREE.MeshStandardMaterial({ color: 0x1C2526, metalness: 0.3, roughness: 0.1, envMap: environmentTexture, envMapIntensity: 1.0 });
+            CFRP_Matt = new THREE.MeshStandardMaterial({ color: 0x1C2526, metalness: 0.1, roughness: 0.6, envMap: environmentTexture, envMapIntensity: 0.5 });
+            Blue_Fabric = new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.0, roughness: 0.7, envMap: environmentTexture, envMapIntensity: 0.3 });
+            Brushed_Stainless = new THREE.MeshStandardMaterial({ color: 0xA9A9A9, metalness: 0.8, roughness: 0.4, envMap: environmentTexture, envMapIntensity: 1.0 });
+            Matte_Red_Steel = new THREE.MeshStandardMaterial({ color: 0xB22222, metalness: 0.2, roughness: 0.8, envMap: environmentTexture, envMapIntensity: 0.2 });
+            Plastic_Grey = new THREE.MeshStandardMaterial({ color: 0x808080, metalness: 0.0, roughness: 0.6, envMap: environmentTexture, envMapIntensity: 0.3 });
+            Plastic_Black = new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.0, roughness: 0.7, envMap: environmentTexture, envMapIntensity: 0.2 });
+            Plastic_Red = new THREE.MeshStandardMaterial({ color: 0xFF4040, metalness: 0.0, roughness: 0.5, envMap: environmentTexture, envMapIntensity: 0.4 });
+            Glossy_Aluminium = new THREE.MeshStandardMaterial({ color: 0xD9D9D9, metalness: 0.9, roughness: 0.2, envMap: environmentTexture, envMapIntensity: 1.2 });
+            Black_SemiGloss_Aluminium = new THREE.MeshStandardMaterial({ color: 0x1F2525, metalness: 0.4, roughness: 0.4, envMap: environmentTexture, envMapIntensity: 0.6 });
+            CFRP_Glossy = new THREE.MeshStandardMaterial({ color: 0x2A2A2A, metalness: 0.2, roughness: 0.3, envMap: environmentTexture, envMapIntensity: 0.7 });
+
+            loadModels();
+        },
+        undefined,
+        function (error) {
+            console.error('Error loading HDRI:', error);
+            environmentTexture = null;
+
+            // Fallback materials
+            Paint_Red = new THREE.MeshStandardMaterial({ color: 0xFF3400, metalness: 0.3, roughness: 0.1 });
+            Paint_Black = new THREE.MeshStandardMaterial({ color: 0x1C2526, metalness: 0.3, roughness: 0.1 });
+            CFRP_Matt = new THREE.MeshStandardMaterial({ color: 0x1C2526, metalness: 0.1, roughness: 0.6 });
+            Blue_Fabric = new THREE.MeshStandardMaterial({ color: 0x1E90FF, metalness: 0.0, roughness: 0.7 });
+            Brushed_Stainless = new THREE.MeshStandardMaterial({ color: 0xA9A9A9, metalness: 0.8, roughness: 0.4 });
+            Matte_Red_Steel = new THREE.MeshStandardMaterial({ color: 0xB22222, metalness: 0.2, roughness: 0.8 });
+            Plastic_Grey = new THREE.MeshStandardMaterial({ color: 0x808080, metalness: 0.0, roughness: 0.6 });
+            Plastic_Black = new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.0, roughness: 0.7 });
+            Plastic_Red = new THREE.MeshStandardMaterial({ color: 0xFF4040, metalness: 0.0, roughness: 0.5 });
+            Glossy_Aluminium = new THREE.MeshStandardMaterial({ color: 0xD9D9D9, metalness: 0.9, roughness: 0.2 });
+            Black_SemiGloss_Aluminium = new THREE.MeshStandardMaterial({ color: 0x1F2525, metalness: 0.4, roughness: 0.4 });
+            CFRP_Glossy = new THREE.MeshStandardMaterial({ color: 0x2A2A2A, metalness: 0.2, roughness: 0.3 });
+
+            loadModels();
         }
+    );
 
-        // Add ambient lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
-        scene.add(ambientLight);
+    // Load models sequentially
+    function loadModels() {
+        let loadedCount = 0;
+        const materialMap = {
+            'Paint_Red': Paint_Red,
+            'Paint_Black': Paint_Black,
+            'CFRP_Matt': CFRP_Matt,
+            'Blue_Fabric': Blue_Fabric,
+            'Brushed_Stainless': Brushed_Stainless,
+            'Matte_Red_Steel': Matte_Red_Steel,
+            'Plastic_Grey': Plastic_Grey,
+            'Plastic_Black': Plastic_Black,
+            'Plastic_Red': Plastic_Red,
+            'Glossy_Aluminium': Glossy_Aluminium,
+            'Black_SemiGloss_Aluminium': Black_SemiGloss_Aluminium,
+            'CFRP_Glossy': CFRP_Glossy
+        };
 
-        // Add directional lighting
-        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.4);
-        directionalLight1.position.set(5, 10, 5);
-        scene.add(directionalLight1);
-
-        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.6);
-        directionalLight2.position.set(-5, 5, -5);
-        scene.add(directionalLight2);
-
-        const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.3);
-        directionalLight3.position.set(0, -5, 5);
-        scene.add(directionalLight3);
-
-        const pointLight = new THREE.PointLight(0xffffff, 0.3, 50);
-        pointLight.position.set(0, 5, 5);
-        scene.add(pointLight);
-
-        // Global variables
-        let environmentTexture = null;
-        let Paint_Red = null;
-        let Paint_Black = null;
-        let CFRP_Matt = null;
-        let Blue_Fabric = null; // Blue fabric for safety belts
-        let Brushed_Stainless = null; // Brushed stainless steel
-        let Matte_Red_Steel = null; // Painted matte red steel
-        let Plastic_Grey = null; // Plastic grey
-        let Plastic_Black = null; // Plastic black
-        let Plastic_Red = null; // Plastic red
-        let Glossy_Aluminium = null;
-        let Black_SemiGloss_Aluminium = null;
-        let CFRP_Glossy = null;
-
-
-        
-
-        // List of models to load with material mappings
-        const modelsToLoad = [
-            { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
-            { obj: 'models/Front_cover_optimized.obj', mtl: 'models/Front_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
-            { obj: 'models/Rear_cover_optimized.obj', mtl: 'models/Rear_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
-            { obj: 'models/Seat_optimized.obj', mtl: 'models/Seat_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
-            { obj: 'models/Left_cover_optimized.obj', mtl: 'models/Left_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Right_cover_optimized.obj', mtl: 'models/Right_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Roll_hoop_optimized.obj', mtl: 'models/Roll_hoop_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Roll_hoop_cover_optimized.obj', mtl: 'models/Roll_hoop_cover_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red' } },
-            { obj: 'models/Safety_belt_optimized.obj', mtl: 'models/Safety_belt_optimized.mtl', materials: { 'Stainless_Steel_-_Satin': 'Brushed_Stainless', 'Belt_(Blue)': 'Blue_Fabric', 'Plastic_-_Matte_(Red)': 'Matte_Red_Steel' } },
-            { obj: 'models/Display_panel_optimized.obj', mtl: 'models/Display_panel_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Edge_R_optimized.obj', mtl: 'models/Edge_R_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Edge_L_optimized.obj', mtl: 'models/Edge_L_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Display_holder_optimized.obj', mtl: 'models/Display_holder_optimized.mtl', materials: { 'Steel_-_Satin': 'Brushed_Stainless' } },
-            { obj: 'models/Display_optimized.obj', mtl: 'models/Display_optimized.mtl', materials: { 'Grey_Plastic': 'Plastic_Grey', 'Display_Screen': 'Blue_Fabric' } },
-            { obj: 'models/Joystick_optimized.obj', mtl: 'models/Joystick_optimized.mtl', materials: { 'Plastic_Black': 'Plastic_Black', 'Plastic_Red': 'Plastic_Red' } },
-            { obj: 'models/Throttle_optimized.obj', mtl: 'models/Throttle_optimized.mtl', materials: { 'Plastic_Black': 'Plastic_Black', 'Steel_-_Satin': 'Brushed_Stainless' } },
-            { obj: 'models/Arm_fwd_optimized.obj', mtl: 'models/Arm_fwd_optimized.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/test.obj', mtl: 'models/test.mtl', materials: { 'CFRP': 'CFRP_Matt' } },
-            { obj: 'models/Motors_fwd_1_optimized.obj', mtl: 'models/Motors_fwd_1_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
-            { obj: 'models/Motors_fwd_2_optimized.obj', mtl: 'models/Motors_fwd_2_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
-            { obj: 'models/Motors_aft_1_optimized.obj', mtl: 'models/Motors_aft_1_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
-            { obj: 'models/Motors_aft_2_optimized.obj', mtl: 'models/Motors_aft_2_optimized.mtl', materials: { 'Black_Aluminium_Semi-gloss': 'Black_SemiGloss_Aluminium', 'Aluminum_-_Polished': 'Glossy_Aluminium' } },
-            { obj: 'models/Prop_fwd_top_1_optimized.obj', mtl: 'models/Prop_fwd_top_1_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
-            { obj: 'models/Prop_fwd_top_2_optimized.obj', mtl: 'models/Prop_fwd_top_2_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
-            { obj: 'models/Prop_fwd_bottom_1_optimized.obj', mtl: 'models/Prop_fwd_bottom_1_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } },
-            { obj: 'models/Prop_fwd_bottom_2_optimized.obj', mtl: 'models/Prop_fwd_bottom_2_optimized.mtl', materials: { 'CFRP': 'Paint_Black' } }
-        ];
-
-        // Load HDR and initialize materials, then load models
-        const rgbeLoader = new THREE.RGBELoader();
-        rgbeLoader.load(
-            'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/autumn_field_1k.hdr',
-            function (texture) {
-                texture.mapping = THREE.EquirectangularReflectionMapping;
-                scene.environment = texture;
-                environmentTexture = texture;
-                console.log('HDRI environment loaded successfully!');
-
-                // Define materials after HDR is loaded
-                Paint_Red = new THREE.MeshStandardMaterial({
-                    color: 0xFF0501, // Fiery sporty red
-                    metalness: 0.3,
-                    roughness: 0.1,
-                    envMap: environmentTexture,
-                    envMapIntensity: 1.0
-                });
-
-                Paint_Black = new THREE.MeshStandardMaterial({
-                    color: 0x1C2526,
-                    metalness: 0.3,
-                    roughness: 0.1,
-                    envMap: environmentTexture,
-                    envMapIntensity: 1.0
-                });
-
-                CFRP_Matt = new THREE.MeshStandardMaterial({
-                    color: 0x1C2526,
-                    metalness: 0.1,
-                    roughness: 0.6,
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.5
-                });
-
-                Blue_Fabric = new THREE.MeshStandardMaterial({
-                    color: 0x1E90FF, // Dodger Blue for safety belts
-                    metalness: 0.0, // Non-metallic fabric
-                    roughness: 0.7, // Fabric texture
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.3 // Subtle reflections
-                });
-
-                Brushed_Stainless = new THREE.MeshStandardMaterial({
-                    color: 0xA9A9A9, // Silver-gray for stainless steel
-                    metalness: 0.8, // Highly metallic
-                    roughness: 0.4, // Brushed finish
-                    envMap: environmentTexture,
-                    envMapIntensity: 1.0 // Strong reflections
-                });
-
-                Matte_Red_Steel = new THREE.MeshStandardMaterial({
-                    color: 0xB22222, // Firebrick for matte red steel
-                    metalness: 0.2, // Slightly metallic
-                    roughness: 0.8, // Matte finish
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.2 // Minimal reflections
-                });
-
-                Plastic_Grey = new THREE.MeshStandardMaterial({
-                    color: 0x808080, // Medium Grey
-                    metalness: 0.0, // Non-metallic plastic
-                    roughness: 0.6, // Smooth plastic
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.3 // Subtle reflections
-                });
-
-                Plastic_Black = new THREE.MeshStandardMaterial({
-                    color: 0x1A1A1A, // Near-black
-                    metalness: 0.0, // Non-metallic plastic
-                    roughness: 0.7, // Matte plastic
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.2 // Minimal reflections
-                });
-
-                Plastic_Red = new THREE.MeshStandardMaterial({
-                    color: 0xFF4040, // Bright red
-                    metalness: 0.0, // Non-metallic plastic
-                    roughness: 0.5, // Semi-glossy plastic
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.4 // Moderate reflections
-                });
-
-                Glossy_Aluminium = new THREE.MeshStandardMaterial({
-                    color: 0xD9D9D9,
-                    metalness: 0.9,
-                    roughness: 0.2,
-                    envMap: environmentTexture,
-                    envMapIntensity: 1.2
-                });
-
-                Black_SemiGloss_Aluminium = new THREE.MeshStandardMaterial({
-                    color: 0x1F2525,
-                    metalness: 0.4,
-                    roughness: 0.4,
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.6
-                });
-
-                CFRP_Glossy = new THREE.MeshStandardMaterial({
-                    color: 0x2A2A2A,
-                    metalness: 0.2,
-                    roughness: 0.3,
-                    envMap: environmentTexture,
-                    envMapIntensity: 0.7
-                });
-
-                loadModels(); // Start loading models
-            },
-            undefined,
-            function (error) {
-                console.error('Error loading HDRI:', error);
-                environmentTexture = null;
-
-                // Define materials without HDR as fallback
-                Paint_Red = new THREE.MeshStandardMaterial({
-                    color: 0xFF3400, // Fiery sporty red
-                    metalness: 0.3,
-                    roughness: 0.1,
-                    envMapIntensity: 1.0
-                });
-
-                CFRP_Matt = new THREE.MeshStandardMaterial({
-                    color: 0x1C2526,
-                    metalness: 0.1,
-                    roughness: 0.6,
-                    envMapIntensity: 0.5
-                });
-
-                loadModels(); // Proceed with fallback
+        function loadNextModel(index) {
+            if (index >= modelsToLoad.length) {
+                console.log('All models loaded successfully.');
+                return;
             }
-        );
 
-        // Load models sequentially
-        function loadModels() {
-            let loadedCount = 0;
+            const modelInfo = modelsToLoad[index];
+            const mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load(modelInfo.mtl, function (materials) {
+                materials.preload();
 
-            function loadNextModel(index) {
-                if (index >= modelsToLoad.length) {
-                    console.log('All models loaded successfully.');
-                    return;
+                // Override materials
+                for (const [mtlName, materialKey] of Object.entries(modelInfo.materials)) {
+                    if (materials.materials[mtlName] && materialMap[materialKey]) {
+                        materials.materials[mtlName] = materialMap[materialKey];
+                    } else {
+                        console.warn(`Material ${mtlName} not found or unmapped in ${modelInfo.mtl}`);
+                    }
                 }
 
-                const modelInfo = modelsToLoad[index];
-                const mtlLoader = new THREE.MTLLoader();
-                mtlLoader.load(modelInfo.mtl, function (materials) {
-                    materials.preload();
+                const objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load(
+                    modelInfo.obj,
+                    function (object) {
+                        // Compute bounding box and normalize scale
+                        const objectBoundingBox = new THREE.Box3().setFromObject(object);
+                        const size = objectBoundingBox.getSize(new THREE.Vector3());
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        const scale = 1 / maxDim; // Normalize to 1 unit
+                        object.scale.set(scale, scale, scale);
 
-                    // Map material names to custom materials
-                    const materialMap = {
-                        'Paint_Red': Paint_Red,
-                        'CFRP_Matt': CFRP_Matt
-                    };
+                        // Center the object
+                        const center = objectBoundingBox.getCenter(new THREE.Vector3());
+                        object.position.sub(center);
 
-                    // Override materials
-                    for (const [mtlName, materialKey] of Object.entries(modelInfo.materials)) {
-                        if (materials.materials[mtlName]) {
-                            materials.materials[mtlName] = materialMap[materialKey];
-                        } else {
-                            console.warn(`Material ${mtlName} not found in ${modelInfo.mtl}`);
+                        scene.add(object);
+                        console.log(`${modelInfo.obj} added to scene with size:`, size);
+
+                        // Set camera for the first model
+                        if (index === 0) {
+                            camera.position.set(0, maxDim * 0.5, maxDim * 1.5);
+                            camera.lookAt(0, 0, 0);
+                            controls.target.set(0, 0, 0);
                         }
+
+                        loadedCount++;
+                        loadNextModel(index + 1);
+                    },
+                    function (xhr) {
+                        console.log(`${modelInfo.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                    },
+                    function (error) {
+                        console.error(`Error loading ${modelInfo.obj}:`, error);
+                        loadedCount++;
+                        loadNextModel(index + 1);
                     }
-
-                    const objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.load(
-                        modelInfo.obj,
-                        function (object) {
-                            object.position.set(0, 0, 0);
-                            object.scale.set(0.002, 0.002, 0.002);
-                            scene.add(object);
-                            console.log(`${modelInfo.obj} added to scene with HDR materials`);
-
-                            // Set camera based on the first model’s bounding box
-                            if (modelInfo.obj === 'models/Mono_optimized.obj') {
-                                const objectBoundingBox = new THREE.Box3().setFromObject(object);
-                                const objectCenter = objectBoundingBox.getCenter(new THREE.Vector3());
-                                camera.position.set(0, -1.5, 1.5);
-                                camera.lookAt(objectCenter);
-                            }
-
-                            loadedCount++;
-                            loadNextModel(index + 1); // Load next model
-                        },
-                        function (xhr) {
-                            console.log(`${modelInfo.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                        },
-                        function (error) {
-                            console.error(`Error loading ${modelInfo.obj}:`, error);
-                            loadedCount++;
-                            loadNextModel(index + 1); // Continue despite error
-                        }
-                    );
-                }, undefined, function (error) {
-                    console.error(`Error loading ${modelInfo.mtl}:`, error);
-                    loadedCount++;
-                    loadNextModel(index + 1); // Continue despite error
-                });
-            }
-
-            loadNextModel(0); // Start loading from the first model
+                );
+            }, undefined, function (error) {
+                console.error(`Error loading ${modelInfo.mtl}:`, error);
+                loadedCount++;
+                loadNextModel(index + 1);
+            });
         }
 
-        // Add TrackballControls
-        const controls = new THREE.TrackballControls(camera, renderer.domElement);
-        controls.rotateSpeed = 2.5;
-        controls.zoomSpeed = 5;
-        controls.panSpeed = 2;
-        controls.staticMoving = true;
-        controls.dynamicDampingFactor = 0.05;
-        controls.minDistance = 0.3;
-        controls.maxDistance = 2;
+        loadNextModel(0);
+    }
 
-        // Resize renderer
-        function resizeRenderer() {
-            if (!gridContainer || !container) return;
-            const totalWidth = gridContainer.clientWidth;
-            const leftWidth = leftText ? leftText.offsetWidth : 0;
-            const rightWidth = rightText ? rightText.offsetWidth : 0;
-            const canvasWidth = totalWidth - leftWidth - rightWidth;
+    // Add TrackballControls
+    const controls = new THREE.TrackballControls(camera, renderer.domElement);
+    controls.rotateSpeed = 1.0; // Slower rotation
+    controls.zoomSpeed = 1.2;   // Moderate zoom
+    controls.panSpeed = 0.8;    // Moderate panning
+    controls.staticMoving = true;
+    controls.dynamicDampingFactor = 0.1;
+    controls.minDistance = 0.5; // Closer zoom limit
+    controls.maxDistance = 10;  // Farther zoom limit
 
-            renderer.setSize(canvasWidth, container.clientHeight);
-            camera.aspect = canvasWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
+    // Resize renderer
+    function resizeRenderer() {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        controls.handleResize();
+    }
+    window.addEventListener('resize', resizeRenderer);
+    resizeRenderer();
+
+    // Rotation control
+    let isRotating = true;
+    renderer.domElement.addEventListener('mousedown', (event) => {
+        if (event.button === 0) isRotating = false;
+    });
+    renderer.domElement.addEventListener('touchstart', () => {
+        isRotating = false;
+    });
+    renderer.domElement.addEventListener('mouseup', () => {
+        isRotating = true;
+    });
+    renderer.domElement.addEventListener('touchend', () => {
+        isRotating = true;
+    });
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        if (isRotating) {
+            scene.rotation.z += 0.003;
         }
-        resizeRenderer();
-        window.addEventListener('resize', resizeRenderer);
+        renderer.render(scene, camera);
+    }
+    animate();
 
-        // Mutation observer for dynamic resizing
-        const observer = new MutationObserver(resizeRenderer);
-        [logoLeft, topText, leftText, rightText, bottomText].forEach(element => {
-            if (element) observer.observe(element, { childList: true, subtree: true, characterData: true });
-        });
-
-        // Rotation control
-        let isRotating = true;
-        renderer.domElement.addEventListener('mousedown', (event) => {
-            if (event.button === 0) isRotating = false;
-        });
-        renderer.domElement.addEventListener('touchstart', () => {
-            isRotating = false;
-        });
-        renderer.domElement.addEventListener('mouseup', () => {
-            isRotating = true;
-        });
-        renderer.domElement.addEventListener('touchend', () => {
-            isRotating = true;
-        });
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            if (isRotating) {
-                scene.rotation.z += 0.003;
-            }
-            renderer.clear();
-            renderer.render(scene, camera);
-        }
-        animate();
+    // Add axes helper for debugging (optional, remove if not needed)
+    const axesHelper = new THREE.AxesHelper(1);
+    scene.add(axesHelper);
 
 
 
