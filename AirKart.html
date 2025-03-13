@@ -360,10 +360,16 @@
 
                             // Set camera based on the first model’s bounding box
                             if (modelInfo.obj === 'models/Mono_optimized.obj') {
-                                const objectBoundingBox = new THREE.Box3().setFromObject(object);
-                                const objectCenter = objectBoundingBox.getCenter(new THREE.Vector3());
-                                camera.position.set(0, -1.5, 1.5);
-                                camera.lookAt(objectCenter);
+                                const boundingBox = new THREE.Box3().setFromObject(object);
+                                const center = boundingBox.getCenter(new THREE.Vector3());
+                                const size = boundingBox.getSize(new THREE.Vector3());
+                                const maxDim = Math.max(size.x, size.y, size.z);
+                                const fov = camera.fov * (Math.PI / 180);
+                                let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+                                camera.position.set(0, -cameraZ, cameraZ);
+                                camera.lookAt(center);
+                                controls.target.copy(center); // Update controls target
                             }
 
                             loadedCount++;
