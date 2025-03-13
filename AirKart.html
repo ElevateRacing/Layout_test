@@ -250,9 +250,47 @@
     const box = new THREE.Mesh(geometry, material);
     scene.add(box);
 
+        // Load the Mono_optimized.obj model
+    const objLoader = new THREE.OBJLoader();
+    objLoader.load(
+        'Models/Mono_optimized.obj',
+        function (object) {
+            // Scale the model (adjust as needed)
+            object.scale.set(0.00015, 0.00015, 0.00015);
+            object.position.set(0, 0, 0);
+            scene.add(object);
+            console.log('Mono_optimized.obj loaded and added to scene');
+
+            // Adjust camera based on model bounds
+            const boundingBox = new THREE.Box3().setFromObject(object);
+            const center = boundingBox.getCenter(new THREE.Vector3());
+            const size = boundingBox.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+            camera.position.set(0, -cameraZ, cameraZ);
+            camera.lookAt(center);
+            controls.target.copy(center); // Update controls target
+        },
+        function (xhr) {
+            console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+        },
+        function (error) {
+            console.error('Error loading Mono_optimized.obj:', error);
+        }
+    );
+
+
+
+
+        /*
+
     // Position camera
     camera.position.set(0, 0, 5);
     camera.lookAt(0, 0, 0);
+*/
+        
 
     // Add TrackballControls
     const controls = new THREE.TrackballControls(camera, renderer.domElement);
