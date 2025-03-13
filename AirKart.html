@@ -225,7 +225,10 @@
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setClearColor(0xffffff, 1);
+        renderer.setClearColor(0xffffff, 1);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 0.9;
+        renderer.physicallyCorrectLights = true;
 
     const container = document.getElementById('canvas-container');
     if (!container) {
