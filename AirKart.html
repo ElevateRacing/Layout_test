@@ -3,224 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserve Your Airkart - Elevate Racing</title>
-    <meta name="description" content="Discover AirKart by Elevate Racing, the ultimate eVTOL for personal flight and racing."/>
-    <meta name="keywords" content="AirKart, eVTOL, Elevate Racing, personal flight"/>
-    <meta name="robots" content="index, follow"/>
-    <link rel="icon" type="image/png" href="favicon.png"/>
-    <link rel="preload" href="Images/Book.png" as="image"/>
-    <style>
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
-        html {scroll-behavior: smooth;}
-        /* CSS Variables for consistent styling */
-        :root {--secondary-color: #FFFFFF; --background-light: #F5F5F5; --shadow-color: rgba(0, 0, 0, 0.1); --button-hover: #e0e0e0;}
-        /* Reset and base styles */
-        * {margin: 0; padding: 0; box-sizing: border-box;}
-        body {background-color: var(--background-light); font-family: 'Open Sans', Arial, sans-serif; overflow-x: hidden;}
-        /* - - - - - - - - - - - - - - - - - - - - - - - - - - Header styles - - - - - - */
-        header {width: 100%; position: fixed; top: 0; z-index: 2000;}
-        .top-box {display: flex; align-items: center; background-color: var(--secondary-color); box-shadow: 0 2px 4px var(--shadow-color); padding: 10px; height: 70px; border-radius: 8px; margin: 20px 10px; position: relative; justify-content: space-between;}
-        .logo2 {height: 50px; width: auto; flex-shrink: 0;}
-        .logo1 {height: 50px; width: auto; position: absolute; transition: left 0.3s ease, opacity 0.2s ease; opacity: 1;}
-        nav {display: flex; gap: 10px; flex-shrink: 0;}
-        .header-btn {padding: 8px 16px; text-decoration: none; color: #000000; background-color: transparent; border-radius: 12px; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; font-size: 1rem; transition: background-color 0.3s ease, transform 0.2s ease; white-space: nowrap;}
-        .header-btn:hover {background-color: var(--button-hover); transform: scale(1.02);}
-        @media (max-width: 768px) {
-            nav {display: none;} /* Hides nav buttons on mobile */
-            .top-box {justify-content: flex-start; padding: 10px 5px; align-items: center; position: relative; overflow: visible; max-width: 100%;}
-            .logo2 {height: 35px; max-height: 50px; max-width: 45%; margin-right: 10px; object-fit: contain; flex-shrinking: 0;}
-            .logo1 {height: 40px; max-height: 50px; max-width: 45%; position: absolute; opacity: 1; object-fit: contain; flex-shrinking: 0;}
-        }
-
-        main {
-            margin-top: 110px; /* Space for fixed header (70px height + 20px margin + 20px buffer) */
-            width: 100%;
-            height: calc(100vh - 110px); /* Full viewport height minus header */
-            overflow: hidden; /* No scrolling on desktop */
-        }
-
-        /* Text styling */
-        .info-text {
-            text-align: center;
-            padding: 10px;
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: clamp(0.875rem, 1.5vw, 1rem);
-            color: #333;
-        }
-
-        .interaction-text,
-        .loading-text {
-            margin: 5px 0;
-        }
-
-        /* Canvas container */
-        #canvas-container {
-            width: 100%;
-            background-color: #f5f5f5; /* Matches your body background */
-        }
-
-        @media (max-width: 768px) {
-            main {
-                height: auto; /* Allow scrolling if content exceeds viewport */
-                overflow-y: auto; /* Enable scrolling on mobile if needed */
-            }
-
-            .info-text {
-                position: relative; /* Stays in flow under header */
-            }
-
-            #canvas-container {
-                height: calc(100vh - 110px - 70px); /* Remaining height after header and text */
-                position: relative;
-            }
-        }
-
-        @media (min-width: 769px) {
-            main {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-
-            .info-text {
-                position: absolute; /* Move text to bottom */
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.8); /* Optional: slight background for readability */
-                padding: 10px;
-            }
-
-            #canvas-container {
-                height: calc(100vh - 110px - 70px); /* Adjust based on text height */
-                flex-grow: 1; /* Fills available space */
-            }
-        }
-
-
-
-        
-    </style>
+    <title>Elevate Racing - New Dimension of Go-Kart Racing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-    <header>
-        <div class="top-box">
-            <img src="logo2.png" alt="AirKart Logo" class="logo2" onerror="this.src='fallback-logo.png'">
-            <img src="logo1.png" alt="Elevate Racing Logo" class="logo1" onerror="this.src='fallback-logo.png'">
-            <nav>
-                <a href="index.html" class="header-btn">Home</a>
-                <a href="reserve.html" class="header-btn">Reserve your AirKart</a>
-                <a href="book.html" class="header-btn">Book a Flight</a>
-                <a href="index.html#contact-section" class="header-btn">Contact</a>
-            </nav>
+    <div id="grid-container">
+        <div id="header-box">
+            <div id="logo-left">
+                <img src="logo2.png" alt="Left Logo" style="max-height: 50px;">
+            </div>
+            <div id="logo-center">
+                <img src="logo1.png" alt="Center Logo" style="max-height: 50px;">
+            </div>
+            <div id="header-buttons">
+                <a href="buy.html"><button class="header-button">Reserve your Air Kart</button></a>
+                <a href="reserve_flight.html"><button class="header-button">Book a Flight</button></a>
+            </div>
         </div>
-    </header>
-
-    <main>
-        <div class="info-text">
-            <p class="interaction-text">Swipe and tap to explore the AirKart 3D architecture (mobile) or click and drag (desktop).</p>
-            <p class="loading-text">Hold on, the AirKart 3D model might take a moment to load—worth the wait!</p>
+        <div id="top-text">
+            <img src="Slogan.png" alt="Top Image" class="top-image">
+        </div>
+        <div id="left-text">
+            <div><span class="regular">Mass of kart </span> <span class="bold">150kg</span></div>
+            <div><span class="regular">and pilot </span> <span class="bold">100kg MAX</span></div>
+            <div><span class="regular">Flight time </span> <span class="bold">15min</span></div>
+            <hr class="separator">
+            <div><span class="regular">8x Electric motors </span> <span class="bold">130hp</span></div>
+            <div><span class="regular">8x Battery </span> <span class="bold">100V/21Ah</span></div>
         </div>
         <div id="canvas-container"></div>
-    </main>
-
+        <div id="right-text">
+            <div><span class="bold">CFRP</span> <span class="regular"> monocoque construction</span></div>
+            <div><span class="regular">designed for </span> <span class="bold">pilots safety</span></div>
+            <hr class="separator">
+            <div><span class="regular">Components made from </span></div>
+            <div><span class="bold">environmental friendly</span> <span class="regular"> flax fibre</span></div>
+            <hr class="separator">
+            <div><span class="regular">Ducted propeller for </span> <span class="bold">increased</span></div>
+            <div><span class="bold">efficiency</span> <span class="regular"> and </span> <span class="bold">noise reduction</span></div>
+        </div>
+        <div id="bottom-text">
+            <span class="bottom_line1">Use mouse or touchscreen to discover Air-Kart architecture.</span>
+            <span class="bottom_line2">Our mission is to bring a joy of flight with a Motorsport thrill to everyone!</span>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/OBJLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/MTLLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/controls/TrackballControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.134/examples/js/loaders/RGBELoader.js"></script>
-
     <script>
-        // - - - - - - LOGO ADJUSTMENT SCRIPT - - - - - -
-        const topBox = document.querySelector('.top-box');
-        const logo1 = document.querySelector('.logo1');
-        const logo2 = document.querySelector('.logo2');
-        const nav = document.querySelector('nav');
-
-        function adjustLogos() {
-            // Only adjust logo1 on desktop (whwn nav is visible)
-            const boxWidth = topBox.offsetWidth;
-            
-            if (window.innerWidth > 768) {
-                // Get widths and positions
-                const logo2Width = logo2.offsetWidth;
-                const logo1Width = logo1.offsetWidth;
-                const navWidth = nav.offsetWidth;
-                const navLeft = boxWidth - navWidth - 10; // Left edge of nav
-                const centerFullBox = boxWidth / 2;
-                const leftBoundary = logo2Width + 20; // After logo2 + buffer
-                const rightBoundary = navLeft - 20; // Before nav + buffer
-                const availableSpace = rightBoundary - leftBoundary;
-
-                // Check if nav or logo2 encroached on logo1's centered position
-                const logo1LeftEdge = centerFullBox - (logo1Width / 2);
-                const logo1RightEdge = centerFullBox + (logo1Width / 2);
-
-                if (logo1RightEdge > rightBoundary || logo1LeftEdge < leftBoundary) {
-                    // Step 2: Center in available space if encroachment
-                    if (availableSpace < logo1Width) {
-                        // Step 3: Not enough space, hide logo1
-                        logo1.style.opacity = '0';
-                    } else {
-                        // Center in available space
-                        const centerAvailable = leftBoundary + (availableSpace / 2);
-                        logo1.style.opacity = '1';
-                        logo1.style.left = centerAvailable + 'px';
-                        logo1.style.transform = 'translateX(-50%)';
-                    }
-                } else {
-                    // No encroachment, center in full box
-                    logo1.style.opacity = '1';
-                    logo1.style.left = '50%';
-                    logo1.style.transform = 'translateX(-50%)';
-                }
-            } else {
-                // Mobile logic
-                // Ensure images are loaded before calculating width
-                if (logo2.complete && logo1.complete) {
-                    const logo2Width = logo2.offsetWidth || 0;
-                    const logo1Width = logo1.offsetWidth || 0;
-                    const padding = 20; // 10px left + 10px right
-                    const availableWidth = boxWidth - padding;
-
-                    // Center logo1 in the available space after logo2
-                    const spaceAfterLogo2 = boxWidth - logo2Width - padding;
-                    const centerPoint = logo2Width + (spaceAfterLogo2 / 2);
-                    const logo1Left = Math.max(logo2Width + 10, Math.min(centerPoint, boxWidth - logo1Width - 10));
-                    
-                    logo1.style.left = logo1Left + 'px';
-                    logo1.style.transform = 'translateX(-50%)';
-                    logo1.style.opacity = '1';
-
-                    // Scale down logos if combined width exceeds available space
-                    const totalLogoWidth = logo2Width + logo1Width;
-                    if (totalLogoWidth > availableWidth) {
-                        const scaleFactor = availableWidth / totalLogoWidth;
-                        logo2.style.width = (logo2Width * scaleFactor) + 'px';
-                        logo1.style.width = (logo1Width * scaleFactor) + 'px';
-                    } else {
-                        // Reset widths if previously scaled
-                        logo2.style.width = '';
-                        logo1.style.width = '';
-                    }
-                } else {
-                    // Fallback if images aren't loaded yet
-                    logo1.style.left = '50%'; // Temporary center
-                    logo1.style.transform = 'translateX(-50%)';
-                    logo1.style.opacity = '1';
-                }
-            }
-        }
-                    
-        // Run on load, resize, and after images load
-        window.addEventListener('load', adjustLogos);
-        window.addEventListener('resize', adjustLogos);
-        logo1.addEventListener('load', adjustLogos);
-        logo2.addEventListener('load', adjustLogos);
-    // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
-
-    // - - - - - - THREE.JS SCRIPT - - - - - -
         // Scene, camera, and renderer setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
@@ -574,11 +407,6 @@
             renderer.render(scene, camera);
         }
         animate();
-        
-
-
-
-        
     </script>
 </body>
 </html>
