@@ -308,118 +308,6 @@
             });
         }
 
-        // List of models to load with material mappings
-        const modelsToLoad = [
-            {
-                obj: 'Models/Mono_optimized.obj',
-                mtl: 'Models/Mono_optimized.mtl',
-                materials: { 'CFRP': 'CFRP_Matt', 'Powder_Coat_(Red)': 'Paint_Red'},
-                materialNames: {'Powder_Coat_(Red)': 'Paint_Red', 'CFRP': 'CFRP_Matt'}
-            }
-        
-        ];
-
-
-
-
-
-        
-        // Load models sequentially with HDR materials
-function loadModelsWithHDRMaterials() {
-    defineHDRMaterials(); // Define materials with HDR
-
-    let loadedCount = 0;
-
-    function loadNextModel(index) {
-        if (index >= modelsToLoad.length) {
-            console.log('All models loaded successfully.');
-            return;
-        }
-
-        const modelInfo = modelsToLoad[index];
-        const mtlLoader = new THREE.MTLLoader();
-        mtlLoader.load(
-            modelInfo.mtl,
-            function (materials) {
-                materials.preload();
-
-                // Override MTL materials with HDR-enhanced versions
-                for (const [mtlName, material] of Object.entries(modelInfo.materials)) {
-                    if (materials.materials[mtlName]) {
-                        materials.materials[mtlName] = material;
-                    } else {
-                        console.warn(`Material ${mtlName} not found in ${modelInfo.mtl}`);
-                    }
-                }
-
-                const objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.load(
-                    modelInfo.obj,
-                    function (object) {
-                        object.scale.set(0.001, 0.001, 0.001); // Adjust scale as needed
-                        object.position.set(loadedCount * 2, 0, 0); // Offset models horizontally
-                        scene.add(object);
-                        console.log(`${modelInfo.obj} loaded with HDR-enhanced materials`);
-
-                        // Adjust camera for each model
-                        const boundingBox = new THREE.Box3().setFromObject(object);
-                        const center = boundingBox.getCenter(new THREE.Vector3());
-                        const size = boundingBox.getSize(new THREE.Vector3());
-                        const maxDim = Math.max(size.x, size.y, size.z);
-                        const fov = camera.fov * (Math.PI / 180);
-                        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-                        if (index === 0) {
-                            camera.position.set(0, -cameraZ, cameraZ);
-                        } else {
-                            camera.position.set(loadedCount * 2, -cameraZ, cameraZ); // Adjust for second model
-                        }
-                        camera.lookAt(center);
-                        controls.target.copy(center);
-
-                        loadedCount++;
-                        loadNextModel(index + 1); // Load the next model
-                    },
-                    function (xhr) {
-                        console.log(`${modelInfo.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                    },
-                    function (error) {
-                        console.error(`Error loading ${modelInfo.obj}:`, error);
-                        loadedCount++;
-                        loadNextModel(index + 1); // Continue despite error
-                    }
-                );
-            },
-            function (xhr) {
-                console.log(`${modelInfo.mtl}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-            },
-            function (error) {
-                console.error(`Error loading ${modelInfo.mtl}:`, error);
-                const objLoader = new THREE.OBJLoader();
-                objLoader.load(
-                    modelInfo.obj,
-                    function (object) {
-                        object.scale.set(0.002, 0.002, 0.002);
-                        object.position.set(loadedCount * 2, 0, 0);
-                        scene.add(object);
-                        console.log(`${modelInfo.obj} loaded without materials`);
-                        loadedCount++;
-                        loadNextModel(index + 1);
-                    }
-                );
-            }
-        );
-    }
-
-    loadNextModel(0); // Start with the first model
-}
-
-
-
-
-
-        
 
         
 
@@ -427,7 +315,7 @@ function loadModelsWithHDRMaterials() {
 
 
 
-/*
+
         
     // Load the MTL and OBJ
     const mtlLoader = new THREE.MTLLoader();
@@ -488,7 +376,7 @@ function loadModelsWithHDRMaterials() {
 
 
 
-*/
+
 
 
         
