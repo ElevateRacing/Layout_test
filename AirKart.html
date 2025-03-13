@@ -244,16 +244,116 @@
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Create a simple box
-    const geometry = new THREE.BoxGeometry(1, 1, 1); // 1x1x1 cube
-    const material = new THREE.MeshStandardMaterial({ color: 0xff0000 }); // Red color
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // Define basic materials (fallback if MTL fails)
+    const Paint_Red = new THREE.MeshStandardMaterial({
+        color: 0xFF0501, // Fiery sporty red
+        metalness: 0.3,
+        roughness: 0.1
+    });
 
+    const CFRP_Matt = new THREE.MeshStandardMaterial({
+        color: 0x1C2526, // Dark carbon fiber
+        metalness: 0.1,
+        roughness: 0.6
+    });
+
+        // Load the Mono_optimized model
+    const mtlLoader = new THREE.MTLLoader();
+    mtlLoader.load('Models/Mono_optimized.mtl', function (materials) {
+        materials.preload();
+
+        // Map material names to custom materials
+        materials.materials['CFRP'] = CFRP_Matt;
+        materials.materials['Powder_Coat_(Red)'] = Paint_Red;
+
+        const objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.load(
+            'Models/Mono_optimized.obj',
+            function (object) {
+                // Center the model and adjust scale
+                const box = new THREE.Box3().setFromObject(object);
+                const center = box.getCenter(new THREE.Vector3());
+                object.position.sub(center); // Center the object at origin
+                object.scale.set(0.0001, 0.0001, 0.0001); // Use your original scale
+
+                scene.add(object);
+                console.log('Mono_optimized.obj loaded and added to scene');
+
+                // Adjust camera to fit the model
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = camera.fov * (Math.PI / 180);
+                let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5; // 1.5x for some padding
+                camera.position.set(0, 0, cameraZ);
+                camera.lookAt(0, 0, 0);
+            },
+            function (xhr) {
+                console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+            },
+            function (error) {
+                console.error('Error loading Mono_optimized.obj:', error);
+                // Fallback: Add a red cube if model fails to load
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                camera.position.set(0, 0, 5);
+                camera.lookAt(0, 0, 0);
+            }
+        );
+    }, undefined, function (error) {
+        console.error('Error loading Mono_optimized.mtl:', error);
+        // Fallback: Load OBJ without MTL
+        const objLoader = new THREE.OBJLoader();
+        objLoader.load(
+            'Models/Mono_optimized.obj',
+            function (object) {
+                object.traverse(function (child) {
+                    if (child.isMesh) child.material = CFRP_Matt; // Default material
+                });
+                const box = new THREE.Box3().setFromObject(object);
+                const center = box.getCenter(new THREE.Vector3());
+                object.position.sub(center);
+                object.scale.set(0.0001, 0.0001, 0.0001);
+                scene.add(object);
+                console.log('Mono_optimized.obj loaded without MTL');
+
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = camera.fov * (Math.PI / 180);
+                let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+                camera.position.set(0, 0, cameraZ);
+                camera.lookAt(0, 0, 0);
+            },
+            undefined,
+            function (error) {
+                console.error('Fallback OBJ load failed:', error);
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                camera.position.set(0, 0, 5);
+                camera.lookAt(0, 0, 0);
+            }
+        );
+    });
+
+
+
+
+
+
+
+
+     /*   
     // Position camera to view the cube
     camera.position.set(0, 0, 5); // Move camera back to see the cube
     camera.lookAt(0, 0, 0); // Look at the cube’s center
 
+*/
+
+        
     // Add TrackballControls
     const controls = new THREE.TrackballControls(camera, renderer.domElement);
     controls.rotateSpeed = 2.5;
