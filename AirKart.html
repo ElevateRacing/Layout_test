@@ -218,13 +218,13 @@
         window.addEventListener('resize', adjustLogos);
         logo1.addEventListener('load', adjustLogos);
         logo2.addEventListener('load', adjustLogos);
-    // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
+        // - - - - - - END OF LOGO ADJUSTMENT SCRIPT - - - - - -
 
-    // - - - - - - THREE.JS SCRIPT - - - - - -
+        // - - - - - - THREE.JS SCRIPT - - - - - -
         // Scene, camera, and renderer setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setClearColor(0xffffff, 1);
 
     const container = document.getElementById('canvas-container');
@@ -341,10 +341,10 @@
         requestAnimationFrame(animate);
         controls.update();
         if (isRotating) {
-            box.rotation.x += 0.01;
-            box.rotation.y += 0.01;
+            scene.rotation.z += 0.003;
             // The loaded model won't rotate unless grouped
         }
+        renderer.clear();
         renderer.render(scene, camera);
     }
     animate();
