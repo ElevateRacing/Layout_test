@@ -306,14 +306,47 @@
                     (materials) => {
                         materials.preload();
 
-                        // Replace MTL materials with HDR-enhanced ones
+                        // Enhance each material with HDR properties
                         Object.keys(materials.materials).forEach((matName) => {
-                            if (matName.includes('Red_Paint')) {
-                                materials.materials[matName] = Paint_Red;
-                            } else if (matName.includes('CFRP')) {
-                                materials.materials[matName] = CFRP_Matt;
+                            const originalMat = materials.materials[matName];
+                            let enhancedMat;
+
+                            // Match material by name and enhance it
+                            // Glossy Red paint
+                            if (matName.toLowerCase().includes('Red_Paint')) {
+                                enhancedMat = new THREE.MeshStandardMaterial({
+                                    color: originalMat.color || 0xFF0501, // Preserve original color if defined
+                                    metalness: 0.3,
+                                    roughness: 0.1,
+                                    envMap: environmentTexture,
+                                    envMapIntensity: 1.0
+                                });
+                            // CFRP   
+                            } else if (matName.toLowerCase().includes('cfrp')) {
+                                enhancedMat = new THREE.MeshStandardMaterial({
+                                    color: originalMat.color || 0x1C2526,
+                                    metalness: 0.1,
+                                    roughness: 0.6,
+                                    envMap: environmentTexture,
+                                    envMapIntensity: 0.5
+                                });
+                            // Fallback Material    
+                            } else {
+                                // Fallback: Enhance unknown materials with defaults
+                                enhancedMat = new THREE.MeshStandardMaterial({
+                                    color: originalMat.color || 0xFFFFFF,
+                                    metalness: originalMat.metalness || 0.5,
+                                    roughness: originalMat.roughness || 0.5,
+                                    envMap: environmentTexture,
+                                    envMapIntensity: 0.8
+                                });
                             }
-                        // Add more conditions for other materials as needed
+
+                            // Log the material replacement for debugging
+                            console.log(`Model: ${model.obj}, Material: ${matName} -> Enhanced with ${enhancedMat.color.getHexString()}`);
+
+                            // Replace the original material with the enhanced one
+                            materials.materials[matName] = enhancedMat;
                         });
 
                         objLoader.setMaterials(materials);
