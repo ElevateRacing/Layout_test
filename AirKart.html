@@ -284,152 +284,8 @@
             });
         }
 
-        // Model loading with HDR materials
-        const loadedObjects = [];
-        function loadModels() {
-            defineHDRMaterials();
-
-            const modelsToLoad = [
-                { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl' },
-                { obj: 'Models/Arm_fwd_optimized.obj', mtl: 'Models/Arm_fwd_optimized.mtl' }
-                // { obj: 'Models/Model2.obj', mtl: 'Models/Model2.mtl' },
-                // { obj: 'Models/Model3.obj', mtl: 'Models/Model3.mtl' },
-            ];
-
-            let modelsLoaded = 0;
-            const mtlLoader = new THREE.MTLLoader();
-            const objLoader = new THREE.OBJLoader();
-
-            modelsToLoad.forEach((model) => {
-                mtlLoader.load(
-                    model.mtl,
-                    (materials) => {
-                        materials.preload();
-
-                        // Enhance each material with HDR properties
-                        Object.keys(materials.materials).forEach((matName) => {
-                            const originalMat = materials.materials[matName];
-                            let enhancedMat;
-
-                            // Match material by name and enhance it
-                            // Glossy Red paint
-                            if (matName.toLowerCase().includes('Red_Paint')) {
-                                enhancedMat = new THREE.MeshStandardMaterial({
-                                    color: 0xFF0501, // Preserve original color if defined
-                                    metalness: 0.3,
-                                    roughness: 0.1,
-                                    envMap: environmentTexture,
-                                    envMapIntensity: 1.0
-                                });
-                            // CFRP   
-                            } else if (matName.toLowerCase().includes('cfrp')) {
-                                enhancedMat = new THREE.MeshStandardMaterial({
-                                    color: originalMat.color || 0x1C2526,
-                                    metalness: 0.1,
-                                    roughness: 0.6,
-                                    envMap: environmentTexture,
-                                    envMapIntensity: 0.5
-                                });
-                            // Fallback Material    
-                            } else {
-                                // Fallback: Enhance unknown materials with defaults
-                                enhancedMat = new THREE.MeshStandardMaterial({
-                                    color: originalMat.color || 0xFFFFFF,
-                                    metalness: originalMat.metalness || 0.5,
-                                    roughness: originalMat.roughness || 0.5,
-                                    envMap: environmentTexture,
-                                    envMapIntensity: 0.8
-                                });
-                            }
-
-                            // Log the material replacement for debugging
-                            console.log(`Model: ${model.obj}, Material: ${matName} -> Enhanced with ${enhancedMat.color.getHexString()}`);
-
-                            // Replace the original material with the enhanced one
-                            materials.materials[matName] = enhancedMat;
-                        });
-
-                        objLoader.setMaterials(materials);
-                        objLoader.load(
-                            model.obj,
-                            (object) => {
-                                object.scale.set(0.001, 0.001, 0.001); // Consistent scaling
-                                object.position.set(0, 0, 0); // Adjust positions if needed
-                                scene.add(object);
-                                loadedObjects.push(object);
-                                console.log(`${model.obj} loaded with HDR materials`);
-
-                                modelsLoaded++;
-                                if (modelsLoaded === modelsToLoad.length) {
-                                    adjustCameraAndControls();
-                                }
-                            },
-                            (xhr) => {
-                                console.log(`${model.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                            },
-                            (error) => {
-                                console.error(`Error loading ${model.obj}:`, error);
-                                loadFallback(model.obj);
-                                modelsLoaded++;
-                                if (modelsLoaded === modelsToLoad.length) {
-                                    adjustCameraAndControls();
-                                }
-                            }
-                        );
-                    },
-                    (xhr) => {
-                        console.log(`${model.mtl}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                    },
-                    (error) => {
-                        console.error(`Error loading ${model.mtl}:`, error);
-                        loadFallback(model.obj);
-                        modelsLoaded++;
-                        if (modelsLoaded === modelsToLoad.length) {
-                            adjustCameraAndControls();
-                        }
-                    }
-                );
-            });
-
-            // Fallback for failed MTL loading
-            function loadFallback(objPath) {
-                objLoader.load(
-                    objPath,
-                    (object) => {
-                        object.scale.set(0.001, 0.001, 0.001);
-                        scene.add(object);
-                        loadedObjects.push(object);
-                        console.log(`${objPath} loaded without materials as fallback`);
-                    }
-                );
-            }
-        }
-
-        // Adjust camera and controls based on all loaded objects
-        function adjustCameraAndControls() {
-            const fullBoundingBox = new THREE.Box3();
-            loadedObjects.forEach((obj) => {
-                const objBox = new THREE.Box3().setFromObject(obj);
-                fullBoundingBox.union(objBox);
-            });
-
-            const center = fullBoundingBox.getCenter(new THREE.Vector3());
-            const size = fullBoundingBox.getSize(new THREE.Vector3());
-            const maxDim = Math.max(size.x, size.y, size.z);
-            const fov = camera.fov * (Math.PI / 180);
-            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-            camera.position.set(0, -cameraZ, cameraZ);
-            camera.lookAt(center);
-            controls.target.copy(center);
-        }
-
-
-
-
-
-
-        /*
+        
+        
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
         defineHDRMaterials();
@@ -500,7 +356,7 @@
 
 
 
-*/
+
 
         
     // Add TrackballControls
