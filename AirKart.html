@@ -8,6 +8,7 @@
     <meta name="keywords" content="AirKart, eVTOL, Elevate Racing, personal flight"/>
     <meta name="robots" content="index, follow"/>
     <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="preload" href="Images/Book.png" as="image"/>
     <style>
         /* Import Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto:wght@300;400&display=swap');
@@ -205,7 +206,6 @@
         renderer.toneMappingExposure = 0.9;
         renderer.physicallyCorrectLights = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.outputColorSpace = THREE.SRGBColorSpace; // Proper color space
 
         const container = document.getElementById('canvas-container');
         if (!container) {
@@ -246,13 +246,13 @@
                 scene.environment = texture;
                 environmentTexture = texture;
                 console.log('HDR environment loaded successfully!');
-                loadModels(); // Load model after HDR is ready
+                loadModelWithHDRMaterials(); // Load model after HDR is ready
             },
             undefined,
             function (error) {
                 console.error('Error loading HDR:', error);
                 environmentTexture = null;
-                loadModels(); // Load model even if HDR fails
+                loadModelWithHDRMaterials(); // Load model even if HDR fails
             }
         );
 
@@ -283,8 +283,6 @@
                 envMapIntensity: 0.7
             });
         }
-
-        
         
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
@@ -292,7 +290,7 @@
 
         const mtlLoader = new THREE.MTLLoader();
         mtlLoader.load(
-            'Models/Arm_fwd_optimized.mtl',
+            'Models/Mono_optimized.mtl',
             function (materials) {
                 materials.preload();
 
@@ -309,7 +307,7 @@
                 const objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
                 objLoader.load(
-                    'Models/Arm_fwd_optimized.obj',
+                    'Models/Mono_optimized.obj',
                     function (object) {
                         object.scale.set(0.001, 0.001, 0.001);
                         object.position.set(0, 0, 0);
