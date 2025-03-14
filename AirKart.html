@@ -206,7 +206,7 @@
         renderer.toneMappingExposure = 0.9;
         renderer.physicallyCorrectLights = true;
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.outputEncoding = THREE.sRGBEncoding; // Proper color space
+        renderer.outputColorSpace = THREE.SRGBColorSpace; // Proper color space
 
         const container = document.getElementById('canvas-container');
         if (!container) {
