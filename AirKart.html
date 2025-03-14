@@ -315,7 +315,7 @@
                             // Glossy Red paint
                             if (matName.toLowerCase().includes('Red_Paint')) {
                                 enhancedMat = new THREE.MeshStandardMaterial({
-                                    color: originalMat.color || 0xFF0501, // Preserve original color if defined
+                                    color: 0xFF0501, // Preserve original color if defined
                                     metalness: 0.3,
                                     roughness: 0.1,
                                     envMap: environmentTexture,
