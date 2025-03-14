@@ -308,7 +308,7 @@
 
                         // Replace MTL materials with HDR-enhanced ones
                         Object.keys(materials.materials).forEach((matName) => {
-                            if (matName.includes('Powder_Coat') || matName.includes('Red')) {
+                            if (matName.includes('Red_Paint')) {
                                 materials.materials[matName] = Paint_Red;
                             } else if (matName.includes('CFRP')) {
                                 materials.materials[matName] = CFRP_Matt;
