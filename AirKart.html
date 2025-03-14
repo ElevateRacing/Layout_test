@@ -246,13 +246,13 @@
                 scene.environment = texture;
                 environmentTexture = texture;
                 console.log('HDR environment loaded successfully!');
-                loadModelWithHDRMaterials(); // Load model after HDR is ready
+                loadModels(); // Load model after HDR is ready
             },
             undefined,
             function (error) {
                 console.error('Error loading HDR:', error);
                 environmentTexture = null;
-                loadModelWithHDRMaterials(); // Load model even if HDR fails
+                loadModels(); // Load model even if HDR fails
             }
         );
 
@@ -283,7 +283,120 @@
                 envMapIntensity: 0.7
             });
         }
-        
+
+        // Model loading with HDR materials
+        const loadedObjects = [];
+        function loadModels() {
+            defineHDRMaterials();
+
+            const modelsToLoad = [
+                { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl' },
+                { obj: 'Models/Arm_fwd_optimized.obj', mtl: 'Models/Arm_fwd_optimized.mtl' }
+                // { obj: 'Models/Model2.obj', mtl: 'Models/Model2.mtl' },
+                // { obj: 'Models/Model3.obj', mtl: 'Models/Model3.mtl' },
+            ];
+
+            let modelsLoaded = 0;
+            const mtlLoader = new THREE.MTLLoader();
+            const objLoader = new THREE.OBJLoader();
+
+            modelsToLoad.forEach((model) => {
+                mtlLoader.load(
+                    model.mtl,
+                    function (materials) => {
+                        materials.preload();
+
+                        // Replace MTL materials with HDR-enhanced ones
+                        Object.keys(materials.materials).forEach((matName) => {
+                            if (matName.includes('Powder_Coat') || matName.includes('Red')) {
+                                materials.materials[matName] = Paint_Red;
+                            } else if (matName.includes('CFRP')) {
+                                materials.materials[matName] = CFRP_Matt;
+                            }
+                        // Add more conditions for other materials as needed
+                        });
+
+                        objLoader.setMaterials(materials);
+                        objLoader.load(
+                            model.obj,
+                            function (object) => {
+                                object.scale.set(0.001, 0.001, 0.001); // Consistent scaling
+                                object.position.set(0, 0, 0); // Adjust positions if needed
+                                scene.add(object);
+                                loadedObjects.push(object);
+                                console.log(`${model.obj} loaded with HDR materials`);
+
+                                modelsLoaded++;
+                                if (modelsLoaded === modelsToLoad.length) {
+                                    adjustCameraAndControls();
+                                }
+                            },
+                            function (xhr) => {
+                                console.log(`${model.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                            },
+                            function (error) => {
+                                console.error(`Error loading ${model.obj}:`, error);
+                                loadFallback(model.obj);
+                                modelsLoaded++;
+                                if (modelsLoaded === modelsToLoad.length) {
+                                    adjustCameraAndControls();
+                                }
+                            }
+                        );
+                    },
+                    function (xhr) => {
+                        console.log(`${model.mtl}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                    },
+                    function (error) => {
+                        console.error(`Error loading ${model.mtl}:`, error);
+                        loadFallback(model.obj);
+                        modelsLoaded++;
+                        if (modelsLoaded === modelsToLoad.length) {
+                            adjustCameraAndControls();
+                        }
+                    }
+                );
+            });
+
+            // Fallback for failed MTL loading
+            function loadFallback(objPath) {
+                objLoader.load(
+                    objPath,
+                    function (object) => {
+                        object.scale.set(0.001, 0.001, 0.001);
+                        scene.add(object);
+                        loadedObjects.push(object);
+                        console.log(`${objPath} loaded without materials as fallback`);
+                    }
+                );
+            }
+        }
+
+        // Adjust camera and controls based on all loaded objects
+        function adjustCameraAndControls() {
+            const fullBoundingBox = new THREE.Box3();
+            loadedObjects.forEach((obj) => {
+                const objBox = new THREE.Box3().setFromObject(obj);
+                fullBoundingBox.union(objBox);
+            });
+
+            const center = fullBoundingBox.getCenter(new THREE.Vector3());
+            const size = fullBoundingBox.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+            camera.position.set(0, -cameraZ, cameraZ);
+            camera.lookAt(center);
+            controls.target.copy(center);
+        }
+
+
+
+
+
+
+        /*
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
         defineHDRMaterials();
@@ -354,7 +467,7 @@
 
 
 
-
+*/
 
         
     // Add TrackballControls
