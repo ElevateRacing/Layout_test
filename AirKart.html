@@ -319,7 +319,7 @@
                         objLoader.setMaterials(materials);
                         objLoader.load(
                             model.obj,
-                            function (object) => {
+                            (object) => {
                                 object.scale.set(0.001, 0.001, 0.001); // Consistent scaling
                                 object.position.set(0, 0, 0); // Adjust positions if needed
                                 scene.add(object);
@@ -331,10 +331,10 @@
                                     adjustCameraAndControls();
                                 }
                             },
-                            function (xhr) => {
+                            (xhr) => {
                                 console.log(`${model.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
                             },
-                            function (error) => {
+                            (error) => {
                                 console.error(`Error loading ${model.obj}:`, error);
                                 loadFallback(model.obj);
                                 modelsLoaded++;
@@ -344,10 +344,10 @@
                             }
                         );
                     },
-                    function (xhr) => {
+                    (xhr) => {
                         console.log(`${model.mtl}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
                     },
-                    function (error) => {
+                    (error) => {
                         console.error(`Error loading ${model.mtl}:`, error);
                         loadFallback(model.obj);
                         modelsLoaded++;
@@ -362,7 +362,7 @@
             function loadFallback(objPath) {
                 objLoader.load(
                     objPath,
-                    function (object) => {
+                    (object) => {
                         object.scale.set(0.001, 0.001, 0.001);
                         scene.add(object);
                         loadedObjects.push(object);
