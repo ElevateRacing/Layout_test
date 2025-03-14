@@ -303,7 +303,7 @@
             modelsToLoad.forEach((model) => {
                 mtlLoader.load(
                     model.mtl,
-                    function (materials) => {
+                    (materials) => {
                         materials.preload();
 
                         // Replace MTL materials with HDR-enhanced ones
