@@ -3,6 +3,6 @@
 newmtl CFRP
 Kd 0.172549 0.172549 0.172549
 
-newmtl Powder_Coat_(Red)
+newmtl Red_Paint
 Kd 0.768627 0.207843 0.152941
 
