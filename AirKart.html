@@ -283,7 +283,116 @@
                 envMapIntensity: 0.7
             });
         }
-        
+
+        // List of models to load (add your additional models here)
+        const models = [
+            { obj: 'Models/Mono_optimized.obj', mtl: 'Models/Mono_optimized.mtl', position: { x: 0, y: 0, z: 0 } },
+            { obj: 'Models/Second_Model.obj', mtl: 'Models/Second_Model.mtl', position: { x: 0, y: 0, z: 0 } },
+            // Add more models as needed: { obj: 'path/to/model.obj', mtl: 'path/to/model.mtl', position: { x: ?, y: ?, z: ? } }
+        ];
+
+        // Load multiple models and replace materials
+    function loadModelsWithHDRMaterials() {
+        defineHDRMaterials();
+        let loadedCount = 0;
+        const totalModels = models.length;
+        let overallBoundingBox = new THREE.Box3();
+
+        models.forEach((model, index) => {
+            const mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load(
+                model.mtl,
+                function (materials) {
+                    materials.preload();
+
+                    // Replace MTL materials with HDR-defined materials based on name
+                    for (let matName in materials.materials) {
+                        if (matName.includes('Red_Paint')) {
+                            materials.materials[matName] = Paint_Red;
+                        } else if (matName.includes('CFRP') || matName.includes('Carbon')) {
+                            if (matName.includes('Glossy')) {
+                                materials.materials[matName] = CFRP_Glossy;
+                            } else {
+                                materials.materials[matName] = CFRP_Matt;
+                            }
+                        }
+                        // Add more conditions for other material names as needed
+                    }
+
+                    const objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.load(
+                        model.obj,
+                        function (object) {
+                            object.scale.set(0.001, 0.001, 0.001);
+                            object.position.set(model.position.x, model.position.y, model.position.z);
+                            scene.add(object);
+                            console.log(`${model.obj} loaded with HDR-replaced materials`);
+
+                            // Update overall bounding box
+                            const bbox = new THREE.Box3().setFromObject(object);
+                            overallBoundingBox.union(bbox);
+
+                            loadedCount++;
+                            if (loadedCount === totalModels) {
+                                adjustCameraAndControls(overallBoundingBox);
+                            }
+                        },
+                        function (xhr) {
+                            console.log(`${model.obj}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                        },
+                        function (error) {
+                            console.error(`Error loading ${model.obj}:`, error);
+                            loadedCount++;
+                            if (loadedCount === totalModels) {
+                                adjustCameraAndControls(overallBoundingBox);
+                            }
+                        }
+                    );
+                },
+                function (xhr) {
+                    console.log(`${model.mtl}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
+                },
+                function (error) {
+                    console.error(`Error loading ${model.mtl}:`, error);
+                    const objLoader = new THREE.OBJLoader();
+                    objLoader.load(
+                        model.obj,
+                        function (object) {
+                            object.scale.set(0.001, 0.001, 0.001);
+                            object.position.set(model.position.x, model.position.y, model.position.z);
+                            scene.add(object);
+                            console.log(`${model.obj} loaded without materials as fallback`);
+
+                            const bbox = new THREE.Box3().setFromObject(object);
+                            overallBoundingBox.union(bbox);
+                            loadedCount++;
+                            if (loadedCount === totalModels) {
+                                adjustCameraAndControls(overallBoundingBox);
+                            }
+                        }
+                    );
+                }
+            );
+        });
+    }
+
+// Adjust camera and controls based on all models
+    function adjustCameraAndControls(boundingBox) {
+        const center = boundingBox.getCenter(new THREE.Vector3());
+        const size = boundingBox.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+
+        camera.position.set(0, -cameraZ, cameraZ);
+        camera.lookAt(center);
+        controls.target.copy(center);
+    }
+
+
+
+/*
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
         defineHDRMaterials();
@@ -351,7 +460,7 @@
         );
     }
 
-
+*/
 
 
 
