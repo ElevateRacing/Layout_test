@@ -303,11 +303,16 @@
                     function (materials) {
                         materials.preload();
 
+                        // Log all material names for debugging
+                        console.log(`Materials in ${model.mtlPath}:`, Object.keys(materials.materials));
+                        
+
                         // Replace MTL materials with HDR-defined materials
                         for (let matName in materials.materials) {
                             const lowerName = matName.toLowerCase();
-                            if (lowerName.includes('Red_Paint')) {
+                            if (lowerName.includes('red_paint')) {
                                 materials.materials[matName] = Paint_Red;
+                                console.log(`Replaced ${matName} with Paint_Red`);
                             } else if (lowerName.includes('CFRP')) {
                                 materials.materials[matName] = CFRP_Matt;
                             } else if (lowerName.includes('cfrp_glossy')) {
