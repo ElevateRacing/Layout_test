@@ -298,10 +298,10 @@
                     // Traverse the object to assign materials
                     object.traverse(function (child) {
                         if (child.isMesh) {
-                            const lowerName = child.name.toLowerCase();
                             console.log('Mesh name:', child.name);
-                            
-                            if (lowerName == 'Mono_optimized' && lowerName.includes('Red_Paint')) {
+
+                            const lowerName = child.name.toLowerCase();
+                            if (lowerName.includes('Red_Paint')) {
                                 child.material = Paint_Red;
                             } else if (lowerName == 'CFRP') {
                                 child.material = CFRP_Matt;
