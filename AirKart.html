@@ -287,57 +287,11 @@
         }
 
     
-// Load model and apply HDR materials directly
-        function loadModelWithHDRMaterials() {
-            defineHDRMaterials(); // Ensure materials are defined
 
-            const objLoader = new THREE.OBJLoader();
-            objLoader.load(
-                'Models/Mono_optimized.obj',
-                function (object) {
-                    // Traverse the object to assign materials
-                    object.traverse(function (child) {
-                        if (child.isMesh) {
-                            console.log('Mesh name:', child.name);
-
-                            const lowerName = child.name.toLowerCase();
-                            if (lowerName.includes('Red_Paint')) {
-                                child.material = Paint_Red;
-                            } else if (lowerName == 'CFRP') {
-                                child.material = CFRP_Matt;
-                            }
-                        }
-                    });
-
-                    object.scale.set(0.001, 0.001, 0.001);
-                    object.position.set(0, 0, 0);
-                    scene.add(object);
-                    console.log('Mono_optimized.obj loaded with HDR materials');
-
-                    // Adjust camera to fit the model
-                    const boundingBox = new THREE.Box3().setFromObject(object);
-                    const center = boundingBox.getCenter(new THREE.Vector3());
-                    const size = boundingBox.getSize(new THREE.Vector3());
-                    const maxDim = Math.max(size.x, size.y, size.z);
-                    const fov = camera.fov * (Math.PI / 180);
-                    let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-                    camera.position.set(0, -cameraZ, cameraZ);
-                    camera.lookAt(center);
-                    controls.target.copy(center);
-                },
-                function (xhr) {
-                    console.log(`Mono_optimized.obj: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                },
-                function (error) {
-                    console.error('Error loading Mono_optimized.obj:', error);
-                }
-            );
-        }
 
             
 
-/*
+
 
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
@@ -406,7 +360,7 @@
         );
     }
 
-*/
+
 
 
 
