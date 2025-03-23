@@ -309,14 +309,13 @@
 
                         // Replace MTL materials with HDR-defined materials
                         for (let matName in materials.materials) {
-                            const lowerName = matName.toLowerCase();
-                            if (lowerName.includes('cfrp')) {
+                            if (matName === 'CFRP') {
                                 materials.materials[matName] = CFRP_Matt;
                                 console.log(`Replaced ${matName} with CFRP_Matt`);
-                            } else if (lowerName.includes('red_paint')) {
+                            } else if (matName === 'Red_Paint') {
                                 materials.materials[matName] = Paint_Red;
                                 console.log(`Replaced ${matName} with Paint_Red`);
-                            } else if (lowerName.includes('CFRP_Glossy')) {
+                            } else if (matName === 'CFRP_Glossy') {
                                 materials.materials[matName] = Glossy_CFRP;
                                 console.log(`Replaced ${matName} with Glossy_CFRP`);
                             }
