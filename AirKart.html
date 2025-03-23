@@ -315,8 +315,7 @@
                                 console.log(`Replaced ${matName} with Paint_Red`);
                             } else if (lowerName.includes('CFRP')) {
                                 materials.materials[matName] = CFRP_Matt;
-                            } else if (lowerName.includes('cfrp_glossy')) {
-                                materials.materials[matName] = CFRP_Glossy;
+                                console.log(`Replaced ${matName} with CFRP_Matt`);
                             }
                             // Add more conditions for other material names if needed
                         }
