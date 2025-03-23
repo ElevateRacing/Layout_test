@@ -286,84 +286,12 @@
             });
         }
 
-        // Load multiple OBJ models
-        function loadMultipleModels() {
-            const objLoader = new THREE.OBJLoader();
-            const modelPaths = [
-                'Models/Mono_optimized.obj',
-                'Models/Another_Model.obj', // Add your second model path
-                'Models/Third_Model.obj'    // Add your third model path
-            ];
-
-            let loadedModels = 0;
-            modelPaths.forEach((path, index) => {
-                objLoader.load(
-                    path,
-                    function (object) {
-                        // Scale and position each model
-                        object.scale.set(0.0005, 0.0005, 0.0005);
-                        object.position.set(0, 0, 0); // Offset each model along X-axis
-
-                        // Traverse the object to assign materials
-                        object.traverse(function (child) {
-                            if (child.isMesh) {
-                                // Assign materials based on name or index (customize as needed)
-                                if (child.name.toLowerCase().includes('red') || index === 0) {
-                                    child.material = Paint_Red;
-                                } else if (child.name.toLowerCase().includes('matt') || index === 1) {
-                                    child.material = CFRP_Matt;
-                                } else {
-                                    child.material = CFRP_Glossy;
-                                }
-                            }
-                        });
-
-                        scene.add(object);
-                        console.log(`${path} loaded successfully`);
-
-                        // Adjust camera after all models are loaded
-                        loadedModels++;
-                        if (loadedModels === modelPaths.length) {
-                            adjustCameraToFitAll();
-                        }
-                    },
-                    function (xhr) {
-                        console.log(`${path}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
-                    },
-                    function (error) {
-                        console.error(`Error loading ${path}:`, error);
-                    }
-                );
-            });
-        }
-
-        // Adjust camera to fit all models
-        function adjustCameraToFitAll() {
-            const boundingBox = new THREE.Box3();
-            scene.traverse(function (object) {
-                if (object.isMesh) {
-                    boundingBox.expandByObject(object);
-                }
-            });
-
-            const center = boundingBox.getCenter(new THREE.Vector3());
-            const size = boundingBox.getSize(new THREE.Vector3());
-            const maxDim = Math.max(size.x, size.y, size.z);
-            const fov = camera.fov * (Math.PI / 180);
-            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
-
-            camera.position.set(0, -cameraZ, cameraZ);
-            camera.lookAt(center);
-            controls.target.copy(center);
-        }
-        
-
-
+    
 
 
             
 
-/*
+
 
         // Load model and replace MTL materials with HDR ones
     function loadModelWithHDRMaterials() {
@@ -434,7 +362,7 @@
 
 
 
-*/
+
 
 
         
