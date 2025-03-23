@@ -288,9 +288,9 @@
 
         // List of models to load with their positions
         const models = [
-            { objPath: 'Models/Mono_optimized.obj', mtlPath: 'Models/Mono_optimized.mtl', position: { x: 0, y: 0, z: 0 } },
-            { objPath: 'Models/Model2.obj', mtlPath: 'Models/Model2.mtl', position: { x: 0, y: 0, z: 0 } },
-            { objPath: 'Models/Model3.obj', mtlPath: 'Models/Model3.mtl', position: { x: 0, y: 0, z: 0 } }
+            { objPath: 'Models/Mono_optimized.obj', mtlPath: 'Models/Mono_optimized.mtl'},
+            { objPath: 'Models/Arm_fwd_optimized.obj', mtlPath: 'Models/Arm_fwd_optimized.mtl'},
+            { objPath: 'Models/Model3.obj', mtlPath: 'Models/Model3.mtl'}
             // Add more models here as needed
         ];
 
@@ -362,7 +362,7 @@
                             model.objPath,
                             function (object) {
                                 object.scale.set(0.001, 0.001, 0.001);
-                                object.position.set(model.position.x, model.position.y, model.position.z);
+                                object.position.set(0, 0, 0);
                                 scene.add(object);
                                 console.log(`${model.objPath} loaded without materials as fallback`);
                                 // Adjust camera for Mono_optimized.obj even in fallback
