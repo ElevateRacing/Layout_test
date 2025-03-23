@@ -329,7 +329,7 @@
                             model.objPath,
                             function (object) {
                                 object.scale.set(0.001, 0.001, 0.001);
-                                object.position.set(model.position.x, model.position.y, model.position.z);
+                                object.position.set(0, 0, 0);
                                 scene.add(object);
                                 console.log(`${model.objPath} loaded with HDR-replaced materials`);
 
