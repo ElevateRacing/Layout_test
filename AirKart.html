@@ -298,13 +298,11 @@
                     // Traverse the object to assign materials
                     object.traverse(function (child) {
                         if (child.isMesh) {
-                            // Assign materials based on name or fallback logic
-                            if (child.name.toLowerCase().includes('Red_Paint')) {
+                            const lowerName = child.name.toLowerCase();
+                            if (lowerName == 'Red_Paint') {
                                 child.material = Paint_Red;
-                            } else if (child.name.toLowerCase().includes('matt') || child.name.toLowerCase().includes('cfrp')) {
+                            } else if (lowerName == 'CFRP') {
                                 child.material = CFRP_Matt;
-                            } else {
-                                child.material = CFRP_Glossy; // Default material
                             }
                         }
                     });
