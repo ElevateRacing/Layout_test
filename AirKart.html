@@ -301,8 +301,8 @@
                     path,
                     function (object) {
                         // Scale and position each model
-                        object.scale.set(0.001, 0.001, 0.001);
-                        object.position.set(index * 2, 0, 0); // Offset each model along X-axis
+                        object.scale.set(0.0001, 0.0001, 0.0001);
+                        object.position.set(0, 0, 0); // Offset each model along X-axis
 
                         // Traverse the object to assign materials
                         object.traverse(function (child) {
