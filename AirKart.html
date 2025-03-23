@@ -247,14 +247,14 @@
                 environmentTexture = texture;
                 console.log('HDR environment loaded successfully!');
                 defineHDRMaterials();
-                loadMultipleModels();
+                loadModelWithHDRMaterials();
             },
             undefined,
             function (error) {
                 console.error('Error loading HDR:', error);
                 environmentTexture = null;
                 defineHDRMaterials();
-                loadMultipleModels();
+                loadModelWithHDRMaterials();
             }
         );
 
