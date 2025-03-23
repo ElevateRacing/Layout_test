@@ -277,7 +277,7 @@
                 envMapIntensity: 0.5
             });
 
-            CFRP_Glossy = new THREE.MeshStandardMaterial({
+            Glossy_CFRP = new THREE.MeshStandardMaterial({
                 color: 0x2A2A2A,
                 metalness: 0.2,
                 roughness: 0.3,
@@ -316,6 +316,9 @@
                             } else if (lowerName.includes('red_paint')) {
                                 materials.materials[matName] = Paint_Red;
                                 console.log(`Replaced ${matName} with Paint_Red`);
+                            } else if (lowerName.includes('CFRP_Glossy')) {
+                                materials.materials[matName] = Glossy_CFRP;
+                                console.log(`Replaced ${matName} with Glossy_CFRP`);
                             }
                             // Add more conditions for other material names if needed
                         }
