@@ -318,8 +318,12 @@
                             } else if (matName === 'CFRP_Glossy') {
                                 materials.materials[matName] = Glossy_CFRP;
                                 console.log(`Replaced ${matName} with Glossy_CFRP`);
-                            }
+                                
                             // Add more conditions for other material names if needed
+                                
+                            } else {
+                                console.log(`No exact match for ${matName}, skipping replacement`);
+                            }
                         }
 
                         const objLoader = new THREE.OBJLoader();
