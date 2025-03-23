@@ -299,7 +299,7 @@
                     object.traverse(function (child) {
                         if (child.isMesh) {
                             // Assign materials based on name or fallback logic
-                            if (child.name.toLowerCase().includes('red') || child.name.toLowerCase().includes('paint')) {
+                            if (child.name.toLowerCase().includes('Red_Paint')) {
                                 child.material = Paint_Red;
                             } else if (child.name.toLowerCase().includes('matt') || child.name.toLowerCase().includes('cfrp')) {
                                 child.material = CFRP_Matt;
