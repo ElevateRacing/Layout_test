@@ -337,7 +337,7 @@
                                 console.log(`${model.objPath} loaded with HDR-replaced materials`);
 
                                 // Adjust camera based on Mono_optimized.obj only
-                                if (model.objPath === 'Models/Mono_optimized.obj') {
+                                if (model.objPath === 'Models/Mono.obj') {
                                     const boundingBox = new THREE.Box3().setFromObject(object);
                                     const center = boundingBox.getCenter(new THREE.Vector3());
                                     const size = boundingBox.getSize(new THREE.Vector3());
