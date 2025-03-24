@@ -284,6 +284,26 @@
                 envMap: environmentTexture,
                 envMapIntensity: 0.7
             });
+
+            Alu = new THREE.MeshStandardMaterial({
+                color: 0xA9A9A9,
+                metalness: 0.9,
+                roughness: 0.4,
+                envMap: environmentTexture,
+                envMapIntensity: 1.0
+            });
+
+            Dark_Alu = new THREE.MeshStandardMaterial({
+                color: 0x333333,
+                metalness: 0.1,
+                roughness: 0.5,
+                envMap: environmentTexture,
+                envMapIntensity: 0.5
+            });
+
+
+
+            
         }
 
         // List of models to load with their positions
@@ -298,7 +318,11 @@
             { objPath: 'Models/Cover_Left_2.obj', mtlPath: 'Models/Cover_Left_2.mtl'},
             { objPath: 'Models/Skid_Support.obj', mtlPath: 'Models/Skid_Support.mtl'},
             { objPath: 'Models/Skid_L.obj', mtlPath: 'Models/Skid_L.mtl'},
-            { objPath: 'Models/Skid_R.obj', mtlPath: 'Models/Skid_R.mtl'}
+            { objPath: 'Models/Skid_R.obj', mtlPath: 'Models/Skid_R.mtl'},
+            { objPath: 'Models/Motors_Fwd_L.obj', mtlPath: 'Models/Motors_Fwd_L.mtl'},
+            { objPath: 'Models/Motors_Fwd_R.obj', mtlPath: 'Models/Motors_Fwd_R.mtl'},
+            { objPath: 'Models/Motors_Aft_L.obj', mtlPath: 'Models/Motors_Aft_L.mtl'},
+            { objPath: 'Models/Motors_Aft_R.obj', mtlPath: 'Models/Motors_Aft_R.mtl'}
             // Add more models here as needed
         ];
 
@@ -335,6 +359,12 @@
                             } else if (matName === 'CFRP_Glossy') {
                                 materials.materials[matName] = Glossy_CFRP;
                                 console.log(`Replaced ${matName} with Glossy_CFRP`);
+                            } else if (matName === 'Aluminium') {
+                                materials.materials[matName] = Alu;
+                                console.log(`Replaced ${matName} with Alu`);
+                            } else if (matName === 'Black_Metal') {
+                                materials.materials[matName] = Dark_Alu;
+                                console.log(`Replaced ${matName} with Dark_Alu`);
                                 
                             // Add more conditions for other material names if needed
                                 
