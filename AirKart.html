@@ -288,9 +288,7 @@
 
         // List of models to load with their positions
         const models = [
-            { objPath: 'Models/Mono.obj', mtlPath: 'Models/Mono.mtl'},
-            { objPath: 'Models/Mono_Top.obj', mtlPath: 'Models/Mono_Top.mtl'},
-            { objPath: 'Models/Model3.obj', mtlPath: 'Models/Model3.mtl'}
+            { objPath: 'Models/Mono.obj', mtlPath: 'Models/Mono.mtl'}
             // Add more models here as needed
         ];
 
@@ -372,7 +370,7 @@
                                 scene.add(object);
                                 console.log(`${model.objPath} loaded without materials as fallback`);
                                 // Adjust camera for Mono_optimized.obj even in fallback
-                                if (model.objPath === 'Models/Mono_optimized.obj') {
+                                if (model.objPath === 'Models/Mono.obj') {
                                     const boundingBox = new THREE.Box3().setFromObject(object);
                                     const center = boundingBox.getCenter(new THREE.Vector3());
                                     const size = boundingBox.getSize(new THREE.Vector3());
