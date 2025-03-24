@@ -295,8 +295,17 @@
 
         // Load multiple models and replace MTL materials with HDR ones
         function loadModelsWithHDRMaterials() {
-            models.forEach((model, index) => {
+            let currentIndex = 0;
+
+            function loadNextModel() {
+                if (currentIndex >= models.length) {
+                    console.log('All models loaded successfully');
+                    return; // All models are loaded
+                }
+
+                const model = models[currentIndex];
                 const mtlLoader = new THREE.MTLLoader();
+                
                 mtlLoader.load(
                     model.mtlPath,
                     function (materials) {
@@ -348,6 +357,10 @@
                                     camera.lookAt(center);
                                     controls.target.copy(center);
                                 }
+
+                                // Move to the next model
+                                currentIndex++;
+                                loadNextModel();
                             },
                             function (xhr) {
                                 console.log(`${model.objPath}: ${(xhr.loaded / xhr.total * 100)}% loaded`);
@@ -383,11 +396,18 @@
                                     camera.lookAt(center);
                                     controls.target.copy(center);
                                 }
+
+                                // Move to the next model even in fallback
+                                currentIndex++;
+                                loadNextModel();
                             }
                         );
                     }
                 );
-            });
+            }
+
+            // Start loading the first model
+            loadNextModel();
         }
 
     
