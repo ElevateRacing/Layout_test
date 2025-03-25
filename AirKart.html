@@ -317,6 +317,16 @@
                 envMapIntensity: 0.8
             });
 
+            Laptop_Screen = new THREE.MeshStandardMaterial({
+                color: 0x87CEEB,
+                metalness: 0.0,
+                roughness: 0.4,
+                emissive: 0x87CEEB,
+                emissiveIntensity: 1.0,
+                envMap: environmentTexture,
+                envMapIntensity: 0.8
+            });
+
 
 
             
@@ -355,6 +365,7 @@
             { objPath: 'Models/Aft_Low_L.obj', mtlPath: 'Models/Aft_Low_L.mtl'},
             { objPath: 'Models/Holder.obj', mtlPath: 'Models/Holder.mtl'},
             { objPath: 'Models/Laptop_Holder.obj', mtlPath: 'Models/Laptop_Holder.mtl'},
+            { objPath: 'Models/Laptop.obj', mtlPath: 'Models/Laptop.mtl'},
             { objPath: 'Models/Throttle.obj', mtlPath: 'Models/Throttle.mtl'}
             // Add more models here as needed
         ];
@@ -404,6 +415,9 @@
                             } else if (matName === 'Plastic') {
                                 materials.materials[matName] = Dark_Plastic;
                                 console.log(`Replaced ${matName} with Dark_Plastic`);
+                            } else if (matName === 'Screen') {
+                                materials.materials[matName] = Laptop_Screen;
+                                console.log(`Replaced ${matName} with Laptop_Screen`);
                                 
                             // Add more conditions for other material names if needed
                                 
