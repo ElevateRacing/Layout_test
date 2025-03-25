@@ -327,9 +327,11 @@
                 envMapIntensity: 0.8
             });
 
-
-
-            
+            Blue = new THREE.MeshStandardMaterial({
+                color: 0x1E90FF,
+                metalness: 0.0,
+                roughness: 0.8,
+            });
         }
 
         // List of models to load with their positions
@@ -367,7 +369,8 @@
             { objPath: 'Models/Laptop_Holder.obj', mtlPath: 'Models/Laptop_Holder.mtl'},
             { objPath: 'Models/Laptop.obj', mtlPath: 'Models/Laptop.mtl'},
             { objPath: 'Models/Throttle.obj', mtlPath: 'Models/Throttle.mtl'},
-            { objPath: 'Models/Joy.obj', mtlPath: 'Models/Joy.mtl'}
+            { objPath: 'Models/Joy.obj', mtlPath: 'Models/Joy.mtl'},
+            { objPath: 'Models/Harness.obj', mtlPath: 'Models/Harness.mtl'}
             // Add more models here as needed
         ];
 
@@ -419,6 +422,9 @@
                             } else if (matName === 'Screen') {
                                 materials.materials[matName] = Laptop_Screen;
                                 console.log(`Replaced ${matName} with Laptop_Screen`);
+                            } else if (matName === 'Harness') {
+                                materials.materials[matName] = Blue;
+                                console.log(`Replaced ${matName} with Blue`);
                                 
                             // Add more conditions for other material names if needed
                                 
