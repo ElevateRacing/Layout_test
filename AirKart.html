@@ -352,7 +352,8 @@
             { objPath: 'Models/Aft_Up_L.obj', mtlPath: 'Models/Aft_Up_L.mtl'},
             { objPath: 'Models/Aft_Up_R.obj', mtlPath: 'Models/Aft_Up_R.mtl'},
             { objPath: 'Models/Aft_Low_R.obj', mtlPath: 'Models/Aft_Low_R.mtl'},
-            { objPath: 'Models/Aft_Low_L.obj', mtlPath: 'Models/Aft_Low_L.mtl'}
+            { objPath: 'Models/Aft_Low_L.obj', mtlPath: 'Models/Aft_Low_L.mtl'},
+            { objPath: 'Models/Throttle.obj', mtlPath: 'Models/Throttle.mtl'}
             // Add more models here as needed
         ];
 
@@ -398,6 +399,9 @@
                             } else if (matName === 'Kevlar') {
                                 materials.materials[matName] = Kevlar_Composite;
                                 console.log(`Replaced ${matName} with Kevlar_Composite`);
+                            } else if (matName === 'Plastic') {
+                                materials.materials[matName] = Dark_Plastic;
+                                console.log(`Replaced ${matName} with Dark_Plastic`);
                                 
                             // Add more conditions for other material names if needed
                                 
