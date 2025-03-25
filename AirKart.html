@@ -301,6 +301,14 @@
                 envMapIntensity: 0.5
             });
 
+            Kevlar_Composite = new THREE.MeshStandardMaterial({
+                color: 0xDAA520,
+                metalness: 0.1,
+                roughness: 0.7,
+                envMap: environmentTexture,
+                envMapIntensity: 1.0
+            });
+
 
 
             
@@ -379,6 +387,9 @@
                             } else if (matName === 'Black_Metal') {
                                 materials.materials[matName] = Dark_Alu;
                                 console.log(`Replaced ${matName} with Dark_Alu`);
+                            } else if (matName === 'Kevlar') {
+                                materials.materials[matName] = Kevlar_Composite;
+                                console.log(`Replaced ${matName} with Kevlar_Composite`);
                                 
                             // Add more conditions for other material names if needed
                                 
